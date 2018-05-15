@@ -1,0 +1,15 @@
+# Data Files
+/data
+
+# LaTeX files
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.nav
+*.snm
+*.toc
+*.tex
+
+# IPython Checkpoints
+/notebooks/.ipynb_checkpoints
