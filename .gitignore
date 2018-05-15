@@ -1,5 +1,13 @@
-# Data Files
-/data
+# Raw Data Files
+*.nc
+*.cpg
+*.dbf
+*.prj
+*.shp
+*.xml
+*.shx
+*.zip
+
 
 # LaTeX files
 *.aux
