@@ -8,6 +8,12 @@
 *.shx
 *.zip
 
+# Raw Data Folders
+data/wind
+data/solar
+data/electricity
+data/keys
+
 
 # LaTeX files
 *.aux
