@@ -13,6 +13,8 @@ data/wind
 data/solar
 data/electricity
 data/keys
+data/temperature
+data/state_factors
 
 
 # LaTeX files
