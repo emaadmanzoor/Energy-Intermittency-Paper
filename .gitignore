@@ -9,12 +9,8 @@
 *.zip
 
 # Raw Data Folders
-data/wind
-data/solar
-data/electricity
-data/keys
-data/temperature
-data/state_factors
+/data/*
+!/data/processed/*
 
 
 # LaTeX files
