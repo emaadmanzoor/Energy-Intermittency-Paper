@@ -1,5 +1,5 @@
 clear
-import delimited D:\Users\saketh\Documents\GitHub\BECCS-Case-Study\data\processed\fuel_data.csv
+import delimited D:\Users\saketh\Documents\GitHub\BECCS-Case-Study\data\processed\merged_data.csv
 
 xtset statefips month
 
@@ -83,3 +83,16 @@ else {
 }
 
 est store oil_natgas
+
+constraint define 1 ln_avg_cost_ngcoal_diff = ln_avg_cost_oilcoal_diff
+constraint define 2 ln_avg_cost_ngcoal_diff = ln_avg_cost_ngoil_diff
+reg3 (ln_cfg_coalng_diff = ln_avg_cost_ngcoal_diff) ///
+	(ln_cfg_coaloil_diff = ln_avg_cost_oilcoal_diff) ///
+	(ln_cfg_oilng_diff = ln_avg_cost_ngoil_diff) ///
+	, constraint(1 2)
+
+//
+// // View results
+// esttab coal_natgas
+// esttab coal_oil
+// esttab oil_natgas
