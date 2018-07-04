@@ -123,10 +123,10 @@ est store s3
 // graph export "D:\Users\saketh\Documents\GitHub\BECCS-Case-Study\documents\exhibits\oil_natgas_scatter.pdf", as(pdf) replace
 
 // relevant fip
- 
-forvalues i = 1/100 {
-    gen byte fips_`i' = (statefips == `i') 
-}
+// 
+// forvalues i = 1/100 {
+//     gen byte fips_`i' = (statefips == `i') 
+// }
 
 
 gen ln_all_nge = log(1+net_gen_elc_all)
@@ -145,12 +145,34 @@ gen ln_all_nge = log(1+net_gen_elc_all)
 // 
  
  
- /// Total cost approaches
+/// Total cost approaches
+
+gen ln_tc_coal = ln_avg_cost_coal + ln_cfg_coal
+gen ln_tc_natgas = ln_avg_cost_natural_gas + ln_cfg_natural_gas
+
+gen ln_tc_natgascoal_diff = ln_tc_natgas - ln_tc_coal
+
+xtreg ln_cfg_coalng_diff ln_tc_natgascoal_diff, re
+// sigma = 44.2507
  
- gen ln_tc_coal = ln_avg_cost_coal + ln_cfg_coal
- gen ln_tc_natgas = ln_avg_cost_natural_gas + ln_cfg_natural_gas
  
- gen ln_tc_natgascoal_diff = ln_tc_natgas - ln_tc_coal
- 
- reg ln_cfg_coalng_diff ln_tc_natgascoal_diff i.statefips
- // sigma = 51
+/// First difference
+// bys statefips (month): g difftotal = ln_cfg_coalng_diff - ln_cfg_coalng_diff[_n - 1]
+// bys statefips (month): g difftotal2 = ln_tc_natgascoal_diff - ln_tc_natgascoal_diff[_n - 1]
+// reg difftotal difftotal2 i.statefips
+// gives same results
+
+gen ln_rgdp = log(rgdp)
+
+
+/*
+// Papageorgiou approach, doesn't work?
+nl (ln_rgdp = {c} + {gamma}*(1/{phi})*log(con_for_gen_coal^{phi} + con_for_gen_natural_gas^{phi}+0.01)) ///
+	if !missing(con_for_gen_coal) & !missing(con_for_gen_natural_gas) ///
+	, initial(c 7 gamma 1 phi 59) iterate(100)
+
+menl ln_rgdp = {B0[statefips]} + {gamma}*(1/(1-exp({phi})))*log(con_for_gen_coal^(1-exp({phi})) + con_for_gen_natural_gas^(1-exp({phi}))+0.01) ///
+	if !missing(con_for_gen_coal) & !missing(con_for_gen_natural_gas) & temp == 1 ///
+	, initial(gamma 1 phi 100) iterate(100)
+*/
+

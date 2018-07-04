@@ -116,7 +116,7 @@ gen ln_tc_windsolar_diff = ln_tc_wind - ln_tc_solar
 gen sigma_hat = 0
 gen phi_hat = 0
 
-reg ln_net_gen_solarwind_diff ln_tc_windsolar_diff i.statefips
+xtreg ln_net_gen_solarwind_diff ln_tc_windsolar_diff 
 matrix b = e(b)
 replace sigma_hat =  b[1,1]/ (1 +  b[1,1])
 replace phi_hat   = -1 / b[1,1]
