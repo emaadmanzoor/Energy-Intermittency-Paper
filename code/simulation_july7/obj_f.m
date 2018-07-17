@@ -11,8 +11,8 @@ p_2    = parameters.p_2;
 
 
 % supply
-x_1 = (p_1)^(-1)*(p_t*xi_1 + p_s*xi_1);
-x_2 = (p_2)^(-1)*(p_t*xi_2_t + p_s*xi_2_s);
+x_1 = (2*p_1)^(-1)*(p_t*xi_1 + p_s*xi_1);
+x_2 = (2*p_2)^(-1)*(p_t*xi_2_t + p_s*xi_2_s);
 y_t_supply = xi_1*x_1 + xi_2_t*x_2;
 y_s_supply = xi_1*x_1 + xi_2_s*x_2;
 
@@ -29,7 +29,7 @@ y_s = min(y_s_supply, y_s_demand);
 % umax_t = y_t - alpha*budget/p_t;
 % umax_s = y_s - beta*budget/p_s;
 
-profit = (y_t*p_t + y_s*p_s) - (p_1*x_1^2/2 + p_2*x_2^2/2);
+profit = (y_t*p_t + y_s*p_s) - (p_1*x_1^2 + p_2*x_2^2);
 utility = y_t^alpha * y_s*beta;
 
 output_diff_t = (y_t_supply - y_t_demand).^2;

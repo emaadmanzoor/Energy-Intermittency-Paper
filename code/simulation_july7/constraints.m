@@ -27,7 +27,7 @@ y_s = min(y_s_supply, y_s_demand);
 %% <= constraints
 positive_output_y_t = -y_t;
 positive_output_y_s = -y_s;
-positive_profit = y_t*p_t + y_s*p_s - (p_1*x_1^2/2 + p_2*x_2^2/2);
+positive_profit = y_t*p_t + y_s*p_s - (p_1*x_1^2 + p_2*x_2^2);
 c = [positive_output_y_t, positive_output_y_s, -positive_profit];
 
 

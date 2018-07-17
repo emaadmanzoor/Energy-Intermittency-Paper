@@ -1,5 +1,5 @@
 
-parameters.xi_1   = 4.01; 
+parameters.xi_1   = 4.00; 
 parameters.xi_2_t = 6;
 parameters.xi_2_s = 2;
 parameters.alpha  = 0.7;
@@ -8,10 +8,12 @@ parameters.budget = 100;
 parameters.p_1    = 0.5; 
 parameters.p_2    = 0.5; 
 
+debug = true;
+
 
 %% Optimize
 
-[ optimal_vars, optimal_val, objfunc, objcons, p_t, p_s, y_t, y_s ] = optimize ( parameters );
+[ optimal_vars, optimal_val, objfunc, objcons, p_t, p_s, y_t, y_s ] = optimize ( parameters, debug );
 
 
 %% Load results
@@ -44,7 +46,7 @@ fprintf('Utility: %f\n', utility)
 
 %% Parameter effects params
 
-delta = 0.01;
+delta = 0.001;
 xi_1_init = 4;
 xi_2_t_init = 6;
 xi_2_s_init = 2;
@@ -55,7 +57,7 @@ xi_2_s_init = 2;
 parameters.xi_1 = xi_1_init;
 
 [ optimal_vars, optimal_val, objfunc, objcons, p_t, p_s, y_t, y_s ] = ...
-    optimize ( parameters );
+    optimize ( parameters, debug );
 
 x_1_temp = optimal_vars(1);
 x_2_temp = optimal_vars(2);
@@ -65,7 +67,7 @@ y_s_temp = y_s;
 parameters.xi_1 = xi_1_init + delta;
 
 [ optimal_vars, optimal_val, objfunc, objcons, p_t, p_s, y_t, y_s ] = ...
-    optimize ( parameters );
+    optimize ( parameters, debug );
 
 x_1 = optimal_vars(2);
 x_2 = optimal_vars(2);
@@ -80,7 +82,7 @@ disp('Derivatives of [x_1, x_2, y_t, y_s]')
 parameters.xi_2_t = xi_2_t_init;
 
 [ optimal_vars, optimal_val, objfunc, objcons, p_t, p_s, y_t, y_s ] = ...
-    optimize ( parameters );
+    optimize ( parameters, debug );
 
 x_1_temp = optimal_vars(1);
 x_2_temp = optimal_vars(2);
@@ -91,7 +93,7 @@ y_s_temp = y_s;
 parameters.xi_2_t = xi_2_t_init + delta;
 
 [ optimal_vars, optimal_val, objfunc, objcons, p_t, p_s, y_t, y_s ] = ...
-    optimize ( parameters );
+    optimize ( parameters, debug );
 
 x_1 = optimal_vars(2);
 x_2 = optimal_vars(2);
@@ -106,7 +108,7 @@ disp('Derivatives of [x_1, x_2, y_t, y_s]')
 parameters.xi_2_s = xi_2_s_init;
 
 [ optimal_vars, optimal_val, objfunc, objcons, p_t, p_s, y_t, y_s ] = ...
-    optimize ( parameters );
+    optimize ( parameters, debug );
 
 x_1_temp = optimal_vars(1);
 x_2_temp = optimal_vars(2);
@@ -117,7 +119,7 @@ y_s_temp = y_s;
 parameters.xi_2_s = xi_2_s_init + delta;
 
 [ optimal_vars, optimal_val, objfunc, objcons, p_t, p_s, y_t, y_s ] = ...
-    optimize ( parameters );
+    optimize ( parameters, debug );
 
 x_1 = optimal_vars(2);
 x_2 = optimal_vars(2);
@@ -125,6 +127,28 @@ x_2 = optimal_vars(2);
 disp('Derivatives of [x_1, x_2, y_t, y_s]')
 [(x_1 - x_1_temp)/delta (x_2 - x_2_temp)/delta ...
     (y_t - y_t_temp)/delta (y_s - y_s_temp)/delta]
+
+
+
+%% Input Ratios
+
+n = 100;
+p_1_range = linspace(0.5,0.6,n);
+
+ratio_array = zeros(1,n);
+
+for i = 1:n
+    
+    parameters.p_1 = p_1_range(i);
+    
+    [ optimal_vars, optimal_val, objfunc, objcons, p_t, p_s, y_t, y_s ] ...
+        = optimize ( parameters, debug );
+    
+    ratio_array(i) = optimal_vars(1)/optimal_vars(2);
+    
+end
+
+plot(log(p_1_range/p_2), log(ratio_array))
 
 
 

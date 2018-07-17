@@ -37,8 +37,10 @@ c = [positive_output_y_t, positive_output_y_s, -positive_profit];
 
 %% == constraints
 budget_constraint = ((y_t*p_t + y_s*p_s) - budget).^2;
+eq_t = (y_t_demand - y_t_supply)^2;
+eq_s = (y_s_demand - y_s_supply)^2;
 
-ceq = [budget_constraint];
+ceq = [budget_constraint, eq_t, eq_s];
 
 
 end
