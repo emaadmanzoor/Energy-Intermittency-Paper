@@ -7,9 +7,9 @@
 
 parameters.alpha = @(t) 1.75-(2.*t-1).^2/2;
 parameters.xi_1  = @(t) cos(t.*3-2)/2 + 1.5;
-parameters.xi_2  = @(t) sin(t.*6-.5)/2 + 1.5;
+parameters.xi_2  = @(t) 0.*t+1;%sin(t.*6-.5)/2 + 1.5;
 
-parameters.phi =  2;
+parameters.phi = 0.5;
 parameters.budget = 1;
 
 parameters.x_1_cost_param = 0.6;
@@ -41,7 +41,7 @@ disp('Optimizing...')
 %% Get results
 
 % unpack params
-price_coeffs = optimal_vars;
+price_coeffs = optimal_vars(1:24);
 
 alpha = parameters.alpha;
 xi_1  = parameters.xi_1;
@@ -57,8 +57,8 @@ sigma = 1 / (1-phi);
 % 
 price_coeffs_positive = sum(price_coeffs > 0) == length(price_coeffs);
 
-X_1 = (1/x_1_cost_param)*xi_1(linspace(0,1,24))*price_coeffs'/24;
-X_2 = (1/x_2_cost_param)*xi_2(linspace(0,1,24))*price_coeffs'/24;
+X_1 = optimal_vars(25);
+X_2 = optimal_vars(26);
 
 Y = (1/24)*(xi_1(linspace(0,1,24))*X_1 + xi_2(linspace(0,1,24))*X_2);
 I = price_coeffs*Y'/24;
@@ -75,7 +75,7 @@ figure;
 grid('on')
 
 subplot(3, 1, 1);
-plot(linspace(0,1,24), optimal_vars)
+plot(linspace(0,1,24), price_coeffs)
 title('Price')
 ylabel('Price')
 
@@ -88,7 +88,7 @@ ylabel('Quantity')
 
 
 subplot(3, 1, 3); 
-plot(linspace(0,1,24), optimal_vars.*Y_demand)
+plot(linspace(0,1,24), price_coeffs.*Y_demand)
 title('Cost of Energy Use')
 ylabel('Time')
 

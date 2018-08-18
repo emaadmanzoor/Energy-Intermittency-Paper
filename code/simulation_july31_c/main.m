@@ -6,14 +6,14 @@
 %% Parameters
 
 parameters.alpha = @(t) 1.75-(2.*t-1).^2/2;
-parameters.xi_1  = @(t) cos(t.*3-2)/2 + 1.5;
-parameters.xi_2  = @(t) sin(t.*6-.5)/2 + 1.5;
+parameters.xi_1  = @(t) 2*t.^1+2.5;% cos(t.*3-2)/2 + 1.5;
+parameters.xi_2  = @(t) 2-2*t.^1+3;%sin(t.*6-.5)/2 + 1.5;
 
 parameters.phi =  2;
 parameters.budget = 1;
 
-parameters.x_1_cost_param = 0.6;
-parameters.x_2_cost_param = 1;
+parameters.x_1_cost_param = 1;
+parameters.x_2_cost_param = 1.13934865804215;
 
 % plots
 figure;
@@ -41,7 +41,7 @@ disp('Optimizing...')
 %% Get results
 
 % unpack params
-price_coeffs = optimal_vars;
+% price_coeffs = optimal_vars(1:24);
 
 alpha = parameters.alpha;
 xi_1  = parameters.xi_1;
@@ -55,18 +55,18 @@ phi   = parameters.phi;
 sigma = 1 / (1-phi);
 
 % 
-price_coeffs_positive = sum(price_coeffs > 0) == length(price_coeffs);
+%price_coeffs_positive = sum(price_coeffs > 0) == length(price_coeffs);
 
-X_1 = (1/x_1_cost_param)*xi_1(linspace(0,1,24))*price_coeffs'/24;
-X_2 = (1/x_2_cost_param)*xi_2(linspace(0,1,24))*price_coeffs'/24;
+X_1 = optimal_vars(1);
+X_2 = optimal_vars(2);
 
 Y = (1/24)*(xi_1(linspace(0,1,24))*X_1 + xi_2(linspace(0,1,24))*X_2);
-I = price_coeffs*Y'/24;
+% I = price_coeffs*Y'/24;
 
 % price index
-P = ((1/24)*(price_coeffs.^(1-sigma))*(alpha(linspace(0,1,24))'.^sigma)).^(1/(1-sigma));
+% P = ((1/24)*(price_coeffs.^(1-sigma))*(alpha(linspace(0,1,24))'.^sigma)).^(1/(1-sigma));
 
-Y_demand = ((price_coeffs./(alpha(linspace(0,1,24)))).^(-sigma)) .* (P.^(1-sigma));
+%Y_demand = ((price_coeffs./(alpha(linspace(0,1,24)))).^(-sigma)) .* (P.^(1-sigma));
 U = (1/24)*(alpha(linspace(0,1,24))*(Y.^phi)').^(1/phi);
 
 
@@ -75,20 +75,20 @@ figure;
 grid('on')
 
 subplot(3, 1, 1);
-plot(linspace(0,1,24), optimal_vars)
+% plot(linspace(0,1,24), price_coeffs)
 title('Price')
 ylabel('Price')
 
 subplot(3, 1, 2);  hold on;
 plot(linspace(0,1,24), Y)
-plot(linspace(0,1,24), Y_demand)
-title('Energy Quantity Supplied and Demanded')
+%plot(linspace(0,1,24), Y_demand)
+title('Energy Quantity Supplied')
 legend('Supply', 'Demand')
 ylabel('Quantity')
 
 
 subplot(3, 1, 3); 
-plot(linspace(0,1,24), optimal_vars.*Y_demand)
+%plot(linspace(0,1,24), price_coeffs.*Y_demand)
 title('Cost of Energy Use')
 ylabel('Time')
 

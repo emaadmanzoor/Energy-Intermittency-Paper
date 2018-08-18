@@ -27,7 +27,7 @@ price_coeffs_positive = sum(price_coeffs > 0) == length(price_coeffs);
 X_1 = (1/x_1_cost_param)*xi_1(linspace(0,1,24))*price_coeffs'/24;
 X_2 = (1/x_2_cost_param)*xi_2(linspace(0,1,24))*price_coeffs'/24;
 
-Y = (1/24)*(xi_1(linspace(0,1,24))*X_1 + xi_2(linspace(0,1,24))*X_1);
+Y = (1/24)*(xi_1(linspace(0,1,24))*X_1 + xi_2(linspace(0,1,24))*X_2);
 I = price_coeffs*Y'/24;
 
 % price index
