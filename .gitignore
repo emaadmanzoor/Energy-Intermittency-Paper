@@ -11,7 +11,7 @@
 # Raw Data Folders
 /data/*
 !/data/processed/*
-
+/documents/exhibits
 
 # LaTeX files
 *.aux
@@ -25,3 +25,5 @@
 
 # IPython Checkpoints
 /notebooks/.ipynb_checkpoints
+
+
