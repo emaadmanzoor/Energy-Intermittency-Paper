@@ -17,15 +17,19 @@
 //
 // reg ln_solar_cap ln_intg_div ln_wind_cap
 
+
 clear
 import delimited C:\Users\saket\GitHub\BECCS-Case-Study\data\processed\elasticity_data.csv
 
 gen log_nsea_rel = log(nsea_rel)
 
-nl (log_nsea_rel = ///
-	(-{sigma=0.1})*log((sin({b0=1}+month*3.14/6)/sin({b0}+3.14/6))+2) ///
-	+ {sigma}*log(epa_rel)), ///
-	vce(robust)
-	
-gen log_alpha_rel = log((sin(0.496+month*3.14/6)/sin(0.496+3.14/6))+2)
+egen mean_lnr = mean(log_nsea_rel), by(statefips)
+gen log_nsea_rel_dmd = log_nsea_rel - mean_lnr
 
+nl (log_nsea_rel = ({sigma=1})*log( (sin({b1=1}*month + {b2=1})) / (sin({b1}*1 + {b2})) + {c0=1.25}) -{sigma}*log(epa_rel))
+
+nl (log_nsea_rel_dmd = ({sigma=1})*log( (sin({b1=1}*month + {b2=1})) / (sin({b1}*1 + {b2})) + {c0=1.25}) -{sigma}*log(epa_rel))
+
+// gen temp = sin(0.86*(month) + 1.5)*0.1259 + 0.9706
+//
+// nl (nsea_rel = (((sin({b1=1}*month + {b2=1})) / (sin({b1}*1 + {b2})))^(sigma=1})*(epa_rel^(sigma=1}) + {c0=1})
