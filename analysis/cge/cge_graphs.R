@@ -1,16 +1,18 @@
 library(tidyverse)
+library(plyr)
 library(gdxrrw)
 library(ggplot2)
 library(scales)
 library(ggthemes)
 
+setwd('C:/Users/saket/GitHub/BECCS-Case-Study/analysis/cge')
 
 # Paths
 igdx(gamsSysDir = "C:/GAMS/win64/25.1")
 data_loc <- '../../data/cge/results.gdx'
 
 # Folder to put graphs
-fig_folder <- '../../documents/exhibits/cge/'
+fig_folder <- '../../documents/exhibits/cge/pgm/'
 
 # Params
 fig_scale  <- 1.1
@@ -35,17 +37,21 @@ data_merged <- merge(data_merged, data_pz, on = c('i', 't'))
 data_merged <- merge(data_merged, data_Z, on = c('i', 't'))
 data_merged <- merge(data_merged, data_co2, on = c('i', 't'))
 
+# Clean column names
+data_merged$i <- mapvalues(data_merged$i,
+          from = c('ELC_BECCS', 'ELC_FF', 'ELC_RNW'),
+          to = c('BECCS', 'Fossil Fuels', 'Renewables'))
 
 # -----------------
 ## Plots
 
-pdf(file='graphs.pdf', paper='USr', width = 8, height = 5)
+#pdf(file='graphs.pdf', paper='USr', width = 8, height = 5)
 
 ggtheme <- theme_gray() + theme(plot.title = element_text(hjust = 0.5))
 
-data_beccs <- filter(data_merged, i == 'ELC_BECCS')
-data_ff    <- filter(data_merged, i == 'ELC_FF')
-data_rnw   <- filter(data_merged, i == 'ELC_RNW')
+data_beccs <- filter(data_merged, i == 'BECCS')
+data_ff    <- filter(data_merged, i == 'Fossil Fuels')
+data_rnw   <- filter(data_merged, i == 'Renewables')
 
 
 # Learning Rate
@@ -79,15 +85,14 @@ ggsave(paste0(fig_folder, 'co2_tax_rate.png'), scale = fig_scale,
 
 # Change in Tax Rates
 
-ggplot(data = filter(data_merged, i %in% c('ELC_BECCS', 'ELC_FF', 'ELC_RNW')),
+ggplot(data = filter(data_merged, i %in% c('Fossil Fuels', 'BECCS', 'Renewables')),
        aes(x = t, y = Res_tax, group = i, fill = i)) +
   geom_line(aes(color = i), size = 2) +
   scale_y_continuous(labels = percent)    +
   labs(title = 'Production Tax Rates on Electricity Sector over Time',
        color = 'Sector')  +
   xlab('Time (years)') + ylab('Tax Rate') +
-  ggtheme +
-  scale_color_discrete(labels = c('Fossil Fuels', 'Renewables', 'BECCS'))
+  ggtheme
 ggsave(paste0(fig_folder, 'tax_rates.png'), scale = fig_scale,
        width = fig_width, height = fig_height)
 
@@ -99,13 +104,13 @@ data_merged <- data_merged %>%
   mutate(zpz_pct_chg = Res_Zpz/Res_Zpz[t==0][1L] - 1)
 
 ggplot(data = filter(data_merged,
-                     i %in% c('ELC_BECCS', 'ELC_FF', 'ELC_RNW')),
+                     i %in% c('Fossil Fuels', 'BECCS', 'Renewables')),
        aes(x = t, y = zpz_pct_chg, group = i, fill = i)) +
   geom_bar(position = 'dodge', stat = 'identity') +
   scale_y_continuous(labels = percent, limits = c(-0.5, 1))    +
-  labs(title = 'Cumulative Percent Change in Output (Mil $) over Time', fill = 'Sector')  +
+  labs(title = 'Cumulative Percent Change in Output (Mil $) over Time',
+       fill = 'Sector')  +
   xlab('Time (years)') + ylab('Percent Change in Output (Mil $)') +
-  scale_fill_discrete(labels = c('Fossil Fuels', 'Renewables', 'BECCS')) +
   ggtheme
 ggsave(paste0(fig_folder, 'output_pct_chg.png'), scale = fig_scale,
        width = fig_width, height = fig_height)
@@ -118,12 +123,11 @@ data_merged <- data_merged %>%
   mutate(zpz_chg = Res_Zpz - Res_Zpz[t==0][1L])
 
 ggplot(data = filter(data_merged,
-                     i %in% c('ELC_BECCS', 'ELC_FF', 'ELC_RNW')),
+                     i %in% c('Fossil Fuels', 'BECCS', 'Renewables')),
        aes(x = t, y = zpz_chg, group = i, fill = i)) +
   geom_bar(position = 'dodge', stat = 'identity') +
   labs(title = 'Change in Output (Mil $) over Time', fill = 'Sector')  +
   xlab('Time (years)') + ylab('Change in Output (Mil $)') +
-  scale_fill_discrete(labels = c('Fossil Fuels', 'Renewables', 'BECCS')) +
   ggtheme
 ggsave(paste0(fig_folder, 'output_chg.png'), scale = fig_scale,
        width = fig_width, height = fig_height)
@@ -171,17 +175,19 @@ ggplot(data = filter(data_temp),
 # Tax Revenue Change
 
 data_merged$tax_revenue <- data_merged$Res_tax * data_merged$Res_Zpz
-data_merged <- data_merged %>%
-  group_by(i) %>%
-  mutate(tax_rev_chg = tax_revenue - tax_revenue[t==0][1L])
+
+data_merged <- ddply(data_merged, .(i, t))
+
+data_merged <- ddply(data_merged, .(i), transform,
+      tax_rev_chg = (tax_revenue - tax_revenue[1]),
+      tax_rev_chg_rel = (tax_revenue/tax_revenue[1]) - 1)
 
 
-ggplot(data = filter(data_merged, i %in% c('ELC_BECCS', 'ELC_FF', 'ELC_RNW')),
+ggplot(data = filter(data_merged, i %in% c('Fossil Fuels', 'BECCS', 'Renewables')),
        aes(x = t, y = tax_rev_chg, group = i, fill = i)) +
   geom_bar(position = 'dodge', stat = 'identity') +
   labs(title = 'Change in Tax Revenue over Time', fill = 'Sector')  +
   xlab('Time (years)') + ylab('Change in Tax Revenue (Mil $)') +
-  scale_fill_discrete(labels = c('Fossil Fuels', 'Renewables', 'BECCS')) +
   ggtheme
 ggsave(paste0(fig_folder, 'tax_rev_chg.png'), scale = fig_scale,
        width = fig_width, height = fig_height)
@@ -189,19 +195,12 @@ ggsave(paste0(fig_folder, 'tax_rev_chg.png'), scale = fig_scale,
 
 # Tax Revenue Percent Change
 
-data_merged$tax_revenue <- data_merged$Res_tax * data_merged$Res_Zpz
-data_merged <- data_merged %>%
-  group_by(i) %>%
-  mutate(tax_rev_pct_chg = tax_revenue/tax_revenue[t==0][1L] - 1)
-
-
-ggplot(data = filter(data_merged, i %in% c('ELC_BECCS', 'ELC_FF', 'ELC_RNW')),
-       aes(x = t, y = tax_rev_pct_chg, group = i, fill = i)) +
+ggplot(data = filter(data_merged, i %in% c('Fossil Fuels', 'BECCS', 'Renewables')),
+       aes(x = t, y = tax_rev_chg_rel, group = i, fill = i)) +
   geom_bar(position = 'dodge', stat = 'identity') +
   scale_y_continuous(labels = percent)    +
   labs(title = 'Percent Change in Tax Revenue over Time', fill = 'Sector')  +
   xlab('Time (years)') + ylab('Percent Change in Tax Revenue') +
-  scale_fill_discrete(labels = c('Fossil Fuels', 'Renewables', 'BECCS')) +
   ggtheme
 ggsave(paste0(fig_folder, 'tax_rev_pct_chg.png'), scale = fig_scale,
        width = fig_width, height = fig_height)
@@ -224,14 +223,13 @@ ggsave(paste0(fig_folder, 'beccs_cost.png'), scale = fig_scale,
 
 # Electricity Sector Output
 
-ggplot(data = filter(data_merged, i %in% c('ELC_BECCS', 'ELC_FF', 'ELC_RNW')),
+ggplot(data = filter(data_merged, i %in% c('Fossil Fuels', 'BECCS', 'Renewables')),
        aes(x = t, y = Res_Zpz, fill = i, group = i, ymax = 45e3)) +
   geom_bar(stat = 'identity', aes(color = i=='ELC_BECCS'))  +
   scale_color_manual(values = c(NA, 'black'), guide=F) +
   labs(title = 'Output of Electricity Sectors', fill = 'Sector')  +
   xlab('Time (years)') + ylab('Output (million $)') +
-  ggtheme + scale_y_continuous(limits = c(0,42500), expand = c(0,0)) +
-  scale_fill_discrete(labels = c('Fossil Fuels', 'Renewables', 'BECCS'))
+  ggtheme
 
 
 # Change in Co2
@@ -249,4 +247,4 @@ ggsave(paste0(fig_folder, 'co2_pct_chg.png'), scale = fig_scale,
        width = fig_width, height = fig_height)
 
 
-dev.off()
+#dev.off()
