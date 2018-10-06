@@ -848,11 +848,10 @@ loop(t,
     Res_co2(t) = sum(i, co2_output_rt(i)*elc_conv*Z.l(i));
 
 *   speed up convergence with guess
-    Z.l('ELC_BECCS') = Z.l('ELC_BECCS')*1.1;
-    loop(i,
-* pz.l(i) = pz.l(i)*(1*0.999+(pz.l(i)/Res_pz(i, t-1))*0.0001);
-    );
+    Z.l('ELC_BECCS') = Z.l('ELC_BECCS')*1.001;
+    pz.l('ELC_BECCS') = pz.l('ELC_BECCS')*0.999;
     Z.l('ELC_RNW') = Z.l('ELC_RNW')*(1.01**iteration_count);
+    Z.l('ELC_BECCS') = Z.l('ELC_BECCS')*0.999;
 *    Z.l(i) = Z0(i)*1;
 
     
