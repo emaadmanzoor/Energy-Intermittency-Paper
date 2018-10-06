@@ -31,6 +31,10 @@ data_tax    <- rgdx.param(data_loc, 'Res_tax')
 data_ler    <- rgdx.param(data_loc, 'L_mult')
 data_co2_rt <- rgdx.param(data_loc, 'co2_tax_rt')
 
+
+#--------------
+## Data Clean up
+
 # Merge some data
 data_merged <- merge(data_tax, data_Zpz, on = c('i', 't'))
 data_merged <- merge(data_merged, data_pz, on = c('i', 't'))
@@ -42,16 +46,29 @@ data_merged$i <- mapvalues(data_merged$i,
           from = c('ELC_BECCS', 'ELC_FF', 'ELC_RNW'),
           to = c('BECCS', 'Fossil Fuels', 'Renewables'))
 
-# -----------------
-## Plots
+data_merged$tax_revenue <- data_merged$Res_tax * data_merged$Res_Zpz
 
-#pdf(file='graphs.pdf', paper='USr', width = 8, height = 5)
+data_merged <- ddply(data_merged, .(i, t))
 
-ggtheme <- theme_gray() + theme(plot.title = element_text(hjust = 0.5))
+data_merged <- ddply(data_merged, .(i), transform,
+                     tax_rev_chg = (tax_revenue - tax_revenue[1]),
+                     tax_rev_chg_rel = (tax_revenue/tax_revenue[1]) - 1,
+                     zpz_pct_chg = Res_Zpz/Res_Zpz[1] - 1,
+                     zpz_chg = Res_Zpz - Res_Zpz[1]
+                     )
 
 data_beccs <- filter(data_merged, i == 'BECCS')
 data_ff    <- filter(data_merged, i == 'Fossil Fuels')
 data_rnw   <- filter(data_merged, i == 'Renewables')
+
+# -----------------
+## Plots
+
+pdf(file = paste0(fig_folder, 'graphs.pdf'),
+    paper = 'USr', width = 8, height = 5)
+
+ggtheme <- theme_gray() + theme(plot.title = element_text(hjust = 0.5))
+
 
 
 # Learning Rate
@@ -99,10 +116,6 @@ ggsave(paste0(fig_folder, 'tax_rates.png'), scale = fig_scale,
 
 # Dollar Output Pct Change
 
-data_merged <- data_merged %>%
-  group_by(i) %>%
-  mutate(zpz_pct_chg = Res_Zpz/Res_Zpz[t==0][1L] - 1)
-
 ggplot(data = filter(data_merged,
                      i %in% c('Fossil Fuels', 'BECCS', 'Renewables')),
        aes(x = t, y = zpz_pct_chg, group = i, fill = i)) +
@@ -117,10 +130,6 @@ ggsave(paste0(fig_folder, 'output_pct_chg.png'), scale = fig_scale,
 
 
 ## Dollar Output Change
-
-data_merged <- data_merged %>%
-  group_by(i) %>%
-  mutate(zpz_chg = Res_Zpz - Res_Zpz[t==0][1L])
 
 ggplot(data = filter(data_merged,
                      i %in% c('Fossil Fuels', 'BECCS', 'Renewables')),
@@ -173,15 +182,6 @@ ggplot(data = filter(data_temp),
 
 
 # Tax Revenue Change
-
-data_merged$tax_revenue <- data_merged$Res_tax * data_merged$Res_Zpz
-
-data_merged <- ddply(data_merged, .(i, t))
-
-data_merged <- ddply(data_merged, .(i), transform,
-      tax_rev_chg = (tax_revenue - tax_revenue[1]),
-      tax_rev_chg_rel = (tax_revenue/tax_revenue[1]) - 1)
-
 
 ggplot(data = filter(data_merged, i %in% c('Fossil Fuels', 'BECCS', 'Renewables')),
        aes(x = t, y = tax_rev_chg, group = i, fill = i)) +
@@ -247,4 +247,4 @@ ggsave(paste0(fig_folder, 'co2_pct_chg.png'), scale = fig_scale,
        width = fig_width, height = fig_height)
 
 
-#dev.off()
+dev.off()
