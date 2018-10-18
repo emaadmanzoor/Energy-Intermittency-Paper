@@ -9,10 +9,10 @@ setwd('C:/Users/saket/GitHub/BECCS-Case-Study/analysis/cge')
 
 # Paths
 igdx(gamsSysDir = "C:/GAMS/win64/25.1")
-data_loc <- '../../data/cge/results.gdx'
+data_loc <- '../../data/cge/results_ne.gdx'
 
 # Folder to put graphs
-fig_folder <- '../../documents/exhibits/cge/pgm/'
+fig_folder <- '../../documents/exhibits/cge/ne/'
 
 # Params
 fig_scale  <- 1.1
@@ -68,7 +68,6 @@ pdf(file = paste0(fig_folder, 'graphs.pdf'),
     paper = 'USr', width = 8, height = 5)
 
 ggtheme <- theme_gray() + theme(plot.title = element_text(hjust = 0.5))
-
 
 
 # Learning Rate
@@ -154,7 +153,8 @@ ggplot(data = filter(data_temp),
   scale_fill_manual(labels = c("BECCS"), values = c("dodgerblue")) +
   ggtheme
 
-# fossil fuels - trick to get bar plot to start from 8000
+
+# fossil fuels
 data_temp <- data_ff
 data_temp$Res_Zpz <- data_ff$Res_Zpz
 
@@ -167,7 +167,8 @@ ggplot(data = filter(data_temp),
   scale_fill_manual(labels = c("Fossil Fuels"), values = c("coral1")) +
   ggtheme
 
-# renewables - trick to get bar plot to start from 31e3
+
+# renewables
 data_temp <- data_rnw
 data_temp$Res_Zpz <- data_rnw$Res_Zpz
 
