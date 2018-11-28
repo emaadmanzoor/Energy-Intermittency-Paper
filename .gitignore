@@ -30,4 +30,4 @@
 code/scratch.mlx
 *.lst
 *.lxi
-analysis/cge/.Rhistory
+*.Rhistory
