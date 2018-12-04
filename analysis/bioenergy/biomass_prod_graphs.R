@@ -26,22 +26,6 @@ fsprod_county_data <- bioenergy_data %>%
     summarize(Production = mean(Production)) %>%
     ungroup
 
-# # add zeros to regions not producing each bioenergy
-# for (state in unique(fsprod_county_data$State)) {
-#     print(state)
-#     for (county in unique(fsprod_county_data$County)) {
-#         for (feedstock in unique(filter(fsprod_county_data,
-#                                         State == state)$Feedstock)) {
-#             if (nrow(filter(fsprod_county_data, Feedstock == feedstock,
-#                             State == state)) == 0) {
-#                 fsprod_county_data <- add_row(fsprod_county_data,
-#                   State = state, Feedstock = feedstock,
-#                   County = county, Production = NA)
-#
-#             }
-#         }
-#     }
-# }
 
 ## This merged data does not plot well!
 
@@ -57,15 +41,21 @@ merged_fs_data <- full_join(map_data, fsprod_county_data,
 rtprod_county_data <- fsprod_county_data %>%
     group_by(State, County, ResourceType) %>%
     summarize(Production = sum(Production)) %>%
-    ungroup %>% drop_na
+    ungroup
 rtprod_county_data$state <- tolower(rtprod_county_data$State)
 rtprod_county_data$subregion <- rtprod_county_data$County
 merged_rt_data <- full_join(map_data, rtprod_county_data,
                         by = c('state', 'subregion'))
 
-# set zero value on missing data
-merged_fs_data$Production <- replace_na(merged_fs_data$Production, 0)
-merged_rt_data$Production <- replace_na(merged_rt_data$Production, 0)
+# get total production of every feedstock
+totprod_county_data <- fsprod_county_data %>%
+    group_by(State, County) %>%
+    summarize(Production = sum(Production)) %>%
+    ungroup
+totprod_county_data$state <- tolower(totprod_county_data$State)
+totprod_county_data$subregion <- totprod_county_data$County
+merged_tot_data <- full_join(map_data, totprod_county_data,
+                            by = c('state', 'subregion'))
 
 
 # ----------------------------------------------------------------------------
@@ -79,36 +69,6 @@ manual_theme <- theme_minimal() +
           legend.direction = "horizontal", legend.position = "bottom",
           plot.title = element_text(hjust = 0.5))
 
-# temp <- full_join(map_data, filter(fsprod_county_data,Feedstock == 'Cotton Gin Trash'),
-#                   by = c('state', 'subregion'))
-# temp$Production <- replace_na(temp$Production, 0)
-#
-# ggplot(data = temp) +
-#     geom_polygon(aes(x = long, y = lat, fill = Production,
-#                      group = group, color = Production), size = 0) +
-#     coord_fixed(1.3) +
-#     labs(title = paste0('2016 Production of ', 'Cotton Gin Trash'),
-#          fill = 'Production (millions of dt)') +
-#     scale_color_gradient(guide = 'none') +
-#     scale_fill_viridis_c(na.value = "gray95") +
-#     guides(fill = guide_colourbar(title.position = "top", title.hjust = .5,
-#                                   label.position = "bottom")) +
-#     manual_theme
-#
-#
-#
-# ggplot(data = filter(merged_fs_data,
-#                      Feedstock == 'Cotton Gin Trash')) +
-#     geom_polygon(aes(x = long, y = lat, fill = Production,
-#                      group = group, color = Production), size = 0) +
-#     coord_fixed(1.3) +
-#     labs(title = paste0('2016 Production of ', 'Cotton Gin Trash'),
-#          fill = 'Production (millions of dt)') +
-#     scale_color_gradient(guide = 'none') +
-#     scale_fill_viridis_c(na.value = "gray95") +
-#     guides(fill = guide_colourbar(title.position = "top", title.hjust = .5,
-#                                   label.position = "bottom")) +
-#     manual_theme
 
 feedstocks_unique <- unique(fsprod_county_data$Feedstock)
 
@@ -171,5 +131,26 @@ for (i in c(1:length(resourcetypes_unique))) {
 
 }
 
+## Total Production
+# create temporary dataframe with relevant production data
+temp <- full_join(map_data, filter(totprod_county_data),
+                  by = c('state', 'subregion'))
+temp$Production <- replace_na(temp$Production, 0)
+
+temp_plot <- ggplot(data = temp) +
+    geom_polygon(aes(x = long, y = lat, fill = Production/1e5,
+                     group = group, color = Production)) +
+    coord_fixed(1.3) +
+    labs(title = paste0('2016 Production of All Biomass'),
+         fill = 'Production (millions of dt)') +
+    scale_color_gradient(guide = 'none') +
+    scale_fill_viridis_c(na.value = "gray95") +
+    guides(fill = guide_colourbar(title.position = "top", title.hjust = .5,
+                                  label.position = "bottom")) +
+    manual_theme
+
+print(temp_plot)
+figure_name <- paste0('fig_totprod.pdf')
+ggsave(paste0(fig_folder, figure_name), width = 12, height = 10)
 
 
