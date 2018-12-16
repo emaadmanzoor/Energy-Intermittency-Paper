@@ -35,22 +35,24 @@ fsprod_county_data$state <- tolower(fsprod_county_data$State)
 fsprod_county_data$subregion <- fsprod_county_data$County
 map_data$state           <- tolower(map_data$region)
 merged_fs_data <- full_join(map_data, fsprod_county_data,
-                        by = c('state', 'subregion'))
+                        by = c('state', 'subregion')) %>%
+                  filter(is.na(Feedstock) == FALSE)
 
 # get total resource type production
 rtprod_county_data <- fsprod_county_data %>%
     group_by(State, County, ResourceType) %>%
-    summarize(Production = sum(Production)) %>%
+    summarize(Production = sum(Production, na.rm = TRUE)) %>%
     ungroup
 rtprod_county_data$state <- tolower(rtprod_county_data$State)
 rtprod_county_data$subregion <- rtprod_county_data$County
 merged_rt_data <- full_join(map_data, rtprod_county_data,
-                        by = c('state', 'subregion'))
+                        by = c('state', 'subregion')) %>%
+                  filter(is.na(ResourceType) == FALSE)
 
 # get total production of every feedstock
 totprod_county_data <- fsprod_county_data %>%
     group_by(State, County) %>%
-    summarize(Production = sum(Production)) %>%
+    summarize(Production = sum(Production, na.rm = TRUE)) %>%
     ungroup
 totprod_county_data$state <- tolower(totprod_county_data$State)
 totprod_county_data$subregion <- totprod_county_data$County
@@ -78,7 +80,6 @@ for (i in c(1:length(feedstocks_unique))) {
     temp <- full_join(map_data, filter(fsprod_county_data,
                                        Feedstock == feedstocks_unique[i]),
                       by = c('state', 'subregion'))
-    temp$Production <- replace_na(temp$Production, 0)
 
     temp_plot <- ggplot(data = temp) +
         geom_polygon(aes(x = long, y = lat, fill = Production/1e5,
@@ -87,7 +88,7 @@ for (i in c(1:length(feedstocks_unique))) {
         labs(title = paste0('2016 Production of ', feedstocks_unique[i]),
              fill = 'Production (millions of dt)') +
         scale_color_gradient(guide = 'none') +
-        scale_fill_viridis_c(na.value = "gray95") +
+        scale_fill_viridis_c(na.value = "gray90") +
         guides(fill = guide_colourbar(title.position = "top", title.hjust = .5,
                                       label.position = "bottom")) +
         manual_theme
@@ -108,7 +109,6 @@ for (i in c(1:length(resourcetypes_unique))) {
     temp <- full_join(map_data, filter(rtprod_county_data,
                                        ResourceType == resourcetypes_unique[i]),
                       by = c('state', 'subregion'))
-    temp$Production <- replace_na(temp$Production, 0)
 
     temp_plot <- ggplot(data = temp) +
         geom_polygon(aes(x = long, y = lat, fill = Production/1e5,
@@ -117,7 +117,7 @@ for (i in c(1:length(resourcetypes_unique))) {
         labs(title = paste0('2016 Production of ', resourcetypes_unique[i]),
              fill = 'Production (millions of dt)') +
         scale_color_gradient(guide = 'none') +
-        scale_fill_viridis_c(na.value = "gray95") +
+        scale_fill_viridis_c(na.value = "gray90") +
         guides(fill = guide_colourbar(title.position = "top", title.hjust = .5,
                                       label.position = "bottom")) +
         manual_theme
@@ -135,7 +135,6 @@ for (i in c(1:length(resourcetypes_unique))) {
 # create temporary dataframe with relevant production data
 temp <- full_join(map_data, filter(totprod_county_data),
                   by = c('state', 'subregion'))
-temp$Production <- replace_na(temp$Production, 0)
 
 temp_plot <- ggplot(data = temp) +
     geom_polygon(aes(x = long, y = lat, fill = Production/1e5,
@@ -144,7 +143,7 @@ temp_plot <- ggplot(data = temp) +
     labs(title = paste0('2016 Production of All Biomass'),
          fill = 'Production (millions of dt)') +
     scale_color_gradient(guide = 'none') +
-    scale_fill_viridis_c(na.value = "gray95") +
+    scale_fill_viridis_c(na.value = "gray90") +
     guides(fill = guide_colourbar(title.position = "top", title.hjust = .5,
                                   label.position = "bottom")) +
     manual_theme
