@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 
+
 ### Functions
 
 def merge_trade(x):
@@ -178,17 +179,19 @@ for ind_det_file in ind_det_files:
     for sec in elc_sectors:
         if sec not in list(data_df_sam.index):
             data_df_sam.loc[sec, :] = 0
+            data_df_sam.loc[:, sec] = 0
 
 
     ## Bundle Biomass
 
+    # Conversion from bioenergy waste unit to SAM unit 
     biomass_unit_scale = 1/1e6
 
-    # create biomass sector
+    # Create biomass sector
     data_df_sam['BIOMASS'] = 0
     data_df_sam.loc['BIOMASS', :] = 0
 
-    # add (waste-producing sector) -> (biomass sector) links
+    # Add (waste-producing sector) -> (biomass sector) links
     data_df_sam.loc['AGR_CRP', 'BIOMASS'] = (
         bioenergy_dict.get('Ag Residues', 0) * biomass_unit_scale)
     data_df_sam.loc['AGR_LIV', 'BIOMASS'] = (
@@ -253,6 +256,7 @@ for ind_det_file in ind_det_files:
         for rs2 in renewable_sectors:
             renewable_output = renewable_output + data_df_sam.loc[rs, rs2] 
             data_df_sam.loc[rs, rs2] = 0
+
         # Move to renewable bundle
         data_df_sam.loc[rs, 'ELC_RNW'] = (renewable_output 
             + data_df_sam.loc[rs, 'ELC_DIST'])
