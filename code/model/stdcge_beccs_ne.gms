@@ -326,7 +326,7 @@ Variable
     Hbud      'household income'
     TRh(tr)   'household spending on traded goods'
     Htr(tr)   'household supply of traded goods'
-    Hc      'household dividends from corporations'
+    Hc        'household dividends from corporations'
     
     Tz(j,g)  'production tax revenue'
     Td(g)    'household tax revenue'
