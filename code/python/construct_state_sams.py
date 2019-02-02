@@ -65,15 +65,33 @@ def change_sector_name(sector_name):
 
 ### Main
 
+
 ## Import data
 
 # Get list of inudstry detail files
 ind_det_files = [x[2] for x in os.walk(
     '../../data/implan/industry_detail/')][0]
 
+
+## Get average price of electricity in each state
+
+# Import data
+elc_pr_df = pd.read_csv('../../data/electricity/avg_elec_price.csv')
+
+# Get composite price for all sectors
+elc_pr_df = elc_pr_df.query('Sector == " all sectors"')
+
+# Transpose data frame
+elc_pr_df = elc_pr_df.set_index('State Name').T
+
+# Get average price across all months
+elc_pr_df   = elc_pr_df.drop(['Sector', 'units', 'source key'], axis = 0)
+elc_pr_dict = elc_pr_df.mean().to_dict()
+
+
 ## Construct SAM for each file
 
-for ind_det_file in ind_det_files:
+for ind_det_file in ind_det_files[:1]:
 
     data_df = pd.read_csv('../../data/implan/industry_detail/' + ind_det_file, 
         skiprows = 1)
@@ -102,7 +120,7 @@ for ind_det_file in ind_det_files:
     # Subset production to northeast states in 2016 and
     # get average production for each feedstock across scenarios
     bioenergy_ne_df = bio_prod_df.query(
-        'Year == 2016 and State == @ind_det_state').groupby(
+        'Year == @ind_det_year and State == @ind_det_state').groupby(
             ['Resource Type', 'Feedstock', 'State']).mean().groupby(
                 ['Resource Type', 'Feedstock']).sum().reset_index()
 
@@ -205,7 +223,7 @@ for ind_det_file in ind_det_files:
     # clean up other sources of biomass
     data_df_sam.loc['AGR_CRP', 'ELC_BIOMASS'] = 0
     data_df_sam.loc['AGR_LIV', 'ELC_BIOMASS'] = 0
-    data_df_sam.loc['FORE', 'ELC_BIOMASS']    = 0
+    data_df_sam.loc['FORE',    'ELC_BIOMASS'] = 0
 
 
     ## Add BECCS Sector
@@ -213,9 +231,16 @@ for ind_det_file in ind_det_files:
     sectors_elc_gen = [x for x in data_df_sam.columns 
         if 'ELC' in x and 'DIST' not in x]
 
-    beccs_rel_size = 0.01
-    beccs_sector_size = data_df_sam[sectors_elc_gen].sum().sum()*beccs_rel_size
+    # Set BECCS Sector size (in $ mil) is equal to the scale factor ($/kWh) 
+    # times the total biowaste energy available to the state
+    # times an efficiency factor
 
+    # Scale factor is set to the average price of electricity in the state
+    beccs_scl_fac = elc_pr_dict.get(ind_det_state/100, 0.10) * (1e-6)
+    beccs_eff_fac = 0.75
+    beccs_sector_size = (data_df_sam[sectors_elc_gen].sum().sum() 
+                        * beccs_scl_fac * beccs_eff_fac)
+    
     # Create beccs sector from elc sectors
     data_df_sam['ELC_BECCS']        = data_df_sam.loc[:, sectors_elc_gen].sum(
         axis = 1)
