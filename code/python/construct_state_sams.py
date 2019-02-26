@@ -5,66 +5,80 @@ import os
 
 ### Functions
 
-def merge_trade(x):
-
-    if x[:3] == "TRD":
-        return "TRD"
-    if x == "INVEN":
-        return 'NonIndustry'
-    if x == 'NIT':
-        return 'FER'
-    else:
-        return x
-
-def change_sector_name(sector_name):
+def agg_beccs(index):
     
-    if sector_name in ['Employee Compensation']:
-        return 'LAB'
-    elif sector_name in ['Capital']:
-        return 'CAP'
-    elif sector_name in ['Other Property Type Income']:
-        return 'PROP'
-    elif 'Propri' in sector_name:
-        return 'PROF'
-    elif 'Federal Government' in sector_name:
-        return 'GOV_FED'
-    elif 'State/Local Govt' in sector_name:
-        return 'GOV_STT'
-    elif 'FederalEnt' in sector_name:
-        return 'GOV_FED_ENT'
-    elif 'StateLocalEnt' in sector_name:
-        return 'GOV_STT_ENT'
-    elif 'FedEmploy' in sector_name:
-        return 'GOV_FED_EMP'
-    elif 'StateLocalEmploy' in sector_name:
-        return 'GOV_STT_EMP'
-    elif 'inven' in sector_name.lower():
-        return 'INVEN'
-    elif 'Households' in sector_name:
-        return 'HOH'
-    elif 'corp' in sector_name.lower():
-        return 'CORP'
-    elif 'Not an industry' in sector_name:
-        return 'OtherIND'
-    elif 'energy' in sector_name.lower():
-        return 'ENG'
-    elif 'Agri' in sector_name:
-        return 'AGR_' + sector_name.split('_')[1][0]
-    elif sector_name == 'Manufacturing':
+    index = int(index)
+    
+    if   index in range(1,11):
+        return 'AGR_CRP'
+    elif index in range(11,15):
+        return 'AGR_LIV'
+    elif (index in range(17,19) or (index in range(20,41)) or 
+         (index in range(50,146)) or (index in range(154,395))):
         return 'MAN'
-    elif 'tax' in sector_name.lower():
-        return 'TAX'
-    elif 'trade' in sector_name.lower():
-        return 'TRD_' + sector_name[0]
-    elif 'for' == sector_name.lower():
+    elif index in range(395,518):
+        return 'SER'
+    elif index == 49:
+        return 'ELC_DIST'
+    elif index == 48:
+        return 'ELC_OTHER'
+    elif index == 42:
+        return 'ELC_FF'
+    elif index == 41:
+        return 'ELC_HYDRO'
+    elif index == 43:
+        return 'ELC_NUC'
+    elif index == 44:
+        return 'ELC_SOLAR'
+    elif index == 45:
+        return 'ELC_WIND'
+    elif index == 46:
+        return 'ELC_GEO'
+    elif index == 47:
+        return 'ELC_BIOMASS'
+    elif index in [15,16,19]:
         return 'FORE'
+    elif index in range(146,154):
+        return 'PAP'
+    elif index in range(518,521):
+        return 'GOV_FED_ENT'
+    elif index in range(521,527):
+        return 'GOV_STT_ENT'
+    elif index in [535, 536]:
+        return 'GOV_FED_EMP'
+    elif index in range(531, 535):
+        return 'GOV_STT_EMP'
+    elif index in range(527, 531):
+        return 'NonIndustry'
+    elif index == 5001:
+        return 'LAB'
+    elif index == 6001:
+        return 'PROF'
+    elif index == 7001:
+        return 'PROP'
+    elif index == 8001:
+        return 'TAX'
+    elif index in range(10000,11000):
+        return 'HOH'
+    elif index in range(11000,12000):
+        return 'GOV_FED'
+    elif index in range(12000,13000):
+        return 'GOV_STT'
+    elif index == 13001:
+        return 'CORP'
+    elif index in [14001, 14002]:
+        return 'CAP'
+    elif index in [25001, 28001]:
+        return 'TRD'
     else:
-        return sector_name.replace(' ', '_')
+        raise ValueError('Unknown index:', index)
 
 
 
 ### Main
 
+# Output folder
+output_folder = '../../data/sam/state_sams/'
 
 ## Import data
 
@@ -91,7 +105,7 @@ elc_pr_dict = elc_pr_df.mean().to_dict()
 
 ## Construct SAM for each file
 
-for ind_det_file in ind_det_files[:1]:
+for ind_det_file in ind_det_files:
 
     data_df = pd.read_csv('../../data/implan/industry_detail/' + ind_det_file, 
         skiprows = 1)
@@ -144,16 +158,9 @@ for ind_det_file in ind_det_files[:1]:
     data_df.columns = ['Index', 'Sector_output', 'TypeCode', 
         'Sector_input', 'Value']
 
-    data_df_sam_raw = data_df.groupby(
-        ['Sector_input', 'Sector_output']).sum()['Value'].reset_index().pivot(
-        index = 'Sector_input', columns = 'Sector_output', 
-        values = 'Value').fillna(0)
-
     # Fix sector names
-    data_df['Sector_output'] = data_df['Sector_output'].apply(
-        lambda x: merge_trade(change_sector_name(x)))
-    data_df['Sector_input'] = data_df['Sector_input'].apply(
-        lambda x: merge_trade(change_sector_name(x)))
+    data_df['Sector_input']  = data_df['TypeCode'].apply(lambda x: agg_beccs(x))
+    data_df['Sector_output'] = data_df['Index'].apply(lambda x: agg_beccs(x))
 
     # Reaggregate sectors
     data_df = data_df.groupby(
@@ -169,14 +176,18 @@ for ind_det_file in ind_det_files[:1]:
     data_df_sam.loc['HOH', 'HOH'] = 0
 
     # Change NonIndustry Inputs/Outputs so it can be modelled as a good
-    temp_sum_1 = np.sum(data_df_sam.loc[:, 'NonIndustry'])
-    data_df_sam.loc['CAP', 'NonIndustry'] = 0
-    data_df_sam.loc['LAB', 'NonIndustry'] = data_df_sam.loc['HOH', 
-        'NonIndustry']
-    data_df_sam.loc['HOH', 'NonIndustry'] = 0
-    temp_sum_2 = np.sum(data_df_sam.loc[:, 'NonIndustry'])
-    data_df_sam.loc['NonIndustry', :] = (temp_sum_2/temp_sum_1) * \
-                                        data_df_sam.loc['NonIndustry', :]
+    if 'NonIndustry' in data_df_sam.index:
+        if data_df_sam.loc['NonIndustry', :].sum() != 0:
+            temp_sum_1 = np.sum(data_df_sam.loc[:, 'NonIndustry'])
+            data_df_sam.loc['CAP', 'NonIndustry'] = 0
+            data_df_sam.loc['LAB', 'NonIndustry'] = \
+                data_df_sam.loc['HOH', 'NonIndustry']
+            data_df_sam.loc['HOH', 'NonIndustry'] = 0
+            temp_sum_2 = np.sum(data_df_sam.loc[:, 'NonIndustry'])
+            data_df_sam.loc['NonIndustry'] = ((temp_sum_2 / temp_sum_1) * 
+                                            data_df_sam.loc['NonIndustry', :])
+    else:
+        data_df_sam.loc['NonIndustry', :] = 0
 
     # Remove direct tax from goods to government
     institutions = ['CAP', 'CORP', 'GOV_FED', 'GOV_STT', 'HOH', 
@@ -210,24 +221,23 @@ for ind_det_file in ind_det_files[:1]:
     data_df_sam.loc['BIOMASS', :] = 0
 
     # Add (waste-producing sector) -> (biomass sector) links
-    data_df_sam.loc['AGR_CRP', 'BIOMASS'] = (
-        bioenergy_dict.get('Ag Residues', 0) * biomass_unit_scale)
-    data_df_sam.loc['AGR_LIV', 'BIOMASS'] = (
-        bioenergy_dict.get('Manure', 0) * biomass_unit_scale)
-    data_df_sam.loc['FORE', 'BIOMASS']    = (
-        bioenergy_dict.get('Forest Residues', 0) * biomass_unit_scale)
+    data_df_sam.loc['AGR_CRP', 'BIOMASS'] = (biomass_unit_scale *
+        bioenergy_dict.get('Ag Residues', 0))
+    data_df_sam.loc['AGR_LIV', 'BIOMASS'] = (biomass_unit_scale *
+        bioenergy_dict.get('Manure', 0))
+    data_df_sam.loc['FORE', 'BIOMASS']    = (biomass_unit_scale *
+        bioenergy_dict.get('Forest Residues', 0))
 
-    # use biomass as input for elc_biomass
+    # Use biomass as input for elc_biomass
     data_df_sam.loc['BIOMASS', 'ELC_BIOMASS'] = data_df_sam['BIOMASS'].sum()
 
-    # clean up other sources of biomass
-    data_df_sam.loc['AGR_CRP', 'ELC_BIOMASS'] = 0
+    # Clean up other sources of biomass (only need to zero out AGR_LIV)
     data_df_sam.loc['AGR_LIV', 'ELC_BIOMASS'] = 0
-    data_df_sam.loc['FORE',    'ELC_BIOMASS'] = 0
 
 
     ## Add BECCS Sector
 
+    # Get list of existing electricity production sectors
     sectors_elc_gen = [x for x in data_df_sam.columns 
         if 'ELC' in x and 'DIST' not in x]
 
@@ -236,7 +246,7 @@ for ind_det_file in ind_det_files[:1]:
     # times an efficiency factor
 
     # Scale factor is set to the average price of electricity in the state
-    beccs_scl_fac = elc_pr_dict.get(ind_det_state/100, 0.10) * (1e-6)
+    beccs_scl_fac = elc_pr_dict.get(ind_det_state, 0.10)/100 * (1e-6)
     beccs_eff_fac = 0.75
     beccs_sector_size = (data_df_sam[sectors_elc_gen].sum().sum() 
                         * beccs_scl_fac * beccs_eff_fac)
@@ -303,7 +313,7 @@ for ind_det_file in ind_det_files[:1]:
 
     ## Export 
 
-    output_file = ('../../data/sam/state_sams/' + ind_det_state + '_' 
+    output_file = (output_folder + ind_det_state + '_' 
         + ind_det_year + '.csv')
 
     data_df_sam.index.name  = ''
