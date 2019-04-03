@@ -98,6 +98,9 @@ elc_pr_df = elc_pr_df.query('Sector == " all sectors"')
 # Transpose data frame
 elc_pr_df = elc_pr_df.set_index('State Name').T
 
+# Fix extra spaces in column names
+elc_pr_df.columns = [x.strip() for x in elc_pr_df]
+
 # Get average price across all months
 elc_pr_df   = elc_pr_df.drop(['Sector', 'units', 'source key'], axis = 0)
 elc_pr_dict = elc_pr_df.mean().to_dict()
@@ -131,7 +134,7 @@ for ind_det_file in ind_det_files:
     bio_prod_df['feedstock_energy'] = bio_prod_df['Feedstock'].apply(
         lambda x: bio_energy_dict.get(x))
 
-    # Subset production to northeast states in 2016 and
+    # Subset production to this state in this year and
     # get average production for each feedstock across scenarios
     bioenergy_ne_df = bio_prod_df.query(
         'Year == @ind_det_year and State == @ind_det_state').groupby(
@@ -200,7 +203,7 @@ for ind_det_file in ind_det_files:
             data_df_sam.loc[g, i] = 0
 
     # Remove small entries
-    data_df_sam = data_df_sam.applymap(lambda x: 0 if x < 1 else x)
+    data_df_sam = data_df_sam.applymap(lambda x: 0 if x < 0.01 else x)
 
     # Add empty electricity sectors if they don't exist
     elc_sectors = ['ELC_BIOMASS', 'ELC_HYDRO', 'ELC_NUC', 'ELC_OTHER', 
@@ -214,7 +217,7 @@ for ind_det_file in ind_det_files:
     ## Bundle Biomass
 
     # Conversion from bioenergy waste unit to SAM unit 
-    biomass_unit_scale = 1/1e6
+    biomass_unit_scale = (1e-6)
 
     # Create biomass sector
     data_df_sam['BIOMASS'] = 0
@@ -231,9 +234,9 @@ for ind_det_file in ind_det_files:
     # Use biomass as input for elc_biomass
     data_df_sam.loc['BIOMASS', 'ELC_BIOMASS'] = data_df_sam['BIOMASS'].sum()
 
-    # Clean up other sources of biomass (only need to zero out AGR_LIV)
+    # Clean up other sources of biomass to avoid double counting (only need to zero out AGR_LIV)
+    data_df_sam.loc['BIOMASS', 'ELC_BIOMASS'] = data_df_sam.loc['AGR_LIV', 'ELC_BIOMASS']
     data_df_sam.loc['AGR_LIV', 'ELC_BIOMASS'] = 0
-
 
     ## Add BECCS Sector
 
@@ -241,16 +244,6 @@ for ind_det_file in ind_det_files:
     sectors_elc_gen = [x for x in data_df_sam.columns 
         if 'ELC' in x and 'DIST' not in x]
 
-    # Set BECCS Sector size (in $ mil) is equal to the scale factor ($/kWh) 
-    # times the total biowaste energy available to the state
-    # times an efficiency factor
-
-    # Scale factor is set to the average price of electricity in the state
-    beccs_scl_fac = elc_pr_dict.get(ind_det_state, 0.10)/100 * (1e-6)
-    beccs_eff_fac = 0.75
-    beccs_sector_size = (data_df_sam[sectors_elc_gen].sum().sum() 
-                        * beccs_scl_fac * beccs_eff_fac)
-    
     # Create beccs sector from elc sectors
     data_df_sam['ELC_BECCS']        = data_df_sam.loc[:, sectors_elc_gen].sum(
         axis = 1)
@@ -261,11 +254,20 @@ for ind_det_file in ind_det_files:
     data_df_sam.loc['ELC_BECCS', sectors_elc_gen] = 0
     data_df_sam.loc[sectors_elc_gen, 'ELC_BECCS'] = 0
 
-    # Add dependency on biomass
-    data_df_sam.loc['BIOMASS', 'ELC_BECCS'] = beccs_sector_size * 0.2
+    # All biomass except that used on other biomass electricity gen is spent on BECCS
+    data_df_sam.loc['BIOMASS', 'ELC_BECCS'] = data_df_sam.loc[:,'BIOMASS'].sum() - data_df_sam.loc['BIOMASS', 'ELC_BIOMASS']
 
     # Remove imports of this technology
     data_df_sam.loc['TRD', 'ELC_BECCS'] = 0
+
+    # Set BECCS Sector size (in $ mil) is equal to the scale factor ($/kWh) 
+    # times the total biowaste energy available to the state
+    # times an efficiency factor
+
+    # Scale factor is set to the average price of electricity in the state
+    beccs_scl_fac = elc_pr_dict.get(ind_det_state, np.mean(list(elc_pr_dict.values())))/100
+    beccs_eff_fac = 0.5
+    beccs_sector_size = (beccs_scl_fac * data_df_sam.loc['BIOMASS', 'ELC_BECCS'] * beccs_eff_fac)
 
     # Scale sector
     data_df_sam.loc[:, 'ELC_BECCS'] = (data_df_sam.loc[:, 'ELC_BECCS']
@@ -313,7 +315,7 @@ for ind_det_file in ind_det_files:
 
     ## Export 
 
-    output_file = (output_folder + ind_det_state + '_' 
+    output_file = (output_folder + ind_det_state.replace(' ', '_') + '_' 
         + ind_det_year + '.csv')
 
     data_df_sam.index.name  = ''
