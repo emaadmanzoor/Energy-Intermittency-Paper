@@ -94,8 +94,7 @@ for sam_file in sam_files:
     sam_year  = sam_file.split('.')[0].split('_')[-1]
     sam_df_original = pd.read_csv('../../data/sam/state_sams/' + sam_file, 
                                   index_col = 0)
-    print('Balancing {0} - {1}'.format(sam_state.replace('_', ' '),
-                                       sam_year))
+    print('Balancing {0} - {1}'.format(sam_state.replace('_', ' '), sam_year))
 
 
     ## Clean up SAM
@@ -103,9 +102,20 @@ for sam_file in sam_files:
     # Create a variant of sam df for balancing
     sam_df = sam_df_original.copy()
 
+    # Add missing indices
+    missing_idx = [x for x in sam_df.columns if x not in sam_df.index]
+    for idx in missing_idx:
+        sam_df.loc[idx,:] = 0
+        
+    # Add missing columns
+    missing_col = [x for x in sam_df.index if x not in sam_df.columns]
+    for col in missing_col:
+        sam_df_.loc[:,col] = 0
+
     # Adjust biomass sector size (speeds up balancing)
     if sam_df.loc[:,'BIOMASS'].sum() > 0:
-        sam_df.loc[:,'BIOMASS'] = sam_df.loc[:,'BIOMASS']*(sam_df.loc['BIOMASS',:].sum()/sam_df.loc[:,'BIOMASS'].sum())
+        sam_df.loc[:,'BIOMASS'] = (sam_df.loc[:,'BIOMASS']*
+        (sam_df.loc['BIOMASS',:].sum()/sam_df.loc[:,'BIOMASS'].sum()))
 
     # Drop zero rows and columns
     zero_sectors = list(sam_df.sum(axis=0)[sam_df.sum(axis=0) == 0].keys())
@@ -134,11 +144,11 @@ for sam_file in sam_files:
                                 seed_values = sam_mat_temp.copy()))
     
     # Ensure original zero entries are still zero
-    true_zero_idx = np.where(np.matrix(sam_df) < 0.01)
+    true_zero_idx = np.where(np.matrix(sam_df) < 0.0001)
     assert len(np.where(sam_mat_temp[true_zero_idx] != 0)[0]) == 0
 
     # Ensure no entries became zero after balancing
-    not_zero_idx = np.where(np.matrix(sam_df) > 0.01)
+    not_zero_idx  = np.where(np.matrix(sam_df) > 0.0001)
     assert len(np.where(sam_mat_temp[not_zero_idx] == 0)[0]) == 0
 
 
@@ -166,35 +176,55 @@ for sam_file in sam_files:
                            constraints = (con_1, con_2), bounds = bound_array,
                            options = {'disp': False})
 
-    # Check for balancing success 
-    tol = 0.1 + 1
-    if not (result.success and (kl_divergence(result.x) <= kl_divergence(B)) 
-        and (row_col_constraint(result.x) <= row_col_constraint(B)*tol) and 
-        (row_col_constraint_sums(result.x) <= row_col_constraint_sums(B)*tol)):
+    ## Check for balancing success 
+    tol = 0.01 + 1
+    # Reduction in objective function
+    kl_div_cond   = (kl_divergence(B) - kl_divergence(result.x) >= 0)
+    # Change in constraints below tolerance
+    rc_con        = (row_col_constraint(result.x) <= row_col_constraint(B)*tol)
+    rc_sum_cond   = (row_col_constraint_sums(result.x) <= 
+                    row_col_constraint_sums(B)*tol)
+    # Check if constraint slacks are very small 
+    con_size_cond = (row_col_constraint(result.x < 0.001) and 
+            row_col_constraint_sums(result.x < 10))
 
-        print('Objective and Constraint Values Before Optimization')
-        print('KL Divergence:      {0:20.5f}'.format(kl_divergence(B)))
-        print('Row Col Cons:       {0:20.5f}'.format(row_col_constraint(B)))
-        print('Row Col Sums Cons:  {0:20.5f}'.format(row_col_constraint_sums(B)))
-        
-        print('Objective and Constraint Values After Optimization')
-        print('KL Divergence:      {0:20.5f}'.format(kl_divergence(result.x)))
-        print('Row Col Cons:       {0:20.5f}'.format(
-            row_col_constraint(result.x)))
-        print('Row Col Sums Cons:  {0:20.5f}'.format(
-            row_col_constraint_sums(result.x)))
-        
-        print('Change in Objective and Constraint Values')
-        print('Change in KL Divergence:      {0:+10.4%}'.format(
-            (kl_divergence(result.x)/kl_divergence(B)) - 1 + 1e-6))
-        print('Change in Row Col Cons:       {0:+10.4%}'.format(
-            (row_col_constraint(result.x)/row_col_constraint(B)) - 1 + 1e-6))
-        print('Change in Row Col Sums Cons:  {0:+10.4%}'.format(
-            (row_col_constraint_sums(result.x)/row_col_constraint_sums(B)) 
-            - 1 + 1e-6))
-        
-        raise Exception('Error balancing SAM for {0} - {1}'.format(
-            sam_state.replace('_', ' '), sam_year))
+    # Ensure optimization success, objective was decreased, constraints 
+    # did not get violated above tolerance
+    if (not (result.success and kl_div_cond and rc_con and rc_sum_cond)):
+
+        # When constraint slacks  are small to begin with, tolerance 
+        # can be violated. This condition ignores constraint increases when 
+        # slacks are small
+        if not con_size_cond:
+
+            print('Objective and Constraint Values Before Optimization')
+            print('KL Divergence:      {0:20.5f}'.format(
+                kl_divergence(B)))
+            print('Row Col Cons:       {0:20.5f}'.format(
+                row_col_constraint(B)))
+            print('Row Col Sums Cons:  {0:20.5f}'.format(
+                row_col_constraint_sums(B)))
+            
+            print('Objective and Constraint Values After Optimization')
+            print('KL Divergence:      {0:20.5f}'.format(
+                kl_divergence(result.x)))
+            print('Row Col Cons:       {0:20.5f}'.format(
+                row_col_constraint(result.x)))
+            print('Row Col Sums Cons:  {0:20.5f}'.format(
+                row_col_constraint_sums(result.x)))
+            
+            print('Change in Objective and Constraint Values')
+            print('Change in KL Divergence:      {0:+10.4%}'.format(
+                (kl_divergence(result.x)/kl_divergence(B)) - 1 + 1e-6))
+            print('Change in Row Col Cons:       {0:+10.4%}'.format(
+                (row_col_constraint(result.x)/row_col_constraint(B)) 
+                - 1 + 1e-6))
+            print('Change in Row Col Sums Cons:  {0:+10.4%}'.format(
+                (row_col_constraint_sums(result.x)/row_col_constraint_sums(B)) 
+                - 1 + 1e-6))
+            
+            raise Exception('Error balancing SAM for {0} - {1}'.format(
+                sam_state.replace('_', ' '), sam_year))
 
 
     ## Export Data
@@ -212,9 +242,9 @@ for sam_file in sam_files:
         id_vars = 'index', value_vars = sam_balanced_df.columns)
     sam_bal_pivot_df.columns      = ['ExportingSector', 'ImportingSector', 
         'TransferAmount']
-    sam_bal_pivot_df['Region']    =  'USA'
+    sam_bal_pivot_df['Region']    = 'USA'
     sam_bal_pivot_df['SubRegion'] = sam_state.replace('_', ' ')
-    sam_bal_pivot_df['SubRegion'] = sam_year
+    sam_bal_pivot_df['Year']      = sam_year
 
     # Export to csv
     sam_bal_pivot_df.to_csv('../../data/sam/balanced/{0}_{1}.csv'.format(
