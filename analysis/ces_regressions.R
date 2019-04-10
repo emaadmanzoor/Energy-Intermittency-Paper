@@ -102,16 +102,30 @@ reg_data_dmd <- reg_data %>%
                 'CDD_1', 'CDD_2', 'HDD_1', 'HDD_2', 'ln_coal_rel'),
               funs(. - mean(.)))
 
-reg_fiv_1  = ivreg(as.formula(paste0('ln_load_rel ~  ~ -1 + ln_price_rel ',
+
+reg_1iv_1   = lm(paste0('ln_price_rel ~ ln_coal_rel'),
+                 data = reg_data_dmd)
+
+reg_1iv_2   = lm(paste0('ln_price_rel ~ (CDD_1)',
+                        ' + (CDD_2) + (HDD_1) + (HDD_2)',
+                        ' + ln_coal_rel'),
+                 data = reg_data_dmd)
+
+reg_1iv_3   = lm(paste0('ln_price_rel ~ time_diff + (CDD_1)',
+                        ' + (CDD_2) + (HDD_1) + (HDD_2)',
+                        ' + ln_coal_rel'),
+                 data = reg_data_dmd)
+
+reg_2iv_1  = ivreg(as.formula(paste0('ln_load_rel ~  -1 + ln_price_rel ',
                                     '| . -ln_price_rel + ln_coal_rel')),
                   data = reg_data_dmd)
 
-reg_fiv_2  = ivreg(as.formula(paste0('ln_load_rel ~ (CDD_1) + (CDD_2) + (HDD_1)',
-                                    ' + (HDD_2) + ln_price_rel  ~ -1 ',
+reg_2iv_2  = ivreg(as.formula(paste0('ln_load_rel ~ (CDD_1) + (CDD_2) + (HDD_1)',
+                                    ' + (HDD_2) + ln_price_rel  -1 ',
                                     ' | . -ln_price_rel + ln_coal_rel')),
                   data = reg_data_dmd)
 
-reg_fiv_3  = ivreg(as.formula(paste0('ln_load_rel ~ -1 + time_diff + (CDD_1)',
+reg_2iv_3  = ivreg(as.formula(paste0('ln_load_rel ~ -1 + time_diff + (CDD_1)',
                                     ' + (CDD_2) + (HDD_1) + (HDD_2) ',
                                     ' + ln_price_rel | . -ln_price_rel ',
                                     ' + ln_coal_rel')),
@@ -121,8 +135,8 @@ reg_fiv_3  = ivreg(as.formula(paste0('ln_load_rel ~ -1 + time_diff + (CDD_1)',
 
 # Stargazer
 
-fits       = list(reg_iv_1,  reg_iv_2,  reg_iv_3,
-                  reg_fiv_1,  reg_fiv_2, reg_fiv_3)
+fits       = list(reg_1iv_1, reg_1iv_2, reg_1iv_3,
+                  reg_2iv_1, reg_2iv_2, reg_2iv_3)
 
 robust_ses = lapply(fits, function(x) {coeftest(x, vcovHC)[,2]})
 
@@ -134,9 +148,8 @@ extra_lines = list(
 
 stargazer(fits,
           type = 'latex',
-          covariate.labels =  c('Delta_{t,s}', 'CDD_t', 'CDD_s',
-                                'HDD_t', 'HDD_s', 'ln (P_{t,i} / P_{s,i})'),
-          dep.var.labels.include = FALSE,
+          dep.var.labels = c('ln_price_rel', 'ln_price_rel', 'ln_price_rel',
+                             'ln_load_rel', 'ln_load_rel ', 'ln_load_rel'),
           star.cutoffs = c(0.05, 0.01, 0.001),
           se = robust_ses,
           p  = robust_ps,
