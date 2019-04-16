@@ -8,14 +8,14 @@
 
 alpha = [0.3, 0.7];
 xi_1  = [1, 1];
-xi_2  = [0.5, 1.5];
+xi_2  = [0.1, 1];
 
 sigma = 0.5;
 phi   = (sigma - 1)/sigma;
 budget = 1;
 
-x_1_cost_param = 1;
-x_2_cost_param = 1;
+x_1_cost_param = 95*0.5;
+x_2_cost_param = 50;
 
 %% Solution
 
@@ -41,15 +41,15 @@ cost_multiplier = linspace(0.5,1.5,n);
 for i = 1:n
     
     alpha = [0.3, 0.7];
-    xi_1  = [1, 1];
-    xi_2  = [0.5, 1.5];
+    xi_1  = [1,   1];
+    xi_2  = [0.1, 1];
 
     sigma = 0.5;
     phi   = (sigma - 1)/sigma;
     budget = 1;
 
-    x_1_cost_param = 1*cost_multiplier(i);
-    x_2_cost_param = 1;
+    x_1_cost_param = 95*cost_multiplier(i);
+    x_2_cost_param = 50;
 
     % Prices
     xi_mat   = [xi_1; xi_2];
@@ -72,7 +72,7 @@ for i = 1:n
 end    
     
 output = [];
-output(1,:) = cost_multiplier'./1;
+output(1,:) = 95*cost_multiplier'./50;
 output(2,:) = results(:,1)./results(:,2);
 
 % subset to positive quantities
