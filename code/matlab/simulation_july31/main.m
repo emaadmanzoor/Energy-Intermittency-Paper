@@ -6,13 +6,13 @@
 %% Parameters
 
 parameters.alpha = @(t) 1.75-(2.*t-1).^2/2;
-parameters.xi_1  = @(t) cos(t.*3-2)/2 + 1.5;
-parameters.xi_2  = @(t) 0.*t+1;%sin(t.*6-.5)/2 + 1.5;
+parameters.xi_1  = @(t) 0.*t+1;%sin(t.*6-.5)/2 + 1.5;
+parameters.xi_2  = @(t) cos(t.*3-2)/2 + 1.5;
 
 parameters.phi = 0.5;
 parameters.budget = 1;
 
-parameters.x_1_cost_param = 0.6;
+parameters.x_1_cost_param = 0.9;
 parameters.x_2_cost_param = 1;
 
 % plots

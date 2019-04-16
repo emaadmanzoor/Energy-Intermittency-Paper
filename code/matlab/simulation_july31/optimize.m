@@ -4,7 +4,8 @@ function [ optimal_vars, optimal_val, objfunc, objcons ] = optimize ( parameters
 
 % set up
 price_coeffs_est = ones(1,26);     % Make a starting guess at the solution
-options = optimoptions(@fmincon,'MaxFunctionEvaluations', 5000, 'Algorithm', 'interior-point');
+options = optimoptions(@fmincon,'MaxFunctionEvaluations', ...
+    5000, 'Algorithm', 'interior-point');
 
 objcons = @(obj_vars) constraints(obj_vars, parameters);
 
