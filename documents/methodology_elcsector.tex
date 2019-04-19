@@ -1,0 +1,349 @@
+\documentclass[12pt,a4paper]{extarticle}
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs} % for toprule, midrule and bottomrule
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{bbold}
+\usepackage{etoolbox}
+\usepackage{setspace} % for \onehalfspacing and \singlespacing macros
+\usepackage[hidelinks]{hyperref}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{caption}
+\usepackage{pdflscape}
+\usepackage{caption}
+\usepackage{tabularx}
+\usepackage{authblk}
+\usepackage{float}
+\usepackage{siunitx}
+\usepackage{titlesec}
+\usepackage{pgfplots}
+\usepackage[authoryear]{natbib}
+\usepackage{scrextend}
+\usepackage{nicefrac}
+\usepackage{enumitem}
+%\usepackage{showframe}
+%\usepackage{lipsum}
+
+% set space
+%\doublespacing
+
+%% section headings
+%\renewcommand{\thesection}{\Roman{section}.\hspace{-0.5em}}
+%\renewcommand\thesubsection{\Alph{subsection}.\hspace{-0.5em}}
+%\renewcommand\thesubsubsection{\hspace{-1em}}
+%\newcommand{\subsubsubsection}[1]{\begin{center}{\textit{#1}}\end{center}}
+%
+%\titleformat{\section}
+%{\bf\centering\large}{\thesection}{1em}{}
+%
+%\titleformat{\subsection}
+%{\itshape\centering}{\thesubsection}{1em}{}
+%
+%\titleformat{\subsubsection}
+%{\bf}{\thesubsubsection}{1em}{}
+
+% unicode chars for plots
+\DeclareUnicodeCharacter{2212}{$-$}
+
+% booktabs
+\setlength\heavyrulewidth{0.06em} % 0.01em> midrule
+
+% images
+\graphicspath{ {D:/Users/saketh/Documents/GitHub/BECCS-Case-Study/documents/exhibits/} }
+
+% array
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% caption set up
+\captionsetup[table]{
+	font = {sc},
+	labelfont = {bf}
+}
+
+% sig stars
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+
+% hyperlinks
+\hypersetup{
+	colorlinks=true,
+	linkcolor = blue,
+	urlcolor  = blue,
+	citecolor = blue,
+	anchorcolor = blue
+}
+
+% bibliography
+\makeatletter
+\renewenvironment{thebibliography}[1]
+{\section*{References}%
+	\@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+	\list{}%
+	{\setlength{\labelwidth}{0pt}%
+		\setlength{\labelsep}{0pt}%
+		\setlength{\leftmargin}{\parindent}%
+		\setlength{\itemindent}{-\parindent}%
+		\@openbib@code
+		\usecounter{enumiv}}%
+	\sloppy
+	\clubpenalty4000
+	\@clubpenalty \clubpenalty
+	\widowpenalty4000%
+	\sfcode`\.\@m}
+{\def\@noitemerr
+	{\@latex@warning{Empty `thebibliography' environment}}%
+	\endlist}
+\makeatother
+
+% etoolbox
+\AtBeginEnvironment{quote}{\singlespacing}
+
+\begin{document}
+	
+%	\title{\singlespacing{\textbf{%%%}}}
+%	
+%   \author[]{Saketh Aleti}
+%	
+%	\affil[]{\small{%%%}}
+%	
+%	\date{\vspace{-1em}\small{%%%}}
+%	
+%	\maketitle
+
+\section{Electricity Sector Construction}
+
+\subsection{Producers}
+
+Electricity production for technologies that handle base load demand generally consists of a fixed amount of capital with operating costs proportional to the amount of electricity being produced. On the other hand, renewable sources that produce intermittently only require fixed capital investments with little to no operating costs. In order to model both, we split up the traditional model of electricity production into two components: a fixed capacity investment and a variable production component. For example, suppose we are studying two technologies: coal and solar. The capacity of coal is represented by  $Z_{coal}$ while the capacity of solar is $Z_{solar}$. These values are proportional the amount of generating sources, such as coal factories and solar power plants, for each technology. Moreover, we let this capacity be determined by a CES function of intermediate inputs and factors:
+$$ Z_{i} =  CES( X_{1,i}, \dots, X_{n,i}, F_{1,i}, \dots, F_{m,i})$$
+where $X_{j,i}$ is the use of intermediate good $j$ and  $F_{k,i}$ which represents the use of factor input $k$; we assume here that there are $n$ total intermediate goods and $m$ factors. The capacity, $Z_{i}$, represents the maximum amount of electricity that we can produce in each period of our model.  Next, to model the actual production of electricity in each period $t$, we use two separate functions. One function is used to model production for technologies that can modify their output and another is used for intermittent technologies.
+
+First, with respect to reliable energy, we can choose when and how much to produce, but we face costs such as labor and fuel. Hence, for technologies with modifiable generation, the total quantity of electricity produced at time $t$ is then given by:
+$$ Z_{elc, i, t} = \min \left\{ Z_{i}, \; CES \left( X_{1,i^*,t}, \dots, X_{n,i^*,t}, F_{1,i^*,t}, \dots, F_{m,i^*,t} \right) \right\}$$
+where $i^*$ is simply an index that denotes generation from technology $i$ rather than capacity; so, for instance, $i^*$ may be coal generation while $i$ would be coal capacity. Thus, $X_{j,i^*,t}$ represents the use of intermediate good $j$ for the generation of electricity through source $i$ in period $t$ and likewise for $F_{k,i^*,t}$. Now, as an example, consider the above function as modeling coal energy. The function implies that the maximum amount of coal-sourced electricity we can produce is equal to the capacity of coal factories; the amount that we actually produce is equal to a CES function of the inputs required to operate the factories. Thus, electricity generation in any period $t$ is constrained by our initial capacity investment, while generation in each period consumes resources proportional to the amount of electricity generated. A similar function is used for other technologies that can be turned on or off; these include BECCS, nuclear power, geothermal power, and hydro power. In each case, there exists a capacity constraint and the option to modify the quantity of electricity generation; the cost of this option varies by technology -- it may be inexpensive for hydro but far is more expensive for nuclear. 
+
+On the other hand, with respect to intermittent sources such as solar, we are unable to choose when these technologies generate energy. Hence, the production from these technologies must be modeled differently. We model electricity generation from intermittent source $i$ in period $t$ as:
+\begin{align*}
+Z_{elc, i, t} &= f_i(t) \cdot Z_{i} \\
+f_i(t) &\in [0,1]
+\end{align*} 
+where $f_i(t)$ determines the percent of capacity used by technology $i$ in period $t$. So, for example, $f_{solar}$ would be closer to $1$ during the summer than the winter; similarly wind follows seasonal patterns that can be modeled through this function. Additionally, since total output still scales based on available capacity, firms continue to optimize the total amount of investment in intermittent renewable technology on a yearly basis. However, the drawback is that they cannot choose when and how much to produce at any particular time. So, while utilized capacity is a decision variable for reliable technologies, it is instead an exogenous parameter for intermittent sources of energy. 
+
+Finally, since electricity generation by different sources is completely substitutable within each period, we let total electricity generation at time $t$ be given by:
+$$Z_{elc,t} = \sum_i Z_{elc,i,t}$$
+where $i$ is each technology producing electricity. Consumers ultimately only interact with this value, since the utility they receive from electricity consumption is independent of that electricity's source. 
+
+\subsection{Consumers}
+
+We model consumer welfare from electricity with two key factors in mind. Firstly, the utility people receive from consuming electricity varies over time due to seasonal effects. Secondly, people can choose to substitute between electricity consumption in one period for that in another. To account for this, we use a CES function composed of electricity consumption at different points in time; this function returns the total utility gained from electricity consumption while capturing seasonal variation in electricity consumption utility and substitution between electricity consumption over time. Then, we use another CES function to determine utility gained from the consumption of all goods; this is a standard approach in CGE models. And, lastly, we let total utility be the CES of utility from electricity consumption and that from the consumption of other goods.  
+That is, our representative household's utility is given by:
+$$U =   \left( \sum_{i \neq elc} \alpha_{i} Z_{i}^\eta +  \alpha_{elc} \left( \sum_{t=1}^T \alpha_{elc,t} Z_{elc, t}^\phi \right)^{\eta/\phi} \right)^{1/\eta}$$
+where $U$ is total utility, , $\beta$ is a scale parameter, $\alpha_{elc,t}$ is a share parameter that models time-dependent differences in utility gained from electricity consumption, and $\sigma = 1 / (1-\phi)$ is the intertemporal elasticity of substitution. Similarly, $\alpha_i$ is a share parameter for all goods and $\xi = 1 / (1-\eta)$ is the elasticity of substitution for all consumption. 
+
+Because electricity consumption is differentiated by time, the elasticity parameter $\sigma$ captures our representative household's willingness to temporally shift electricity consumption in response to prices.  Since electricity consumption in one period is not a perfect substitute for that in another period, we have $\sigma < 1$ which implies that intermittent sources alone are not optimal for handling electricity demand. Hence, producers will maximize profit by balancing electricity generation through the day. This leads to different, implicit relationships between generation technologies. Firstly, reliable sources act as substitutes for one another, since one reliable source can easily generate electricity at the same time as another. On the other hand, intermittent sources may be either complements or substitutes with one another depending on the timing of their generation. Intermittent sources that produce at the same time will likely substitute for each other, while those that produce at different times may function as complements. Lastly, intermittent and reliable sources will generally be complements, since reliable sources can fill the gaps between intermittent generation. So, for example, wind and hydro will complement one another since gaps in the output of wind can be covered by modifying hydro generation. All in all, we are able model substitution/complementary relationships between different energy technologies by realistically modeling intermittency and reliability on the supply side and consumer welfare on the demand side. 
+
+\section{ Regression Methodology}
+
+\subsection{Theoretical Derivation}
+
+We aim to estimate $\sigma = 1/(1-\phi)$ which is the intertemporal elasticity of substitution for electricity consumption. We begin by considering the representative household described in the previous section; it maximizes utility given the budget constraint 
+$$B = \sum_t P_{elc,t} + \sum_{i \neq elc} P_i $$
+where $P_i$ is the price of good $i$ and $P_{elc,t}$ is the price of electricity at time $t$; the budget constraint is simply the cost of electricity consumption plus non-electricity consumption. Note that the derivative of logged utility is:
+$$ \frac{\partial \log(U)}{\partial Z_{elc,t}} = \left( \alpha_{elc} \alpha_{elc,t} Z_{elc,t}^{\phi - 1}  \left( \sum_{t=1}^T \alpha_{elc,t} Z_{elc, t}^\phi \right)^{\eta/\phi -1} \right) / U^\eta$$
+Now, solving the Lagrangian to maximize log utility while constrained by the budget, we find that the FOC for electricity consumption in particular is:
+\begin{align*}\frac{Z_{elc, t}}{ Z_{elc, s}} &=  \left( \frac{\alpha_{elc,t} P_s}{\alpha_{elc,s} P_t}  \right)^{\sigma} 
+\end{align*}
+where $t$ refers to a particular month. Taking logs on both sides and letting $i$ represent different observations, we can estimate this function as 
+\begin{align*}
+\ln (Z_{elc, t, i} / Z_{elc, s, i}) &= -\sigma \ln (P_{t,i} / P_{s,i}) + \sigma \ln (\alpha_{t,i} / \alpha_{s,i}) 
+\end{align*}
+where $\alpha_{t,i}$ is equivalent to $\alpha_{elc,t}$ for a particular observation. Our data differentiates consumption for each state in the US, so we let $i$ refer to a particular state. Additionally, most consumers pay monthly fixed rates for electricity, so we can, at most, estimate this equation on a monthly basis; hence, $t$ and $s$ refer to different months. Lastly, note that the state $i$ is kept constant for each observation; this is because consumers within each state can substitute consumption across time, but consumers in different states do not substitute consumption with one another. 
+
+\subsection{Estimation and Identification}
+
+In order to estimate this $\sigma$, we further modify the previous equation. 
+Firstly, note that we cannot observe the demand shifter $\alpha_{t,i}$ directly, so we add a set of controls that may cause shifts in demand. Our regression is then
+\begin{align*}
+\ln (Z_{elc, t, i} / Z_{elc, s, i}) &= -\sigma \ln (P_{t,i} / P_{s,i}) +  \gamma_{t,i} A_{t,i} + \gamma_{s,i} A_{s,i} + u_i
+\end{align*}
+where $A$ represents set of controls for changes in demand while $u_i$ is a normal error term. Note that the control  $A_{t,i}$ replaces $\sigma \ln(\alpha_{t,i})$ and likewise for the period $s$ term; this substitution is valid because the $\ln(\alpha_{t,i}) \in \mathbb{R}$ and the $\sigma$ is simply absorbed into the estimated coefficient for $\gamma_{t,i}$. For the demand controls themselves, we choose to use heating (HDD) and cooling degree days (CDD) due to the aggregation of the data. That is, a more general control such as average temperature would not be able to directly capture intramonthly changes in demand, since variation in temperature would be lost when aggregated; on the other hand, CDDs and HDDs directly represent daily deviations in temperature even when totaled for each month. Additionally, demand for electricity may rise over time. Hence, we include, as a control, the difference in months between time $t$ and $s$; this is represented by $\Delta_{t,s}$. Finally, this panel requires us to consider fixed effects for each state, so we use a fixed effects panel regression. In total, the demand equation is:
+\begin{align*}
+\ln (Z_{elc, t, i} / Z_{elc, s, i}) &= -\sigma \ln (P_{t,i} / P_{s,i}) +  \gamma_{t,i} A_{t,i} + \gamma_{s,i} A_{s,i} + \eta \Delta_{t,s} + u_i \\
+&= -\sigma \ln (P_{t,i} / P_{s,i}) +  \gamma_{t,i} \left( CDD_{t,i} + HDD{t,i} \right) \\
+&\qquad + \gamma_{s,i} \left( CDD_{s,i} + HDD{s,i} \right)  + \eta \Delta_{t,s} + u_i
+\end{align*}
+
+Still, this equation may suffer from bias, since producers can also substitute production over time. For instance, it is possible to store fuel for electricity generation in the future when prices may rise. So, we define the following supply equation
+\begin{align*}
+\ln (Z_{elc, t, i} / Z_{elc, s, i}) &= \beta \ln (P_{t,i} / P_{s,i}) + \xi \ln (C_{t,i} / C_{s,i}) + v_{i}
+\end{align*}
+where $C_{t,i}$ is the average cost of coal used for electricity generation in state $i$ at time $t$ and $v_i$ is a normal error term. Coal prices are independent of the electricity demand error term $u_i$, since residential consumers do not generally use coal for electricity generation; on the other hand, shocks in the price of coal are linked with the supply of electricity. Hence, coal price is a theoretically valid instrument.  In total, the reduced form equation is given by:
+$$ \ln (P_{t,i} / P_{s,i}) = \left( \beta + \sigma \right)^{-1} \left( \gamma_{t,i} A_{t,i} + \gamma_{s,i} A_{s,i} + \eta \Delta_{t,s} - \xi \ln (C_{t,i} / C_{s,i}) + u_{i} - v_i \right)  $$
+where $A_{t,i}$ consists of CDDs and HDDs at time $t$. 
+
+Finally, we also consider a semiparametric specification. That is, we allow the error terms $u_i$ and $v_i$ to be non-normal and place the demand controls and instruments in unknown functions. So, overall, we have:
+\begin{align*}
+\ln (Z_{elc, t, i} / Z_{elc, s, i}) &= -\sigma \ln (P_{t,i} / P_{s,i}) +  f \left( A_{t,i}, A_{s,i}, \Delta_{t,s} \right) + u_i \\
+\ln (Z_{elc, t, i} / Z_{elc, s, i}) &= \beta \ln (P_{t,i} / P_{s,i}) + g \left( \ln (C_{t,i} / C_{s,i})  \right) + v_{i}
+\end{align*}
+where $f$ and $g$ are unknown, bounded functions. We restrict $cov(u_i, v_i) = 0$ but allow for the controls and instruments to be correlated. The advantage of this specification is that we can account for the controls or instrument having any nonlinear effects on the regressands. \textbf{(More here on explaining the estimation)}
+
+\subsection{Data}
+
+We collect monthly data from the EIA on retail electricity prices and consumption for each state in the US from 2011 to 2018. Additionally, also from the EIA, we collect monthly data on the average cost of coal for electricity generation. The coal price data set contains a large number of missing values due to privacy reasons; however, we do not expect that these missing values are correlated with the data itself. Finally, we collect data on HDDs and CDDs from the NCEP for the same panel. Then, we merge these three data sets and trim 1\% of outliers for a total of $826$ observations. We use this preliminary data set to construct the data required for our regressions. That is, each observation in our estimation equation belongs to a set $(t,s,i)$ consisting of two time periods and a state. Hence, we construct each row in our regression data set using unique combinations of $t,s$ where $t \neq s$ for each state $i$. Due to the number of potential combinations and thus observations, we restrict our data set to a random sample of 9000 observations.\footnote{We reran our regressions with several different samples of 9000 and found that our estimated coefficients did not significantly change; hence we believe this sample size is sufficient.}
+
+\subsection{Results}
+
+Based on the OLS results reported in \hyperref[table:1]{Table 1}, we estimate the intertemporal elasticity of substitution for electricity consumption $\hat{\sigma}  = 0.609$ ($|t| > 24$) when accounting for all degree day covariates and state fixed effects. Interestingly, we find that the estimated coefficients for all three specifications do not differ when considering fixed effects. Additionally, as expected, the coefficients on the degree day covariates are symmetrical; that is, the coefficient on $CDD_{t}$ is approximately the same as the negative of that on $CDD_{s}$, and the same applies to $HDD_{t}$ and $HDD_{s}$. On the other hand, we found that electricity consumption seems to rise more in response to CDDs rather than HDDs. Lastly, we find that the sign on $\Delta_{t,s}$ is positive in all regressions; this implies that electricity consumption rises over time independent of price. 
+
+To account for endogeneity in the OLS results, we provide results for our IV specification in \hyperref[table:2]{Table 2}. Here, we find a much larger estimate $\hat{\sigma}  = 11.430$ ($|t| > 2.1$) when considering all covariates and fixed effects. F-Statistics on all three specifications are significantly larger than 10, which suggests that the instruments are not weak \citep{SS1997}. With respect to the demand controls, we find results similar to those of OLS. State fixed effects do not appear to affect the estimates, demand increases over time, and CDDs raise electricity consumption more than HDDs. 
+
+Finally, we control for nonlinear effects using a partially linear IV regression reported in \hyperref[table:3]{Table 3}. Here, we find results similar to that of OLS; $\hat{\sigma} = 0.413$ ($|t| > 48$) when considering all controls. The estimate of $\sigma$ without any controls is not significantly different from that in specifications with controls. However, all of these estimates are significantly different from the IV results; hence, the IV regressions do not appear to be robust. Consequently, we opt to use these estimates of $\sigma$ in our model. Since these estimates show $\hat{\sigma} \in (0,1)$, it appears that electricity consumption in different months complement one another. 
+
+\begin{table}[!htbp] \centering 
+	\caption{OLS Regression Results}
+	\label{table:1} 
+	\small
+	\begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
+		\\[-4ex]\hline  
+		\hline \\[-1.8ex] 
+		& \multicolumn{6}{c}{\textit{Dependent variable:} $\ln (Z_{elc, t, i} / Z_{elc, s, i})$} \\ [0.5ex]
+		\cline{2-7} 
+		\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ [0.5ex]
+		\hline \\[-1.8ex] 
+		$-\ln (P_{t,i} / P_{s,i})$ & 0.751$^{***}$ & 0.481$^{***}$ & 0.607$^{***}$ & 0.750$^{***}$ & 0.481$^{**}$ & 0.607$^{***}$ \\ 
+		& (0.030) & (0.026) & (0.026) & (0.224) & (0.172) & (0.169) \\ 
+		& & & & & & \\ 
+		$\Delta_{t,s}$ &  &  & 0.001$^{***}$ &  &  & 0.001$^{***}$ \\ 
+		&  &  & (0.0001) &  &  & (0.0002) \\ 
+		& & & & & & \\ 
+		CDD$_t$ &  & 0.990$^{***}$ & 1.003$^{***}$ &  & 0.990$^{***}$ & 1.002$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.016) & (0.016) &  & (0.087) & (0.086) \\ 
+		& & & & & & \\ 
+		CDD$_s$ &  & $-$0.999$^{***}$ & $-$1.011$^{***}$ &  & $-$0.999$^{***}$ & $-$1.012$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.016) & (0.016) &  & (0.087) & (0.085) \\ 
+		& & & & & & \\ 
+		HDD$_t$ &  & 0.306$^{***}$ & 0.294$^{***}$ &  & 0.307$^{***}$ & 0.295$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.005) & (0.005) &  & (0.030) & (0.030) \\ 
+		& & & & & & \\ 
+		HDD$_s$ &  & $-$0.309$^{***}$ & $-$0.296$^{***}$ &  & $-$0.308$^{***}$ & $-$0.295$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.005) & (0.005) &  & (0.029) & (0.029) \\ 
+		& & & & & & \\ 
+		Intercept & 0.001 & 0.002 & 0.002 &  &  &  \\ 
+		& (0.003) & (0.006) & (0.006) &  &  &  \\ 
+		& & & & & & \\  [0.9ex]
+		\hline \\[-1.8ex] 
+		State FEs &   &   &   & Yes & Yes & Yes \\ 
+		Observations & 9,000 & 9,000 & 9,000 & 9,000 & 9,000 & 9,000 \\ 
+		R$^{2}$ & 0.070 & 0.580 & 0.596 & 0.070 & 0.580 & 0.596 \\ 
+		Adjusted R$^{2}$ & 0.070 & 0.579 & 0.596 & 0.065 & 0.577 & 0.594 \\ [0.5ex]
+		\hline 
+		\hline \\[-1.8ex] 
+		\multicolumn{7}{@{}p{40em}@{}}{\textit{Note: } The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state; as discussed in the Data section, we take a random sample of 9000 observations from the data. The coefficient on $\ln (P_{t,i} / P_{s,i})$ is an estimate of $-\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+	\end{tabular} 
+\end{table}
+
+
+
+
+
+\begin{table}[!htbp] \centering 
+	\caption{IV (2SLS) Regression Results}
+	\label{table:2} 
+	\small
+	\begin{tabular}{@{\extracolsep{4pt}}lcccccc} 
+		\\[-4ex]\hline  
+		\hline \\[-1.6ex] 
+		& \multicolumn{3}{c}{First-Stage} & \multicolumn{3}{c}{Second-Stage} \\ [0.5ex]
+		& \multicolumn{3}{c}{\textit{Dep. Variable:} $\ln (P_{t,i} / P_{s,i})$ } & \multicolumn{3}{c}{\textit{Dep. Variable:}  $\ln (Z_{elc, t, i} / Z_{elc, s, i})$}\\ [0.5ex]
+		\cmidrule(lr){2-4} \cmidrule(lr){5-7}\\[-2.2ex] 
+		& (A.1) & (B.1) & (C.1) & (A.2) & (B.2) & (C.2)\\ [0.5ex]
+		\hline \\[-1.8ex] 
+		$ \ln (C_{t,i} / C_{s,i})$ & $-$0.060$^{***}$ & 0.004$^{*}$ & 0.004$^{*}$ &  &  &  \\ 
+		& (0.002) & (0.002) & (0.002) &  &  &  \\ 
+		& & & & & & \\ 
+		$-\ln (P_{t,i} / P_{s,i})$ &  &  &  & 0.711$^{***}$ & 13.987 & 11.430$^{*}$ \\ 
+		&  &  &  & (0.106) & (8.384) & (5.330) \\ 
+		& & & & & & \\ 
+		$\Delta_{t,s}$  &  & 0.001$^{***}$ & 0.001$^{***}$ &  &  & 0.007$^{*}$ \\ 
+		&  & (0.00002) & (0.00002) &  &  & (0.003) \\ 
+		& & & & & & \\ 
+		CDD$_t$  &  & 0.151$^{***}$ & 0.151$^{***}$ &  & 3.064$^{*}$ & 2.620$^{**}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.007) & (0.007) &  & (1.288) & (0.798) \\ 
+		& & & & & & \\ 
+		CDD$_s$  &  & $-$0.149$^{***}$ & $-$0.149$^{***}$ &  & $-$3.034$^{*}$ & $-$2.609$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.007) & (0.007) &  & (1.264) & (0.788) \\ 
+		& & & & & & \\ 
+		HDD$_t$  &  & $-$0.057$^{***}$ & $-$0.057$^{***}$ &  & $-$0.407 & $-$0.311 \\ 
+		$\quad(\times 1000^{-1})$&  & (0.003) & (0.003) &  & (0.447) & (0.301) \\ 
+		& & & & & & \\ 
+		HDD$_s$  &  & 0.058$^{***}$ & 0.058$^{***}$ &  & 0.423 & 0.324 \\ 
+		$\quad(\times 1000^{-1})$&  & (0.003) & (0.003) &  & (0.458) & (0.308) \\ [0.9ex]
+		\hline \\[-1.8ex] 
+		State FEs &  Yes & Yes  & Yes  & Yes & Yes & Yes \\ 
+		Observations & 9,000 & 9,000 & 9,000 & 9,000 & 9,000 & 9,000 \\ 
+		R$^{2}$          & 0.066 & 0.441 & 0.441 & & &  \\ 
+		Adjusted R$^{2}$ & 0.066 & 0.441 & 0.441 & & &  \\ 
+		F Statistic & 678$^{***}$ & 1,213$^{***}$ & 1,197$^{***}$  &  &  &  \\ 
+		\hline 
+		\hline \\[-1.8ex] 
+		\multicolumn{7}{@{}p{39.2em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state; as discussed in the Data section, we take a random sample of 9000 observations from the data. The coefficient on $\ln (P_{t,i} / P_{s,i})$ is an estimate of $-\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+	\end{tabular} 
+\end{table}
+
+
+\begin{table}[!htbp] \centering 
+	\caption{Partially Linear IV Regression Results}
+	\label{table:3} 
+	\small
+	\begin{tabular}{@{\extracolsep{4em}}lccc} 
+		\\[-4ex]\hline  
+		\hline \\[-1.8ex] 
+		& \multicolumn{3}{c}{\textit{Instrument: $ \ln (C_{t,i} / C_{s,i})$}} \\ 
+		\cline{2-4} 
+		%\\[-1.8ex] & ln\_load\_rel \textasciitilde ln\_price\_rel & ln\_load\_rel \textasciitilde (CDD\_1) & ln\_load\_rel \textasciitilde time\_diff + (CDD\_1) \\ 
+		\\[-1.8ex] & (1) & (2) & (3)\\ [0.5ex]
+		\hline \\[-1.8ex] 
+		$\hat{\sigma} $ & 0.5676$^{***}$ & 0.4511$^{***}$ & 0.4129$^{***}$ \\ 
+		& (0.1036) & (0.0042) & (0.0085) \\ [0.9ex]
+		\hline \\[-1.8ex] 
+		Time Control &   &   & Yes  \\ 
+		Degree Day Controls &   & Yes  & Yes  \\ 
+		Observations & 9,000 & 9,000 & 9,000 \\
+		\hline 
+		\hline \\[-1.8ex] 
+		\multicolumn{4}{@{}p{36em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state; as discussed in the Data section, we take a random sample of 9000 observations from the data. The estimation procedure is described in the appendix.  Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+	\end{tabular} 
+\end{table} 
+
+\pagebreak
+\pagebreak
+\pagebreak
+\pagebreak
+..
+
+
+\section{Appendix}
+
+\pagebreak
+
+\begin{thebibliography}{9}
+	
+	%		\bibitem[Angel, Harris, and Spatt(2011)]{Angel} 
+	%		Angel, J.J., Harris, L.E., \& Spatt, C. S. (2011). Equity Trading in the 21st Century. Quarterly Journal Of Finance, 1(1), 1-53.
+	
+	\bibitem[Staiger and Stock(1997)]{SS1997} 
+	Staiger, D., \& Stock, J. (1997). Instrumental Variables Regression with Weak Instruments. Econometrica, 65(3), 557–586. https://doi.org/10.2307/2171753
+	
+\end{thebibliography}	
+
+\end{document}
+
+
+
+
+

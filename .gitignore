@@ -21,7 +21,7 @@
 *.nav
 *.snm
 *.toc
-*.tex
+*.pdf
 
 # IPython Checkpoints
 /notebooks/.ipynb_checkpoints
