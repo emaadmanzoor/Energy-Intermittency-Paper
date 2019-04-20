@@ -307,8 +307,9 @@ In more practical terms, suppose that our first technology was coal power and la
 
 \subsubsection{Comparative Statics}
 
-The comparative statics are similarly intuitive. The equilibrium quantity of a technology is increasing with its output efficiency and decreasing with its cost. Additionally, the equilibrium quantities for a particular technology move in the opposite direction with respect to the output efficiency and cost of the other technologies. So, for example, an increase in the output efficiency of solar or a decrease in solar's cost will reduce the optimal quantity of coal power. 
-\hfill \\\\
+The comparative statics are similarly intuitive. The equilibrium quantity of a technology is increasing with its output efficiency and decreasing with its cost. Additionally, the equilibrium quantities for a particular technology move in the opposite direction with respect to the output efficiency and cost of the other technologies. So, for example, an increase in the output efficiency of solar or a decrease in solar's cost will reduce the optimal quantity of coal power. To find the effects of $\alpha$ on $X$, we must assume one of the cases of restrictions shown in \ref{tab:paramrest}{Table 1}. So, assume Case 1 is true; this implies that $X_2$ is optimal in period $t$ and $X_1$ is optimal in period $s$. Additionally, note that $\alpha$ determines demand for electricity in a period. Hence, when $\alpha_t$ rises, we see the optimal level of $X_2$ rise as well; likewise, $X_1$ rises with $\alpha_s$. So, essentially, the optimal quantity of a technology rises with the demand shifter $alpha$ of the period that the technology is optimal in. This concept carries through for the comparative statics of $Z$. When the output efficiency of technology 1 rises or its cost falls, we see output $Z_s$ rise and output $Z_t$ fall. This is because technology 1 is optimal in period $s$ given the Case 1 restrictions. Moreover, we would see symmetrical results for the output with respect to the cost and output efficiency of technology 2. In total, the comparative statics do not imply any surprising relationships. 
+
+\hfill \\
 \begin{proof}
 We begin by deriving the comparative statics of the cost and efficiency parameters with respect to $X$.   Firstly, we take derivatives with respect to the cost vectors:
 \begin{align*}
@@ -390,8 +391,8 @@ Next, we derive the comparative statics for $Z$.
 \end{pmatrix}
 &=
 \begin{pmatrix}
-< 0 \\
-> 0 
+> 0 \\
+< 0 
 \end{pmatrix} \\
 \frac{\partial Z_s}{\partial c} &= 
 \begin{pmatrix}
@@ -400,16 +401,59 @@ Next, we derive the comparative statics for $Z$.
 \end{pmatrix}
 &=
 \begin{pmatrix}
-> 0 \\
-< 0 
+< 0 \\
+> 0 
 \end{pmatrix}
 \end{alignat*}
-From our restrictions, we have 
-
+From our restrictions, we have $\xi_{1s}\xi_{2t} > \xi_{2s}\xi_{1t}$, and all the results above follow from this. 
+\begin{alignat*}{2}
+\frac{\partial Z_t}{\partial \xi} &= 
+\begin{pmatrix}
+\dfrac{\alpha _{t}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} & \dfrac{-\alpha _{t}\,\xi _{\mathrm{2s}}\,\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
+\dfrac{-\alpha _{t}\,\xi _{\mathrm{1s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} & \dfrac{\alpha _{t}\,\xi _{\mathrm{1s}}\,\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
+\end{pmatrix}
+&&=
+\begin{pmatrix}
+< 0 & < 0  \\
+> 0 & > 0
+\end{pmatrix} \\
+\frac{\partial Z_s}{\partial \xi} &= 
+\begin{pmatrix}
+\dfrac{-\alpha _{s}\,\xi _{\mathrm{2t}}\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}& \dfrac{\alpha _{s}\,\xi _{\mathrm{2t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}\\
+\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} & \dfrac{-\alpha _{s}\,\xi _{\mathrm{1t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}\\
+\end{pmatrix}
+&&=
+\begin{pmatrix}
+> 0 & > 0 \\
+< 0 & < 0  
+\end{pmatrix}
+\end{alignat*}
+Again, recall that we have $c_1 \xi_{2t} - c_2 \xi_{1t} > 0$ and $c_2 \xi_{1s} - c_1 \xi_{2s} > 0$; the rest follows. And finally, we have:
+\begin{align*}
+\frac{\partial Z_t}{\partial \alpha} &= 
+\begin{pmatrix}
+\dfrac{-\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} \\
+0
+\end{pmatrix}
+=
+\begin{pmatrix}
+> 0 \\
+0 
+\end{pmatrix} \\
+\frac{\partial Z_s}{\partial \alpha} &= 
+\begin{pmatrix}
+0 \\
+\dfrac{\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 \\
+> 0 
+\end{pmatrix}
+\end{align*}
+These are fairly trivial, since $Z_t = \alpha_t / p_t$ (and $Z_s = \alpha_s/ p_s$) and prices are positive. \\
 \hfill
 \end{proof}
-
-\clearpage
 
 \subsubsection{Externalities}
 
@@ -424,10 +468,11 @@ $$\frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{
 The optimal solution is characterized by the following first-order condition in terms of $p$.
 $$
 \gamma \left( \eta_{1,1}^2 \alpha_t / p_t^2 + \eta_{2,1}^2 \alpha_s / p_s^2 \right) = \left(\eta_{1,1} \alpha_t /p_t + \eta_{2,1} \alpha_s / p_s \right) $$
-This itself does not provide a straightforward solution to $\tau$. Instead, let us consider a practical example to simplify the problem. Suppose that our first, pollution-creating technology is coal power while the second technology is solar power. Furthermore, assume that solar power produces during period $t$ but not during period $s$, so that we have $\xi_{2s} = 0$. This greatly simplifies the FOC and implies the following optimal tax:
+This itself does not provide a straightforward solution to $\tau$. Instead, let us consider a practical example to simplify the problem. Suppose again that our first, pollution-creating technology is coal power while the second technology is solar power. Furthermore, assume that solar power produces during period $t$ but not during period $s$ so that we have $\xi_{2s} = 0$. This greatly simplifies the FOC which then implies the following optimal tax:
 $$\tau \, = \,  \gamma \, - \, c_1 \, +  \hspace{-1.5em} \underbrace{(c_2 \, \xi_{1t})/ \xi_{2t}}_\textrm{Intermittency Adjustment}$$
+Interestingly, this tax is larger than the standard tax in the zero profit case: $\gamma - c_1$. Moreover, this tax scales with the cost and output efficiency of our second technology. That is, as solar becomes more cost efficient, the tax required to correct for the externalities of coal approaches the standard level. At the same time, the tax also must increase with the output efficiency of coal. This is far from 
 
-
+%%% Consider case with producer surplus
 \hfill \\
 \begin{proof}
 Firstly, since our producer surplus is fixed due to linear costs, we have $\frac{\partial PS}{\partial \tau} = 0$. Now, we find the effect on consumer surplus. Letting $\eta = \xi^{-1}$, note that we have
@@ -487,6 +532,32 @@ If we allow $\xi_{2s} = 0$, then this simplifies to
 \tau &= 
 \gamma - c_1 + (c_2\,\xi_{1t})/\xi_{2t}
 \end{align*}
+Next, we may consider the case where $\partial PS / \partial \tau$ is non-zero. That is, we allow $C(X)$, the cost of the technologies, to be nonlinear. Our general FOC is then:
+\begin{align*}
+0 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial C(X)}{\partial \tau}\\
+\frac{\partial C(X)}{\partial \tau} &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} \\
+\frac{ \partial  C(X)}{\partial p} \frac{\partial p}{\partial \tau}  &= \frac{\partial CS}{\partial p} \frac{\partial p}{\partial \tau} + \frac{\partial PS}{\partial \tau} \\
+\gamma \left( \eta_{1,1}^2 \alpha_t / p_t^2 + \eta_{2,1}^2 \alpha_s / p_s^2 \right) &= \eta_{1,1} \alpha_t /p_t + \eta_{2,1} \alpha_s / p_s - \frac{\partial PS}{\partial \tau} 
+\end{align*}
+When we allow $\xi_{2s} = 0$, this simplifies to 
+$$\frac{\alpha _{s}\pm\sqrt{{\alpha _{s}}^2-4\,\frac{\partial PS}{\partial \tau} \,\alpha _{s}\,\mathrm{\gamma}}}{2\,\frac{\partial PS}{\partial \tau} } - c_1 + (c_2\,\xi_{1t})/\xi_{2t}$$
+This suggests there are two solutions; however, we can reduce this to one. Since the limit  of this equation as $\frac{\partial PS}{\partial \tau} \to 0$ must be $\gamma - c_1 + (c_2\,\xi_{1t})/\xi_{2t}$, we have:
+\begin{align*}
+\gamma - c_1 + (c_2\,\xi_{1t})/\xi_{2t} &= \lim_{\frac{\partial PS}{\partial \tau} \to 0} \left( \frac{\alpha _{s}\pm\sqrt{{\alpha _{s}}^2-4\,\frac{\partial PS}{\partial \tau} \,\alpha _{s}\,\mathrm{\gamma}}}{2\,\frac{\partial PS}{\partial \tau} } - c_1 + (c_2\,\xi_{1t})/\xi_{2t} \right) \\
+&= \lim_{\frac{\partial PS}{\partial \tau} \to 0} \left( \frac{\alpha _{s}\pm\sqrt{{\alpha _{s}}^2-4\,\frac{\partial PS}{\partial \tau} \,\alpha _{s}\,\mathrm{\gamma}}}{2\,\frac{\partial PS}{\partial \tau} } \right) - c_1 + (c_2\,\xi_{1t})/\xi_{2t}  \\
+&= \lim_{\frac{\partial PS}{\partial \tau} \to 0} \left( \pm 
+\frac{\left( (0.5)(-4\alpha_s \gamma) \right) \left( \alpha_s^2 - 4 \frac{\partial PS}{\partial \tau} \alpha_s \gamma \right)^{-0.5} }{2}
+ \right) - c_1 + (c_2\,\xi_{1t})/\xi_{2t}  \\
+\implies \gamma &= \lim_{\frac{\partial PS}{\partial \tau} \to 0} \left( \pm 
+\left( (-\alpha_s \gamma) \right) \left( \alpha_s^2 - 4 \frac{\partial PS}{\partial \tau} \alpha_s \gamma \right)^{-0.5} 
+\right) \\
+&=  \pm 
+\left( -\alpha_s \gamma \right)\alpha_s^{-1} \\
+&=  \pm (- \gamma)
+\end{align*}
+where L'Hopitals was used in the third step. Hence, the correct solution is:
+$$\frac{\alpha _{s} - \sqrt{{\alpha _{s}}^2-4\,\frac{\partial PS}{\partial \tau} \,\alpha _{s}\,\mathrm{\gamma}}}{2\,\frac{\partial PS}{\partial \tau} } - c_1 + (c_2\,\xi_{1t})/\xi_{2t}$$
+
 \end{proof}
 
 \pagebreak
@@ -534,27 +605,6 @@ If we allow $\xi_{2s} = 0$, then this simplifies to
 \pagebreak
 
 \section{Scratch}
-
-\begin{align*}
-\partial X / \partial \xi_{1,t} &= \left(\begin{array}{c} \frac{\alpha _{s}\,c_{2}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}\\ -\frac{\alpha _{s}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}-\frac{\alpha _{s}\,c_{2}\,\xi _{\mathrm{1t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} \end{array}\right) \\
-\partial X / \partial \xi_{1,s} &= \left(\begin{array}{c} \frac{\alpha _{t}\,c_{2}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}\\ -\frac{\alpha _{t}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}}-\frac{\alpha _{t}\,c_{2}\,\xi _{\mathrm{1s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \end{array}\right)\\
-\partial X / \partial \xi_{2,t} &= \left(\begin{array}{c} \frac{\alpha _{s}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}-\frac{\alpha _{s}\,c_{1}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}\\ \frac{\alpha _{s}\,c_{1}\,\xi _{\mathrm{1t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} \end{array}\right)\\
-\partial X / \partial \xi_{2,s} &= \left(\begin{array}{c} \frac{\alpha _{t}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}}-\frac{\alpha _{t}\,c_{1}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}\\ \frac{\alpha _{t}\,c_{1}\,\xi _{\mathrm{1s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \end{array}\right)\\
-\partial X / \partial c_{1} &= \left(\begin{array}{c} -\frac{\alpha _{t}\,{\xi _{\mathrm{2s}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}-\frac{\alpha _{s}\,{\xi _{\mathrm{2t}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}\\ \frac{\alpha _{t}\,\xi _{\mathrm{1s}}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}+\frac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} \end{array}\right) \\
-\partial X / \partial c_2 &= \left(\begin{array}{c} \frac{\alpha _{t}\,\xi _{\mathrm{1s}}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}+\frac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}\\ -\frac{\alpha _{t}\,{\xi _{\mathrm{1s}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}-\frac{\alpha _{s}\,{\xi _{\mathrm{1t}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} \end{array}\right)
-\end{align*}
-
-\begin{align*}
-\partial P / \partial \xi_{1,t} &= \left(\begin{array}{c} -\frac{\xi _{\mathrm{2s}}\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}{{\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}^2}\\ \frac{\xi _{\mathrm{2s}}\,\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}{{\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}^2}-\frac{c_{2}}{\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}} \end{array}\right)\\
-\partial P / \partial \xi_{1,s} &= \left(\begin{array}{c} \frac{c_{2}}{\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}+\frac{\xi _{\mathrm{2t}}\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}{{\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}^2}\\ -\frac{\xi _{\mathrm{2t}}\,\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}{{\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}^2} \end{array}\right)\\
-\partial P / \partial \xi_{2,t} &= \left(\begin{array}{c} \frac{\xi _{\mathrm{1s}}\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}{{\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}^2}\\ \frac{c_{1}}{\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}-\frac{\xi _{\mathrm{1s}}\,\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}{{\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}^2} \end{array}\right) \\
-\partial P / \partial \xi_{2,s} &= \left(\begin{array}{c} -\frac{c_{1}}{\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}-\frac{\xi _{\mathrm{1t}}\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}{{\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}^2}\\ \frac{\xi _{\mathrm{1t}}\,\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}{{\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}^2} \end{array}\right) \\
-\partial P / \partial c_1 &= \left(\begin{array}{c} -\frac{\xi _{\mathrm{2s}}}{\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}\\ \frac{\xi _{\mathrm{2t}}}{\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}} \end{array}\right)\\
-\partial P / \partial c_2 &= \left(\begin{array}{c} \frac{\xi _{\mathrm{1s}}}{\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}\\ -\frac{\xi _{\mathrm{1t}}}{\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}} \end{array}\right)
-\end{align*}
-
-$$ \partial P_s / \partial \xi_{1,t} < 0 \iff  \frac{\xi _{\mathrm{2t}}\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}{{\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}^2}<0$$
-
 
 \pagebreak
 
