@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{extarticle}
+\documentclass[11pt,a4paper]{extarticle}
 \usepackage[margin=1in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{booktabs} % for toprule, midrule and bottomrule
@@ -25,6 +25,7 @@
 \usepackage{nicefrac}
 \usepackage{enumitem}
 \usepackage{multirow}
+\usepackage{xcolor}
 %\usepackage{showframe}
 %\usepackage{lipsum}
 
@@ -70,11 +71,12 @@
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
 
 % hyperlinks
+\definecolor{darkblue}{RGB}{0,0,150}
 \hypersetup{
 	colorlinks=true,
 	linkcolor = blue,
 	urlcolor  = blue,
-	citecolor = blue,
+	citecolor = darkblue,
 	anchorcolor = blue
 }
 
@@ -147,7 +149,7 @@ Finally, our model implies that the optimal level of subsidies/taxes on energy g
 
 
 
-\section{Introduction}
+\section{Outline}
 \dots
 
 Things I'd like to say:
@@ -161,11 +163,32 @@ Things I'd like to say:
 
 \section{Introduction}
 
-By intermittency, we mean variation in output over time due to technical constraints; on the other hand, we define reliability as stochastic variation in output. For instance, solar power is intermittent while coal power is not. We focus on modeling intermittency but ignore reliability to keep our model tractable and its implications clear. 
+Renewable energy technologies have seen considerable adoption over the last few decades (EIA 2019). Unlike the alternatives, wind and solar power are particularly unique in that the amount of energy they supply is intermittent. Consequently, designing economically efficient policy to promote their adoption is not straightforward given that they cannot easily substitute for traditional technologies such as coal power which handles base load demand. Moreover, simpler approaches, such as using the levelized cost of electricity (LCOE) to compare technologies is flawed in any setting with variable electricity prices. In particular, \citet{Joskow2011} argues that 
+
+\begin{quote}
+	``Instead [of using metrics like LCOE], the economics of all generating technologies, both intermittent and dispatchable, can be evaluated based on the expected market value of the electricity that
+	they will supply, their total life-cycle costs, and their associated expected profitability. Such an
+	analysis would reflect the actual expected production profiles of dispatchable and intermittent
+	technologies, the value of electricity supplied at different times, and other costs of intermittency
+	associated with reliable network integration. This is exactly the way investors in merchant generating plants evaluate whether or not to invest."
+\end{quote}
+We structure our model with this critique in mind. Specifically, we develop a model where producers optimize the supply of each generation technology on the expected market value of the electricity produce. We do so by 
+
+Some of the literature has approached the problem by constructing numerical models that find the cheapest renewable technology set while accounting for intermittent supply. \citet{MN2006} model uncertain renewable output with intertemporal generation constraints, while \citet{NCK2007} model temporal and spatial characteristics of wind output to optimize its deployment in the UK. On the other hand, other literature focuses on the effect of intermittent technologies on the market itself; \citet{AC2012} study the interaction between intermittent renewables and traditional reliable sources of energy in decentralized markets, and \citet{Chao2011} models alternative pricing mechanisms for intermittent renewable energy sources. Additionally, \citet{Boren2012} reviews the effects of present public policies used to promote renewables and the challenges posed by intermittency. 
+
+Our model comes closest to that of \citet{HH} who build a peak-load pricing model where the availability of renewable capacity varies stochastically. This stochastic variability models the intermittency and affects the adoption of renewables in a market with dynamic pricing. Furthermore, they simplify their analysis by setting aside complications such as  outage costs and rationing rules. In total, their model finds an S-shaped adoption curve for renewables once their LCOE's reach those of fossil fuel energy. In addition, they find that a Pigouvian tax can properly internalize the costs of fossil fuels in a setting with perfect competition. Likewise, our model makes equivalent simplifications and finds similar results on an equilibrium in  amarket with dynamic prices. But, our representation of the intermittency of renewables differs in a significant way. 
+
+To highlight this difference, we must first contrast the terms  \textit{intermittency} and \textit{reliability}. By intermittency, we mean uncontrollable variation in output over time due to physical constraints; by reliability, we mean variation in output that is wholly unpredictable\footnote{By unpredictible, we mean a notion similar to that of \textit{Knightian uncertainity} \citep{Knight}. } and may be the result of failures that cannot be modeled stochastically. Consider wind energy as an example. The energy provided by a wind turbine necessarily varies over time due to differences in wind speed and direction. Moreover, the relationship between the force created by the wind and the amount of wind power generated must necessarily be a fixed, functional relationship; that is, \textit{ceterius paribus}, two identical wind turbines under identical wind conditions should generate the same amount of energy. Consequently, the output of wind power can be forecasted\footnote{\citet{Foley2012} provide a review of the literature on the forecasting of wind power and advancements over time} up to an error term. Because no forecast of wind (or solar) power can be perfect, some level of weather-related intermittency may be left in the error term. At the same time, the error term also captures unreliability; for instance, failures in the circuitry of wind turbines cannot be forecasted as a time series. So, overall, we may think of the energy output of a renewable technology as consisting of three components: a knowable/forecastable component related to intermittency, a stochastic component related to intermittency, and an unpredictible component related to reliability. 
+
+While \citet{HH} model the stochastic component of intermittency, we model the predictible component. More specifically, Helm and Mier model the capacity of renewable energy equal to a baseline capacity multiplied by a uniform random variable between 0 and 1. This is a valid approach given that their model consists of a single period of generation. On the other hand, we neglect stochastic intermittency for parsimony and develop a general, multi-period model where the output per unit of each technology follows a known function.  We then narrow this to a two period, two technology model where our first technology represents fossil fuel energy with constant output in both periods while our second technology's output differs between each period. Additionally, while their model consists of two sets of consumers, one set which receives fixed price contracts and another paying real time prices, we consider one representative consumer. Specifically, this representative consumer's utility is given by CES function where each good is electricity consumption differentiated by time; this approach was first set forth by \citet{Moha2016}. Interestingly, this treatment of intermittency produces some key results similar to that of Helm and Mier. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%% Summary of results
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Model}
 
-We model electricity as a heterogenous good which is differentiated by its delivery time. Then, we consider a representative consumers who purchases varying quantities of electricity over time in order to maximize utility. Obviously, consumers would prefer to spread their electricity consumption out over time; the convexity of the indifference surfaces of a standard CES function can model this preference quite simply. Next, we model the electricity sector using a representative firm that chooses a set of electricity-generating inputs to maximize profit; some of these inputs are intermittent - they generate a non-constant amount of energy over time. These two sides of the market reach an equilibrium through adjustments in prices of electricity in each period. 
+We model electricity as a heterogenous good which is differentiated by its delivery time. Then, we consider a representative consumer who purchases varying quantities of electricity in each period in order to maximize utility. Generally, people prefer to spread their electricity consumption out over time; the convexity of the indifference surfaces of a standard CES function can model this preference in a simple way. Next, we model the electricity sector using a representative firm that chooses a set of electricity-generating inputs to maximize profit; some of these inputs are intermittent - they generate a differing amounts of energy in each period. These two sides of the market reach an equilibrium through adjustments in prices of electricity in each period.\footnote{While, in reality, consumers generally pay fixed rates for electricity, \citeauthor{HH} provide a motivation for models incorporating dynamic pricing; they argue such approaches to pricing will become the norm with further technological advances and coming regulatory changes. } For simplicity, we do not allow for load rationing  or negative prices. And, again for simplicity, we assume that the output of all technologies in each period does not vary stochastically. 
 
 \subsection{General Model}
 
@@ -182,7 +205,7 @@ where $p_t$ is the price of electricity in period $t$ and $I$ is the income. Con
 Z_t &= \left(\frac{\alpha_t}{p_t} \right)^\sigma \frac{I}{P} \\
 P &= \sum_t \alpha_t^\sigma p_t^{1-\sigma}
 \end{align}
-where $P$ is the price index. 
+where $P$ is the price index. This model naturally does not allow for blackouts in equilibrium, since the price of electricity in any period gets arbitrarily large as the quantity of energy consumed in that period falls. 
 
 Secondly, we have firms maximizing profit by picking an optimal set of energy inputs. In reality, electricity markets are fairly competitive, so we assume perfect competition. Hence, we can model the set of firms using a representative firm that sets marginal revenue equal to marginal cost. We define the quantity of deployed energy technology $i$ as $X_i$, and we define its output per unit in period $t$ as $\xi_{1,t}$. So, for example, if $i$ is solar power, $X_i$ would be the number of solar panels and $\xi_{i,t}$ may be kW generated per solar panel in period $t$. Consequently, the energy generated in period $t$, $Z_t$, is given by $\sum_i \xi_{i,t} X_i$. We define these variables in matrices to simplify notation:
 \begin{align*}
@@ -221,7 +244,7 @@ Combining both first order conditions allows us to find the equilibrium; however
 
 \subsubsection{Equilibrium Results}
 
-Firstly, we restrict the utility function to its Cobb-Douglas form which is simply the case where the elasticity of substitution $\sigma = 1$. Secondly, we limit the number of periods and technologies to 2. Consequently, our demand equations simplify to:
+Firstly, we restrict the utility function to its Cobb-Douglas form which is simply the case where the elasticity of substitution $\sigma = 1$. Secondly, we limit the number of periods and technologies to 2. And, thirdly, we normalize the prices such that the budget is $1$. Consequently, our demand equations simplify to:
 \begin{align}
 Z_t &= \alpha_t / p_t \\
 Z_s &= \alpha_s / p_s
@@ -307,7 +330,7 @@ In more practical terms, suppose that our first technology was coal power and la
 
 \subsubsection{Comparative Statics}
 
-The comparative statics are similarly intuitive. The equilibrium quantity of a technology is increasing with its output efficiency and decreasing with its cost. Additionally, the equilibrium quantities for a particular technology move in the opposite direction with respect to the output efficiency and cost of the other technologies. So, for example, an increase in the output efficiency of solar or a decrease in solar's cost will reduce the optimal quantity of coal power. To find the effects of $\alpha$ on $X$, we must assume one of the cases of restrictions shown in \ref{tab:paramrest}{Table 1}. So, assume Case 1 is true; this implies that $X_2$ is optimal in period $t$ and $X_1$ is optimal in period $s$. Additionally, note that $\alpha$ determines demand for electricity in a period. Hence, when $\alpha_t$ rises, we see the optimal level of $X_2$ rise as well; likewise, $X_1$ rises with $\alpha_s$. So, essentially, the optimal quantity of a technology rises with the demand shifter $alpha$ of the period that the technology is optimal in. This concept carries through for the comparative statics of $Z$. When the output efficiency of technology 1 rises or its cost falls, we see output $Z_s$ rise and output $Z_t$ fall. This is because technology 1 is optimal in period $s$ given the Case 1 restrictions. Moreover, we would see symmetrical results for the output with respect to the cost and output efficiency of technology 2. In total, the comparative statics do not imply any surprising relationships. 
+The comparative statics are similarly intuitive. The equilibrium quantity of a technology is increasing with its output efficiency and decreasing with its cost. Additionally, the equilibrium quantities for a particular technology move in the opposite direction with respect to the output efficiency and cost of the other technologies. So, for example, an increase in the output efficiency of solar or a decrease in solar's cost will reduce the optimal quantity of coal power. To find the effects of $\alpha$ on $X$, we must assume one of the cases of restrictions shown in \ref{tab:paramrest}{Table 1}. So, assume Case 1 is true; this implies that $X_2$ is optimal in period $t$ and $X_1$ is optimal in period $s$. Additionally, note that $\alpha$ determines demand for electricity in a period. Hence, when $\alpha_t$ rises, we see the optimal level of $X_2$ rise as well; likewise, $X_1$ rises with $\alpha_s$. So, essentially, the optimal quantity of a technology rises with the demand shifter $\alpha$ of the period that the technology is optimal in. This concept carries through for the comparative statics of $Z$. When the output efficiency of technology 1 rises or its cost falls, we see output $Z_s$ rise and output $Z_t$ fall. This is because technology 1 is optimal in period $s$ given the Case 1 restrictions. Moreover, we would see symmetrical results for the output with respect to the cost and output efficiency of technology 2. In total, the comparative statics are fairly straightforward. 
 
 \hfill \\
 \begin{proof}
@@ -455,110 +478,59 @@ These are fairly trivial, since $Z_t = \alpha_t / p_t$ (and $Z_s = \alpha_s/ p_s
 \hfill
 \end{proof}
 
+\subsubsection{Technical Change and Market Shares}
+
+Like \cite{HH} we find an S-shaped adoption curve for renewable energy driven by intermittency.\footnote{\citet{HH} reference \citet{Geroski2000} who provides a survey of the literature on adoption of new technologies. He finds that S-shaped adoption curves are often generated by information cascades. On the other hand, our model and that of Helm and Mier find S-shaped curves as a result of intermittency slowing down adoption.} 
+
 \subsubsection{Externalities}
 
-Now, suppose that our first technology, which again may be coal power, produced negative externalities. Specifically, the social cost of pollution is given by $C(X) = \gamma X_1$ where $\gamma$ is the monetary damage per unit of $X_1$. A social planner is interested in balancing the damages caused by pollution with the surplus of the private sector. That is, they aim to solve
-$$\max_{\tau} \; CS + PS - C(X)$$
-where $\tau$ is the tax on $X_1$, so that its final price is $c_1 + \tau$. The traditional solution, a Pigouvian tax, simply sets the tax equal to the marginal social damage of pollution: $\tau = \gamma$. In our particular case, the producer faces a linear cost function resulting in $PS = 0$. Consequently, the solution in this case is to set the cost of the polluting technology directly equal to its social cost using $\tau = \gamma - c_1$. 
 
-But, the latter is not always the optimal solution in our model. In fact, it is a special case when each technology produces in one unique period. To see why, suppose, without loss of generality, that the first technology only produces in the first period and the second only produces in the second period. In other words, with periods $t$ and $s$, we have $\xi_{1s} = \xi_{2t} = 0$; this means $X_1$ is the only source of $Z_t$ while $X_2$  is the only source of $Z_s$. Since the demand functions of $Z_t$ and $Z_s$ are independent of $p_s$ and $p_t$ respectively, we can treat this case as two seperate markets for two seperate commodities. Consequently, since producer surplus is fixed, the optimal tax is given by $\tau = \gamma - c_1$. 
+Often times, a social planner may also be interested in using other policy instruments such as research subsidies. In fact, \citet{Ace2012} find that both carbon taxes and research subsidies are necessary to promote long-run structural change in the energy production sector and avert a climate disaster. While our model focuses on production on a shorter time scale, we find a similar result -- a combination of both taxes and subsidies may be more effective in promoting a shift towards clean energy. 
 
-However, now suppose that both technologies produce in both periods. We then solve the social planner's welfare maximization problem by finding a solution to the first-order condition:
-$$\frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial C(X)}{\partial \tau} = 0$$
-The optimal solution is characterized by the following first-order condition in terms of $p$.
-$$
-\gamma \left( \eta_{1,1}^2 \alpha_t / p_t^2 + \eta_{2,1}^2 \alpha_s / p_s^2 \right) = \left(\eta_{1,1} \alpha_t /p_t + \eta_{2,1} \alpha_s / p_s \right) $$
-This itself does not provide a straightforward solution to $\tau$. Instead, let us consider a practical example to simplify the problem. Suppose again that our first, pollution-creating technology is coal power while the second technology is solar power. Furthermore, assume that solar power produces during period $t$ but not during period $s$ so that we have $\xi_{2s} = 0$. This greatly simplifies the FOC which then implies the following optimal tax:
-$$\tau \, = \,  \gamma \, - \, c_1 \, +  \hspace{-1.5em} \underbrace{(c_2 \, \xi_{1t})/ \xi_{2t}}_\textrm{Intermittency Adjustment}$$
-Interestingly, this tax is larger than the standard tax in the zero profit case: $\gamma - c_1$. Moreover, this tax scales with the cost and output efficiency of our second technology. That is, as solar becomes more cost efficient, the tax required to correct for the externalities of coal approaches the standard level. At the same time, the tax also must increase with the output efficiency of coal. This is far from 
 
-%%% Consider case with producer surplus
+Firstly, consider a case where a carbon tax is our only policy instrument. Additionally, suppose that our first technology produced negative externalities. Specifically, the social cost of pollution is given by $S(X) = \gamma X_1$ where $\gamma$ is the monetary damage per unit of $X_1$. A social planner is interested in balancing the damages caused by pollution with the surplus of the private sector and the revenue from the tax. That is, they aim to solve
+$$\max_{\tau} \; CS + PS - S(X) + \tau X_1$$
+where $\tau$ is the tax on $X_1$, so that its final price is $c_1 + \tau$ and the tax revenue is given by $\tau X_1$. The optimal tax is a Pigouvian tax; $\tau$ should be set equal to the marginal social cost of pollution $\gamma$. This is an expected, standard solution in most models.
+
+
+%%% Pigouvian tax proof
 \hfill \\
-\begin{proof}
-Firstly, since our producer surplus is fixed due to linear costs, we have $\frac{\partial PS}{\partial \tau} = 0$. Now, we find the effect on consumer surplus. Letting $\eta = \xi^{-1}$, note that we have
-$$\frac{\partial CS}{\partial p} = 
-\begin{pmatrix}
--\alpha_t / p_t \\
--\alpha_s / p_s
-\end{pmatrix}
-\qquad
-\frac{\partial p}{\partial \tau} =
-\partial
-\left( 
-\eta
-\begin{pmatrix}
-c_1 + \tau \\
-c_2
-\end{pmatrix}
-\right)
-/ \partial \tau
-=
-\begin{pmatrix}
-\eta_{1,1} \\
-\eta_{2,1}
-\end{pmatrix}
-$$
-Next, we find the partial derivatives for the equilibrium quantity of $X_1$. 
+\begin{proof} We aim to maximize welfare with respect to the tax $\tau$, hence our first order condition is:
 \begin{align*}
-Z \equiv \xi^T X &\implies X = \eta^T Z \\
-&\implies X_1 = \eta_{1,1} Z_t + \eta_{2,1} Z_s 
+0 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial S(X)}{\partial \tau} + \frac{\partial \tau X_1}{\partial \tau} \\
+&=  \left( \underbrace{\frac{\partial CS}{\partial p}  + \frac{\partial PS}{\partial p}}_{= 0} - \frac{ \partial  S(X)}{\partial p} + \frac{\partial \tau X_1}{\partial p} \right) \frac{\partial p}{\partial \tau} \\
+&=  - \gamma \frac{\partial  X_1}{\partial p} + \tau \frac{\partial  X_1}{\partial p}
 \end{align*}
-$$\frac{\partial X_1}{\partial p} = 
-\begin{pmatrix}
--\eta_{1,1} \alpha_t / p_t^2 \\
-- \eta_{2,1} \alpha_s / p_s^2 
-\end{pmatrix}
-$$
-Finally, we may solve for the first-order condition.
-\begin{align*}
-0 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial C(X)}{\partial \tau}\\
-\frac{\partial C(X)}{\partial \tau} &= \frac{\partial CS}{\partial \tau}\\
-\frac{ \partial  C(X)}{\partial p} \frac{\partial p}{\partial \tau}  &= \frac{\partial CS}{\partial p} \frac{\partial p}{\partial \tau}\\
-\gamma \left( \eta_{1,1}^2 \alpha_t / p_t^2 + \eta_{2,1}^2 \alpha_s / p_s^2 \right) &= \eta_{1,1} \alpha_t /p_t + \eta_{2,1} \alpha_s / p_s
-\end{align*}
-Plugging in for $p$ with $(c_1 + \tau, c_2)^T$ yields the following FOC with three roots for $\tau$. 
-
-$$-\frac{\alpha _{t}\,\mathrm{\gamma}\,{\xi _{\mathrm{1t}}}^2\,{\xi _{\mathrm{2s}}}^4}{{\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}^2\,{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}+\tau \,\xi _{\mathrm{2s}}\right)}^2}-\frac{\alpha _{s}\,\mathrm{\gamma}\,{\xi _{\mathrm{2s}}}^2\,{\xi _{\mathrm{2t}}}^2}{{c_{2}}^2\,{\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}^2} $$
-$$ = 	
-\frac{c_{2}\,\xi _{\mathrm{2s}}\,\left(\alpha _{s}\,\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}+\alpha _{t}\,\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)-\alpha _{s}\,{\xi _{\mathrm{2s}}}^2\,\xi _{\mathrm{2t}}\,\left(c_{1}+\tau \right)}{c_{2}\,\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}+\tau \,\xi _{\mathrm{2s}}\right)}
-$$
-If we allow $\xi_{2s} = 0$, then this simplifies to
-\begin{align*}
--\frac{\alpha _{s}\,\mathrm{\gamma}\,{\xi _{\mathrm{2t}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}+\tau \,\xi _{\mathrm{2t}}\right)}^2} &= -\frac{\alpha _{s}\,\xi _{\mathrm{2t}}}{\xi _{\mathrm{2t}}\,\left(c_{1}+\tau \right)-c_{2}\,\xi _{\mathrm{1t}}}\\
-0 &= \frac{\alpha _{s}\,{\xi _{\mathrm{2t}}}^2\,\left(c_{1}-\mathrm{\gamma}+\tau \right)-\alpha _{s}\,c_{2}\,\xi _{\mathrm{1t}}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}+\tau \,\xi _{\mathrm{2t}}\right)}^2} \\
-\alpha_s \xi_{2t}^2 (c_1 - \gamma + \tau) &= \alpha_s c_2 \xi_1t \xi_2t
- \\
-\xi_{2t} (c_1 - \gamma + \tau) &=  c_2 \xi_{1t}\\
-\tau &= 
-\gamma - c_1 + (c_2\,\xi_{1t})/\xi_{2t}
-\end{align*}
-Next, we may consider the case where $\partial PS / \partial \tau$ is non-zero. That is, we allow $C(X)$, the cost of the technologies, to be nonlinear. Our general FOC is then:
-\begin{align*}
-0 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial C(X)}{\partial \tau}\\
-\frac{\partial C(X)}{\partial \tau} &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} \\
-\frac{ \partial  C(X)}{\partial p} \frac{\partial p}{\partial \tau}  &= \frac{\partial CS}{\partial p} \frac{\partial p}{\partial \tau} + \frac{\partial PS}{\partial \tau} \\
-\gamma \left( \eta_{1,1}^2 \alpha_t / p_t^2 + \eta_{2,1}^2 \alpha_s / p_s^2 \right) &= \eta_{1,1} \alpha_t /p_t + \eta_{2,1} \alpha_s / p_s - \frac{\partial PS}{\partial \tau} 
-\end{align*}
-When we allow $\xi_{2s} = 0$, this simplifies to 
-$$\frac{\alpha _{s}\pm\sqrt{{\alpha _{s}}^2-4\,\frac{\partial PS}{\partial \tau} \,\alpha _{s}\,\mathrm{\gamma}}}{2\,\frac{\partial PS}{\partial \tau} } - c_1 + (c_2\,\xi_{1t})/\xi_{2t}$$
-This suggests there are two solutions; however, we can reduce this to one. Since the limit  of this equation as $\frac{\partial PS}{\partial \tau} \to 0$ must be $\gamma - c_1 + (c_2\,\xi_{1t})/\xi_{2t}$, we have:
-\begin{align*}
-\gamma - c_1 + (c_2\,\xi_{1t})/\xi_{2t} &= \lim_{\frac{\partial PS}{\partial \tau} \to 0} \left( \frac{\alpha _{s}\pm\sqrt{{\alpha _{s}}^2-4\,\frac{\partial PS}{\partial \tau} \,\alpha _{s}\,\mathrm{\gamma}}}{2\,\frac{\partial PS}{\partial \tau} } - c_1 + (c_2\,\xi_{1t})/\xi_{2t} \right) \\
-&= \lim_{\frac{\partial PS}{\partial \tau} \to 0} \left( \frac{\alpha _{s}\pm\sqrt{{\alpha _{s}}^2-4\,\frac{\partial PS}{\partial \tau} \,\alpha _{s}\,\mathrm{\gamma}}}{2\,\frac{\partial PS}{\partial \tau} } \right) - c_1 + (c_2\,\xi_{1t})/\xi_{2t}  \\
-&= \lim_{\frac{\partial PS}{\partial \tau} \to 0} \left( \pm 
-\frac{\left( (0.5)(-4\alpha_s \gamma) \right) \left( \alpha_s^2 - 4 \frac{\partial PS}{\partial \tau} \alpha_s \gamma \right)^{-0.5} }{2}
- \right) - c_1 + (c_2\,\xi_{1t})/\xi_{2t}  \\
-\implies \gamma &= \lim_{\frac{\partial PS}{\partial \tau} \to 0} \left( \pm 
-\left( (-\alpha_s \gamma) \right) \left( \alpha_s^2 - 4 \frac{\partial PS}{\partial \tau} \alpha_s \gamma \right)^{-0.5} 
-\right) \\
-&=  \pm 
-\left( -\alpha_s \gamma \right)\alpha_s^{-1} \\
-&=  \pm (- \gamma)
-\end{align*}
-where L'Hopitals was used in the third step. Hence, the correct solution is:
-$$\frac{\alpha _{s} - \sqrt{{\alpha _{s}}^2-4\,\frac{\partial PS}{\partial \tau} \,\alpha _{s}\,\mathrm{\gamma}}}{2\,\frac{\partial PS}{\partial \tau} } - c_1 + (c_2\,\xi_{1t})/\xi_{2t}$$
-
+where the derivatives of producer and consumer surplus are eliminated by the envelope theorem. Therefore, we must have $\tau = \gamma$. \\
+\hfill
 \end{proof}
+
+Now, suppose that we may also subsidize research which improves the output efficiency of a technology. In particular, we let the output efficiency of technology 2 be $(\xi_{2t}, \, \xi_{2s})(1 + \beta)$ where $\beta$ is the percent improvement created by research. And, we let the cost of research be given by a convex, differentiable function $G(\beta)$. 
+
+
+\hfill \\
+\begin{proof} First, note that we have:
+$$X_1 = \dfrac{\alpha _{t}\,(1+\beta) \, \xi_{\mathrm{2s}}}{(c_{1}+ \tau)\,(1+\beta)\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}}+\dfrac{\alpha _{s}\,(1+\beta)\,\xi _{\mathrm{2t}}}{(c_{1}+ \tau)\,(1+\beta)\,\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}$$		
+	
+We aim to maximize welfare with respect to the tax $\tau$ and the research efficiency modifier $\beta$, hence our first order condition is:
+\begin{align*}
+0 	 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial S(X)}{\partial \tau} + \frac{\partial \tau X_1}{\partial \tau}  - \frac{\partial G(\beta)}{\partial \beta}\\
+	 &=  \left( \underbrace{\frac{\partial CS}{\partial p}  + \frac{\partial PS}{\partial p}}_{= 0} - \frac{ \partial  S(X)}{\partial p} + \frac{\partial \tau X_1}{\partial p} - \frac{\partial G(\beta)}{\partial p} \right) \frac{\partial p}{\partial \tau} \\
+	 &=  - \gamma \frac{\partial  X_1}{\partial p} + \tau \frac{\partial  X_1}{\partial p} - \frac{\partial G(\beta)}{\partial p} \\
+\tau &= \gamma + \frac{\partial G(\beta)}{\partial X_1}
+\end{align*}
+where the derivatives of producer and consumer surplus are eliminated by the envelope theorem. Equivalently, if we take the derivative of the welfare function with respect to $\beta$, we find that:
+$$G(\beta) = -\gamma + \frac{\partial \tau}{\partial X_1}$$
+\hfill
+\end{proof}
+
+
+
+\section{Conclusion}
+
+An aim for future research may be to develop a model of clean and dirty energy that incorporates both predictable and stochastic intermittency in a multi-period setting. 
+
+
 
 \pagebreak
 
@@ -569,7 +541,7 @@ $$\frac{\alpha _{s} - \sqrt{{\alpha _{s}}^2-4\,\frac{\partial PS}{\partial \tau}
 \section{Notes}
 
 \begin{itemize}
-	\item The portfolio max with the heterogeneous time model is not always equivalent to the portfolio max in a one-period model. So, it does not min the variance of aggregate electricity output either.  Consequently, one-period optimization papers are problematic; if consumers prefer electricity more during certain points of the day, a one-period model will give suboptimal results.
+	\item 
 	\item 
 \end{itemize}
 
@@ -618,33 +590,49 @@ $$\frac{\alpha _{s} - \sqrt{{\alpha _{s}}^2-4\,\frac{\partial PS}{\partial \tau}
 	
 	\begin{thebibliography}{9}
 		
-		\bibitem[Delarue et al.(2010)]{Delarue}
-		Delarue, E., De Jonghe, C., Belmans, R., \& D’Haeseleer, W. (2010). Applying portfolio theory to the electricity sector: Energy versus power. Energy Economics, 33(1), 12–23. https://doi.org/10.1016/j.eneco.2010.05.003
-		
-		\bibitem[Shahriari and Blumsack (2018)]{SB2018}
-		Shahriari, M., \& Blumsack, S. (2018). The capacity value of optimal wind and solar portfolios. Energy, 148, 992–1005. https://doi.org/10.1016/j.energy.2017.12.121
-		
+		\bibitem[Acemoglu et al.(2012)]{Ace2012}
+		Acemoglu, D., Aghion, P., Bursztyn, L., \& Hemous, D. (2012). The Environment and Directed Technical Change. American Economic Review, 102(1), 131–166. https://doi.org/10.1257/aer.102.1.131
 		\bibitem[Ambec and Crampes (2012)]{AC2012}
 		Ambec, S., \& Crampes, C. (2012). Electricity provision with intermittent sources of energy. Resource and Energy Economics, 34(3), 319–336. https://doi.org/10.1016/j.reseneeco.2012.01.001
 		
-		\bibitem[Borenstein (2012)]{Boren2012}
+		\bibitem[Borenstein(2012)]{Boren2012}
 		Borenstein, S. (2012). The Private and Public Economics of Renewable Electricity Generation. Journal of Economic Perspectives, 26(1), 67–92. https://doi.org/10.1257/jep.26.1.67
 		
-		\bibitem[Chao (2011)]{Chao2011}
+		\bibitem[Chao(2011)]{Chao2011}
 		Chao, H. (2011). Efficient pricing and investment in electricity markets with intermittent resources. Energy Policy, 39(7), 3945–3953. https://doi.org/10.1016/j.enpol.2011.01.010
 		
-		\bibitem[Electricity Information Administration (2019)]{EIA2019}
+		\bibitem[Delarue et al.(2010)]{Delarue}
+		Delarue, E., De Jonghe, C., Belmans, R., \& D’Haeseleer, W. (2010). Applying portfolio theory to the electricity sector: Energy versus power. Energy Economics, 33(1), 12–23. https://doi.org/10.1016/j.eneco.2010.05.003
+		
+		\bibitem[Electricity Information Administration(2019)]{EIA2019}
 		Electricity Information Administration (2019). Net generation, United States, all sectors, annual. Electricity Data Browser. https://www.eia.gov/electricity/data/browser
 		
-		\bibitem[Joskow (2011)]{Joskow2011}
+		\bibitem[Foley et al.(2012)]{Foley2012}
+		Foley, A., Leahy, P., Marvuglia, A., \& Mckeogh, E. (2012). Current methods and advances in forecasting of wind power generation. Renewable Energy, 37(1), 1–8. https://doi.org/10.1016/j.renene.2011.05.033
+		
+		\bibitem[Geroski(1957)]{Geroski2000}
+		Geroski, P. (2000). Models of technology diffusion. Research Policy. Elsevier B.V. https://doi.org/10.1016/S0048-7333(99)00092-X
+		
+		\bibitem[Helm and Mier(2019)]{HH}
+		Helm, C., \& Mier, M. (2019). On the efficient market diffusion of intermittent renewable energies. Energy Economics, 80, 812–830. https://doi.org/10.1016/j.eneco.2019.01.017
+		
+		\bibitem[Joskow(2011)]{Joskow2011}
 		Joskow, P. (2011). Comparing the Costs of Intermittent and Dispatchable Electricity Generating Technologies. American Economic Review, 101(3), 238–241. https://doi.org/10.1257/aer.101.3.238
 		
+		\bibitem[Mohajeryami et al.(2016)]{Moha2016}
+		Mohajeryami, S., Moghaddam, I., Doostan, M., Vatani, B., \& Schwarz, P. (2016). A novel economic model for price-based demand response. Electric Power Systems Research, 135, 1–9. https://doi.org/10.1016/j.epsr.2016.03.026
 		
-		\bibitem[Musgens and Neuhoff (2006)]{MG2006}
+		\bibitem[Musgens and Neuhoff(2006)]{MN2006}
 		Musgens, F., \& Neuhoff, K. (2006). Modelling Dynamic Constraints in Electricity Markets and the Costs of Uncertain Wind Output. Faculty of Economics.
 		
-		\bibitem[Neuhoff et al. (2007)]{NCK2007}
+		\bibitem[Neuhoff et al.(2007)]{NCK2007}
 		Neuhoff, K., Cust, J. \& Keats, K. (2007). Implications of intermittency and transmission constraints for renewables deployment. Cambridge Working Papers in Economics 0711, Faculty of Economics, University of Cambridge.
+		
+		\bibitem[Shahriari and Blumsack(2018)]{SB2018}
+		Shahriari, M., \& Blumsack, S. (2018). The capacity value of optimal wind and solar portfolios. Energy, 148, 992–1005. https://doi.org/10.1016/j.energy.2017.12.121
+		
+		\bibitem[Warkins and Knight(1922)]{Knight}
+		Watkins, G., \& Knight, F. (1922). Knight’s Risk, Uncertainty and Profit. The Quarterly Journal of Economics, 36(4), 682–690. https://doi.org/10.2307/1884757
 		
 		
 %		\bibitem[Angel, Harris, and Spatt(2011)]{Angel} 
@@ -653,8 +641,6 @@ $$\frac{\alpha _{s} - \sqrt{{\alpha _{s}}^2-4\,\frac{\partial PS}{\partial \tau}
 %		\bibitem[Stern(2012)]{Stern} 
 %		Stern, D. (2012). “Interfuel Substitution: A Meta-Analysis.” Journal of Economic Surveys 26 (2): 307–331. \href{https://doi.org/10.1111/j.1467-6419.2010.00646.x}{https://doi.org/10.1111/j.1467-6419.2010.00646.x}.
 
-
-$-\alpha _{t}\,{c_{2}}^2\,{\xi _{1}}^2\,\xi _{\mathrm{2s}}\,\left(c_{2}\,\xi _{1}-c_{1}\,\xi _{\mathrm{2s}}+\mathrm{gamma}\,\xi _{\mathrm{2s}}-\xi _{\mathrm{2s}}\,z\right)$
 
 		
 	\end{thebibliography}	
