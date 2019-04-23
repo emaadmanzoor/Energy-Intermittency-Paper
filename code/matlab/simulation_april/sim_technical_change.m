@@ -1,30 +1,36 @@
 %% Price (Cost) Elasticity Sim
 
+close all; clear; clc;
+
+% Simulation params
 n = 500;
-results = zeros(n,2); 
 cost_multiplier = linspace(0.5,2,n);
 sigma_range = [0.1, 0.5, 1.0, 1.5, 2];
 m = length(sigma_range);
 
+% Exogenous params
+c_1 = 104.3;
+c_2 = 50;
+alpha = [0.6, 0.4];
+xi_1  = [1,   1];
+xi_2  = [1, 0.1];
+budget = 1;
 
-figure;
+
+figure('Renderer', 'painters', 'Position', [100 100 900 600])
 hold on;
 
 for j = 1:m
     
     sigma = sigma_range(j);
+    results = zeros(n,2); 
 
     for i = 1:n
 
-        alpha = [0.6, 0.4];
-        xi_1  = [1,   1];
-        xi_2  = [1, 0.1];
-        
-        phi   = (sigma - 1)/sigma;
-        budget = 1;
 
-        x_1_cost_param = 104.3*cost_multiplier(i);
-        x_2_cost_param = 50;
+        phi   = (sigma - 1)/sigma;
+        x_1_cost_param = c_1*cost_multiplier(i);
+        x_2_cost_param = c_2;
 
         % Prices
         xi_mat   = [xi_1; xi_2];
@@ -52,7 +58,7 @@ for j = 1:m
     end    
 
     output = [];
-    output(1,:) = 95*cost_multiplier'./50;
+    output(1,:) = c_1*cost_multiplier'./c_2;
     output(2,:) = results(:,1)./results(:,2);
 
     % subset to positive quantities
@@ -62,26 +68,45 @@ for j = 1:m
     % relationship between log prices and quantities
     subplot(2,1,1);
     hold on;
-    plot(-log(output(1,:)), log(output(2,:)))
+    plot(-log(output(1,:)), log(output(2,:)), 'LineWidth', 1)
     
     
     % relationship between log prices and quantities
     subplot(2,1,2);
     hold on;
-    plot(-log(output(1,2:end)), diff(log(output(2,:)))./diff(-log(output(1,:))))
+    
+    plot(-log(output(1,2:end)), ...
+        diff(log(output(2,:)))./diff(-log(output(1,:))), ...
+        'LineWidth', 1);
     
 end
 
+%% Plot formatting
+
+% Format subplot 1
 subplot(2,1,1);
 legend('0.1', '0.5', '1.0', '1.5', '2.0')
 xlabel('Negative Log Difference in Prices')
 ylabel('Log Difference in Quantities')
+xlim([-1.4, -0.2])
+grid('on')
 
+% Format legend
 [hleg,att] = legend('show');
 title(hleg, '\sigma')
 
+% Format subplot 2
 subplot(2,1,2);
 xlabel('Negative Log Difference in Prices')
 ylabel({'Elasticity of Substitution', 'between Technologies'})
+xlim([-1.4, -0.2])
 ylim([0 15])
+grid('on')
+
+% Add horizontal line at 1
+e_1_line = plot([-1.4, -0.2], [1,1], 'LineStyle', '--', 'Color', 'k');
+legend([e_1_line], ' e = 1');
+
+% Save figure
+print(gcf,'example_1_fig_1.png','-dpng','-r300')
 

@@ -109,7 +109,7 @@
 \newenvironment{proof}[1][Proof]{\noindent\textbf{#1:} }{\ \rule{0.5em}{0.5em}}
 
 \begin{document}
-	
+
 \title{\singlespacing{\textbf{Efficient pollution abatement in electricity markets with intermittent renewable energy}}}
 
 \author[]{Saketh Aleti}
@@ -138,7 +138,7 @@ Secondly, suppose that we would like to promote clean energy adoption and replac
 
 Finally, our model implies that the optimal level of subsidies/taxes on energy generation should vary by the state of the local energy market. That is, the change in optimal quantity of intermittent energy technology with respect to both types of efficiency is also a function of the efficiencies of the other technologies available. Consequently, the marginal benefit of a subsidy or tax varies spatially, since different geographies have access to different energy sources. For instance, one community may be relying on hydropower while another may be using coal power; the effect of a 1\% cost subsidy on solar installments in these two communities would vary because of the differences in the communities’ pre-existing energy generation technologies. Hence, local communities that aim to promote clean energy and reduce pollution should optimize their policy instruments to suit their local energy markets. 
 
- 
+
 \subsection{References}
 
 \begin{itemize}
@@ -199,20 +199,20 @@ Next, we model the electricity sector using a representative firm that chooses a
 
 \subsection{General Model}
 
-Consumers purchase variable amounts of electricity $Z_t$ over each period $t$. Assuming the price of electricity in each period is held constant, they prefer that a fixed proportion of their energy arrive in period $t$ while some other fixed proportion arrive at $s \neq t$. Finally, we suppose that consumers would be willing to shift their consumption from one period to another in response to a shift in prices. In total, these assumptions can be captured using a representative consumer with the standard CES utility function
+Consumers purchase variable amounts of electricity $Z_t$ over each period $t$. Additionally, assuming that the price of electricity in each period is held constant, they prefer to ration their electricity usage across each period in fixed proportions. And, lastly, we presume that consumers would be willing to shift their consumption from one period to another in response to a shift in prices. Overall, these assumptions can be captured using a a standard CES utility function
 \begin{equation}
 U = \left( \sum_t \alpha_t Z_t^\phi  \right)^{1/\phi}
 \end{equation}
-where $\sigma = 1/(1-\phi)$ is the intertemporal elasticity of substitution for electricity consumption. We define $\sum_t \alpha_t = 1$, so that $\alpha_t$ is the fraction of electricity consumption in period $t$ when all prices are equal; naturally, $\alpha_t > 0$ for all $t$. The budget constraint is given by
+where $\sigma = 1/(1-\phi)$ is the intertemporal elasticity of substitution for electricity consumption. We define $\sum_t \alpha_t = 1$, so that $\alpha_t$ is the fraction of electricity consumption in period $t$ when all prices are equal; naturally, $\alpha_t > 0$ for all $t$. We assume that any discounting over time is absorbed into $\alpha$ for parsimony.The budget constraint is given by
 \begin{equation}
 I = \sum_t p_t Z_t
 \end{equation}
-where $p_t$ is the price of electricity in period $t$ and $I$ is the income. Consequently, the first order conditions when maximizing utility given this budget constraint imply:
+where $p_t$ is the price of electricity in period $t$ and $I$ is the income. Furthermore, since CES preferences are homothetic, we may aggregate the consumers into a single representative consumer. Consequently, the first order conditions four our representative consumer when maximizing utility given this budget constraint imply:
 \begin{align}
 Z_t &= \left(\frac{\alpha_t}{p_t} \right)^\sigma \frac{I}{P} \\
 P &= \sum_t \alpha_t^\sigma p_t^{1-\sigma}
 \end{align}
-where $P$ is the price index. This model naturally does not allow for blackouts in equilibrium, since the price of electricity in any period gets arbitrarily large as the quantity of energy consumed in that period falls. 
+where $P$ is the price index. Note that this model naturally does not allow for blackouts in equilibrium, since the price of electricity in any period gets arbitrarily large as the quantity of energy consumed in that period approaches 0. Furthermore, note that prices must be positive; although this is sometimes violated in reality, we do not believe that this assumption significantly affects our analysis. 
 
 Secondly, we have firms maximizing profit by picking an optimal set of energy inputs. In reality, electricity markets are fairly competitive, so we can model the set of firms by using a single representative firm that sets marginal revenue equal to marginal cost. We define the quantity of deployed energy technology $i$ as $X_i$, and we define its output per unit in period $t$ as $\xi_{1,t}$. So, for example, if $i$ is solar power, $X_i$ would be the number of solar panels and $\xi_{i,t}$ may be kW generated per solar panel in period $t$. Consequently, the energy generated in period $t$, $Z_t$, is given by $\sum_i \xi_{i,t} X_i$. We define these variables in matrices to simplify notation:
 \begin{align*}
@@ -346,148 +346,148 @@ The comparative statics are similarly intuitive. The equilibrium quantity of a t
 
 \hfill \\
 \begin{proof}
-We begin by deriving the comparative statics of the cost and efficiency parameters with respect to $X$.   Firstly, we take derivatives with respect to the cost vectors:
-\begin{align*}
-\frac{\partial X_1}{\partial c} &= 
-\begin{pmatrix}
--\dfrac{\alpha _{t}\,{\xi _{\mathrm{2s}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}-\dfrac{\alpha _{s}\,{\xi _{\mathrm{2t}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} \\
-\dfrac{\alpha _{t}\,\xi _{\mathrm{1s}}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}+\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}
-\end{pmatrix}
-=
-\begin{pmatrix}
-< 0 \\
-> 0 
-\end{pmatrix} \\
-\frac{\partial X_2}{\partial c} &= 
-\begin{pmatrix}
-\dfrac{\alpha _{t}\,\xi _{\mathrm{1s}}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}+\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} \\
--\dfrac{\alpha _{t}\,{\xi _{\mathrm{1s}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}-\dfrac{\alpha _{s}\,{\xi _{\mathrm{1t}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}
-\end{pmatrix}
-=
-\begin{pmatrix}
-> 0 \\
-< 0 
-\end{pmatrix}
-\end{align*}
-The first and second terms of $\partial X_1 / \partial c_1$ are clearly both negative independent of the restrictions on the parameters. Similarly, all terms of  $\partial X_1 / \partial c_2$ are positive independent of any restrictions. Since the structure of this problem is symmetrical with respect to $X_1$ and $X_2$, the same comparative statics apply but in reverse for $X_1$. Next, we derive comparative statics for each element of $\xi$.
-\begin{alignat*}{2}
-\frac{\partial X_1}{\partial \xi} &= 
-\begin{pmatrix}
-\dfrac{\alpha _{s}\,c_{2}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} & \dfrac{\alpha _{t}\,c_{2}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
-\dfrac{-\alpha _{s}\,c_{2}\,\xi _{\mathrm{1t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} & \dfrac{-\alpha _{t}\,c_{2}\,\xi _{\mathrm{1s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
-\end{pmatrix}
-&&=
-\begin{pmatrix}
-> 0 & > 0  \\
-< 0 & < 0
-\end{pmatrix} \\
-\frac{\partial X_2}{\partial \xi} &= 
-\begin{pmatrix}
-\dfrac{-\alpha _{s}\,c_{1}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} & \dfrac{-\alpha _{t}\,c_{1}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
-\dfrac{\alpha _{s}\,c_{1}\,\xi _{\mathrm{1t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}& \dfrac{\alpha _{t}\,c_{1}\,\xi _{\mathrm{1s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
-\end{pmatrix}
-&&=
-\begin{pmatrix}
-< 0 & < 0 \\
-> 0 & > 0  
-\end{pmatrix}
-\end{alignat*}
-Again, the signs are fairly straightforward. The optimal quantity of $X_1$ increases with its output efficiency in both periods; however, it decreases with the output efficiency of $X_2$ in both periods. Similarly, symmetrical results are shown for $X_2$. Next, we study the effects of $\alpha$ on $X$; this requires us to place some restrictions on the parameters, so we use those belonging to Case 1 in \hyperref[tab:paramrest]{Table 1}. With $\alpha \equiv \left( \alpha_t \;\; \alpha_s \right)^T$, 
-\begin{align*}
-\frac{\partial X_1}{\partial \alpha} &= 
-\begin{pmatrix}
-\dfrac{\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} \\
-\dfrac{\xi _{\mathrm{2t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}
-\end{pmatrix}
-=
-\begin{pmatrix}
-< 0 \\
-> 0 
-\end{pmatrix} \\
-\frac{\partial X_2}{\partial \alpha} &= 
-\begin{pmatrix}
-\dfrac{-\xi _{\mathrm{1s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} \\
-\dfrac{-\xi _{\mathrm{1t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}
-\end{pmatrix}
-=
-\begin{pmatrix}
-> 0 \\
-< 0 
-\end{pmatrix}
-\end{align*}
-Note that our restrictions imply that $c_1 \xi_{2t} - c_2 \xi_{1t} > 0$ and $c_2 \xi_{1s} - c_1 \xi_{2s} > 0$. From here, the intuition is clear; we assume that $X_2$ is more cost efficient in period $t$, so increases in demand during period $t$ (caused by increases in $\alpha_t$) will increase the optimal quantity of $X_2$. And, the same applies to $X_1$ with respect to period $s$ and $\alpha_s$. Again, due to symmetry, the statics are reversed when the technologies are flipped. Similarly, the signs would also be flipped if we used the restrictions given by Case 2 instead. 
-
-Next, we derive the comparative statics for $Z$. 
-\begin{alignat*}{2}
-\frac{\partial Z_t}{\partial c} &= 
-\begin{pmatrix}
-\dfrac{\alpha _{t}\,\xi _{\mathrm{2s}}\,\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}\\
-\dfrac{-\alpha _{t}\,\xi _{\mathrm{1s}}\,\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}
-\end{pmatrix}
-&=
-\begin{pmatrix}
-> 0 \\
-< 0 
-\end{pmatrix} \\
-\frac{\partial Z_s}{\partial c} &= 
-\begin{pmatrix}
-\dfrac{-\alpha _{s}\,\xi _{\mathrm{2t}}\,\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} \\
-\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}
-\end{pmatrix}
-&=
-\begin{pmatrix}
-< 0 \\
-> 0 
-\end{pmatrix}
-\end{alignat*}
-From our restrictions, we have $\xi_{1s}\xi_{2t} > \xi_{2s}\xi_{1t}$, and all the results above follow from this. 
-\begin{alignat*}{2}
-\frac{\partial Z_t}{\partial \xi} &= 
-\begin{pmatrix}
-\dfrac{\alpha _{t}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} & \dfrac{-\alpha _{t}\,\xi _{\mathrm{2s}}\,\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
-\dfrac{-\alpha _{t}\,\xi _{\mathrm{1s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} & \dfrac{\alpha _{t}\,\xi _{\mathrm{1s}}\,\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
-\end{pmatrix}
-&&=
-\begin{pmatrix}
-< 0 & < 0  \\
-> 0 & > 0
-\end{pmatrix} \\
-\frac{\partial Z_s}{\partial \xi} &= 
-\begin{pmatrix}
-\dfrac{-\alpha _{s}\,\xi _{\mathrm{2t}}\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}& \dfrac{\alpha _{s}\,\xi _{\mathrm{2t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}\\
-\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} & \dfrac{-\alpha _{s}\,\xi _{\mathrm{1t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}\\
-\end{pmatrix}
-&&=
-\begin{pmatrix}
-> 0 & > 0 \\
-< 0 & < 0  
-\end{pmatrix}
-\end{alignat*}
-Again, recall that we have $c_1 \xi_{2t} - c_2 \xi_{1t} > 0$ and $c_2 \xi_{1s} - c_1 \xi_{2s} > 0$; the rest follows. And finally, we have:
-\begin{align*}
-\frac{\partial Z_t}{\partial \alpha} &= 
-\begin{pmatrix}
-\dfrac{-\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} \\
-0
-\end{pmatrix}
-=
-\begin{pmatrix}
-> 0 \\
-0 
-\end{pmatrix} \\
-\frac{\partial Z_s}{\partial \alpha} &= 
-\begin{pmatrix}
-0 \\
-\dfrac{\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}
-\end{pmatrix}
-=
-\begin{pmatrix}
-0 \\
-> 0 
-\end{pmatrix}
-\end{align*}
-These are fairly trivial, since $Z_t = \alpha_t / p_t$ (and $Z_s = \alpha_s/ p_s$) and prices are positive. \\
-\hfill
+	We begin by deriving the comparative statics of the cost and efficiency parameters with respect to $X$.   Firstly, we take derivatives with respect to the cost vectors:
+	\begin{align*}
+	\frac{\partial X_1}{\partial c} &= 
+	\begin{pmatrix}
+	-\dfrac{\alpha _{t}\,{\xi _{\mathrm{2s}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}-\dfrac{\alpha _{s}\,{\xi _{\mathrm{2t}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} \\
+	\dfrac{\alpha _{t}\,\xi _{\mathrm{1s}}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}+\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	< 0 \\
+	> 0 
+	\end{pmatrix} \\
+	\frac{\partial X_2}{\partial c} &= 
+	\begin{pmatrix}
+	\dfrac{\alpha _{t}\,\xi _{\mathrm{1s}}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}+\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} \\
+	-\dfrac{\alpha _{t}\,{\xi _{\mathrm{1s}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}-\dfrac{\alpha _{s}\,{\xi _{\mathrm{1t}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	> 0 \\
+	< 0 
+	\end{pmatrix}
+	\end{align*}
+	The first and second terms of $\partial X_1 / \partial c_1$ are clearly both negative independent of the restrictions on the parameters. Similarly, all terms of  $\partial X_1 / \partial c_2$ are positive independent of any restrictions. Since the structure of this problem is symmetrical with respect to $X_1$ and $X_2$, the same comparative statics apply but in reverse for $X_1$. Next, we derive comparative statics for each element of $\xi$.
+	\begin{alignat*}{2}
+	\frac{\partial X_1}{\partial \xi} &= 
+	\begin{pmatrix}
+	\dfrac{\alpha _{s}\,c_{2}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} & \dfrac{\alpha _{t}\,c_{2}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
+	\dfrac{-\alpha _{s}\,c_{2}\,\xi _{\mathrm{1t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} & \dfrac{-\alpha _{t}\,c_{2}\,\xi _{\mathrm{1s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
+	\end{pmatrix}
+	&&=
+	\begin{pmatrix}
+	> 0 & > 0  \\
+	< 0 & < 0
+	\end{pmatrix} \\
+	\frac{\partial X_2}{\partial \xi} &= 
+	\begin{pmatrix}
+	\dfrac{-\alpha _{s}\,c_{1}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} & \dfrac{-\alpha _{t}\,c_{1}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
+	\dfrac{\alpha _{s}\,c_{1}\,\xi _{\mathrm{1t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}& \dfrac{\alpha _{t}\,c_{1}\,\xi _{\mathrm{1s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
+	\end{pmatrix}
+	&&=
+	\begin{pmatrix}
+	< 0 & < 0 \\
+	> 0 & > 0  
+	\end{pmatrix}
+	\end{alignat*}
+	Again, the signs are fairly straightforward. The optimal quantity of $X_1$ increases with its output efficiency in both periods; however, it decreases with the output efficiency of $X_2$ in both periods. Similarly, symmetrical results are shown for $X_2$. Next, we study the effects of $\alpha$ on $X$; this requires us to place some restrictions on the parameters, so we use those belonging to Case 1 in \hyperref[tab:paramrest]{Table 1}. With $\alpha \equiv \left( \alpha_t \;\; \alpha_s \right)^T$, 
+	\begin{align*}
+	\frac{\partial X_1}{\partial \alpha} &= 
+	\begin{pmatrix}
+	\dfrac{\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} \\
+	\dfrac{\xi _{\mathrm{2t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	< 0 \\
+	> 0 
+	\end{pmatrix} \\
+	\frac{\partial X_2}{\partial \alpha} &= 
+	\begin{pmatrix}
+	\dfrac{-\xi _{\mathrm{1s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} \\
+	\dfrac{-\xi _{\mathrm{1t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	> 0 \\
+	< 0 
+	\end{pmatrix}
+	\end{align*}
+	Note that our restrictions imply that $c_1 \xi_{2t} - c_2 \xi_{1t} > 0$ and $c_2 \xi_{1s} - c_1 \xi_{2s} > 0$. From here, the intuition is clear; we assume that $X_2$ is more cost efficient in period $t$, so increases in demand during period $t$ (caused by increases in $\alpha_t$) will increase the optimal quantity of $X_2$. And, the same applies to $X_1$ with respect to period $s$ and $\alpha_s$. Again, due to symmetry, the statics are reversed when the technologies are flipped. Similarly, the signs would also be flipped if we used the restrictions given by Case 2 instead. 
+	
+	Next, we derive the comparative statics for $Z$. 
+	\begin{alignat*}{2}
+	\frac{\partial Z_t}{\partial c} &= 
+	\begin{pmatrix}
+	\dfrac{\alpha _{t}\,\xi _{\mathrm{2s}}\,\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}\\
+	\dfrac{-\alpha _{t}\,\xi _{\mathrm{1s}}\,\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}
+	\end{pmatrix}
+	&=
+	\begin{pmatrix}
+	> 0 \\
+	< 0 
+	\end{pmatrix} \\
+	\frac{\partial Z_s}{\partial c} &= 
+	\begin{pmatrix}
+	\dfrac{-\alpha _{s}\,\xi _{\mathrm{2t}}\,\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} \\
+	\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}
+	\end{pmatrix}
+	&=
+	\begin{pmatrix}
+	< 0 \\
+	> 0 
+	\end{pmatrix}
+	\end{alignat*}
+	From our restrictions, we have $\xi_{1s}\xi_{2t} > \xi_{2s}\xi_{1t}$, and all the results above follow from this. 
+	\begin{alignat*}{2}
+	\frac{\partial Z_t}{\partial \xi} &= 
+	\begin{pmatrix}
+	\dfrac{\alpha _{t}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} & \dfrac{-\alpha _{t}\,\xi _{\mathrm{2s}}\,\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
+	\dfrac{-\alpha _{t}\,\xi _{\mathrm{1s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} & \dfrac{\alpha _{t}\,\xi _{\mathrm{1s}}\,\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} \\
+	\end{pmatrix}
+	&&=
+	\begin{pmatrix}
+	< 0 & < 0  \\
+	> 0 & > 0
+	\end{pmatrix} \\
+	\frac{\partial Z_s}{\partial \xi} &= 
+	\begin{pmatrix}
+	\dfrac{-\alpha _{s}\,\xi _{\mathrm{2t}}\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}& \dfrac{\alpha _{s}\,\xi _{\mathrm{2t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}\\
+	\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} & \dfrac{-\alpha _{s}\,\xi _{\mathrm{1t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}\\
+	\end{pmatrix}
+	&&=
+	\begin{pmatrix}
+	> 0 & > 0 \\
+	< 0 & < 0  
+	\end{pmatrix}
+	\end{alignat*}
+	Again, recall that we have $c_1 \xi_{2t} - c_2 \xi_{1t} > 0$ and $c_2 \xi_{1s} - c_1 \xi_{2s} > 0$; the rest follows. And finally, we have:
+	\begin{align*}
+	\frac{\partial Z_t}{\partial \alpha} &= 
+	\begin{pmatrix}
+	\dfrac{-\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} \\
+	0
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	> 0 \\
+	0 
+	\end{pmatrix} \\
+	\frac{\partial Z_s}{\partial \alpha} &= 
+	\begin{pmatrix}
+	0 \\
+	\dfrac{\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	0 \\
+	> 0 
+	\end{pmatrix}
+	\end{align*}
+	These are fairly trivial, since $Z_t = \alpha_t / p_t$ (and $Z_s = \alpha_s/ p_s$) and prices are positive. \\
+	\hfill
 \end{proof}
 
 \subsubsection{The Effects of Technical Change}
@@ -497,16 +497,31 @@ While our model sets the intertemporal elasticity of substitution for  electrici
 Firstly, we let technology 1 be coal power and technology 2 be solar power; again, period $t$ represents peak hours and period $s$ represents off-peak hours. We assume that, holding prices equal, consumers prefer that 60\% of their energy arrive in period $t$ and the remaining 40\% arrive in period $s$. Additionally, we normalize the units of the quantities to a MWh basis. Hence, $\xi$ represents the percent of capacity utilized in each period; we assume coal can access 100\% of its capacity in both periods, while solar can access 100\% during peak hours and only 10\% during off-peak hours. Finally, we set cost parameters, given in  \$ per MWh, equal to LCOE estimates for 2023 from the \citet{EIALCOE}; specifically, we use estimates for "Solar PV" and "Coal with 30\% CCS." In total, we have the following parameters. 
 
 \begin{center}
-\noindent \textbf{Example  1:} $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. 
+	\noindent \textbf{Example  1:} $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. 
 \end{center}
 
 \noindent We begin by exploring the implied elasticity of substitution between these two technologies; for any two commodities $i$ and $j$,  the elasticity of substitution $e_{i,j}$ is given by:
 $$e_{i,j} = \frac{\partial \ln (X_1/ X_2)}{\partial \ln (c_2/c_1)}$$
-where $c$ is their prices. This relationship is of particular interest, because many applied and theoretical models studying renewable and fossil energy impose a CES relationship between the two. That is, they assume that $e$ is a fixed constant. In our model, this is not the case; while we cannot directly derive a clean solution for the value of $e_{i,j}$, we can obtain the numerical results for the difference in log prices and quantities and study its slope. Moreover, we extend our analysis beyond the Cobb-Douglas case and allow $\sigma$ to vary.\footnote{In the general CES case, we still have $p = \xi^{-1} c$. However, for the amount of electricity produced in each period, we instead have $Z^T = \left( \alpha_t/p_t \; \alpha_s /p_s \right) \cdot (1/P)$ where $P$ is the price index defined earlier. And, of course, we again have $(\xi^T)^{-1} Z = X$.} 
+where $c$ is their prices. This relationship is of particular interest, because many applied and theoretical models studying renewable and fossil energy impose a CES production structure between the two. That is, they assume that $e_{renew, fossil}$ is a fixed constant. In our model, this is not the case; while directly deriving the value the elasticity of substition $e$ is analytically intractable, we are able to run a numerical simulation to estimate it. Moreover, we extend our analysis beyond the Cobb-Douglas case and allow $\sigma$ to vary.\footnote{In the general CES case, we still have $p = \xi^{-1} c$. However, for the amount of electricity produced in each period, we instead have $Z^T = \left( \alpha_t/p_t \; \alpha_s /p_s \right) \cdot (1/P)$ where $P$ is the price index defined earlier. And, of course, we again have $(\xi^T)^{-1} Z = X$.} 
 
 
+\begin{table}[t]
+	\caption*{\textbf{Figure 1:} Elasticity of Substition Between Solar and Coal} 
+	\label{fig:eosnum}
+	\footnotesize
+	\begin{tabular}{@{\extracolsep{0em}}c}
+		\includegraphics[width=1\linewidth]{../code/matlab/simulation_april/example_1_fig_1} \\
+		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } The y-axis of the first plot is equivalent to $\log(X_1/X_2)$ and the x-axis of both plots is equivalent to  $\log(c_2/c_1)$. The legend in the upper subplot also applies to the lower subplot. These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. We plot results for various values of the intertemporal elasticity of substition for electricity consumption $\sigma$, which is used in the consumer's CES utility function. In order to numerically estimate these relationships, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (0.5\, c_1, 2 \,c_1)$. Then, we obtained estimates of the elasticity of substition by numerically differentiating $\log(X_1/X_2)$ with respect to $-log(c_1, c_2)$. That is, the elasticity of substitution between technology 1 and 2 is given by the slope of the upper subplot, and it is graphed in the lower subplot.   }     \\  
+	\end{tabular}
+\end{table}
 
-Like \cite{HH} we find an S-shaped adoption curve for renewable energy driven by intermittency.\footnote{\citet{HH} reference \citet{Geroski2000} who provides a survey of the literature on adoption of new technologies. He finds that S-shaped adoption curves are often generated by information cascades. On the other hand, our model and that of Helm and Mier find S-shaped curves as a result of intermittency slowing down adoption.} 
+We plot our numerical estimates of the elasticity of substitution between solar and coal power in \hyperref[fig:eosnum]{Figure 1}. These results were generated by computing the optimal quantities of each technology given a range of prices. Specifically, we held the price of solar constant and varied the price of coal from 50\% to 200\% of its original parametrized price. Then, we numerical differentiated $\log(X_1/X_2)$ with respect to $\log(c_2/c_1)$ to estimate the elasticity of substitution between solar and coal. This numerically computed elasticity of substitution $e$ on the production side is shown in the lower subplot. We repeat this process with different values of $\sigma$, the elasticity of substitution in the consumer's utility function. Recall that $\sigma < 1$ implies that  electricity consumption in different periods are complements, $\sigma = 1$ implies to a Cobb-Douglas relationship, and $\sigma > 1$ implies that electricity consumption in different periods are substitutes. Our results strongly suggest that a CES production structure does not accurately model intermittency. 
+
+Firstly, note that the elasticity of substitution becomes increasingly non-linear as $\sigma$ rises. This is somewhat intuitive; when energy consumption can be substituted across periods, the market is more sensitive to the cost efficiency of technologies and less sensitive to when they produce. For instance, suppose we had two technologies that each produced in a different period; if consumers are less willing to substitute consumption across periods, both technologies are likely to be  employed, On the other hand, when consumers are open to substitution (implying large $\sigma$), they will simply consume the majority of their electricity in whichever period it is most cost effective to do so. Consequently, price plays bigger role than intermittency as $\sigma$ rises. This is further evident in the lower subplots; note that the numerical estimates of  $e$ rise as $\sigma$ rises. When consumers are less concerned about when they receive their energy, they are far more open to substituting between coal and solar power. 
+
+Second, we find that $e$ approaches a "U" shape as $\sigma$ rises.... 
+
+...Like \cite{HH} we find an S-shaped adoption curve for renewable energy driven by intermittency.\footnote{\citet{HH} reference \citet{Geroski2000} who provides a survey of the literature on adoption of new technologies. He finds that S-shaped adoption curves are often generated by information cascades. On the other hand, our model and that of Helm and Mier find S-shaped curves as a result of intermittency slowing down adoption.} 
 
 \subsubsection{Externalities}
 
@@ -522,13 +537,13 @@ where $\tau$ is the tax on $X_1$, so that its final price is $c_1 + \tau$ and th
 %%% Pigouvian tax proof
 \hfill \\
 \begin{proof} We aim to maximize welfare with respect to the tax $\tau$, hence our first order condition is:
-\begin{align*}
-0 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial S(X)}{\partial \tau} + \frac{\partial \tau X_1}{\partial \tau} \\
-&=  \left( \underbrace{\frac{\partial CS}{\partial p}  + \frac{\partial PS}{\partial p}}_{= 0} - \frac{ \partial  S(X)}{\partial p} + \frac{\partial \tau X_1}{\partial p} \right) \frac{\partial p}{\partial \tau} \\
-&=  - \gamma \frac{\partial  X_1}{\partial p} + \tau \frac{\partial  X_1}{\partial p}
-\end{align*}
-where the derivatives of producer and consumer surplus are eliminated by the envelope theorem. Therefore, we must have $\tau = \gamma$. \\
-\hfill
+	\begin{align*}
+	0 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial S(X)}{\partial \tau} + \frac{\partial \tau X_1}{\partial \tau} \\
+	&=  \left( \underbrace{\frac{\partial CS}{\partial p}  + \frac{\partial PS}{\partial p}}_{= 0} - \frac{ \partial  S(X)}{\partial p} + \frac{\partial \tau X_1}{\partial p} \right) \frac{\partial p}{\partial \tau} \\
+	&=  - \gamma \frac{\partial  X_1}{\partial p} + \tau \frac{\partial  X_1}{\partial p}
+	\end{align*}
+	where the derivatives of producer and consumer surplus are eliminated by the envelope theorem. Therefore, we must have $\tau = \gamma$. \\
+	\hfill
 \end{proof}
 
 Now, suppose that we may also subsidize research which improves the output efficiency of a technology. In particular, we let the output efficiency of technology 2 be $(\xi_{2t}, \, \xi_{2s})(1 + \beta)$ where $\beta$ is the percent improvement created by research. And, we let the cost of research be given by a convex, differentiable function $G(\beta)$. 
@@ -536,21 +551,197 @@ Now, suppose that we may also subsidize research which improves the output effic
 
 \hfill \\
 \begin{proof} First, note that we have:
-$$X_1 = \dfrac{\alpha _{t}\,(1+\beta) \, \xi_{\mathrm{2s}}}{(c_{1}+ \tau)\,(1+\beta)\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}}+\dfrac{\alpha _{s}\,(1+\beta)\,\xi _{\mathrm{2t}}}{(c_{1}+ \tau)\,(1+\beta)\,\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}$$		
+	$$X_1 = \dfrac{\alpha _{t}\,(1+\beta) \, \xi_{\mathrm{2s}}}{(c_{1}+ \tau)\,(1+\beta)\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}}+\dfrac{\alpha _{s}\,(1+\beta)\,\xi _{\mathrm{2t}}}{(c_{1}+ \tau)\,(1+\beta)\,\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}$$		
 	
-We aim to maximize welfare with respect to the tax $\tau$ and the research efficiency modifier $\beta$, hence our first order condition is:
-\begin{align*}
-0 	 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial S(X)}{\partial \tau} + \frac{\partial \tau X_1}{\partial \tau}  - \frac{\partial G(\beta)}{\partial \beta}\\
-	 &=  \left( \underbrace{\frac{\partial CS}{\partial p}  + \frac{\partial PS}{\partial p}}_{= 0} - \frac{ \partial  S(X)}{\partial p} + \frac{\partial \tau X_1}{\partial p} - \frac{\partial G(\beta)}{\partial p} \right) \frac{\partial p}{\partial \tau} \\
-	 &=  - \gamma \frac{\partial  X_1}{\partial p} + \tau \frac{\partial  X_1}{\partial p} - \frac{\partial G(\beta)}{\partial p} \\
-\tau &= \gamma + \frac{\partial G(\beta)}{\partial X_1}
-\end{align*}
-where the derivatives of producer and consumer surplus are eliminated by the envelope theorem. Equivalently, if we take the derivative of the welfare function with respect to $\beta$, we find that:
-$$G(\beta) = -\gamma + \frac{\partial \tau}{\partial X_1}$$
-\hfill
+	We aim to maximize welfare with respect to the tax $\tau$ and the research efficiency modifier $\beta$, hence our first order condition is:
+	\begin{align*}
+	0 	 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial S(X)}{\partial \tau} + \frac{\partial \tau X_1}{\partial \tau}  - \frac{\partial G(\beta)}{\partial \beta}\\
+	&=  \left( \underbrace{\frac{\partial CS}{\partial p}  + \frac{\partial PS}{\partial p}}_{= 0} - \frac{ \partial  S(X)}{\partial p} + \frac{\partial \tau X_1}{\partial p} - \frac{\partial G(\beta)}{\partial p} \right) \frac{\partial p}{\partial \tau} \\
+	&=  - \gamma \frac{\partial  X_1}{\partial p} + \tau \frac{\partial  X_1}{\partial p} - \frac{\partial G(\beta)}{\partial p} \\
+	\tau &= \gamma + \frac{\partial G(\beta)}{\partial X_1}
+	\end{align*}
+	where the derivatives of producer and consumer surplus are eliminated by the envelope theorem. Equivalently, if we take the derivative of the welfare function with respect to $\beta$, we find that:
+	$$G(\beta) = -\gamma + \frac{\partial \tau}{\partial X_1}$$
+	\hfill
 \end{proof}
 
+\pagebreak
 
+
+
+\section{Empirical Methodology}
+
+We aim to empirically estimate the intertemporal elasticity of substition for electricity consumption $\sigma$........
+
+Recall our original first order condition (Equation 3) in the general model:
+\begin{align*}
+Z_t &= \left(\frac{\alpha_t}{p_t} \right)^\sigma \frac{I}{P} \\
+P &= \sum_t \alpha_t^\sigma p_t^{1-\sigma}
+\end{align*}
+For any pair of electricity ouputs $Z_t$ and $Z_s$, we have:
+$$\frac{Z_t}{Z_s} = \left(\frac{\alpha_t \, p_s}{\alpha_s \, p_t} \right)^\sigma \\$$
+Taking logs on both sides and letting $i$ represent different observations, we may rewrite this in a form more suitable for estimation. 
+\begin{align*}
+\ln (Z_{t, i} / Z_{ s, i}) &= -\sigma \ln (P_{t,i} / P_{s,i}) + \sigma \ln (\alpha_{t,i} / \alpha_{s,i}) 
+\end{align*}
+Our data differentiates consumption for each state in the US, so we let $i$ refer to a particular state. Additionally, most consumers pay monthly fixed rates for electricity, so we can, at most, estimate this equation on a monthly basis; hence, $t$ and $s$ refer to different months. Lastly, note that the state $i$ is kept constant for each observation; this is because consumers within each state can substitute consumption across time, but consumers in different states do not substitute consumption with one another. 
+
+In order to estimate this $\sigma$, we further modify the previous equation. 
+Firstly, note that we cannot observe the demand shifter $\alpha_{t,i}$ directly, so we add a set of controls that may be responsible for shifts in demand. Our regression is then
+\begin{align*}
+\ln (Z_{t, i} / Z_{ s, i}) &= -\sigma \ln (P_{t,i} / P_{s,i}) +  \gamma_{t,i} A_{t,i} + \gamma_{s,i} A_{s,i} + u_i
+\end{align*}
+where $A$ represents set of controls for changes in demand while $u_i$ is a normal error term. Note that the control  $A_{t,i}$ replaces $\sigma \ln(\alpha_{t,i})$ and likewise for the period $s$ term; this substitution is valid because the $\ln(\alpha_{t,i}) \in \mathbb{R}$ and the $\sigma$ is simply absorbed into the estimated coefficient for $\gamma_{t,i}$. For the demand controls themselves, we choose to use heating (HDD) and cooling degree days (CDD) due to the aggregation of the data. That is, a more general control such as average temperature would not be able to directly capture intramonthly changes in demand, since variation in temperature would be lost when aggregated; on the other hand, CDDs and HDDs directly represent daily deviations in temperature even when totaled for each month. Additionally, demand for electricity may rise over time. Hence, we include, as a control, the difference in months between time $t$ and $s$; this is represented by $\Delta_{t,s}$. Finally, this panel requires us to consider fixed effects for each state, so we use a fixed effects panel regression. In total, the demand equation is:
+\begin{align*}
+\ln (Z_{ t, i} / Z_{ s, i}) &= -\sigma \ln (P_{t,i} / P_{s,i}) +  \gamma_{t,i} A_{t,i} + \gamma_{s,i} A_{s,i} + \eta \Delta_{t,s} + u_i \\
+&= -\sigma \ln (P_{t,i} / P_{s,i}) +  \gamma_{t,i} \left( CDD_{t,i} + HDD{t,i} \right) \\
+&\qquad + \gamma_{s,i} \left( CDD_{s,i} + HDD{s,i} \right)  + \eta \Delta_{t,s} + u_i
+\end{align*}
+
+Still, this equation may suffer from bias, since producers can also substitute production over time. For instance, it is possible to store fuel for electricity generation in the future when prices may rise. So, we define the following supply equation
+\begin{align*}
+\ln (Z_{ t, i} / Z_{ s, i}) &= \beta \ln (P_{t,i} / P_{s,i}) + \xi \ln (C_{t,i} / C_{s,i}) + v_{i}
+\end{align*}
+where $C_{t,i}$ is the average cost of coal used for electricity generation in state $i$ at time $t$ and $v_i$ is a normal error term. Coal prices are independent of the electricity demand error term $u_i$, since residential consumers do not generally use coal for electricity generation; on the other hand, shocks in the price of coal are linked with the supply of electricity. Hence, coal price is a theoretically valid instrument.  In total, the reduced form equation is given by:
+$$ \ln (P_{t,i} / P_{s,i}) = \left( \beta + \sigma \right)^{-1} \left( \gamma_{t,i} A_{t,i} + \gamma_{s,i} A_{s,i} + \eta \Delta_{t,s} - \xi \ln (C_{t,i} / C_{s,i}) + u_{i} - v_i \right)  $$
+where $A_{t,i}$ consists of CDDs and HDDs at time $t$. 
+
+Finally, we also consider a semiparametric specification. That is, we allow the error terms $u_i$ and $v_i$ to be non-normal and place the demand controls and instruments in unknown functions. So, overall, we have:
+\begin{align*}
+\ln (Z_{ t, i} / Z_{ s, i}) &= -\sigma \ln (P_{t,i} / P_{s,i}) +  f \left( A_{t,i}, A_{s,i}, \Delta_{t,s} \right) + u_i \\
+\ln (Z_{ t, i} / Z_{ s, i}) &= \beta \ln (P_{t,i} / P_{s,i}) + g \left( \ln (C_{t,i} / C_{s,i})  \right) + v_{i}
+\end{align*}
+where $f$ and $g$ are unknown, bounded functions. We restrict $cov(u_i, v_i) = 0$ but allow for the controls and instruments to be correlated. The advantage of this specification is that we can account for the controls or instrument having any nonlinear effects on the regressands. \textbf{(More here on explaining the estimation)}
+
+\section{Data}
+
+We collect monthly data from the EIA on retail electricity prices and consumption for each state in the US from 2011 to 2018. Additionally, also from the EIA, we collect monthly data on the average cost of coal for electricity generation. The coal price data set contains a large number of missing values due to privacy reasons; however, we do not expect that these missing values are correlated with the data itself. Finally, we collect data on HDDs and CDDs from the NCEP for the same panel. Then, we merge these three data sets and trim 1\% of outliers for a total of $826$ observations. We use this preliminary data set to construct the data required for our regressions. That is, each observation in our estimation equation belongs to a set $(t,s,i)$ consisting of two time periods and a state. Hence, we construct each row in our regression data set using unique combinations of $t,s$ where $t \neq s$ for each state $i$. Due to the number of potential combinations and thus observations, we restrict our data set to a random sample of 9000 observations.\footnote{We reran our regressions with several different samples of 9000 and found that our estimated coefficients did not significantly change; hence we believe this sample size is sufficient.}
+
+\section{Results}
+
+Based on the OLS results reported in \hyperref[table:1]{Table 1}, we estimate the intertemporal elasticity of substitution for electricity consumption $\hat{\sigma}  = 0.609$ ($|t| > 24$) when accounting for all degree day covariates and state fixed effects. Interestingly, we find that the estimated coefficients for all three specifications do not differ when considering fixed effects. Additionally, as expected, the coefficients on the degree day covariates are symmetrical; that is, the coefficient on $CDD_{t}$ is approximately the same as the negative of that on $CDD_{s}$, and the same applies to $HDD_{t}$ and $HDD_{s}$. On the other hand, we found that electricity consumption seems to rise more in response to CDDs rather than HDDs. Lastly, we find that the sign on $\Delta_{t,s}$ is positive in all regressions; this implies that electricity consumption rises over time independent of price. 
+
+To account for endogeneity in the OLS results, we provide results for our IV specification in \hyperref[table:2]{Table 2}. Here, we find a much larger estimate $\hat{\sigma}  = 11.430$ ($|t| > 2.1$) when considering all covariates and fixed effects. F-Statistics on all three specifications are significantly larger than 10, which suggests that the instruments are not weak \citep{SS1997}. With respect to the demand controls, we find results similar to those of OLS. State fixed effects do not appear to affect the estimates, demand increases over time, and CDDs raise electricity consumption more than HDDs. 
+
+Finally, we control for nonlinear effects using a partially linear IV regression reported in \hyperref[table:3]{Table 3}. Here, we find results similar to that of OLS; $\hat{\sigma} = 0.413$ ($|t| > 48$) when considering all controls. The estimate of $\sigma$ without any controls is not significantly different from that in specifications with controls. However, all of these estimates are significantly different from the IV results; hence, the IV regressions do not appear to be robust. Consequently, we opt to use these estimates of $\sigma$ in our model. Since these estimates show $\hat{\sigma} \in (0,1)$, it appears that electricity consumption in different months complement one another. 
+
+\begin{table}[!htbp] \centering 
+	\caption{OLS Regression Results}
+	\label{table:1} 
+	\small
+	\begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
+		\\[-4ex]\hline  
+		\hline \\[-1.8ex] 
+		& \multicolumn{6}{c}{\textit{Dependent variable:} $\ln (Z_{ t, i} / Z_{ s, i})$} \\ [0.5ex]
+		\cline{2-7} 
+		\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ [0.5ex]
+		\hline \\[-1.8ex] 
+		$-\ln (P_{t,i} / P_{s,i})$ & 0.751$^{***}$ & 0.481$^{***}$ & 0.607$^{***}$ & 0.750$^{***}$ & 0.481$^{**}$ & 0.607$^{***}$ \\ 
+		& (0.030) & (0.026) & (0.026) & (0.224) & (0.172) & (0.169) \\ 
+		& & & & & & \\ 
+		$\Delta_{t,s}$ &  &  & 0.001$^{***}$ &  &  & 0.001$^{***}$ \\ 
+		&  &  & (0.0001) &  &  & (0.0002) \\ 
+		& & & & & & \\ 
+		CDD$_t$ &  & 0.990$^{***}$ & 1.003$^{***}$ &  & 0.990$^{***}$ & 1.002$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.016) & (0.016) &  & (0.087) & (0.086) \\ 
+		& & & & & & \\ 
+		CDD$_s$ &  & $-$0.999$^{***}$ & $-$1.011$^{***}$ &  & $-$0.999$^{***}$ & $-$1.012$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.016) & (0.016) &  & (0.087) & (0.085) \\ 
+		& & & & & & \\ 
+		HDD$_t$ &  & 0.306$^{***}$ & 0.294$^{***}$ &  & 0.307$^{***}$ & 0.295$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.005) & (0.005) &  & (0.030) & (0.030) \\ 
+		& & & & & & \\ 
+		HDD$_s$ &  & $-$0.309$^{***}$ & $-$0.296$^{***}$ &  & $-$0.308$^{***}$ & $-$0.295$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.005) & (0.005) &  & (0.029) & (0.029) \\ 
+		& & & & & & \\ 
+		Intercept & 0.001 & 0.002 & 0.002 &  &  &  \\ 
+		& (0.003) & (0.006) & (0.006) &  &  &  \\ 
+		& & & & & & \\  [0.9ex]
+		\hline \\[-1.8ex] 
+		State FEs &   &   &   & Yes & Yes & Yes \\ 
+		Observations & 9,000 & 9,000 & 9,000 & 9,000 & 9,000 & 9,000 \\ 
+		R$^{2}$ & 0.070 & 0.580 & 0.596 & 0.070 & 0.580 & 0.596 \\ 
+		Adjusted R$^{2}$ & 0.070 & 0.579 & 0.596 & 0.065 & 0.577 & 0.594 \\ [0.5ex]
+		\hline 
+		\hline \\[-1.8ex] 
+		\multicolumn{7}{@{}p{40em}@{}}{\textit{Note: } The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state; as discussed in the Data section, we take a random sample of 9000 observations from the data. The coefficient on $\ln (P_{t,i} / P_{s,i})$ is an estimate of $-\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+	\end{tabular} 
+\end{table}
+
+
+
+
+
+\begin{table}[!htbp] \centering 
+	\caption{IV (2SLS) Regression Results}
+	\label{table:2} 
+	\small
+	\begin{tabular}{@{\extracolsep{4pt}}lcccccc} 
+		\\[-4ex]\hline  
+		\hline \\[-1.6ex] 
+		& \multicolumn{3}{c}{First-Stage} & \multicolumn{3}{c}{Second-Stage} \\ [0.5ex]
+		& \multicolumn{3}{c}{\textit{Dep. Variable:} $\ln (P_{t,i} / P_{s,i})$ } & \multicolumn{3}{c}{\textit{Dep. Variable:}  $\ln (Z_{ t, i} / Z_{ s, i})$}\\ [0.5ex]
+		\cmidrule(lr){2-4} \cmidrule(lr){5-7}\\[-2.2ex] 
+		& (A.1) & (B.1) & (C.1) & (A.2) & (B.2) & (C.2)\\ [0.5ex]
+		\hline \\[-1.8ex] 
+		$ \ln (C_{t,i} / C_{s,i})$ & $-$0.060$^{***}$ & 0.004$^{*}$ & 0.004$^{*}$ &  &  &  \\ 
+		& (0.002) & (0.002) & (0.002) &  &  &  \\ 
+		& & & & & & \\ 
+		$-\ln (P_{t,i} / P_{s,i})$ &  &  &  & 0.711$^{***}$ & 13.987 & 11.430$^{*}$ \\ 
+		&  &  &  & (0.106) & (8.384) & (5.330) \\ 
+		& & & & & & \\ 
+		$\Delta_{t,s}$  &  & 0.001$^{***}$ & 0.001$^{***}$ &  &  & 0.007$^{*}$ \\ 
+		&  & (0.00002) & (0.00002) &  &  & (0.003) \\ 
+		& & & & & & \\ 
+		CDD$_t$  &  & 0.151$^{***}$ & 0.151$^{***}$ &  & 3.064$^{*}$ & 2.620$^{**}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.007) & (0.007) &  & (1.288) & (0.798) \\ 
+		& & & & & & \\ 
+		CDD$_s$  &  & $-$0.149$^{***}$ & $-$0.149$^{***}$ &  & $-$3.034$^{*}$ & $-$2.609$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.007) & (0.007) &  & (1.264) & (0.788) \\ 
+		& & & & & & \\ 
+		HDD$_t$  &  & $-$0.057$^{***}$ & $-$0.057$^{***}$ &  & $-$0.407 & $-$0.311 \\ 
+		$\quad(\times 1000^{-1})$&  & (0.003) & (0.003) &  & (0.447) & (0.301) \\ 
+		& & & & & & \\ 
+		HDD$_s$  &  & 0.058$^{***}$ & 0.058$^{***}$ &  & 0.423 & 0.324 \\ 
+		$\quad(\times 1000^{-1})$&  & (0.003) & (0.003) &  & (0.458) & (0.308) \\ [0.9ex]
+		\hline \\[-1.8ex] 
+		State FEs &  Yes & Yes  & Yes  & Yes & Yes & Yes \\ 
+		Observations & 9,000 & 9,000 & 9,000 & 9,000 & 9,000 & 9,000 \\ 
+		R$^{2}$          & 0.066 & 0.441 & 0.441 & & &  \\ 
+		Adjusted R$^{2}$ & 0.066 & 0.441 & 0.441 & & &  \\ 
+		F Statistic & 678$^{***}$ & 1,213$^{***}$ & 1,197$^{***}$  &  &  &  \\ 
+		\hline 
+		\hline \\[-1.8ex] 
+		\multicolumn{7}{@{}p{39.2em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state; as discussed in the Data section, we take a random sample of 9000 observations from the data. The coefficient on $\ln (P_{t,i} / P_{s,i})$ is an estimate of $-\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+	\end{tabular} 
+\end{table}
+
+
+\begin{table}[!htbp] \centering 
+	\caption{Partially Linear IV Regression Results}
+	\label{table:3} 
+	\small
+	\begin{tabular}{@{\extracolsep{4em}}lccc} 
+		\\[-4ex]\hline  
+		\hline \\[-1.8ex] 
+		& \multicolumn{3}{c}{\textit{Instrument: $ \ln (C_{t,i} / C_{s,i})$}} \\ 
+		\cline{2-4} 
+		%\\[-1.8ex] & ln\_load\_rel \textasciitilde ln\_price\_rel & ln\_load\_rel \textasciitilde (CDD\_1) & ln\_load\_rel \textasciitilde time\_diff + (CDD\_1) \\ 
+		\\[-1.8ex] & (1) & (2) & (3)\\ [0.5ex]
+		\hline \\[-1.8ex] 
+		$\hat{\sigma} $ & 0.5676$^{***}$ & 0.4511$^{***}$ & 0.4129$^{***}$ \\ 
+		& (0.1036) & (0.0042) & (0.0085) \\ [0.9ex]
+		\hline \\[-1.8ex] 
+		Time Control &   &   & Yes  \\ 
+		Degree Day Controls &   & Yes  & Yes  \\ 
+		Observations & 9,000 & 9,000 & 9,000 \\
+		\hline 
+		\hline \\[-1.8ex] 
+		\multicolumn{4}{@{}p{36em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state; as discussed in the Data section, we take a random sample of 9000 observations from the data. The estimation procedure is described in the appendix.  Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+	\end{tabular} 
+\end{table} 
+
+\pagebreak
 
 \section{Conclusion}
 
@@ -562,50 +753,6 @@ An aim for future research may be to develop a model of clean and dirty energy t
 
 
 
-\pagebreak
-
-\section{Notes}
-
-\begin{itemize}
-	\item 
-	\item 
-\end{itemize}
-
-\pagebreak
-
-
-%\subsection{MRS}
-%
-%Next, consider the marginal utility of $X_1$:
-%\begin{equation}
-%\frac{\partial U^\phi}{\partial X_1}  = \int_0^1 \alpha(t) \, \phi \, Y(t)^{\phi - 1} \xi_1(t) \, dt  = \frac{\partial U^\phi}{\partial U}  \frac{\partial U}{\partial X_1} 
-%\end{equation}
-%The marginal rate of substitution must then be:
-%\begin{equation}
-%MRS_{12} =  \frac{ \int_0^1 \alpha(t) \, Y(t)^{\phi - 1} \, \xi_1(t) \, dt }{ \int_0^1 \alpha(t) \, Y(t)^{\phi - 1} \, \xi_2(t) \, dt }
-%\end{equation}
-%Because $Y(t)$ is a function of $X_1$ and $X_2$, we have:
-%\begin{equation}
-%\phi = 1 \implies \frac{\partial MRS_{21}}{\partial X_1 / X_2} = 0 
-%\end{equation}
-%This further implies that the elasticity of substitution between $X_1$ and $X_2$ approaches infinity, hence the two inputs would become perfect substitutes. 
-%
-%% Now, suppose that we have $\xi_1(t) \neq \xi_2(t)$, so our inputs differ in their electricity generation.
-%	
-%	
-	
-	
-	
-\pagebreak
-
-
-
-\pagebreak
-
-\section{Scratch}
-
-\pagebreak
-
 \section{Literature}
 
 \begin{itemize}
@@ -613,69 +760,72 @@ An aim for future research may be to develop a model of clean and dirty energy t
 	\item \cite{SB2018} look at interactions between different solar and wind installations (covar matrix), while many other energy models do not.
 \end{itemize}
 
+
+\begin{thebibliography}{9}
 	
-	\begin{thebibliography}{9}
-		
-		\bibitem[Acemoglu et al.(2012)]{Ace2012}
-		Acemoglu, D., Aghion, P., Bursztyn, L., \& Hemous, D. (2012). The Environment and Directed Technical Change. American Economic Review, 102(1), 131–166. https://doi.org/10.1257/aer.102.1.131
-		\bibitem[Ambec and Crampes (2012)]{AC2012}
-		Ambec, S., \& Crampes, C. (2012). Electricity provision with intermittent sources of energy. Resource and Energy Economics, 34(3), 319–336. https://doi.org/10.1016/j.reseneeco.2012.01.001
-		
-		\bibitem[Borenstein(2012)]{Boren2012}
-		Borenstein, S. (2012). The Private and Public Economics of Renewable Electricity Generation. Journal of Economic Perspectives, 26(1), 67–92. https://doi.org/10.1257/jep.26.1.67
-		
-		\bibitem[Chao(2011)]{Chao2011}
-		Chao, H. (2011). Efficient pricing and investment in electricity markets with intermittent resources. Energy Policy, 39(7), 3945–3953. https://doi.org/10.1016/j.enpol.2011.01.010
-		
-		\bibitem[Delarue et al.(2010)]{Delarue}
-		Delarue, E., De Jonghe, C., Belmans, R., \& D’Haeseleer, W. (2010). Applying portfolio theory to the electricity sector: Energy versus power. Energy Economics, 33(1), 12–23. https://doi.org/10.1016/j.eneco.2010.05.003
-		
-		\bibitem[EIA(2019a)]{EIANetgen}
-		Electricity Information Administration (2019). Net generation, United States, all sectors, annual. Electricity Data Browser. https://www.eia.gov/electricity/data/browser
-		
-		\bibitem[EIA(2019b)]{EIALCOE}
-		Electricity Information Administration (2019). Levelized Cost and Levelized Avoided Cost of New Generation. Annual Energy Outlook 2019. https://www.eia.gov/outlooks/aeo/pdf/electricity\_generation.pdf
-		
-		\bibitem[Foley et al.(2012)]{Foley2012}
-		Foley, A., Leahy, P., Marvuglia, A., \& Mckeogh, E. (2012). Current methods and advances in forecasting of wind power generation. Renewable Energy, 37(1), 1–8. https://doi.org/10.1016/j.renene.2011.05.033
-		
-		\bibitem[Geroski(1957)]{Geroski2000}
-		Geroski, P. (2000). Models of technology diffusion. Research Policy. Elsevier B.V. https://doi.org/10.1016/S0048-7333(99)00092-X
-		
-		\bibitem[Helm and Mier(2019)]{HH}
-		Helm, C., \& Mier, M. (2019). On the efficient market diffusion of intermittent renewable energies. Energy Economics, 80, 812–830. https://doi.org/10.1016/j.eneco.2019.01.017
-		
-		\bibitem[Joskow(2011)]{Joskow2011}
-		Joskow, P. (2011). Comparing the Costs of Intermittent and Dispatchable Electricity Generating Technologies. American Economic Review, 101(3), 238–241. https://doi.org/10.1257/aer.101.3.238
-		
-		\bibitem[Mohajeryami et al.(2016)]{Moha2016}
-		Mohajeryami, S., Moghaddam, I., Doostan, M., Vatani, B., \& Schwarz, P. (2016). A novel economic model for price-based demand response. Electric Power Systems Research, 135, 1–9. https://doi.org/10.1016/j.epsr.2016.03.026
-		
-		\bibitem[Musgens and Neuhoff(2006)]{MN2006}
-		Musgens, F., \& Neuhoff, K. (2006). Modelling Dynamic Constraints in Electricity Markets and the Costs of Uncertain Wind Output. Faculty of Economics.
-		
-		\bibitem[Neuhoff et al.(2007)]{NCK2007}
-		Neuhoff, K., Cust, J. \& Keats, K. (2007). Implications of intermittency and transmission constraints for renewables deployment. Cambridge Working Papers in Economics 0711, Faculty of Economics, University of Cambridge.
-		
-		\bibitem[Schwarz et al.(2002)]{Schwarz}
-		Schwarz, P., Taylor, T., Birmingham, M., \& Dardan, S. (2002). INDUSTRIAL RESPONSE TO ELECTRICITY REAL‐TIME PRICES: SHORT RUN AND LONG RUN. Economic Inquiry, 40(4), 597–610. https://doi.org/10.1093/ei/40.4.597
-		
-		\bibitem[Shahriari and Blumsack(2018)]{SB2018}
-		Shahriari, M., \& Blumsack, S. (2018). The capacity value of optimal wind and solar portfolios. Energy, 148, 992–1005. https://doi.org/10.1016/j.energy.2017.12.121
-		
-		\bibitem[Warkins and Knight(1922)]{Knight}
-		Watkins, G., \& Knight, F. (1922). Knight’s Risk, Uncertainty and Profit. The Quarterly Journal of Economics, 36(4), 682–690. https://doi.org/10.2307/1884757
-		
-		
-%		\bibitem[Angel, Harris, and Spatt(2011)]{Angel} 
-%		Angel, J.J., Harris, L.E., \& Spatt, C. S. (2011). Equity Trading in the 21st Century. Quarterly Journal Of Finance, 1(1), 1-53.
-		
-%		\bibitem[Stern(2012)]{Stern} 
-%		Stern, D. (2012). “Interfuel Substitution: A Meta-Analysis.” Journal of Economic Surveys 26 (2): 307–331. \href{https://doi.org/10.1111/j.1467-6419.2010.00646.x}{https://doi.org/10.1111/j.1467-6419.2010.00646.x}.
-
-
-		
-	\end{thebibliography}	
+	\bibitem[Acemoglu et al.(2012)]{Ace2012}
+	Acemoglu, D., Aghion, P., Bursztyn, L., \& Hemous, D. (2012). The Environment and Directed Technical Change. American Economic Review, 102(1), 131–166. https://doi.org/10.1257/aer.102.1.131
+	\bibitem[Ambec and Crampes (2012)]{AC2012}
+	Ambec, S., \& Crampes, C. (2012). Electricity provision with intermittent sources of energy. Resource and Energy Economics, 34(3), 319–336. https://doi.org/10.1016/j.reseneeco.2012.01.001
+	
+	\bibitem[Borenstein(2012)]{Boren2012}
+	Borenstein, S. (2012). The Private and Public Economics of Renewable Electricity Generation. Journal of Economic Perspectives, 26(1), 67–92. https://doi.org/10.1257/jep.26.1.67
+	
+	\bibitem[Chao(2011)]{Chao2011}
+	Chao, H. (2011). Efficient pricing and investment in electricity markets with intermittent resources. Energy Policy, 39(7), 3945–3953. https://doi.org/10.1016/j.enpol.2011.01.010
+	
+	\bibitem[Delarue et al.(2010)]{Delarue}
+	Delarue, E., De Jonghe, C., Belmans, R., \& D’Haeseleer, W. (2010). Applying portfolio theory to the electricity sector: Energy versus power. Energy Economics, 33(1), 12–23. https://doi.org/10.1016/j.eneco.2010.05.003
+	
+	\bibitem[EIA(2019a)]{EIANetgen}
+	Electricity Information Administration (2019). Net generation, United States, all sectors, annual. Electricity Data Browser. https://www.eia.gov/electricity/data/browser
+	
+	\bibitem[EIA(2019b)]{EIALCOE}
+	Electricity Information Administration (2019). Levelized Cost and Levelized Avoided Cost of New Generation. Annual Energy Outlook 2019. https://www.eia.gov/outlooks/aeo/pdf/electricity\_generation.pdf
+	
+	\bibitem[Foley et al.(2012)]{Foley2012}
+	Foley, A., Leahy, P., Marvuglia, A., \& Mckeogh, E. (2012). Current methods and advances in forecasting of wind power generation. Renewable Energy, 37(1), 1–8. https://doi.org/10.1016/j.renene.2011.05.033
+	
+	\bibitem[Geroski(1957)]{Geroski2000}
+	Geroski, P. (2000). Models of technology diffusion. Research Policy. Elsevier B.V. https://doi.org/10.1016/S0048-7333(99)00092-X
+	
+	\bibitem[Helm and Mier(2019)]{HH}
+	Helm, C., \& Mier, M. (2019). On the efficient market diffusion of intermittent renewable energies. Energy Economics, 80, 812–830. https://doi.org/10.1016/j.eneco.2019.01.017
+	
+	\bibitem[Joskow(2011)]{Joskow2011}
+	Joskow, P. (2011). Comparing the Costs of Intermittent and Dispatchable Electricity Generating Technologies. American Economic Review, 101(3), 238–241. https://doi.org/10.1257/aer.101.3.238
+	
+	\bibitem[Mohajeryami et al.(2016)]{Moha2016}
+	Mohajeryami, S., Moghaddam, I., Doostan, M., Vatani, B., \& Schwarz, P. (2016). A novel economic model for price-based demand response. Electric Power Systems Research, 135, 1–9. https://doi.org/10.1016/j.epsr.2016.03.026
+	
+	\bibitem[Musgens and Neuhoff(2006)]{MN2006}
+	Musgens, F., \& Neuhoff, K. (2006). Modelling Dynamic Constraints in Electricity Markets and the Costs of Uncertain Wind Output. Faculty of Economics.
+	
+	\bibitem[Neuhoff et al.(2007)]{NCK2007}
+	Neuhoff, K., Cust, J. \& Keats, K. (2007). Implications of intermittency and transmission constraints for renewables deployment. Cambridge Working Papers in Economics 0711, Faculty of Economics, University of Cambridge.
+	
+	\bibitem[Schwarz et al.(2002)]{Schwarz}
+	Schwarz, P., Taylor, T., Birmingham, M., \& Dardan, S. (2002). INDUSTRIAL RESPONSE TO ELECTRICITY REAL‐TIME PRICES: SHORT RUN AND LONG RUN. Economic Inquiry, 40(4), 597–610. https://doi.org/10.1093/ei/40.4.597
+	
+	\bibitem[Shahriari and Blumsack(2018)]{SB2018}
+	Shahriari, M., \& Blumsack, S. (2018). The capacity value of optimal wind and solar portfolios. Energy, 148, 992–1005. https://doi.org/10.1016/j.energy.2017.12.121
+	
+	\bibitem[Staiger and Stock(1997)]{SS1997} 
+	Staiger, D., \& Stock, J. (1997). Instrumental Variables Regression with Weak Instruments. Econometrica, 65(3), 557–586. https://doi.org/10.2307/2171753
+	
+	\bibitem[Warkins and Knight(1922)]{Knight}
+	Watkins, G., \& Knight, F. (1922). Knight’s Risk, Uncertainty and Profit. The Quarterly Journal of Economics, 36(4), 682–690. https://doi.org/10.2307/1884757
+	
+	
+	%		\bibitem[Angel, Harris, and Spatt(2011)]{Angel} 
+	%		Angel, J.J., Harris, L.E., \& Spatt, C. S. (2011). Equity Trading in the 21st Century. Quarterly Journal Of Finance, 1(1), 1-53.
+	
+	%		\bibitem[Stern(2012)]{Stern} 
+	%		Stern, D. (2012). “Interfuel Substitution: A Meta-Analysis.” Journal of Economic Surveys 26 (2): 307–331. \href{https://doi.org/10.1111/j.1467-6419.2010.00646.x}{https://doi.org/10.1111/j.1467-6419.2010.00646.x}.
+	
+	
+	
+\end{thebibliography}	
 	
 \end{document}
 
