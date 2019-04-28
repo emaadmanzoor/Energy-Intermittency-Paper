@@ -5,7 +5,7 @@ close all; clear; clc;
 % Simulation params
 n = 500;
 cost_multiplier = linspace(0.5,2,n);
-sigma_range = [0.1, 0.5, 1.0, 1.5, 2];
+sigma_range = [0.01, 0.25, 0.5, 1, 1.5];
 m = length(sigma_range);
 
 % Exogenous params
@@ -85,10 +85,10 @@ end
 
 % Format subplot 1
 subplot(2,1,1);
-legend('0.1', '0.5', '1.0', '1.5', '2.0')
+legend('0.01', '0.25', '0.5', '1', '1.5')
 xlabel('Negative Log Difference in Prices')
 ylabel('Log Difference in Quantities')
-xlim([-1.4, -0.2])
+xlim([-1.5, -0.2])
 grid('on')
 
 % Format legend
@@ -99,7 +99,7 @@ title(hleg, '\sigma')
 subplot(2,1,2);
 xlabel('Negative Log Difference in Prices')
 ylabel({'Elasticity of Substitution', 'between Technologies'})
-xlim([-1.4, -0.2])
+xlim([-1.5, -0.2])
 ylim([0 15])
 grid('on')
 
