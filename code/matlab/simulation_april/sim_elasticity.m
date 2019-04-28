@@ -1,11 +1,11 @@
-%% Price (Cost) Elasticity Sim
+%% Elasticity of Substitution Sim
 
 close all; clear; clc;
 
 % Simulation params
 n = 500;
 cost_multiplier = linspace(0.5,2,n);
-sigma_range = [0.01, 0.25, 0.5, 1, 1.5];
+sigma_range = [0.05, 0.25, 0.5, 1, 1.5];
 m = length(sigma_range);
 
 % Exogenous params
@@ -85,7 +85,7 @@ end
 
 % Format subplot 1
 subplot(2,1,1);
-legend('0.01', '0.25', '0.5', '1', '1.5')
+legend('0.05', '0.25', '0.5', '1', '1.5')
 xlabel('Negative Log Difference in Prices')
 ylabel('Log Difference in Quantities')
 xlim([-1.5, -0.2])
@@ -108,5 +108,5 @@ e_1_line = plot([-1.4, -0.2], [1,1], 'LineStyle', '--', 'Color', 'k');
 legend([e_1_line], ' e = 1');
 
 % Save figure
-print(gcf,'example_1_fig_1.png','-dpng','-r300')
+print(gcf,'fig_elasticity.png','-dpng','-r300')
 
