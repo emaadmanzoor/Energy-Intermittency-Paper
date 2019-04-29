@@ -36,11 +36,7 @@ for i = 1:length(results)
         P = ((1/2) * (prices'.^(1-sigma))*(alpha'.^sigma)).^(1/(1-sigma));
 
         % Quantities
-        if sigma ~= 1
-            Y = ((alpha'./prices).^(sigma)) * (budget/P);
-        else 
-            Y = (alpha'./prices);
-        end 
+        Y = ((alpha'./prices).^(sigma)) * (budget/P);
 
         X = (xi_mat')\Y;
 
