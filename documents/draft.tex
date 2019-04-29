@@ -26,6 +26,7 @@
 \usepackage{enumitem}
 \usepackage{multirow}
 \usepackage{xcolor}
+\usepackage{cleveref}
 %\usepackage{showframe}
 %\usepackage{lipsum}
 
@@ -60,6 +61,13 @@
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% section referencing
+\crefformat{section}{\S#2#1#3}
+\crefformat{subsection}{\S#2#1#3}
+\crefformat{subsubsection}{\S#2#1#3}
+\crefrangeformat{section}{\S\S#3#1#4 to~#5#2#6}
+\crefmultiformat{section}{\S\S#2#1#3}{ and~#2#1#3}{, #2#1#3}{ and~#2#1#3}
 
 % caption set up
 \captionsetup[table]{
@@ -538,49 +546,35 @@ We now do a similar exercise but instead study the adoption (or market share/dif
 \subsubsection{Externalities}
 
 
-That is, suppose we are interested in 
 
-One way to interpret this is in the context of a tax and subsidy. Taxing coal at increasing rates has diminishing returns on promoting the market share of solar energy. However, for $\sigma \leq 0.5$, subsidizing solar energy can have linear or increasing returns with respect to its market share. Also, 
-
-
-Often times, a social planner may also be interested in using other policy instruments such as research subsidies. In fact, \citet{Ace2012} find that both carbon taxes and research subsidies are necessary to promote long-run structural change in the energy production sector and avert a climate disaster. While our model focuses on production on a shorter time scale, we find a similar result -- a combination of both taxes and subsidies may be more effective in promoting a shift towards clean energy. 
-
-
-Firstly, consider a case where a carbon tax is our only policy instrument. Additionally, suppose that our first technology produced negative externalities. Specifically, the social cost of pollution is given by $S(X) = \gamma X_1$ where $\gamma$ is the monetary damage per unit of $X_1$. A social planner is interested in balancing the damages caused by pollution with the surplus of the private sector and the revenue from the tax. That is, they aim to solve
+Suppose we are interested in handling externalities. We may assume that our first technology produces pollution according to the function $S(X) = \gamma X_1$ where $\gamma$ is the monetary damage per unit of $X_1$. A social planner then aims to balance the damages caused by pollution with the surplus of the private sector and the revenue from the tax. Hence, their objective function is given by
 $$\max_{\tau} \; CS + PS - S(X) + \tau X_1$$
-where $\tau$ is the tax on $X_1$, so that its final price is $c_1 + \tau$ and the tax revenue is given by $\tau X_1$. The optimal tax is a Pigouvian tax; $\tau$ should be set equal to the marginal social cost of pollution $\gamma$. This is an expected, standard solution in most models.
+where $CS$ is consumer surplus, $PS$ is producer surplus, $S(X)$ is the cost of pollution, $\tau$ is the tax on $X_1$, and $\tau X_1$ is the tax revenue. As usual, the optimal tax is a Pigouvian tax; $\tau$ should be set equal to the marginal social cost of pollution $\gamma$.
 
 
-%%% Pigouvian tax proof
-\hfill \\
-\begin{proof} We aim to maximize welfare with respect to the tax $\tau$, hence our first order condition is:
-	\begin{align*}
-	0 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial S(X)}{\partial \tau} + \frac{\partial \tau X_1}{\partial \tau} \\
-	&=  \left( \underbrace{\frac{\partial CS}{\partial p}  + \frac{\partial PS}{\partial p}}_{= 0} - \frac{ \partial  S(X)}{\partial p} + \frac{\partial \tau X_1}{\partial p} \right) \frac{\partial p}{\partial \tau} \\
-	&=  - \gamma \frac{\partial  X_1}{\partial p} + \tau \frac{\partial  X_1}{\partial p}
-	\end{align*}
-	where the derivatives of producer and consumer surplus are eliminated by the envelope theorem. Therefore, we must have $\tau = \gamma$. \\
-	\hfill
-\end{proof}
+However, given the presence of intermittency, is there a better way to handle pollution? For example, \citet{Ace2012} model intermittency using a CES production function between clean and dirty energy. They find that both carbon taxes and research subsidies are necessary to promote long-run structural change in the energy production sector and avert a climate disaster. The necessity of both instruments is a consequence of their model spanning multiple periods; that is, assuming we have CES production structure between clean and dirty energy in a one-period model, a single instrument is enough to optimally handle externalities. \footnote{ Recall that, with a CES production structure, the optimal quantity of technology $i$ is given by $X_i = \left( \frac{\xi_i}{c_i} \right)^\sigma  \frac{B}{P}$ where $\xi_i$ is its output per unit, $B$ is the budget, and $P$ is the price index. Neglecting effects on the price index, the own-price elasticity of any good is $-\sigma$. Furthermore, for the same structure,  we have the FOC: $X_i/X_j =  \left( \frac{\xi_i c_j}{\xi_j c_i} \right)^\sigma$. This implies that the cross elasticity of $X_i$ with respect to the output efficiency of technology $j$, $\xi_j$, is also $-\sigma$. Hence, a tax on the cost of $X_i$ or a subsidy that increases the efficiency $X_j$ can be used to deal with externalities; but, both are not necessary to do so.} However, while our model focuses on production on a shorter time scale, we find a similar result -- a combination of both taxes and subsidies may be more effective in promoting a shift towards clean energy. Moreover, the optimality of combining both instruments is a result of intermittency. 
 
-Now, suppose that we may also subsidize research which improves the output efficiency of a technology. In particular, we let the output efficiency of technology 2 be $(\xi_{2t}, \, \xi_{2s})(1 + \beta)$ where $\beta$ is the percent improvement created by research. And, we let the cost of research be given by a convex, differentiable function $G(\beta)$. 
+For clarity, let us first consider the cases in our framework where only one instrument is necessary. The first case is when no two technologies produce in the same period. That is, we can say that the output efficiency matrix, $\xi$, is diagonal without loss of generality; this further implies that we have a CES structure between technologies where the elasticity of substitution is same as that for consumers, $\sigma$.\footnote{A proof is provided in \hyperref[sec:CESspecialcase]{Appendix A.C}} Consequently, if one of these technologies creates negative externalities, the optimal solution is simply use a single instrument such as a Pigouvian tax. On the other hand, the second case occurs when all technologies produce in every period but with time-invariant output. This results in an edge case where we only employ whichever technology has the highest cost efficiency (output per dollar). Consequently, we only need one or no instruments depending on whether the technology employed creates negative externalities. Essentially this case describes a situation where we have no intermittency at all. On the other hand, the first case describes a situation where we have, in a sense, maximized relative intermittency. 
+
+\begin{table}[!t]
+	\caption*{\textbf{Figure 4:} Technical Change and the Optimal Quantity of Coal} 
+	\label{fig:coaltech}
+	\footnotesize
+	\vspace{-1em}
+	\begin{tabular}{@{\extracolsep{0em}}c}
+		\includegraphics[width=1\linewidth]{../code/matlab/simulation_april/fig_tax_subsidy} \\
+		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$, $\sigma = 0.5$. For the first subplot, we plot the optimal quantity of coal while varying $\xi_2$, the output efficiency of solar, by different factors; so, for instance, at 100\% on the x-axis, we have $\xi_2 = (2, \, 0.2))$. Similarly, in the second subplot, we do the same but with the cost of coal, $c_1$.    }     \\  
+	\end{tabular}
+\end{table}
 
 
-\hfill \\
-\begin{proof} First, note that we have:
-	$$X_1 = \dfrac{\alpha _{t}\,(1+\beta) \, \xi_{\mathrm{2s}}}{(c_{1}+ \tau)\,(1+\beta)\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}}+\dfrac{\alpha _{s}\,(1+\beta)\,\xi _{\mathrm{2t}}}{(c_{1}+ \tau)\,(1+\beta)\,\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}$$		
-	
-	We aim to maximize welfare with respect to the tax $\tau$ and the research efficiency modifier $\beta$, hence our first order condition is:
-	\begin{align*}
-	0 	 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial S(X)}{\partial \tau} + \frac{\partial \tau X_1}{\partial \tau}  - \frac{\partial G(\beta)}{\partial \beta}\\
-	&=  \left( \underbrace{\frac{\partial CS}{\partial p}  + \frac{\partial PS}{\partial p}}_{= 0} - \frac{ \partial  S(X)}{\partial p} + \frac{\partial \tau X_1}{\partial p} - \frac{\partial G(\beta)}{\partial p} \right) \frac{\partial p}{\partial \tau} \\
-	&=  - \gamma \frac{\partial  X_1}{\partial p} + \tau \frac{\partial  X_1}{\partial p} - \frac{\partial G(\beta)}{\partial p} \\
-	\tau &= \gamma + \frac{\partial G(\beta)}{\partial X_1}
-	\end{align*}
-	where the derivatives of producer and consumer surplus are eliminated by the envelope theorem. Equivalently, if we take the derivative of the welfare function with respect to $\beta$, we find that:
-	$$G(\beta) = -\gamma + \frac{\partial \tau}{\partial X_1}$$
-	\\ \hfill
-\end{proof}
+In all other situations, where we have a mix of intermittent and constant-output technologies, two instruments can be more optimal than one.
+
+
+
+
+
+
 
 \pagebreak
 
@@ -592,8 +586,7 @@ An aim for future research may be to develop a model of clean and dirty energy t
 
 \pagebreak
 
-\section{Appendix}
-
+\section{Appendix A: Supplementary Proofs}
 
 \subsection{Cobb-Douglas Case with Two Periods \& Two Technologies}
 
@@ -673,7 +666,6 @@ Furthermore, we derive restrictions on the parameters $\xi$ and $c$ by assuming 
 	&\implies (\xi_{1s}/\xi_{1t}) > (\alpha_s (\xi_{1s}/c_1 -  \xi_{2s}/c_2))/(\alpha_t(\xi_{2t}/c_2 - \xi_{1t}/c_1)) 
 	\end{align*}
 	To double check, note that combining the inequalities from $X_1>0$ and $X_2 > 0$ leads to $\xi_{2s}/\xi_{2t} < \xi_{1s}/\xi_{1t}$. This is precisely the earlier result obtained from $Z > 0$. Again, it is  important to note that we assume $\xi > 0$ for to simplify the inequalities of $X_1 > 0$ and $X_2 > 0$ . Otherwise, we may leave the inequalities in their pre-simplified forms and they are still valid when  $\xi_{1t} \xi_{2s} > 0$ or $\xi_{1s} \xi_{2t} > 0$.   \\ \hfill
-	
 \end{proof}
 
 Let us consider the set of restrictions belonging to Case 1. The first inequality, our initial assumption, states that technology 2 is relatively more cost effective in period $t$. The second inequality claims technology 1 is relatively more cost effective in period $s$. The implications are fairly straightforward; if a technology is to be used, it must have an absolute advantage in cost efficiency in at least one period. The third condition states that the relative output efficiency of technology 2 is greater than that of the first technology in period $t$. And, the fourth condition makes a symmetrical claim but for the technology 1 and period $s$. These latter two restrictions regarding output efficiency enter $Z$ and $X$ through $p$; they're simply a restatement of the invertibility of $\xi$ and can also be derived through the cost efficiency restrictions. 
@@ -840,7 +832,46 @@ The comparative statics are similarly intuitive. The equilibrium quantity of a t
 \end{proof}
 
 
-\pagebreak
+\subsection{Optimal Taxation}
+
+The following proof is a derivation of the optimal tax $\tau$ on $X_1$ in the case where it produces externalities. 
+\hfill \\
+\begin{proof} We aim to maximize welfare with respect to the tax $\tau$, hence our first order condition is:
+	\begin{align*}
+	0 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial S(X)}{\partial \tau} + \frac{\partial \tau X_1}{\partial \tau} \\
+	&=  \left( \underbrace{\frac{\partial CS}{\partial p}  + \frac{\partial PS}{\partial p}}_{= 0} - \frac{ \partial  S(X)}{\partial p} + \frac{\partial \tau X_1}{\partial p} \right) \frac{\partial p}{\partial \tau} \\
+	&=  - \gamma \frac{\partial  X_1}{\partial p} + \tau \frac{\partial  X_1}{\partial p}
+	\end{align*}
+	where the derivatives of producer and consumer surplus are eliminated by the envelope theorem. Therefore, we must have $\tau = \gamma$. \\
+	\hfill
+\end{proof}
+
+\subsection{CES Production as a Special Case}
+
+\label{sec:CESspecialcase}
+
+Our framework nests the case where there exists a CES production structure between each technology. This happens when no two technologies produce in the same period and we have the same number of periods as technologies. Additionally, the CES production function's elasticity parameter in this case will be equivalent to the consumer's CES utility elasticity parameter (the intertemporal elasticity of substitution for electricity consumption). 
+
+\begin{proof}
+	Firstly, note that we can reindex our technologies such that $\xi$ is diagonal, since each technology only produces in one period. Hence, without loss of generality, we have diagonal $\xi$. Next, we may say that the electricity output in period $i$ is given by $Z_i = \xi_{i,i} X_i$. Now, recall that the FOC for profit-maximization is given by $p = \xi^{-1} c$, hence we have $p_i = c_i / \xi_{i,i}$.  And, finally, with the FOC for utility maximization, we have:
+	\begin{align*}
+	\frac{Z_i}{Z_j} &= \left( \frac{\alpha_i p_j}{\alpha_j p_i} \right)^\sigma \\
+	\frac{ X_i }{X_j} &= \left( \frac{ \alpha_i p_j \xi_{j,j}^{1/\sigma} }{ \alpha_j p_i \xi_{i,i}^{1/\sigma} } \right)^\sigma \\
+	\frac{ X_i }{X_j} &= \left( \frac{ \alpha_i c_j \xi_{j,j}^{1/\sigma - 1} }{ \alpha_j c_i \xi_{i,i}^{1/\sigma - 1} } \right)^\sigma
+	\end{align*}
+	By definition, the elasticity of substitution between any two, arbitrary technologies $i$ and $j$ is constant. Moreover, it can be shown that this FOC can be rearranged to give the following demand equation for each technology $i$
+	\begin{align}
+	X_i &= \left(\frac{\beta_i}{c_i} \right)^\sigma \frac{I}{P} \\
+	P &= \sum_t \beta_i^\sigma p_i^{1-\sigma}
+	\end{align}
+	where $\beta_i = \alpha_i \xi_{i,i}^{-\phi}$, $\sigma = 1 / (1-\phi)$, and $I$ is the consumers income.	So, in total, accounting for both the producer and consumer's objectives, we are essentially solving for: 
+	\begin{align*} 
+	V &= \left( \sum_i \beta_i X_i^\phi \right)^{(1/\phi)}  \\
+	\text{such that\quad} I &= \sum_i c_i X_i 
+	\end{align*}
+	This is a standard CES function.
+	\\ \hfill
+\end{proof}
 
 
 \section{Literature}
