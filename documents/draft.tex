@@ -88,10 +88,10 @@
 \definecolor{darkblue}{RGB}{0,0,150}
 \hypersetup{
 	colorlinks=true,
-	linkcolor = blue,
-	urlcolor  = blue,
+	linkcolor = darkblue,
+	urlcolor  = darkblue,
 	citecolor = darkblue,
-	anchorcolor = blue
+	anchorcolor = darkblue
 }
 
 % bibliography
@@ -486,7 +486,10 @@ Firstly, we let technology 1 be coal power and technology 2 be solar power; agai
 
 \begin{center}
 	\noindent \textbf{Example  1:} $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. 
+	\label{Params: Example 1}
 \end{center}
+
+
 
 \noindent We begin by exploring the implied elasticity of substitution between these two technologies. Recall, for any two commodities $i$ and $j$,  the elasticity of substitution $e_{i,j}$ is given by:
 $$e_{i,j} = \frac{\partial \ln (X_1/ X_2)}{\partial \ln (c_2/c_1)}$$
@@ -554,7 +557,7 @@ where $CS$ is consumer surplus, $PS$ is producer surplus, $S(X)$ is the cost of 
 
 However, given the presence of intermittency, is there a better way to handle pollution? For example, \citet{Ace2012} model intermittency using a CES production function between clean and dirty energy. They find that both carbon taxes and research subsidies are necessary to promote long-run structural change in the energy production sector and avert a climate disaster. The necessity of both instruments is a consequence of their model spanning multiple periods; that is, assuming we have CES production structure between clean and dirty energy in a one-period model, a single instrument is enough to optimally handle externalities. \footnote{ Recall that, with a CES production structure, the optimal quantity of technology $i$ is given by $X_i = \left( \frac{\xi_i}{c_i} \right)^\sigma  \frac{B}{P}$ where $\xi_i$ is its output per unit, $B$ is the budget, and $P$ is the price index. Neglecting effects on the price index, the own-price elasticity of any good is $-\sigma$. Furthermore, for the same structure,  we have the FOC: $X_i/X_j =  \left( \frac{\xi_i c_j}{\xi_j c_i} \right)^\sigma$. This implies that the cross elasticity of $X_i$ with respect to the output efficiency of technology $j$, $\xi_j$, is also $-\sigma$. Hence, a tax on the cost of $X_i$ or a subsidy that increases the efficiency $X_j$ can be used to deal with externalities; but, both are not necessary to do so.} However, while our model focuses on production on a shorter time scale, we find a similar result -- a combination of both taxes and subsidies may be more effective in promoting a shift towards clean energy. Moreover, the optimality of combining both instruments is a result of intermittency. 
 
-For clarity, let us first consider the cases in our framework where only one instrument is necessary. The first case is when no two technologies produce in the same period. That is, we can say that the output efficiency matrix, $\xi$, is diagonal without loss of generality; this further implies that we have a CES structure between technologies where the elasticity of substitution is same as that for consumers, $\sigma$.\footnote{A proof is provided in \hyperref[sec:CESspecialcase]{Appendix A.C}} Consequently, if one of these technologies creates negative externalities, the optimal solution is simply use a single instrument such as a Pigouvian tax. On the other hand, the second case occurs when all technologies produce in every period but with time-invariant output. This results in an edge case where we only employ whichever technology has the highest cost efficiency (output per dollar). Consequently, we only need one or no instruments depending on whether the technology employed creates negative externalities. Essentially this case describes a situation where we have no intermittency at all. On the other hand, the first case describes a situation where we have, in a sense, maximized relative intermittency. 
+For clarity, let us first consider the cases in our framework where only one instrument is necessary. The first case is when no two technologies produce in the same period. That is, we can say that the output efficiency matrix, $\xi$, is diagonal without loss of generality; this further implies that we have a CES structure between technologies where the elasticity of substitution is same as that for consumers, $\sigma$.\footnote{A proof is provided in \hyperref[sec:CESspecialcase]{Appendix A.C}} Consequently, if one of these technologies creates negative externalities, the optimal solution is simply use a single instrument such as a Pigouvian tax. On the other hand, the second case occurs when all technologies produce in every period but with time-invariant output. This results in an edge case where we only employ whichever technology has the highest cost efficiency (output per dollar). Consequently, we only need one or no instruments depending on whether the technology employed creates negative externalities. Essentially this latter case describes a situation where we have no intermittency at all. On the other hand, the former case describes a situation where we have, in a sense, maximized relative intermittency. But, with respect to both cases, we only need one instrument to handle externalities. 
 
 \begin{table}[!t]
 	\caption*{\textbf{Figure 4:} Technical Change and the Optimal Quantity of Coal} 
@@ -563,12 +566,14 @@ For clarity, let us first consider the cases in our framework where only one ins
 	\vspace{-1em}
 	\begin{tabular}{@{\extracolsep{0em}}c}
 		\includegraphics[width=1\linewidth]{../code/matlab/simulation_april/fig_tax_subsidy} \\
-		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$, $\sigma = 0.5$. For the first subplot, we plot the optimal quantity of coal while varying $\xi_2$, the output efficiency of solar, by different factors; so, for instance, at 100\% on the x-axis, we have $\xi_2 = (2, \, 0.2))$. Similarly, in the second subplot, we do the same but with the cost of coal, $c_1$.    }     \\  
+		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$, $\sigma = 0.5$. For the first subplot, we graph the optimal quantity of coal while varying $\xi_2$, the output efficiency of solar, by different factors; so, for instance, at 100\% on the x-axis, we have $\xi_2 = (2, \, 0.2)$. Similarly, in the second subplot, we do the same but with the cost of coal, $c_1$.}     \\  
 	\end{tabular}
 \end{table}
 
 
-In all other situations, where we have a mix of intermittent and constant-output technologies, two instruments can be more optimal than one.
+In all other situations, where we have a mix of intermittent and constant-output technologies, using multiple instruments can be more effective than just one. That is,  first suppose that research subsidies increase the output efficiency $\xi_i$ of some technology $i$. So, output efficiency is then given by $\xi_i \left( 1 + \beta_i \right)$ where $\beta_i$ is the percent increase in the output efficiency of technology $i$ as a result of research. Now, consider again a two-period setting with coal and solar with the same parameters as those given in \hyperref[Params: Example 1]{Example 1}. As discussed earlier, one solution to externalities is to set a Pigouvian tax on coal equal to its marginal social damage.  However, we may be able to reduce our reliance on coal in a more effective (welfare-maximizing) way by subsidizing research in solar as well. We can intuit this to be a potential solution based on \hyperref[fig:coaltech]{Figure 4}; in the first subplot, we show the effects of research into solar on the use of coal, while, in the second subplot, we show the effect of taxes on the use of coal. Essentially, with respect to reducing the use of coal power, there are diminishing returns to both pollution taxes and solar research subsidies. Hence, the pollution-reduction benefits of both instruments are convex.\footnote{To be more precise, we numerically compute the Hessian for $X_1$ with respect to $\beta_2$, the percent change in the output efficiency of solar from research, and the tax rate, $\tau$. We find that the Hessian is negative definite. Consequently, since reducing $X_1$ creates welfare by reducing the social cost of pollution $\gamma X_1$, the Hessian of the benefits, $-\gamma X_1$ is positive definite and thus convex.} On the other hand, the deadweight loss created by taxation is generally convex; since research subsidies must be funded by tax revenue, its costs must necessarily be convex as well. In short, both instruments have convex benefits and costs, which implies that optimal policy is likely a combination of both. 
+
+In total, besides for edge cases, this suggests that optimal policy may be to incorporate both 
 
 
 
@@ -579,6 +584,11 @@ In all other situations, where we have a mix of intermittent and constant-output
 \pagebreak
 
 \section{Conclusion}
+
+Throughout the paper, we considered coal and solar power as examples of fossil and renewable energy. Moreover, 
+For instance, we discussed how to handle pollution when energy sources are intermittent; we found that, rather than a standard Pigouvian tax, we would be better off using a combination of research subsidies and carbon taxes. One implicit but important point here is that optimal policy must be tuned for differences in local electricity markets. That is, even if externalities are global and research spills over, optimal policy differs on a local scale since generation technologies differ on a local scale.  
+
+
 
 An aim for future research may be to develop a model of clean and dirty energy that incorporates both predictable and stochastic intermittency in a multi-period setting. 
 
