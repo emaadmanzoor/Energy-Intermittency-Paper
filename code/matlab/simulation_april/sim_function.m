@@ -28,6 +28,11 @@ prices   = xi_mat\cost_mat;
 % Price Index
 P = ((1/2) * (prices'.^(1-sigma))*(alpha'.^sigma)).^(1/(1-sigma));
 
+if sigma == 1
+    P = 1;
+end
+        
+
 % Quantities
 Y = ((alpha'./prices).^(sigma)) * (budget/P);
 X = (xi_mat')\Y;
