@@ -121,13 +121,13 @@
 
 \begin{document}
 
-\title{\singlespacing{\textbf{Efficient pollution abatement in electricity markets with intermittent renewable energy}}}
+\title{\singlespacing{\textbf{Optimal environmental policy for electricity markets with intermittent renewable energy}}}
 
 \author[]{Saketh Aleti\thanks{I would like to thank Gal Hochman and Roger Klein for helpful comments and the Sun Grant for funding this project. }}
 
-\affil[]{\small{Rutgers University}}
+\affil[]{Rutgers University}
 
-\date{\vspace{-1em}\small{\today}}
+\date{\vspace{-1em}\today}
 
 \maketitle
 
@@ -213,7 +213,7 @@ For more tractable results, we consider a simpler scenario where $n = m = 2$ and
 
 To start, we discuss the conditions on the exogenous parameters required to avoid edge-cases. Alternatively, these are the conditions required for a technology to be economical. But, first, we define two recurring terms in our analysis: cost efficiency and output efficiency. For some arbitrary period $t$ and technology $i$, we use cost efficiency to refer to $\xi_{i,t}/c_i$ and output efficiency to refer to $\xi_{i,t}$. So, for example, A technology is more cost efficient than another in a particular period when its output in that period per ``dollar" spent is larger than that of the other technology in the same period. 
 \begin{proposition}
-	Assume that, for all $i$ and $t$, we have $\xi_{i,t}, \alpha_t, c_i > 0$. Furthermore, suppose that $\xi$ is invertible. For technology $i$ to be economical, it must meet three conditions with respect to some arbitrary period $t$. Firstly, it must the more cost effective than any of the other technologies in period $t$. Secondly, it must have have a comparative advantage in output efficiency in the same period $t$. And, thirdly, there must be sufficient amount of demand for energy in this period $t$. 
+	Assume that, for all  $i$ (technologies) and  $t$ (periods), we have $\xi_{i,t} > 0 \, , \alpha_t > 0 \, ,$ and $ c_i > 0$. Furthermore, suppose that $\xi$ is invertible. For technology $i$ to be economical, it must meet three conditions with respect to some arbitrary period $t$. Firstly, it must the more cost effective than any of the other technologies in period $t$. Secondly, it must have have a comparative advantage in output efficiency in the same period $t$. And, thirdly, there must be sufficient amount of demand for energy in this period $t$. 
 \end{proposition}
 The condition on cost efficacy is fairly intuitive; one case of the contrapositive is that if a technology is not the most cost effective in any period, it will not be used. Alternatively, if a technology is the most cost effective in every single period, it will be the only technology used. The second condition regarding output efficiency actually stems from the invertibility of $\xi$. If we did not have $\xi$ invertible, we either have at least one technology that does not produce in any period or we have at least one technology being a linear combination of the other technologies in terms of output. In the latter case, some technologies are not economical because their output can be replicated the other technologies in a more cost effective way. As an example, suppose $\xi$ consisted of 3 technologies but was of rank $2$. In this case, we may represent any of these technologies as a linear combination of the other two; call this combination the synthetic version of technology $i$. It is not possible for every synthetic technology $i$ to be more expensive than its original; for at least one $i$, we must have a synthetic technology being cheaper or equal in price to the actual technology. In the first case, synthetic technology $i$ is cheaper so we do not use the actual technology $i$. In the later case, we may still eliminate technology $i$ or not use the other two technologies depending on the demand. Overall, in any case, $\xi$ not invertible means that at least one technology is not used. Finally, the demand condition is straightforward; even if a technology is optimal in a certain period, if consumers do not sufficiently demand electricity during that period, then there is little reason to use that technology. 
 
@@ -221,7 +221,7 @@ We may also derive the comparative statics for this simplified scenario.
 \begin{proposition}
 	Suppose we are not in an edge case, so that the conditions of Proposition 1 hold for each technology. The equilibrium quantity of a technology is increasing with its output efficiency and decreasing with its cost; at the same time, it is decreasing with the output efficiency of the other technologies and increasing with their cost. Also, suppose that some technology $i$ is the most cost effective in period $t$. Then, its equilibrium quantity is increasing with respect to the demand share parameter $\alpha_t$ and decreasing with respect to the demand share parameters of the other periods. Furthermore, again assuming technology $i$ is the most cost effective in period $t$, the comparative statics of $Z_t$ and $X_i$ are equivalent. 
 \end{proposition}	
-The comparative statics with respect to $X$ and its output efficiency and cost are not surprising. On the other hand, the statics for $Z$ may not be immediately obvious. Instead, they follow from the fact that we have $Z \equiv \xi_T X$. That is, suppose we have an arbitary technology $i$ that is the most cost effective source of electricity on period $t$. If consumers demanded that 100\% of their energy arrive in period $t$, then relying solely on technology $i$ for energy would be the most economical solution. Consequently, it seems intuitive that the comparative statics of $X_i$ follow through to $Z_t$. This intuition just happens to follow through even when other technologies are employed and there is demand in multiple periods. Similarly, the comparative statics for the share parameters of the utility function, $\alpha$, travel in the opposite direction. A rise in $\alpha_t$ would directly raise the optimal quantity of $Z_t$; hence, whichever technology is most cost effective at producing in period $t$ would be used more. We provide a more detailed and quantitative discussion of the comparative statics and edge cases in the appendix. 
+The comparative statics with respect to $X$ and its output efficiency and cost are not surprising. On the other hand, the statics for $Z$ may not be immediately obvious. Instead, they follow from the fact that we have $Z \equiv \xi_T X$. That is, suppose we have an arbitary technology $i$ that is the most cost effective source of electricity on period $t$. If consumers demanded that 100\% of their energy arrive in period $t$, then relying solely on technology $i$ for energy would be the most economical solution. Consequently, it seems intuitive that the comparative statics of $X_i$ follow through to $Z_t$. This intuition just happens to apply even when other technologies are employed and there is demand in multiple periods. Similarly, the comparative statics for the share parameters of the utility function, $\alpha$, travel in the opposite direction. A rise in $\alpha_t$ would directly raise the optimal quantity of $Z_t$; hence, whichever technology is most cost effective at producing in period $t$ would be used more. We provide a more detailed and quantitative discussion of the comparative statics and edge cases in the appendix. 
 
 
 
@@ -230,7 +230,7 @@ The comparative statics with respect to $X$ and its output efficiency and cost a
 \section{Empirical Methodology}
 \label{sec:methodology}
 
-In order to better understand the practical implications of our model, we empirically estimate its parameters and study its implications numerically. We are particularly interested in estimating $\sigma$, the intertemporal elasticity of substitution for electricity consumption. In our  \hyperref[sec:Discussion]{discussion}, we explain in detail why $\sigma$ is of interest; but, to summarize, $\sigma$ implicitly determines how well renewables can substitute for fossil energy. Specifically, if $\sigma \geq 1$, then electricity consumption in different periods are substitutes; consequently, fossil energy and renewable energy are highly substitutable. On the other hand, if $\sigma$ is around $0.5$, electricity consumption in different periods are complements; so, fossil and renewable energy are far less substitutable due to the effects of intermittency. 
+In order to better understand the practical implications of our model, we empirically estimate its parameters and study its implications numerically. We are particularly interested in estimating $\sigma$, the intertemporal elasticity of substitution for electricity consumption. In our  \hyperref[sec:Discussion]{discussion}, we explain in detail why $\sigma$ is of interest; but, to summarize, $\sigma$ implicitly determines how well renewables can substitute for fossil energy. Specifically, if $\sigma > 1$, then electricity consumption in different periods are substitutes; consequently, fossil energy and renewable energy are highly substitutable. On the other hand, if $\sigma$ is around $0.5$, electricity consumption in different periods are complements; so, fossil and renewable energy are far less substitutable due to the effects of intermittency. 
 
 The other parameters in our model, $c$,  $\xi$, and $\alpha$, are of secondary interest, since they are easier to obtain directly. To start, $c$ is the cost per unit for each technology; estimates of this value for different technologies can be obtained directly from the literature. Similarly, $\xi$, the output per unit of technology, can be directly obtained from the literature. And, finally, $\alpha$ may be approximated directly from the data. That is, note that the demand equation from earlier (Equation 3) is:
 $$Z_t = \left(\frac{\alpha_t}{p_t} \right)^\sigma \frac{I}{P}$$
@@ -413,11 +413,11 @@ All in all, each observation in our regression data set consists the following v
 \end{table} 
 
 
-Based on the OLS results reported in \hyperref[table:1]{Table 1}, we estimate the intertemporal elasticity of substitution for electricity consumption $\hat{\sigma}  = 0.609$ ($|t| > 24$) when accounting for all degree day covariates and state fixed effects. Interestingly, we find that the estimated coefficients for all three specifications do not differ when considering fixed effects. Additionally, as expected, the coefficients on the degree day covariates are symmetrical; that is, the coefficient on $CDD_{t}$ is approximately the same as the negative of that on $CDD_{s}$, and the same applies to $HDD_{t}$ and $HDD_{s}$. On the other hand, we found that electricity consumption seems to rise more in response to CDDs rather than HDDs. Lastly, we find that the sign on $\Delta_{t,s}$ is positive in all regressions; this implies that electricity consumption rises over time independent of price. 
+Based on the OLS results reported in \hyperref[table:1]{Table 1}, we estimate the intertemporal elasticity of substitution for electricity consumption $\hat{\sigma}  = 0.609$ ($|t| > 24$) when accounting for all degree day covariates and state fixed effects. Interestingly, we find that the estimated coefficients for all three specifications do not differ when considering fixed effects. Moreover, these results slightly differ from the literature which finds estimates of $\hat{\sigma}$ to be between 0.1 and 0.25. However, this may be because their data focuses on industrial customers while our data concerns retail customers. Additionally, as expected, the coefficients on the degree day covariates are symmetrical; that is, the coefficient on $CDD_{t}$ is approximately the same as the negative of that on $CDD_{s}$, and the same applies to $HDD_{t}$ and $HDD_{s}$. On the other hand, we found that electricity consumption seems to rise more in response to CDDs rather than HDDs. Lastly, we find that the sign on $\Delta_{t,s}$ is positive in all regressions, so electricity consumption rises over time independent of price. Specifically, fit (3) finds a coefficient of 0.001021 which implies that electricity consumption rises, on average, by 1.2\% per year. 
 
-To account for endogeneity in the OLS results, we provide results for our IV specification in \hyperref[table:2]{Table 2}. Here, we find a much larger estimate $\hat{\sigma}  = 11.430$ ($|t| > 2.1$) when considering all covariates and fixed effects. F-Statistics on all three specifications are significantly larger than 10, which suggests that the instruments are not weak \citep{SS1997}. With respect to the demand controls, we find results similar to those of OLS. State fixed effects do not appear to affect the estimates, demand increases over time, and CDDs raise electricity consumption more than HDDs. 
+To account for endogeneity in the OLS results, we provide results for our IV specification in \hyperref[table:2]{Table 2}. Here, we find a much larger estimate $\hat{\sigma}  = 11.430$ ($|t| > 2.1$) when considering all covariates and fixed effects. F-Statistics on all three specifications are significantly larger than 10, which suggests that the instruments are not weak \citep{SS1997}. These results greatly differ from the literature's estimates; this difference may be the result of controlling for endogeneity. With respect to the demand controls, we find results similar to those of OLS. State fixed effects do not appear to affect the estimates. Also, we find that electricity consumption seems to rise by about 1\% per year. However, with respect to CDDs, we find that the coefficients that are about 10 times larger than those in the OLS results. But, overall, we again find that demand increases over time, and CDDs raise electricity consumption more than HDDs. 
 
-Finally, we control for nonlinear effects using a partially linear IV regression reported in \hyperref[table:3]{Table 3}. Here, we find results similar to that of OLS; $\hat{\sigma} = 0.413$ ($|t| > 48$) when considering all controls. The estimate of $\sigma$ without any controls is not significantly different from that in specifications with controls. However, all of these estimates are significantly different from the IV results; hence, the IV regressions do not appear to be robust. Consequently, we opt to use these estimates of $\sigma$ in our model. Since these estimates show $\hat{\sigma} \in (0,1)$, it appears that electricity consumption in different months complement one another. 
+Finally, we control for nonlinear effects using a partially linear IV regression reported in \hyperref[table:3]{Table 3}. Here, we find results similar to that of OLS; $\hat{\sigma} = 0.413$ ($|t| > 48$) when considering all controls. The estimate of $\sigma$ without any controls is not significantly different from that in specifications with controls. However, all of these estimates are significantly different from the IV results; hence, the IV regressions do not appear to be robust. Consequently, we opt to use these estimates of $\sigma$ in our model. Since these estimates show $\hat{\sigma} \in (0,1)$, it appears that electricity consumption in different months complement one another. We now discuss what this means for renewable energy policy in greater detail. 
 
 \pagebreak
 \vspace{1em}
@@ -428,20 +428,20 @@ Finally, we control for nonlinear effects using a partially linear IV regression
 
 
 To understand the economic implications of these estimates for $\sigma$, we parametrize and numerically evaluate our model in a two-period, two-technology setting. In particular, we are concerned with how $\sigma$ affects the substitutability of fossil and renewable energy. This is particularly important, because sufficient substitutability between these two technologies is required to transition to greener economy in the future. For instance, \citet{Ace2012} argues that, ``When the two
-sectors [clean and dirty energy] are substitutable but not sufficiently so, preventing an environmental disaster requires a permanent policy intervention. Finally, when the two sectors are complementary, the only way to stave off a disaster is to stop long-run growth." However, note that, while our model sets the intertemporal elasticity of substitution for  electricity consumption $\sigma$ to a fixed value, we make no direct assumptions about the elasticity of substitution between different energy technologies. Rather, an interesting relationship regarding the substitutability/complementarity between technologies emerges indirectly as a result of intermittency. To illustrate this, we now proceed with the numerical model.
+sectors [clean and dirty energy] are substitutable but not sufficiently so, preventing an environmental disaster requires a permanent policy intervention. Finally, when the two sectors are complementary, the only way to stave off a disaster is to stop long-run growth." However, note that while our model sets the intertemporal elasticity of substitution for  electricity consumption $\sigma$ to a fixed value, we make no direct assumptions about the elasticity of substitution between different energy technologies. Rather, an interesting relationship regarding the substitutability/complementarity between technologies emerges indirectly as a result of intermittency. To illustrate this, we now proceed with the numerical model.
 
-Firstly, we let technology 1 be coal power and technology 2 be solar power; again, period $t$ represents peak hours and period $s$ represents off-peak hours. We assume that, holding prices equal, consumers prefer that 60\% of their energy arrive in period $t$ and the remaining 40\% arrive in period $s$; that is, we have $\alpha_t = 0.6$ and $\alpha_s = 0.4$. Additionally, we normalize the units of the quantities to a MWh basis. Hence, $\xi$ represents the percent of capacity utilized in each period; we assume coal uses 100\% of its capacity in both periods, while solar can access 100\% during peak hours and only 10\% during the off-peak. Finally, we set cost parameters (given in  \$ per MWh)  equal to LCOE estimates for 2023 from the \citet{EIALCOE}; specifically, we use estimates for "Solar PV" and "Coal with 30\% CCS" from Table 1b.\footnote{ The LCOE for a technology is equal to the sum of its lifetime costs divided by its lifetime energy output. While \citet{Joskow2011} explains the flaws of comparing generation technologies solely on the basis of LCOE, our use of this measure is unrelated to his critique. That is, he argues that the economic value an intermittent technology should account for when it produces electricity and the prices of electricity in those periods (see Table 2 of his paper). Our model does exactly this.}  In total, we have the following parameters. 
+Firstly, we let technology 1 be coal power and technology 2 be solar power; let period $t$ represent peak hours and period $s$ represent off-peak hours. We assume that, holding prices equal, consumers prefer that 60\% of their energy arrive in period $t$ and the remaining 40\% arrive in period $s$; that is, we have $\alpha_t = 0.6$ and $\alpha_s = 0.4$. Next, we normalize all quantity units to a MWh basis. Hence, $\xi$ represents the percent of capacity utilized in each period; we assume coal uses 100\% of its capacity in both periods, while solar can access 100\% during peak hours and only 10\% during the off-peak. Finally, we set cost parameters, given in  \$ per MWh, equal to LCOE estimates for 2023 from the \citet{EIALCOE}; specifically, we use estimates for "Solar PV" and "Coal with 30\% CCS" from Table 1b.\footnote{ The LCOE for a technology is equal to the sum of its lifetime costs divided by its lifetime energy output. While \citet{Joskow2011} explains the flaws of comparing generation technologies solely on the basis of LCOE, our use of this measure is unrelated to his critique. That is, he argues that the economic value an intermittent technology should also account for when it produces electricity and the prices of electricity in those periods (see Table 2 of his paper). Our model does exactly this; but, we still need to  use LCOE to parametrize the cost of developing capacity. }  In total, we have the following parameters. 
 
 \begin{center}
-	\noindent \textbf{Example  1:} $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. 
-	\label{Params: Example 1}
+	\noindent \textbf{Example  A:} $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. 
+	\label{Params: Example A}
 \end{center}
 
 
 
-\noindent We begin by exploring the implied elasticity of substitution between these two technologies. Recall, for any two commodities $i$ and $j$,  the elasticity of substitution $e_{i,j}$ is given by:
+We begin by exploring the implied elasticity of substitution between these two technologies. Recall, for any two commodities $i$ and $j$,  the elasticity of substitution $e_{i,j}$ is given by:
 $$e_{i,j} = \frac{\partial \ln (X_1/ X_2)}{\partial \ln (c_2/c_1)}$$
-where $c$ is their prices. This relationship is of particular interest, because many applied and theoretical models studying renewable and fossil energy impose a CES production structure between the two. That is, they assume that $e$ is a fixed constant different pairs of generation technologies. In our model, this is not the case; while directly deriving the equation for $e$ in our model is analytically intractable, we numerically estimate it for varying costs and $\sigma$.
+where $c$ is their prices. This relationship is of particular interest, because many applied and theoretical models studying renewable and fossil energy impose a CES production structure between the two (see \citet{Pap}). That is, they assume that $e$ is a fixed constant between renewable and fossil energy. In our model, this is not the case; while directly deriving the equation for $e$ in our model is analytically intractable, we numerically estimate how it varies with $\ln (c_2/c_1)$ and $\sigma$.
 
 
 \begin{table}[t]
@@ -451,11 +451,11 @@ where $c$ is their prices. This relationship is of particular interest, because 
 	\vspace{-1em}
 	\begin{tabular}{@{\extracolsep{0em}}c}
 		\includegraphics[width=1\linewidth]{../code/matlab/simulation_april/fig_elasticity} \\
-		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } The y-axis of the first plot is equivalent to $\log(X_1/X_2)$ and the x-axis of both plots is equivalent to  $\log(c_2/c_1)$. The legend in the upper subplot also applies to the lower subplot. These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. We plot results for various values of the intertemporal elasticity of substition for electricity consumption $\sigma$, which is used in the consumer's CES utility function. In order to numerically estimate these relationships, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (0.5\, c_1, 2 \,c_1)$. Then, we obtained estimates of the elasticity of substition by numerically differentiating $\log(X_1/X_2)$ with respect to $-log(c_1, c_2)$. That is, the elasticity of substitution between technology 1 and 2 is given by the slope of the upper subplot, and it is graphed in the lower subplot.   }     \\  
+		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } The y-axis of the first plot is equivalent to $\log(X_1/X_2)$ and the x-axis of both plots is equivalent to  $\log(c_2/c_1)$. The legend in the upper subplot also applies to the lower subplot. These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. We plot results for various values of the intertemporal elasticity of substition for electricity consumption $\sigma$ which is used in the consumer's CES utility function. In order to numerically estimate these relationships, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (0.5\, c_1, 2 \,c_1)$. Then, we obtained estimates of the elasticity of substition by numerically differentiating $\ln(X_1/X_2)$ with respect to $-\ln(c_1, c_2)$. That is, the elasticity of substitution between technology 1 and 2 is given by the slope of the upper subplot, and it is graphed in the lower subplot. For reference, we include a dashed line at $e = 1$ which is the elasticity of substitution that corresponds to a Cobb-Douglas structure.  }     \\  
 	\end{tabular}
 \end{table}
 
-We plot our numerical estimates of $e_{solar, coal}$, the elasticity of substitution between solar and coal power, in \hyperref[fig:eosnum]{Figure 1}. These results were generated by computing the optimal quantities of each technology given a range of prices. Specifically, we held the price of solar capacity constant and varied the price of coal capacity from 50\% to 200\% of its original parametrized price. Then, we numerical differentiated $\log(X_1/X_2)$ with respect to $\log(c_2/c_1)$ to estimate the elasticity of substitution between solar and coal.\footnote{ Instead, we could have generated variation in $\log(c_2/c_1)$ data by holding solar at a constant price and varying the price of coal capacity. However, this does not change the results.} This numerically computed elasticity of substitution between solar and coal power, $e_{solar,coal}$, is shown in the lower subplot. We repeat this process with different values of $\sigma$, the elasticity of substitution in the consumer's utility function. Finally, we drop all observations of our numerical simulation that correspond to edge cases.
+We plot our numerical estimates of $e_{solar, coal}$, the elasticity of substitution between solar and coal power, in \hyperref[fig:eosnum]{Figure 1}. These results were generated by computing the optimal quantities of each technology given a range of prices. Specifically, we held the price of solar capacity constant and varied the price of coal capacity from 50\% to 200\% of its original parametrized price. Then, we numerical differentiated $\log(X_1/X_2)$ with respect to $\log(c_2/c_1)$ to estimate the elasticity of substitution between solar and coal.\footnote{ Instead, we could have generated variation in $\log(c_2/c_1)$ data by holding solar at a constant price and varying the price of coal capacity. However, this does not change the results.} This numerically computed elasticity of substitution between solar and coal power, $e_{solar,coal}$, is shown in the lower subplot. We repeat this process with different values of $\sigma$, the elasticity of substitution in the consumer's utility function. Finally, we filter all observations of our numerical simulation that correspond to edge cases.
 
 
 
@@ -502,10 +502,13 @@ Suppose we are interested in handling externalities. We may assume that our firs
 $$\max_{\tau} \; CS + PS - S(X) + \tau X_1$$
 where $CS$ is consumer surplus, $PS$ is producer surplus, $S(X)$ is the cost of pollution, $\tau$ is the tax on $X_1$, and $\tau X_1$ is the tax revenue. As usual, the optimal tax is a Pigouvian tax; $\tau$ should be set equal to the marginal social cost of pollution $\gamma$.
 
+\textbf{More Here}
 
-However, given the presence of intermittency, is there a better way to handle pollution? For example, \citet{Ace2012} model intermittency using a CES production function between clean and dirty energy. They find that both carbon taxes and research subsidies are necessary to promote long-run structural change in the energy production sector and avert a climate disaster. The necessity of both instruments is a consequence of their model spanning multiple periods; that is, assuming we have CES production structure between clean and dirty energy in a one-period model, a single instrument is enough to optimally handle externalities. \footnote{ Recall that, with a CES production structure, the optimal quantity of technology $i$ is given by $X_i = \left( \frac{\xi_i}{c_i} \right)^\sigma  \frac{B}{P}$ where $\xi_i$ is its output per unit, $B$ is the budget, and $P$ is the price index. Neglecting effects on the price index, the own-price elasticity of any good is $-\sigma$. Furthermore, for the same structure,  we have the FOC: $X_i/X_j =  \left( \frac{\xi_i c_j}{\xi_j c_i} \right)^\sigma$. This implies that the cross elasticity of $X_i$ with respect to the output efficiency of technology $j$, $\xi_j$, is also $-\sigma$. Hence, a tax on the cost of $X_i$ or a subsidy that increases the efficiency $X_j$ can be used to deal with externalities; but, both are not necessary to do so.} However, while our model focuses on production on a shorter time scale, we find a similar result -- a combination of both taxes and subsidies may be more effective in promoting a shift towards clean energy. Moreover, the optimality of combining both instruments is a result of intermittency. 
+%However, given the presence of intermittency, is there a better way to handle pollution? For example, \citet{Ace2012} model intermittency using a CES production function between clean and dirty energy. They find that both carbon taxes and research subsidies are necessary to promote long-run structural change in the energy production sector and avert a climate disaster. 
 
-For clarity, let us first consider the cases in our framework where only one instrument is necessary. The first case is when no two technologies produce in the same period. That is, we can say that the output efficiency matrix, $\xi$, is diagonal without loss of generality; this further implies that we have a CES structure between technologies where the elasticity of substitution is same as that for consumers, $\sigma$.\footnote{ A proof is provided in \hyperref[sec:CESspecialcase]{Appendix A.C}} Consequently, if one of these technologies creates negative externalities, the optimal solution is simply use a single instrument such as a Pigouvian tax. On the other hand, the second case occurs when all technologies produce in every period but with time-invariant output. This results in an edge case where we only employ whichever technology has the highest cost efficiency (output per dollar). Consequently, we only need one or no instruments depending on whether the technology employed creates negative externalities. Essentially this latter case describes a situation where we have no intermittency at all. On the other hand, the former case describes a situation where we have, in a sense, maximized relative intermittency. But, with respect to both cases, we only need one instrument to handle externalities. 
+%The necessity of both instruments is a consequence of their model spanning multiple periods; that is, assuming we have CES production structure between clean and dirty energy in a one-period model, a single instrument is enough to optimally handle externalities. \footnote{ Recall that, with a CES production structure, the optimal quantity of technology $i$ is given by $X_i = \left( \frac{\xi_i}{c_i} \right)^\sigma  \frac{B}{P}$ where $\xi_i$ is its output per unit, $B$ is the budget, and $P$ is the price index. Neglecting effects on the price index, the own-price elasticity of any good is $-\sigma$. Furthermore, for the same structure,  we have the FOC: $X_i/X_j =  \left( \frac{\xi_i c_j}{\xi_j c_i} \right)^\sigma$. This implies that the cross elasticity of $X_i$ with respect to the output efficiency of technology $j$, $\xi_j$, is also $-\sigma$. Hence, a tax on the cost of $X_i$ or a subsidy that increases the efficiency $X_j$ can be used to deal with externalities; but, both are not necessary to do so.} However, while our model focuses on production on a shorter time scale, we find a similar result -- a combination of both taxes and subsidies may be more effective in promoting a shift towards clean energy. Moreover, the optimality of combining both instruments is a result of intermittency. 
+
+%For clarity, let us first consider the cases in our framework where only one instrument is necessary. The first case is when no two technologies produce in the same period. That is, we can say that the output efficiency matrix, $\xi$, is diagonal without loss of generality; this further implies that we have a CES structure between technologies where the elasticity of substitution is same as that for consumers, $\sigma$.\footnote{ A proof is provided in \hyperref[sec:CESspecialcase]{Appendix A.C}} Consequently, if one of these technologies creates negative externalities, the optimal solution is simply use a single instrument such as a Pigouvian tax. On the other hand, the second case occurs when all technologies produce in every period but with time-invariant output. This results in an edge case where we only employ whichever technology has the highest cost efficiency (output per dollar). Consequently, we only need one or no instruments depending on whether the technology employed creates negative externalities. Essentially this latter case describes a situation where we have no intermittency at all. On the other hand, the former case describes a situation where we have, in a sense, maximized relative intermittency. But, with respect to both cases, we only need one instrument to handle externalities. 
 
 \begin{table}[!t]
 	\caption*{\textbf{Figure 4:} Technical Change and the Optimal Quantity of Coal} 
@@ -519,9 +522,24 @@ For clarity, let us first consider the cases in our framework where only one ins
 \end{table}
 
 
-In all other situations, where we have a mix of intermittent and constant-output technologies, using multiple instruments can be more effective than just one. That is,  first suppose that research subsidies increase the output efficiency $\xi_i$ of some technology $i$. So, output efficiency is then given by $\xi_i \left( 1 + \beta_i \right)$ where $\beta_i$ is the percent increase in the output efficiency of technology $i$ as a result of research. Now, consider again a two-period setting with coal and solar with the same parameters as those given in \hyperref[Params: Example 1]{Example 1}. As discussed earlier, one solution to externalities is to set a Pigouvian tax on coal equal to its marginal social damage.  However, we may be able to reduce our reliance on coal in a more effective (welfare-maximizing) way by subsidizing research in solar as well. We can intuit this to be a potential solution based on \hyperref[fig:coaltech]{Figure 4}; in the first subplot, we show the effects of research into solar on the use of coal, while, in the second subplot, we show the effect of taxes on the use of coal. Essentially, with respect to reducing the use of coal power, there are diminishing returns to both pollution taxes and solar research subsidies. Hence, the pollution-reduction benefits of both instruments are convex.\footnote{ To be more precise, we numerically compute the Hessian for $X_1$ with respect to $\beta_2$, the percent change in the output efficiency of solar from research, and the tax rate, $\tau$. We find that the Hessian is negative definite. Consequently, since reducing $X_1$ creates welfare by reducing the social cost of pollution $\gamma X_1$, the Hessian of the benefits, $-\gamma X_1$ is positive definite and thus convex.} On the other hand, the deadweight loss created by taxation is generally convex; since research subsidies must be funded by tax revenue, its costs must necessarily be convex as well. In short, both instruments have convex benefits and costs, which implies that optimal policy is likely a combination of both. 
+%In all other situations, where we have a mix of intermittent and constant-output technologies, using multiple instruments can be more effective than just one. That is,  first suppose that research subsidies increase the output efficiency $\xi_i$ of some technology $i$. So, output efficiency is then given by $\xi_i \left( 1 + \beta_i \right)$ where $\beta_i$ is the percent increase in the output efficiency of technology $i$ as a result of research. Now, consider again a two-period setting with coal and solar with the same parameters as those given in \hyperref[Params: Example A]{Example A}. As discussed earlier, one solution to externalities is to set a Pigouvian tax on coal equal to its marginal social damage.  However, we may be able to reduce our reliance on coal in a more effective (welfare-maximizing) way by subsidizing research in solar as well. 
 
-In total, besides for edge cases, this suggests that optimal policy may be to incorporate both 
+%We can intuit this to be a potential solution based on \hyperref[fig:coaltech]{Figure 4}. In the first subplot, we show the effects of improving solar output efficiency on the use of coal; in the second subplot, we show how the use of coal varies with its own price. Essentially, with respect to reducing the use of coal power, there are diminishing returns to both carbon taxes and solar research subsidies. Consequently, there must the be diminishing returns to the pollution-reduction benefits of each, since pollution scales with the amount of coal power employed. But, we should also consider a secondary benefit of carbon taxes -- the revenue they generate. 
+
+%It is also important to note that carbon taxes have an added benefit -- they generate revenue. 
+
+%Hence, the pollution-reduction benefits of both instruments are convex. Additionally, even when \footnote{ To be more precise, we numerically compute the Hessian for $X_1$ with respect to $\beta_2$, the percent change in the output efficiency of solar from research, and the tax rate, $\tau$. We find that the Hessian is negative definite. Consequently, since reducing $X_1$ creates welfare by reducing the social cost of pollution $\gamma X_1$, the Hessian of the benefits, $-\gamma X_1$ is positive definite and thus convex.}  
+
+%Additionally, the deadweight loss created by taxation is generally convex; since research subsidies must be funded by tax revenue, its costs must necessarily be convex as well. The remaining factors to consider are the secondary benefits to each instrument. Research subsidies increase consumer surplus by making energy cheaper; since producers have linear costs in our model, we can neglect the effect on producer surplus. Additionally, 
+
+
+% CO2 emits 204 pounds of co2 per million btu
+% million btu = 0.29307107 mwh
+% ~700 pounds per Mwh
+
+% On the other hand, the deadweight loss created by taxation is generally convex; since research subsidies must be funded by tax revenue, its costs must necessarily be convex as well. In short, both instruments have convex benefits and costs. If we are not at an edge case, this implies that optimal policy is likely a combination of both.
+%\footnote{ To be more precise, we numerically compute the Hessian for $X_1$ with respect to $\beta_2$, the percent change in the output efficiency of solar from research, and the tax rate, $\tau$. We find that the Hessian is negative definite. Consequently, since reducing $X_1$ creates welfare by reducing the social cost of pollution $\gamma X_1$, the Hessian of the benefits, $-\gamma X_1$ is positive definite and thus convex. Note that we neglect here the change in surplus from the technological improvement $beta$ and the tax revenue from $\tau$. }  
+
 
 
 
@@ -533,12 +551,12 @@ In total, besides for edge cases, this suggests that optimal policy may be to in
 
 \section{Conclusion}
 
-Throughout the paper, we considered coal and solar power as examples of fossil and renewable energy. Moreover, 
-For instance, we discussed how to handle pollution when energy sources are intermittent; we found that, rather than a standard Pigouvian tax, we would be better off using a combination of research subsidies and carbon taxes. One implicit but important point here is that optimal policy must be tuned for differences in local electricity markets. That is, even if externalities are global and research spills over, optimal policy differs on a local scale since generation technologies differ on a local scale.  
+\dots Throughout the paper, we considered coal and solar power as examples of fossil and renewable energy. Moreover, 
+For instance, we discussed how to handle pollution when energy sources are intermittent; we found that, rather than a standard Pigouvian tax, we would be better off using a combination of research subsidies and carbon taxes. One implicit but important point here is that optimal policy must be tuned for differences in local electricity markets. That is, even if externalities are global and research spills over, optimal policy differs on a local scale since generation technologies differ on a local scale. \dots
 
 
 
-An aim for future research may be to develop a model of clean and dirty energy that incorporates both predictable and stochastic intermittency in a multi-period setting. 
+\dots An aim for future research may be to develop a model of clean and dirty energy that incorporates both predictable and stochastic intermittency in a multi-period setting. 
 
 
 
@@ -652,44 +670,24 @@ The comparative statics are similarly intuitive. The equilibrium quantity of a t
 	\begin{pmatrix}
 	\dfrac{-\alpha _{t}\,{\xi _{\mathrm{2s}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}-\dfrac{\alpha _{s}\,{\xi _{\mathrm{2t}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}<0 \\
 	\dfrac{\alpha _{t}\,\xi _{\mathrm{1s}}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}+\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}>0
-	\end{pmatrix}
-	=
-	\begin{pmatrix}
-	< 0 \\
-	> 0 
-	\end{pmatrix} \\
+	\end{pmatrix}\\
 	\frac{\partial X_2}{\partial c} &= 
 	\begin{pmatrix}
 	\dfrac{\alpha _{t}\,\xi _{\mathrm{1s}}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}+\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}>0 \\
 	\dfrac{-\alpha _{t}\,{\xi _{\mathrm{1s}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}-\dfrac{\alpha _{s}\,{\xi _{\mathrm{1t}}}^2}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}<0
 	\end{pmatrix}
-	=
-	\begin{pmatrix}
-	> 0 \\
-	< 0 
-	\end{pmatrix}
 	\end{align*}
 	The first and second terms of $\partial X_1 / \partial c_1$ are clearly both negative independent of the restrictions on the parameters. Similarly, all terms of  $\partial X_1 / \partial c_2$ are positive independent of any restrictions. Since the structure of this problem is symmetrical with respect to $X_1$ and $X_2$, the same comparative statics apply but in reverse for $X_1$. Next, we derive comparative statics for each element of $\xi$.
-	\begin{alignat*}{2}
+	\begin{alignat*}{1}
 	\frac{\partial X_1}{\partial \xi} &= 
 	\begin{pmatrix}
 	\dfrac{\alpha _{s}\,c_{2}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}>0 & \dfrac{\alpha _{t}\,c_{2}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}>0 \\
 	\dfrac{-\alpha _{s}\,c_{2}\,\xi _{\mathrm{1t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}<0 & \dfrac{-\alpha _{t}\,c_{2}\,\xi _{\mathrm{1s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}<0 \\
-	\end{pmatrix}
-	&&=
-	\begin{pmatrix}
-	> 0 & > 0  \\
-	< 0 & < 0
-	\end{pmatrix} \\
+	\end{pmatrix}\\
 	\frac{\partial X_2}{\partial \xi} &= 
 	\begin{pmatrix}
 	\dfrac{-\alpha _{s}\,c_{1}\,\xi _{\mathrm{2t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} <0& \dfrac{-\alpha _{t}\,c_{1}\,\xi _{\mathrm{2s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} <0\\
 	\dfrac{\alpha _{s}\,c_{1}\,\xi _{\mathrm{1t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}>0& \dfrac{\alpha _{t}\,c_{1}\,\xi _{\mathrm{1s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} >0\\
-	\end{pmatrix}
-	&&=
-	\begin{pmatrix}
-	< 0 & < 0 \\
-	> 0 & > 0  
 	\end{pmatrix}
 	\end{alignat*}
 	Again, the signs are fairly straightforward. The optimal quantity of $X_1$ increases with its output efficiency in both periods; however, it decreases with the output efficiency of $X_2$ in both periods. Similarly, symmetrical results are shown for $X_2$. Next, we study the effects of $\alpha$ on $X$; this requires us to place some restrictions on the parameters, so we use those belonging to Case 1 in \hyperref[tab:paramrest]{Table 1}. With $\alpha \equiv \left( \alpha_t \;\; \alpha_s \right)^T$, 
@@ -698,92 +696,49 @@ The comparative statics are similarly intuitive. The equilibrium quantity of a t
 	\begin{pmatrix}
 	\dfrac{\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}}<0 \\
 	\dfrac{\xi _{\mathrm{2t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}>0
-	\end{pmatrix}
-	=
-	\begin{pmatrix}
-	< 0 \\
-	> 0 
-	\end{pmatrix} \\
+	\end{pmatrix}\\
 	\frac{\partial X_2}{\partial \alpha} &= 
 	\begin{pmatrix}
 	\dfrac{-\xi _{\mathrm{1s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}}>0 \\
 	\dfrac{-\xi _{\mathrm{1t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}<0
 	\end{pmatrix}
-	=
-	\begin{pmatrix}
-	> 0 \\
-	< 0 
-	\end{pmatrix}
 	\end{align*}
 	Note that our restrictions imply that $c_1 \xi_{2t} - c_2 \xi_{1t} > 0$ and $c_2 \xi_{1s} - c_1 \xi_{2s} > 0$. From here, the intuition is clear; we assume that $X_2$ is more cost efficient in period $t$, so increases in demand during period $t$ (caused by increases in $\alpha_t$) will increase the optimal quantity of $X_2$. And, the same applies to $X_1$ with respect to period $s$ and $\alpha_s$. Again, due to symmetry, the statics are reversed when the technologies are flipped. Similarly, the signs would also be flipped if we used the restrictions given by Case 2 instead. 
 	
-	Next, we derive the comparative statics for $Z$. 
-	\begin{alignat*}{2}
+	Next, we derive the comparative statics for $Z$. From our restrictions, we have $\xi_{1s}\xi_{2t} > \xi_{2s}\xi_{1t}$. All the results above follow from this inequality and the cost efficiency restrictions. 
+	\begin{align*}
 	\frac{\partial Z_t}{\partial c} &= 
 	\begin{pmatrix}
 	\dfrac{\alpha _{t}\,\xi _{\mathrm{2s}}\,\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}>0\\
 	\dfrac{-\alpha _{t}\,\xi _{\mathrm{1s}}\,\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2}<0
-	\end{pmatrix}
-	&=
-	\begin{pmatrix}
-	> 0 \\
-	< 0 
-	\end{pmatrix} \\
+	\end{pmatrix}\\
 	\frac{\partial Z_s}{\partial c} &= 
 	\begin{pmatrix}
 	\dfrac{-\alpha _{s}\,\xi _{\mathrm{2t}}\,\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} <0\\
 	\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\left(\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} >0
-	\end{pmatrix}
-	&=
-	\begin{pmatrix}
-	< 0 \\
-	> 0 
-	\end{pmatrix}
-	\end{alignat*}
-	From our restrictions, we have $\xi_{1s}\xi_{2t} > \xi_{2s}\xi_{1t}$, and all the results above follow from this. 
-	\begin{alignat*}{2}
+	\end{pmatrix}\\
 	\frac{\partial Z_t}{\partial \xi} &= 
 	\begin{pmatrix}
 	\dfrac{\alpha _{t}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} < 0& \dfrac{-\alpha _{t}\,\xi _{\mathrm{2s}}\,\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} <0 \\
 	\dfrac{-\alpha _{t}\,\xi _{\mathrm{1s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} >0& \dfrac{\alpha _{t}\,\xi _{\mathrm{1s}}\,\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} >0\\
-	\end{pmatrix}
-	&&=
-	\begin{pmatrix}
-	< 0 & < 0  \\
-	> 0 & > 0
-	\end{pmatrix} \\
+	\end{pmatrix}\\
 	\frac{\partial Z_s}{\partial \xi} &= 
 	\begin{pmatrix}
 	\dfrac{-\alpha _{s}\,\xi _{\mathrm{2t}}\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}> 0& \dfrac{\alpha _{s}\,\xi _{\mathrm{2t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}} > 0\\
 	\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}\,\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2} < 0& \dfrac{-\alpha _{s}\,\xi _{\mathrm{1t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}} <0\\
 	\end{pmatrix}
-	&&=
-	\begin{pmatrix}
-	> 0 & > 0 \\
-	< 0 & < 0  
-	\end{pmatrix}
-	\end{alignat*}
+	\end{align*}
 	Again, recall that we have $c_1 \xi_{2t} - c_2 \xi_{1t} > 0$ and $c_2 \xi_{1s} - c_1 \xi_{2s} > 0$; the rest follows. And finally, we have:
 	\begin{align*}
 	\frac{\partial Z_t}{\partial \alpha} &= 
 	\begin{pmatrix}
-	\dfrac{-\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} \\
+	\dfrac{-\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}} > 0  \\
 	0
-	\end{pmatrix}
-	=
-	\begin{pmatrix}
-	> 0 \\
-	0 
 	\end{pmatrix} \\
-	\frac{\partial Z_s}{\partial \alpha}> 0 &= 
+	\frac{\partial Z_s}{\partial \alpha} &= 
 	\begin{pmatrix}
 	0 \\
 	\dfrac{\xi _{\mathrm{1s}}\,\xi _{\mathrm{2t}}-\xi _{\mathrm{1t}}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}} > 0
-	\end{pmatrix}
-	=
-	\begin{pmatrix}
-	0 \\
-	> 0 
 	\end{pmatrix}
 	\end{align*}
 	These are fairly trivial, since $Z_t = \alpha_t / p_t$ (and $Z_s = \alpha_s/ p_s$) and prices are positive. \\
@@ -809,14 +764,14 @@ The following proof is a derivation of the optimal tax $\tau$ on $X_1$ in the ca
 
 \label{sec:CESspecialcase}
 
-Our framework nests the case where there exists a CES production structure between each technology. This happens when no two technologies produce in the same period and we have the same number of periods as technologies. Additionally, the CES production function's elasticity parameter in this case will be equivalent to the consumer's CES utility elasticity parameter (the intertemporal elasticity of substitution for electricity consumption). 
+Our framework nests the case where there exists a CES production structure between each technology. This happens when no two technologies produce in the same period and we have the same number of periods as technologies. Additionally, in this case, the CES production function's elasticity parameter  will be equivalent to the that of the consumer's CES utility function -- the intertemporal elasticity of substitution for electricity consumption. 
 
 \begin{proof}
-	Firstly, note that we can reindex our technologies such that $\xi$ is diagonal, since each technology only produces in one period. Hence, without loss of generality, we have diagonal $\xi$. Next, we may say that the electricity output in period $i$ is given by $Z_i = \xi_{i,i} X_i$. Now, recall that the FOC for profit-maximization is given by $p = \xi^{-1} c$, hence we have $p_i = c_i / \xi_{i,i}$.  And, finally, with the FOC for utility maximization, we have:
+	Firstly, note that we can reindex our technologies such that $\xi$ is diagonal, since each technology only produces in one period. Hence, without loss of generality, we have diagonal $\xi$. Next, we may say that the electricity output in period $i$ is given by $Z_i = \xi_{i,i} X_i$. Now, recall that the FOC for profit-maximization is given by $p = \xi^{-1} c$, hence we have $p_i = c_i / \xi_{i,i}$.  Combining this equations with the FOC for utility maximization, we have:
 	\begin{align*}
 	\frac{Z_i}{Z_j} &= \left( \frac{\alpha_i p_j}{\alpha_j p_i} \right)^\sigma \\
-	\frac{ X_i }{X_j} &= \left( \frac{ \alpha_i p_j \xi_{j,j}^{1/\sigma} }{ \alpha_j p_i \xi_{i,i}^{1/\sigma} } \right)^\sigma \\
-	\frac{ X_i }{X_j} &= \left( \frac{ \alpha_i c_j \xi_{j,j}^{1/\sigma - 1} }{ \alpha_j c_i \xi_{i,i}^{1/\sigma - 1} } \right)^\sigma
+	\implies \frac{ X_i }{X_j} &= \left( \frac{ \alpha_i p_j \xi_{j,j}^{1/\sigma} }{ \alpha_j p_i \xi_{i,i}^{1/\sigma} } \right)^\sigma \\
+	\implies \frac{ X_i }{X_j} &= \left( \frac{ \alpha_i c_j \xi_{j,j}^{1/\sigma - 1} }{ \alpha_j c_i \xi_{i,i}^{1/\sigma - 1} } \right)^\sigma
 	\end{align*}
 	By definition, the elasticity of substitution between any two, arbitrary technologies $i$ and $j$ is constant. Moreover, it can be shown that this FOC can be rearranged to give the following demand equation for each technology $i$
 	\begin{align}
@@ -833,13 +788,7 @@ Our framework nests the case where there exists a CES production structure betwe
 \end{proof}
 
 
-\section{Literature}
-
-\begin{itemize}
-	\item \cite{Delarue} develop a model that distinguishes between power and energy in order to split up costs and risks into fixed and variable factors. 
-	\item \cite{SB2018} look at interactions between different solar and wind installations (covar matrix), while many other energy models do not.
-\end{itemize}
-
+\pagebreak
 
 \begin{thebibliography}{9}
 	
