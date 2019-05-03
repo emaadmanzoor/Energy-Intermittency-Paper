@@ -4,7 +4,7 @@ close all; clear; clc;
 
 % Simulation params
 n = 5000;
-research_multiplier = linspace(1,2,n);
+research_multiplier = linspace(1,5,n);
 sigma_range = [0.5];
 m = length(sigma_range);
 
@@ -42,7 +42,10 @@ for j = 1:m
 
         % Price Index
         P = ((1/2) * (prices'.^(1-sigma))*(alpha'.^sigma)).^(1/(1-sigma));
-
+        if sigma == 1
+            P = 1;
+        end
+        
         % Quantities
         Y = ((alpha'./prices).^(sigma)) * (budget/P);
            
@@ -78,7 +81,7 @@ end
 xlabel('Percent Change in the Efficiency of Solar (MWh)')
 ylabel('Coal Capacity (MWh)')
 xtickformat('percentage')
-xlim([0, 100])
+xlim([0, 350])
 grid('on')
 
 
@@ -86,7 +89,7 @@ grid('on')
 
 % Simulation params
 n = 5000;
-cost_multiplier = linspace(1,2,n);
+cost_multiplier = linspace(1,5,n);
 sigma_range = [0.5];
 m = length(sigma_range);
 
@@ -122,7 +125,10 @@ for j = 1:m
 
         % Price Index
         P = ((1/2) * (prices'.^(1-sigma))*(alpha'.^sigma)).^(1/(1-sigma));
-
+        if sigma == 1
+            P = 1;
+        end
+        
         % Quantities
         Y = ((alpha'./prices).^(sigma)) * (budget/P);
            
@@ -157,7 +163,7 @@ subplot(2,1,2)
 xlabel('Percent Increase in the Cost of Coal')
 ylabel('Coal Capacity (MWh)')
 xtickformat('percentage')
-xlim([0, 100])
+xlim([0, 350])
 grid('on')
 
 % Save figure

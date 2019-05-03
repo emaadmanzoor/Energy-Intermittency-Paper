@@ -43,13 +43,13 @@ f_aa = (-sim_function([0.99, 1.0]) + 2*sim_function([1, 1]) ...
 f_bb = (-sim_function([1.0, 0.99]) + 2*sim_function([1, 1]) ...
     - sim_function([1.0, 0.99]))/(0.01^2);
 
+% g = tax X1
+g_ab = f_ab(1);
+g_aa = f_aa(1);
+g_bb = f_bb(1);
 
-X1_ab = f_ab(1);
-X1_aa = f_aa(1);
-X1_bb = f_bb(1);
+g_Hes = [g_aa, g_ab; g_ab, g_bb];
 
-X1_Hes = [X1_aa, X1_ab; X1_ab, X1_bb];
-
-
+eig(-g_Hes)
 
 

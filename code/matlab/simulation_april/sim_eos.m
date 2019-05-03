@@ -43,7 +43,10 @@ for j = 1:m
 
         % Price Index
         P = ((1/2) * (prices'.^(1-sigma))*(alpha'.^sigma)).^(1/(1-sigma));
-
+        if sigma == 1
+            P = 1;
+        end
+        
         % Quantities
         Y = ((alpha'./prices).^(sigma)) * (budget/P);
            
@@ -100,7 +103,7 @@ ylim([0 15])
 grid('on')
 
 % Add horizontal line at 1
-e_1_line = plot([-1.4, -0.2], [1,1], 'LineStyle', '--', 'Color', 'k');
+e_1_line = plot([-1.5, -0.2], [1,1], 'LineStyle', '--', 'Color', 'k');
 legend([e_1_line], ' e = 1');
 
 % Save figure

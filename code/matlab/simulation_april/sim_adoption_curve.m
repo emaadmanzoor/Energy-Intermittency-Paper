@@ -43,7 +43,10 @@ for j = 1:m
 
         % Price Index
         P = ((1/2) * (prices'.^(1-sigma))*(alpha'.^sigma)).^(1/(1-sigma));
-
+        if sigma == 1
+            P = 1;
+        end
+        
         % Quantities
         Y = ((alpha'./prices).^(sigma)) * (budget/P);
           
@@ -136,6 +139,9 @@ for j = 1:m
 
         % Price Index
         P = ((1/2) * (prices'.^(1-sigma))*(alpha'.^sigma)).^(1/(1-sigma));
+        if sigma == 1
+            P = 1;
+        end
 
         % Quantities
         Y = ((alpha'./prices).^(sigma)) * (budget/P);
