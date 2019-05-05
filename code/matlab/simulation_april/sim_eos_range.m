@@ -1,19 +1,19 @@
-%% Elasticity of Substitution Sim with error bars on sigma estimate
+%% Elasticity of Substitution Sim with multiple sigma
 
 close all; clear; clc;
 
 % Simulation params
-n = 500;
-cost_multiplier = linspace(0.5,2,n);
-sigma_range = [0.8847 + 2*0.044, 0.8847, 0.8847 - 2*0.044];
+n = 50000;
+cost_multiplier = linspace(0.5,1.5,n);
+sigma_range = [0.5, 0.6, 0.7, 0.8, 0.9];
 m = length(sigma_range);
 
 % Exogenous params
-c_1 = 104.3;
-c_2 = 50;
-alpha = [0.6, 0.4];
-xi_1  = [1,   1];
-xi_2  = [1, 0.1];
+c_1 = 100;
+c_2 = 100;
+alpha = [0.5, 0.5];
+xi_1  = [0.95,   1];
+xi_2  = [1, 0.95];
 budget = 1;
 
 
@@ -67,36 +67,16 @@ for j = 1:m
     % relationship between log prices and quantities
     subplot(2,1,1);
     hold on;
-    
-    if sigma == 0.8847
-        plot(-log(output(1,:)), log(output(2,:)), ...
-            'LineWidth', 1, 'Color', 'k');
-    elseif sigma < 0.8846
-        plot(-log(output(1,:)), log(output(2,:)), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [0 0 1]*0.8);
-    else
-        plot(-log(output(1,:)), log(output(2,:)), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [1 0 0]*0.8);
-    end
+    plot(-log(output(1,:)), log(output(2,:)), 'LineWidth', 1)
     
     
     % relationship between log prices and quantities
     subplot(2,1,2);
     hold on;
     
-    if sigma == 0.8847
-        plot(-log(output(1,2:end)), ...
-            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'Color', 'k');
-    elseif sigma < 0.8846
-        plot(-log(output(1,2:end)), ...
-            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [0 0 1]*0.8);
-    else
-        plot(-log(output(1,2:end)), ...
-            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [1 0 0]*0.8);
-    end
+    plot(-log(output(1,2:end)), ...
+        diff(log(output(2,:)))./diff(-log(output(1,:))), ...
+        'LineWidth', 1);
     
 end
 
@@ -104,28 +84,30 @@ end
 
 % Format subplot 1
 subplot(2,1,1);
-legend('0.9727 (Upper 95% Confidence Limit)', '0.8847', ...
-    '0.7967 (Lower 95% Confidence Limit)')
+legend('0.5', '0.6', '0.7', '0.8', '9')
 xlabel({'Negative Log Difference in Costs', 'log(c_2/c_1)'})
 ylabel({'Log Difference in Quantities', 'log(X_1/X_2)'})
-xlim([-1.5, -0.4])
+xlim([-2, 2]/500)
 grid('on')
 
 % Format legend
 [hleg,att] = legend('show');
 legend('Location', 'northwest')
-title(hleg, {'\sigma', '(Intertemporal Elasticity of Substitution', ...
-    'for Electricity Consumption)'})
+title(hleg, '\sigma')
 
 % Format subplot 2
 subplot(2,1,2);
 xlabel({'Negative Log Difference in Costs', 'log(c_2/c_1)'})
 ylabel({'Elasticity of Substitution', ...
     'between Technologies', 'e_{1, 2}',})
-xlim([-1.5, -0.4])
-ylim([0 15])
+xlim([-2, 2]/500)
+ylim([0 5000])
 grid('on')
 
+% Add horizontal line at 1
+%e_1_line = plot([-1.5, -0.2], [1,1], 'LineStyle', '--', 'Color', 'k');
+%legend([e_1_line], ' e = 1');
+
 % Save figure
-print(gcf,'fig_elasticity.png','-dpng','-r300')
+print(gcf,'fig_elasticity_range.png','-dpng','-r300')
 
