@@ -121,15 +121,25 @@
 
 \begin{document}
 
-\title{\singlespacing{\textbf{Optimal environmental policy for electricity markets with intermittent renewable energy}}}
+\title{\singlespacing{\textbf{Efficient pollution abatement in electricity markets with intermittent renewable energy}}}
 
-\author[]{Saketh Aleti\thanks{I would like to thank Gal Hochman and Roger Klein for helpful comments and the Sun Grant for funding this project. }}
+\author[]{Saketh Aleti\thanks{I would like to thank Prof. Roger Klein for helpful comments and the Sun Grant for funding this project.} \, and Gal Hochman}
 
 \affil[]{Rutgers University}
 
 \date{\vspace{-1em}\today}
 
 \maketitle
+
+% Syntax: \begin{addmargin}[<left indentation>]{<indentation>}
+\begin{addmargin}[0.5in]{0.5in}
+	\textit{ Use of renewable energy has increased greatly ... 
+		We evaluate renewable energy technologies in a partial equilibrium setting that integrates their production profiles with variation in the market price of electricity. 
+		In order to discount the ..., we use a representative agent that prefers to smooth their electricity consumption over time. 
+		Our results find a highly non-linear elasticity of substitution between intermittent and fossil energy. 
+		Furthermore, we find that standard environmental policy such as carbon taxes and renewable subsidies can have important distributional consequences as a result of intermittency. Subsidizing research that improves battery technologies can complement present policy and greatly increase the substitutability of renewable and fossil energy. 
+	 }
+\end{addmargin}
 
 
 \section{Introduction}
@@ -143,11 +153,11 @@ Our model comes closest to that of \citet{HH} who build a peak-load pricing mode
 
 To highlight this difference, we must first contrast the terms  \textit{intermittency} and \textit{reliability}. By intermittency, we predictable changes in output related to physical constraints. For instance, while wind energy output varies over time, if  we know the angle and speed of wind, we may precisely derive the quantity of energy that a wind farm generates.\footnote{ \citet{Foley2012} provide a review of the literature on the forecasting of wind power. Over time, forecasts have gotten much more accurate allowing electricity grids to manage wind power intermittency ahead of time.}  At the same time, these forecasts may not be perfect and, as a result, we see unexpected variation in the output of a technology. This unpredictability may be better captured by the notion of reliability; specifically,  we refer to definition provided by the US Department of Energy's \citet{ORNL} -- ``Power reliability can be defined as the degree to which the performance of the elements in a bulk system results in electricity being delivered to customers within accepted standards and in the amount desired." This is more so related to the stochastic or unpredictable variation in the output of a technology. Unlike intermittency, this cannot be planned around with 100\% certainty. A practical example may be a wind turbine's systems failing. While we may know the chances of this occurring, it's not possible to know when it will occur ahead of time; consequently, this may result in a temporary reduction in the quantity and quality of the electricity delivered --  a loss of reliability. In short, when \citeauthor{HH} define renewable output as equal to a baseline capacity multiplied by a uniform random variable, their model is closer to one of reliability rather than intermittency. 
 
-On the other hand,  we model intermittency as defined above by allowing the output of renewable energy to differ between periods according to known function. But, for parsimony, we assume that the output of all technologies in each period does not vary stochastically; that is, we focus on intermittency rather than reliability. We then model the electricity sector using a representative firm that chooses and builds capacity from a set of electricity-generating technologies to maximize profit; some of these technologies are intermittent while others have constant output. Then, we consider a representative consumer who purchases varying quantities of electricity in each period in order to maximize utility. Generally, people prefer to spread their electricity consumption out over time; a standard CES function can capture this preference in a simple way. That is, we treat electricity as a heterogenous good which is differentiated by its delivery time; consumer utility is given by a CES function of electricity consumption in each period.\footnote{ The use of a CES function as such has been explored earlier by \citet{Schwarz}, \citet{Schwarz}, \citet{Herriges}, and \citet{KS1994}, \citet{Aubin}, and \citet{Moha2016}. Their papers empirically estimate the parameters for this function; we provide a more detailed discussion of the empirical literature in our \hyperref[sec:methodology]{Methodology}.} These two sides of the market reach an equilibrium through adjustments in prices of electricity in each period. All in all, we make many of the same assumptions that \citet{HH} do. We assume dynamic pricing,\footnote{ \citeauthor{HH} provide a motivation for models incorporating the dynamic pricing of electricity. They argue such approaches to pricing will become the norm with further technological advances and coming regulatory changes.} no load rationing, and positive prices. 
+On the other hand,  we model intermittency as defined above by allowing the output of renewable energy to differ between periods according to known function. For parsimony, we assume that the output of all technologies in each period does not vary stochastically; that is, we focus on intermittency rather than reliability. Next, we model the electricity sector using a representative firm that chooses and builds capacity from a set of electricity-generating technologies to maximize profit; some of these technologies are intermittent while others have constant output. Then, we consider a representative consumer who purchases varying quantities of electricity in each period in order to maximize utility. Generally, people prefer to spread their electricity consumption out over time. We model this preference by using a CES function of electricity consumption differentiated by period.\footnote{ The use of a CES function in this way has been explored earlier by \citet{Schwarz}, \citet{Schwarz}, \citet{Herriges}, and \citet{KS1994}, \citet{Aubin}, and \citet{Moha2016}. Their papers empirically estimate the parameters for this function; we provide a more detailed discussion of the empirical literature in our \hyperref[sec:methodology]{Methodology}.} These two sides of the market reach an equilibrium through adjustments in prices of electricity in each period. All in all, we make many of the same assumptions that \citet{HH} do; we assume dynamic pricing,\footnote{ \citeauthor{HH} provide a motivation for models incorporating the dynamic pricing of electricity. They argue such approaches to pricing will become the norm with further technological advances and coming regulatory changes.} no load rationing, and positive prices. 
 
 Then, we parametrize our model empirically. To start, we fit the parameters of the consumer's CES utility function using electricity consumption and price data for each US state. Specifically, we estimate the intertemporal elasticity of substitution for electricity consumption; this parameter plays a particularly important role in our model, since it captures the effects of intermittency on demand. Then, to model the supply side, we narrow our model to a two-period, two-technology setting with renewables and fossil energy. We proxy for renewable energy using solar and proxy for fossil energy using coal; then, we parametrize each accordingly. Finally, we implement our model numerically and solve for the equilibrium. We study the effects of technical change on the energy market and derive policy implications.
 
-Overall, this treatment of intermittency produces some key results that contrast with those of Helm and Mier. First, while we also find that externalities can be handled through a Pigouvian tax, we further find that a combining both taxes on pollution and research subsidies for renewables is more optimal than either policy instrument alone. Second, we find that, as renewables get cheaper, their adoption is not necessarily S-shaped but can be concave or convex depending the elasticity of substitution in the consumer's utility function; with our estimated parameters, we find this relationship to be almost linear. Third, a significant amount of literature has assumed a CES structure between renewable and fossil energy (see \citet{Pap}); this assumption has been motivated, in part, by the need to capture imperfect substitutability between these two generation technologies as a result of intermittency. However, our direct model of intermittency disconfirms this assumption; the elasticity of substitution between these two energy technologies is far from linear as a \textit{consequence} of intermittency. In short, optimal taxes and subsidies along with the substitutability of renewable and fossil energy all vary with the state of the local energy market. Hence, we believe that optimal environmental policy must take into account local conditions far more than has previously been assumed. 
+Overall, this treatment of intermittency produces some key results that contrast with those of Helm and Mier. First, while we also find that externalities can be handled through a Pigouvian tax, we further find that a combining both taxes on pollution and research subsidies for renewables is more optimal than either policy instrument alone. Second, we find that, as renewables get cheaper, their adoption is not necessarily S-shaped but can be concave or convex depending the elasticity of substitution in the consumer's utility function; with our estimated parameters, we find this relationship to be almost linear. Third, a significant amount of literature has assumed a CES structure between renewable and fossil energy (see \citet{Pap}); this assumption has been motivated, in part, by the need to capture imperfect substitutability between these two generation technologies as a result of intermittency. However, our direct model of intermittency disconfirms this assumption; the elasticity of substitution between these two energy technologies is far from constant as a \textit{consequence} of intermittency. Moreover, it varies with the prices and quantities of energy generation technologies employed. Hence, we believe that optimal environmental policy, such as pollution taxes and research subsidies, should take into account the technologies powering local energy markets in order to effectively handle externalities. 
 
 
 \section{Model}
@@ -238,11 +248,11 @@ where $P$ is the price index and $I$ is income. Retail customers pay fixed rates
 
 
 A number of other papers have approached this problem using data from real-time pricing experiments. These include \citet{Schwarz}, \citet{Herriges}, and \citet{KS1994}.\footnote{ There has also been a large literature that directly estimates the price elasticity of electricity demand without imposing a CES functional form. These papers include \citet{Wolak}, \citet{Zarnikau}, \citet{Woo}, \citet{Zhou}, \citet{Reiss}, \citet{Fan}, and \citet{Deryugina}. These papers estimate own-price elasticities, while some also estimate cross-price elasticities for electricity consumption at different times. Because they do not impose a CES structure, we cannot obtain estimates of $\sigma$ from this literature. }
-The latter two papers estimate $\sigma$ to be around $0.1$ while the paper by \citeauthor{Schwarz}  obtain estimates around $0.04$. All three papers study real-time electricity pricing programs for industrial consumers using similar methodologies. Additionally, \citet{Aubin} also provide estimates of the $\sigma$ but using a different methodology; their results find $\sigma < 0$ which is impossible since it would imply upward-sloping demand curves under a CES structure. Finally, \citet{Moha2016} also empirically estimates the share parameters for a CES function of this form, but do not estimate the elasticity of substitution. 
+The latter two papers estimate $\sigma$ to be around $0.1$ while the paper by \citeauthor{Schwarz}  obtain estimates around $0.04$. All three papers study real-time electricity pricing programs for industrial consumers using similar methodologies. Additionally, \citet{Aubin} also provide estimates of the $\sigma$ but using a different methodology; their results find elasticity of substitution below 0. Under a CES structure, this is problematic, because it would imply upward-sloping demand curves. Finally, \citet{Moha2016} also empirically estimates the share parameters for a CES function of this form, but do not estimate the elasticity of substitution. 
 
-A common flaw in these papers is that they do not account for endogeneity caused by a supply-side response to prices. For instance, coal plants are able to modify their generation between days; so, they might respond to an increase in future prices by storing coal until prices rise. That is, there may exist intertemporal substitution for electricity generation which would bias $\sigma$ downward unless controlled for. This is particularly important, because whether $\sigma$ is closer to 0.1 or 1 can make a significant difference with respect to the practical implications of our model.
+Overall, the past literature has approached the estimation of $\sigma$ by running regressions with variants of the CES demand equation.  We are concerned about endogeneity, because producers may intertemporally substitute electricity generation. For instance, during the oil crisis of 1973, refineries increased gasoline stocks expecting future prices to be higher \citep{genie}. The existence of such behavior implies that estimates of $\sigma$ would be biased downwards unless we properly control for endogeneity. This is particularly important because whether $\sigma$ is closer to 0.1 or 1 significantly change the practical implications of our model. 
 
-Consequently, we provide our own estimates of $\sigma$ estimated on a monthly basis. Regarding the time scale, this decision is primarily due to data limitations, since we do  not have access to the proprietary data on real-time pricing experiments which the past literature has used. Although we are interested in understanding intertemporal substitution over a shorter time scale (since intermittency plays a larger role in shorter periods), estimates of $\sigma$ on a monthly basis may still be applicable on a smaller time frame. For instance, \citet{Schwarz} estimate $\sigma$ on a daily and hourly basis and find fairly close results; similarly, \citet{Herriges} also find no significant difference in their estimates of $\sigma$ for these two intervals. That is, while a daily basis is 24 times larger than an hourly basis, the estimates for $\sigma$, suprisingly, do not appear to change. Hence, we expect our estimates of $\sigma$ on a monthly basis to not be far from estimates on shorter time scales. We now define our econometric methodology in detail.
+So, we take a different approach by using a supply instrument to identify the CES demand parameters. Specifically, we use coal prices which affect the supply of electricity but not the demand. Furthermore, we estimate $\sigma$ on a monthly basis. This decision is primarily due to data limitations, since we do  not have access to the proprietary data on real-time pricing experiments which the past literature has used. Although we are interested in understanding intertemporal substitution over a shorter time scale (since intermittency plays a larger role in shorter periods), estimates of $\sigma$ on a monthly basis may still be applicable on a smaller time frame. For instance, \citet{Schwarz} estimate $\sigma$ on a daily and hourly basis and find fairly close results; similarly, \citet{Herriges} also find no significant difference in their estimates of $\sigma$ for these two intervals. That is, while a daily basis is 24 times larger than an hourly basis, the estimates for $\sigma$, suprisingly, do not appear to change. Hence, we expect our estimates of $\sigma$ on a monthly basis to not be far from estimates on shorter time scales. At the same time, our estimates of $\sigma$ will likely be larger than that of the literature, because we are controlling for endogeneity. We now define our econometric methodology in detail.
 
 \subsection{Theory}
 
@@ -290,8 +300,7 @@ where $f$ and $g$ are unknown, bounded functions. We restrict $cov(u_i, v_i) = 0
 \subsection{Data}
 
 We collect monthly data from the \cite{EIANetgen} on retail electricity prices and consumption for each state in the US from 2011 to 2018. Additionally, also from the EIA, we obtain data on the average cost of coal for electricity generation for each state and month.\footnote{ The coal price data set contains a large number of missing values due to privacy concerns; however, we do not expect that these missing values are correlated with the data itself.} We deflated both electricity and coal prices over time using the PCECP Index provided by the  \cite{USBEA}. 
-Finally, we collect data on HDDs and CDDs from the NOAA's \citet{CPC} for the same panel. Then, we merge these three data sets and trim 1\% of outliers for a total of $826$ observations for each month and state. We use this preliminary data set to construct the data required for our regressions. That is, each observation in our estimation equation belongs to a set $(t,s,i)$ consisting of two time periods and a state. Hence, we construct each row in our regression data set using unique combinations of $t,s$ where $t \neq s$ for each state $i$. Due to the number of potential combinations and thus observations, we restrict our data set to a random sample of 9000 observations.\footnote{ We reran our regressions with several different samples of 9000 and found that our estimated coefficients did not significantly change; hence we believe this sample size is sufficient.} 
-All in all, each observation in our regression data set consists the following variables: state ($i$), date 1 ($t$), date 2 ($s$), the log difference in electricity consumption between month 1 and month 2, the log difference in the price of electricity, the log difference in the price of coal, the number of CDDs for each date, the number of HDDs for each date, and the difference (in months) between dates 1 and 2.  
+Finally, we collect data on HDDs and CDDs from the NOAA's \citet{CPC} for the same panel. Then, we merge these three data sets and trim 1\% of outliers for a total of $818$ observations for each month and state. We use this preliminary data set to construct the data required for our regressions. That is, each observation in our estimation equation belongs to a set $(t,s,i)$ consisting of two time periods and a state. Hence, we construct each row in our regression data set using unique combinations of $t,s$ where $t \neq s$ for each state $i$. This gives us a total of 6817 observations.  All in all, each observation in our regression data set consists the following variables: state ($i$), date 1 ($t$), date 2 ($s$), the log difference in electricity consumption between month 1 and month 2, the log difference in the price of electricity, the log difference in the price of coal, the number of CDDs for each date, the number of HDDs for each date, and the difference in months between dates 1 and 2. 
 
 
 
@@ -310,35 +319,36 @@ All in all, each observation in our regression data set consists the following v
 		\cline{2-7} 
 		\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ [0.5ex]
 		\hline \\[-1.8ex] 
-		$-\ln (P_{t,i} / P_{s,i})$ & 0.751$^{***}$ & 0.481$^{***}$ & 0.607$^{***}$ & 0.750$^{***}$ & 0.481$^{**}$ & 0.607$^{***}$ \\ 
+		$-\ln (P_{t,i} / P_{s,i})$ & 0.937$^{***}$ & 1.075$^{***}$ & 1.098$^{***}$ & 1.074$^{***}$ & 1.263$^{***}$ & 1.305$^{***}$ \\ 
 		& (0.030) & (0.026) & (0.026) & (0.224) & (0.172) & (0.169) \\ 
 		& & & & & & \\ 
-		$\Delta_{t,s}$ &  &  & 0.001$^{***}$ &  &  & 0.001$^{***}$ \\ 
-		&  &  & (0.0001) &  &  & (0.0002) \\ 
+		$\Delta_{t,s}$ &  &  & 0.0005$^{***}$ &  &  & 0.0065$^{*}$ \\ 
+		&  &  & (0.0001) &  &  & (0.0003) \\ 
 		& & & & & & \\ 
-		CDD$_t$ &  & 0.990$^{***}$ & 1.003$^{***}$ &  & 0.990$^{***}$ & 1.002$^{***}$ \\ 
-		$\quad(\times 1000^{-1})$&  & (0.016) & (0.016) &  & (0.087) & (0.086) \\ 
+		CDD$_t$ &  & 1.156$^{***}$ & 1.163$^{***}$ &  & 1.164$^{***}$ & 1.174$^{***}$ \\ 
+		
+		$\quad(\times 1000^{-1})$ &  & (0.017) & (0.017) &  & (0.072) & (0.075) \\ 
 		& & & & & & \\ 
-		CDD$_s$ &  & $-$0.999$^{***}$ & $-$1.011$^{***}$ &  & $-$0.999$^{***}$ & $-$1.012$^{***}$ \\ 
-		$\quad(\times 1000^{-1})$&  & (0.016) & (0.016) &  & (0.087) & (0.085) \\ 
+		CDD$_s$ &  & $-$1.143$^{***}$ & $-$1.158$^{***}$ &  & $-$1.200$^{***}$ & $-$1.224$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.025) & (0.026) &  & (0.096) & (0.098) \\ 
 		& & & & & & \\ 
-		HDD$_t$ &  & 0.306$^{***}$ & 0.294$^{***}$ &  & 0.307$^{***}$ & 0.295$^{***}$ \\ 
-		$\quad(\times 1000^{-1})$&  & (0.005) & (0.005) &  & (0.030) & (0.030) \\ 
+		HDD$_t$  &  & 0.246$^{***}$ & 0.245$^{***}$ &  & 0.237$^{***}$ & 0.236$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$ &  & (0.007) & (0.007) &  & (0.031) & (0.031) \\ 
 		& & & & & & \\ 
-		HDD$_s$ &  & $-$0.309$^{***}$ & $-$0.296$^{***}$ &  & $-$0.308$^{***}$ & $-$0.295$^{***}$ \\ 
-		$\quad(\times 1000^{-1})$&  & (0.005) & (0.005) &  & (0.029) & (0.029) \\ 
+		HDD$_s$ &  & $-$0.267$^{***}$ & $-$0.265$^{***}$ &  & $-$0.268$^{***}$ & $-$0.263$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$ &  & (0.008) & (0.008) &  & (0.038) & (0.038) \\ 
 		& & & & & & \\ 
-		Intercept & 0.001 & 0.002 & 0.002 &  &  &  \\ 
-		& (0.003) & (0.006) & (0.006) &  &  &  \\ 
-		& & & & & & \\  [0.9ex]
+		Intercept & 0.028$^{***}$ & 0.012$^{*}$ & 0.026$^{***}$ &  &  &  \\ 
+		& (0.004) & (0.006) & (0.007) &  &  &  \\  [0.9ex]
 		\hline \\[-1.8ex] 
 		State FEs &   &   &   & Yes & Yes & Yes \\ 
-		Observations & 9,000 & 9,000 & 9,000 & 9,000 & 9,000 & 9,000 \\ 
-		R$^{2}$ & 0.070 & 0.580 & 0.596 & 0.070 & 0.580 & 0.596 \\ 
-		Adjusted R$^{2}$ & 0.070 & 0.579 & 0.596 & 0.065 & 0.577 & 0.594 \\ [0.5ex]
+		Observations & 6,817 & 6,817 & 6,817 & 6,817 & 6,817 & 6,817 \\ 
+		R$^{2}$ & 0.079 & 0.507 & 0.508 & 0.092 & 0.521 & 0.524 \\ 
+		Adjusted R$^{2}$ & 0.079 & 0.506 & 0.508 & 0.085 & 0.518 & 0.520 \\  
+		F Statistic & 582$^{***}$  & 1399$^{***}$  & 1172$^{***}$ & 685$^{***}$  & 1474$^{***}$  & 1241$^{***}$  \\ [0.5ex]
 		\hline 
 		\hline \\[-1.8ex] 
-		\multicolumn{7}{@{}p{40em}@{}}{\textit{Note: } The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state; as discussed in the Data section, we take a random sample of 9000 observations from the data. The coefficient on $\ln (P_{t,i} / P_{s,i})$ is an estimate of $-\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. We scale the coefficients on degree days for clarity. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+		\multicolumn{7}{@{}p{41.4em}@{}}{\textit{Note: } The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state; as discussed in the Data section, we take a random sample of 9000 observations from the data. The coefficient on $-\ln (P_{t,i} / P_{s,i})$ is the estimate of $\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. We scale the coefficients on degree days for clarity. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
 	\end{tabular} 
 \end{table}
 
@@ -355,35 +365,35 @@ All in all, each observation in our regression data set consists the following v
 		\cmidrule(lr){2-4} \cmidrule(lr){5-7}\\[-2.2ex] 
 		& (A.1) & (B.1) & (C.1) & (A.2) & (B.2) & (C.2)\\ [0.5ex]
 		\hline \\[-1.8ex] 
-		$ \ln (C_{t,i} / C_{s,i})$ & $-$0.060$^{***}$ & 0.004$^{*}$ & 0.004$^{*}$ &  &  &  \\ 
+		$ \ln (C_{t,i} / C_{s,i})$ & $-$0.042$^{***}$ & $-$0.018$^{***}$ & $-$0.018$^{***}$ &  &  &  \\ 
 		& (0.002) & (0.002) & (0.002) &  &  &  \\ 
 		& & & & & & \\ 
-		$-\ln (P_{t,i} / P_{s,i})$ &  &  &  & 0.711$^{***}$ & 13.987 & 11.430$^{*}$ \\ 
-		&  &  &  & (0.106) & (8.384) & (5.330) \\ 
+		$-\ln (P_{t,i} / P_{s,i})$ &  &  &  & 2.978$^{***}$ & 5.896$^{***}$ & 5.818$^{***}$ \\ 
+		 &  &  &  & (0.180) & (0.548) & (0.524) \\ 
 		& & & & & & \\ 
-		$\Delta_{t,s}$  &  & 0.001$^{***}$ & 0.001$^{***}$ &  &  & 0.007$^{*}$ \\ 
-		&  & (0.00002) & (0.00002) &  &  & (0.003) \\ 
+		$\Delta_{t,s}$  &  &  & 0.001$^{***}$ &  &  & 0.003$^{***}$ \\ 
+		 &  &  & (0.00004) &  &  & (0.0004) \\ 
 		& & & & & & \\ 
-		CDD$_t$  &  & 0.151$^{***}$ & 0.151$^{***}$ &  & 3.064$^{*}$ & 2.620$^{**}$ \\ 
-		$\quad(\times 1000^{-1})$&  & (0.007) & (0.007) &  & (1.288) & (0.798) \\ 
+		CDD$_t$  &  & 0.100$^{***}$ & 0.105$^{***}$ &  & 1.637$^{***}$ & 1.657$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$ &  & (0.006) & (0.006) &  & (0.068) & (0.067) \\ 
 		& & & & & & \\ 
-		CDD$_s$  &  & $-$0.149$^{***}$ & $-$0.149$^{***}$ &  & $-$3.034$^{*}$ & $-$2.609$^{***}$ \\ 
-		$\quad(\times 1000^{-1})$&  & (0.007) & (0.007) &  & (1.264) & (0.788) \\ 
+		CDD$_s$ &  & $-$0.096$^{***}$ & $-$0.114$^{***}$ &  & $-$1.688$^{***}$ & $-$1.783$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$  &  & (0.009) & (0.009) &  & (0.079) & (0.084) \\ 
 		& & & & & & \\ 
-		HDD$_t$  &  & $-$0.057$^{***}$ & $-$0.057$^{***}$ &  & $-$0.407 & $-$0.311 \\ 
-		$\quad(\times 1000^{-1})$&  & (0.003) & (0.003) &  & (0.447) & (0.301) \\ 
+		HDD$_t$  &  & $-$0.048$^{***}$ & $-$0.048$^{***}$ &  & 0.001 & 0.007 \\ 
+		$\quad(\times 1000^{-1})$ &  & (0.003) & (0.003) &  & (0.031) & (0.030) \\ 
 		& & & & & & \\ 
-		HDD$_s$  &  & 0.058$^{***}$ & 0.058$^{***}$ &  & 0.423 & 0.324 \\ 
-		$\quad(\times 1000^{-1})$&  & (0.003) & (0.003) &  & (0.458) & (0.308) \\ [0.9ex]
+		HDD$_s$  &  & 0.053$^{***}$ & 0.055$^{***}$ &  & 0.0001 & 0.007 \\ 
+		$\quad(\times 1000^{-1})$  &  & (0.003) & (0.003) &  & (0.035) & (0.034) \\   [0.9ex]
 		\hline \\[-1.8ex] 
 		State FEs &  Yes & Yes  & Yes  & Yes & Yes & Yes \\ 
-		Observations & 9,000 & 9,000 & 9,000 & 9,000 & 9,000 & 9,000 \\ 
-		R$^{2}$          & 0.066 & 0.441 & 0.441 & & &  \\ 
-		Adjusted R$^{2}$ & 0.066 & 0.441 & 0.441 & & &  \\ 
-		F Statistic & 678$^{***}$ & 1,213$^{***}$ & 1,197$^{***}$  &  &  &  \\ 
+		Observations & 6817 & 6817 & 6817 & 6817 & 6817 & 6817 \\ 
+		R$^{2}$ & 0.061 & 0.264 & 0.294 &  &  & \\ 
+		Adjusted R$^{2}$ & 0.061 & 0.264 & 0.293 & &  &  \\ 
+		F Statistic & 443$^{***}$  & 489$^{***}$ & 472$^{***}$  &  &  &  \\ 
 		\hline 
 		\hline \\[-1.8ex] 
-		\multicolumn{7}{@{}p{39.2em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state; as discussed in the Data section, we take a random sample of 9000 observations from the data. The coefficient on $\ln (P_{t,i} / P_{s,i})$ is an estimate of $-\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. We scale the coefficients on degree days for clarity. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+		\multicolumn{7}{@{}p{41.5em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state; as discussed in the Data section, we take a random sample of 9000 observations from the data. The coefficient on $\ln (P_{t,i} / P_{s,i})$ is an estimate of $-\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. We scale the coefficients on degree days for clarity. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
 	\end{tabular} 
 \end{table}
 
@@ -400,37 +410,37 @@ All in all, each observation in our regression data set consists the following v
 		%\\[-1.8ex] & ln\_load\_rel \textasciitilde ln\_price\_rel & ln\_load\_rel \textasciitilde (CDD\_1) & ln\_load\_rel \textasciitilde time\_diff + (CDD\_1) \\ 
 		\\[-1.8ex] & (1) & (2) & (3)\\ [0.5ex]
 		\hline \\[-1.8ex] 
-		$\hat{\sigma} $ & 0.5676$^{***}$ & 0.4511$^{***}$ & 0.4129$^{***}$ \\ 
-		& (0.1036) & (0.0042) & (0.0085) \\ [0.9ex]
+		$\hat{\sigma} $ & 2.9976$^{***}$ & 1.2123$^{***}$ & 0.8847$^{***}$ \\ 
+		& (0.169) & (0.052) & (0.044) \\ [0.9ex]
 		\hline \\[-1.8ex] 
 		Time Control &   &   & Yes  \\ 
 		Degree Day Controls &   & Yes  & Yes  \\ 
-		Observations & 9,000 & 9,000 & 9,000 \\
+		Observations & 6817 & 6817 & 6817 \\
 		\hline 
 		\hline \\[-1.8ex] 
-		\multicolumn{4}{@{}p{36em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state; as discussed in the Data section, we take a random sample of 9000 observations from the data. The estimation procedure is described in the appendix.  Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+		\multicolumn{4}{@{}p{37em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state; as discussed in the Data section, we take a random sample of 9000 observations from the data. The estimation procedure is described in the appendix.  Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
 	\end{tabular} 
 \end{table} 
 
 
-Based on the OLS results reported in \hyperref[table:1]{Table 1}, we estimate the intertemporal elasticity of substitution for electricity consumption $\hat{\sigma}  = 0.609$ ($|t| > 24$) when accounting for all degree day covariates and state fixed effects. Interestingly, we find that the estimated coefficients for all three specifications do not differ when considering fixed effects. Moreover, these results slightly differ from the literature which finds estimates of $\hat{\sigma}$ to be between 0.1 and 0.25. However, this may be because their data focuses on industrial customers while our data concerns retail customers. Additionally, as expected, the coefficients on the degree day covariates are symmetrical; that is, the coefficient on $CDD_{t}$ is approximately the same as the negative of that on $CDD_{s}$, and the same applies to $HDD_{t}$ and $HDD_{s}$. On the other hand, we found that electricity consumption seems to rise more in response to CDDs rather than HDDs. Lastly, we find that the sign on $\Delta_{t,s}$ is positive in all regressions, so electricity consumption rises over time independent of price. Specifically, fit (3) finds a coefficient of 0.001021 which implies that electricity consumption rises, on average, by 1.2\% per year. 
+Based on the OLS results reported in \hyperref[table:1]{Table 1}, we estimate the intertemporal elasticity of substitution for electricity consumption $\hat{\sigma}  = 1.305$ ($|t| > 24$) when accounting for all degree day covariates and state fixed effects. Additionally, we find that accounting for cooling and heating degree days captures a large amount of variation in demand for electricity; in the fixed effects regressions, adding these controls raises adjusted $R^2$ from 8.5\% to 51.8\%. Also, as expected, the coefficients on the degree day covariates are symmetrical; that is, the coefficient on $CDD_{t}$ is approximately the same as the negative of that on $CDD_{s}$, and the same applies to $HDD_{t}$ and $HDD_{s}$. \footnote{It is important to note that the reason they are not perfectly equal is because our regression data consists of each unique \textit{combination} of $(t,s)$ for each $i$; that is, if we have an arbitrary observation $(t,s,i)$ in our data, then $(s,t,i)$ does not also appear. Including these observations would not affect $\sigma$ and they also don't add any further information to our regression. However, they would make the magnitude of the estimated coefficients for  CDD$_t$ and CDD$_s$ equivalent (and likewise for HDDs). }  Furthermore, we found that electricity consumption seems to rise more in response to CDDs rather than HDDs.  Next, we find that the sign on $\Delta_{t,s}$ is positive in all regressions, so electricity consumption rises over time independent of price. Specifically, fit (6) finds a coefficient of $0.000655$ which implies that electricity consumption rises, on average, by $\approx 0.7\%$ per year. Finally, adding state fixed effects seems to raise the estimates of $\sigma$ for all fits. 
 
-To account for endogeneity in the OLS results, we provide results for our IV specification in \hyperref[table:2]{Table 2}. Here, we find a much larger estimate $\hat{\sigma}  = 11.430$ ($|t| > 2.1$) when considering all covariates and fixed effects. F-Statistics on all three specifications are significantly larger than 10, which suggests that the instruments are not weak \citep{SS1997}. These results greatly differ from the literature's estimates; this difference may be the result of controlling for endogeneity. With respect to the demand controls, we find results similar to those of OLS. State fixed effects do not appear to affect the estimates. Also, we find that electricity consumption seems to rise by about 1\% per year. However, with respect to CDDs, we find that the coefficients that are about 10 times larger than those in the OLS results. But, overall, we again find that demand increases over time, and CDDs raise electricity consumption more than HDDs. 
+To account for endogeneity in the OLS results, we provide results for our IV specification in \hyperref[table:2]{Table 2}. Here, we find a much larger estimate of $\hat{\sigma}  = 5.818$ ($|t| > 11.1$) when considering all covariates and fixed effects. F-Statistics on all three specifications are significantly larger than 10, which suggests that the instruments are not weak \citep{SS1997}. These results greatly differ from the literature's estimates probably as a consequence of controlling for endogeneity. That is, ignoring variation on the supply side would bias OLS estimates for the effect of price on demand downwards; by controlling for this, we find larger estimates of $\sigma$ which is expected. Next, with respect to the demand controls, we find results similar to those of OLS. The magnitudes of the coefficients on DDs do not appear to be significantly different. Furthermore, we again find that CDDs affect electricity consumption more than HDDs. But, this time, the coefficients on heating degree days do not appear to be significant. Additionally, in contrast with the OLS results, we find a much larger estimate for the coefficient on $\Delta_{t,s}$ of $0.003$; this implies that electricity consumption seems to rise by about 3.65\% per year. So, overall, our IV results suggest much higher estimates of $\sigma$. 
 
-Finally, we control for nonlinear effects using a partially linear IV regression reported in \hyperref[table:3]{Table 3}. Here, we find results similar to that of OLS; $\hat{\sigma} = 0.413$ ($|t| > 48$) when considering all controls. The estimate of $\sigma$ without any controls is not significantly different from that in specifications with controls. However, all of these estimates are significantly different from the IV results; hence, the IV regressions do not appear to be robust. Consequently, we opt to use these estimates of $\sigma$ in our model. Since these estimates show $\hat{\sigma} \in (0,1)$, it appears that electricity consumption in different months complement one another. We now discuss what this means for renewable energy policy in greater detail. 
+Finally, we control for nonlinear effects using a partially linear IV regression reported in \hyperref[table:3]{Table 3}. Here, we find much smaller results than 2SLS when controlling for all possible covariates. Specifically, in fit (3), we have $\hat{\sigma} = 0.8847$ ($|t| > 20$). The estimates of $\sigma$ with less controls are much larger. However, based on the OLS and IV results, it seems that both the time control and degree day controls are significant. Hence, fit (3) is likely the most appropriate specification. Additionally, all of these estimates are significantly different from the 2SLS results which suggests that the 2SLS results are not robust. To be precise, our controls and instrument likely have non-linear effects on price and quantity which cannot be captured by linear models; this may explain why the 2SLS results differ significantly from these semiparametric results. Alternatively, this difference may also be because the errors in our regressions are not Gaussian. In any case, we  believe that our third semiparametric fit, $\hat{\sigma} = 0.8847$, is the most robust estimate of $\sigma$. We now discuss what this means for renewable energy policy in greater detail. 
 
 \pagebreak
 \vspace{1em}
 \section{Discussion}
 \label{sec:Discussion}
 
-\subsubsection{The Elasticity of Substitution between Renewable and Fossil Energy}
+\subsection{The Elasticity of Substitution between Renewable and Fossil Energy}
 
 
-To understand the economic implications of these estimates for $\sigma$, we parametrize and numerically evaluate our model in a two-period, two-technology setting. In particular, we are concerned with how $\sigma$ affects the substitutability of fossil and renewable energy. This is particularly important, because sufficient substitutability between these two technologies is required to transition to greener economy in the future. For instance, \citet{Ace2012} argues that, ``When the two
-sectors [clean and dirty energy] are substitutable but not sufficiently so, preventing an environmental disaster requires a permanent policy intervention. Finally, when the two sectors are complementary, the only way to stave off a disaster is to stop long-run growth." However, note that while our model sets the intertemporal elasticity of substitution for  electricity consumption $\sigma$ to a fixed value, we make no direct assumptions about the elasticity of substitution between different energy technologies. Rather, an interesting relationship regarding the substitutability/complementarity between technologies emerges indirectly as a result of intermittency. To illustrate this, we now proceed with the numerical model.
+To understand the economic implications of these estimates for $\sigma$, we parametrize and numerically evaluate our model in a two-period, two-technology setting. In particular, we are concerned with how $\sigma$ affects the substitutability of fossil and renewable energy. This is important, because sufficient substitutability between these two technologies is required to transition into greener economy in the future. For instance, \citet{Ace2012} provide a model where they argue that, ``When the two
+sectors [clean and dirty energy] are substitutable but not sufficiently so, preventing an environmental disaster requires a permanent policy intervention. Finally, when the two sectors are complementary, the only way to stave off a disaster is to stop long-run growth." However, note that while our model sets the intertemporal elasticity of substitution for  electricity consumption $\sigma$ to a fixed value, we make no direct assumptions about the elasticity of substitution between different energy technologies. Instead, this latter elasticity emerges as an indirect result of substitution between electricity consumption in periods. To illustrate this, we parametrize and estimate our model numerically.
 
-Firstly, we let technology 1 be coal power and technology 2 be solar power; let period $t$ represent peak hours and period $s$ represent off-peak hours. We assume that, holding prices equal, consumers prefer that 60\% of their energy arrive in period $t$ and the remaining 40\% arrive in period $s$; that is, we have $\alpha_t = 0.6$ and $\alpha_s = 0.4$. Next, we normalize all quantity units to a MWh basis. Hence, $\xi$ represents the percent of capacity utilized in each period; we assume coal uses 100\% of its capacity in both periods, while solar can access 100\% during peak hours and only 10\% during the off-peak. Finally, we set cost parameters, given in  \$ per MWh, equal to LCOE estimates for 2023 from the \citet{EIALCOE}; specifically, we use estimates for "Solar PV" and "Coal with 30\% CCS" from Table 1b.\footnote{ The LCOE for a technology is equal to the sum of its lifetime costs divided by its lifetime energy output. While \citet{Joskow2011} explains the flaws of comparing generation technologies solely on the basis of LCOE, our use of this measure is unrelated to his critique. That is, he argues that the economic value an intermittent technology should also account for when it produces electricity and the prices of electricity in those periods (see Table 2 of his paper). Our model does exactly this; but, we still need to  use LCOE to parametrize the cost of developing capacity. }  In total, we have the following parameters. 
+Firstly, we let technology 1 be coal power and technology 2 be solar power; let period $t$ represent peak hours and period $s$ represent off-peak hours. We assume that, holding prices equal, consumers prefer that approximately 60\% of their energy arrive in period $t$ and the remaining 40\% arrive in period $s$; that is, we have $\alpha_t = 0.6$ and $\alpha_s = 0.4$. Next, we normalize all quantity units to a MWh basis. Hence, $\xi$ represents the percent of capacity utilized in each period; we assume coal uses 100\% of its capacity in both periods, while solar can access 100\% during peak hours and only 10\% during the off-peak. Finally, we set cost parameters, given in  \$ per MWh, equal to LCOE estimates for 2023 from the \citet{EIALCOE}; specifically, we use estimates for "Solar PV" and "Coal with 30\% CCS" from Table 1b.\footnote{ The LCOE for a technology is equal to the sum of its lifetime costs divided by its lifetime energy output. While \citet{Joskow2011} explains the flaws of comparing generation technologies solely on the basis of LCOE, our use of this measure is unrelated to his critique. That is, he argues that the economic value an intermittent technology should also account for when it produces electricity and the prices of electricity in those periods (see Table 2 of his paper). Our model does exactly this; but, we still need to  use LCOE to parametrize the cost of developing capacity. }  In total, we have the following parameters. 
 
 \begin{center}
 	\noindent \textbf{Example  A:} $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. 
@@ -440,69 +450,130 @@ Firstly, we let technology 1 be coal power and technology 2 be solar power; let 
 
 
 We begin by exploring the implied elasticity of substitution between these two technologies. Recall, for any two commodities $i$ and $j$,  the elasticity of substitution $e_{i,j}$ is given by:
-$$e_{i,j} = \frac{\partial \ln (X_1/ X_2)}{\partial \ln (c_2/c_1)}$$
-where $c$ is their prices. This relationship is of particular interest, because many applied and theoretical models studying renewable and fossil energy impose a CES production structure between the two (see \citet{Pap}). That is, they assume that $e$ is a fixed constant between renewable and fossil energy. In our model, this is not the case; while directly deriving the equation for $e$ in our model is analytically intractable, we numerically estimate how it varies with $\ln (c_2/c_1)$ and $\sigma$.
+$$e_{i,j} = \frac{\partial \ln (X_i/ X_j)}{\partial \ln (c_j/c_i)}$$
+where $c$ is their prices. This relationship is of particular interest, because many applied and theoretical models studying renewable and fossil energy impose a CES production structure between the two (see \citet{Pap}). That is, they assume that $e$ is a fixed constant between renewable and fossil energy. In our model, this is not the case; while directly deriving the equation for $e_{1,2}$ in our model is analytically intractable, we numerically estimate how it varies with $\ln (c_2/c_1)$ and $\sigma$.
 
 
 \begin{table}[t]
-	\caption*{\textbf{Figure 1:} The Elasticity of Substition Between Solar and Coal} 
+	\caption*{\textbf{Figure 1:} The Elasticity of Substition between Solar and Coal} 
 	\label{fig:eosnum}
 	\footnotesize
 	\vspace{-1em}
 	\begin{tabular}{@{\extracolsep{0em}}c}
 		\includegraphics[width=1\linewidth]{../code/matlab/simulation_april/fig_elasticity} \\
-		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } The y-axis of the first plot is equivalent to $\log(X_1/X_2)$ and the x-axis of both plots is equivalent to  $\log(c_2/c_1)$. The legend in the upper subplot also applies to the lower subplot. These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. We plot results for various values of the intertemporal elasticity of substition for electricity consumption $\sigma$ which is used in the consumer's CES utility function. In order to numerically estimate these relationships, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (0.5\, c_1, 2 \,c_1)$. Then, we obtained estimates of the elasticity of substition by numerically differentiating $\ln(X_1/X_2)$ with respect to $-\ln(c_1, c_2)$. That is, the elasticity of substitution between technology 1 and 2 is given by the slope of the upper subplot, and it is graphed in the lower subplot. For reference, we include a dashed line at $e = 1$ which is the elasticity of substitution that corresponds to a Cobb-Douglas structure.  }     \\  
+		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } Technology 1 is coal and technology 2 is solar. The legend in the upper subplot also applies to the lower subplot. These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. Furthermore, we set the parameter for the intertemporal elasticity of substition for electricity consumption equal to our estimate $\hat{\sigma} = 0.8847$. In order to generate these numerical, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (0.5\, c_1, 2 \,c_1)$. Then, we obtained estimates of the elasticity of substition by numerically differentiating $\ln(X_1/X_2)$ with respect to $-\ln(c_1, c_2)$. That is, the elasticity of substitution  between technology 1 and 2 is given by the slope of the upper subplot, and it is graphed in the lower subplot. Finally, we repeat this procedure with $\sigma$ equal to two standard deviations above and below its estimated value; that is, the dashed lines represent  $\sigma = 0.8847 \pm 2(0.044)$. }     \\  
 	\end{tabular}
 \end{table}
 
-We plot our numerical estimates of $e_{solar, coal}$, the elasticity of substitution between solar and coal power, in \hyperref[fig:eosnum]{Figure 1}. These results were generated by computing the optimal quantities of each technology given a range of prices. Specifically, we held the price of solar capacity constant and varied the price of coal capacity from 50\% to 200\% of its original parametrized price. Then, we numerical differentiated $\log(X_1/X_2)$ with respect to $\log(c_2/c_1)$ to estimate the elasticity of substitution between solar and coal.\footnote{ Instead, we could have generated variation in $\log(c_2/c_1)$ data by holding solar at a constant price and varying the price of coal capacity. However, this does not change the results.} This numerically computed elasticity of substitution between solar and coal power, $e_{solar,coal}$, is shown in the lower subplot. We repeat this process with different values of $\sigma$, the elasticity of substitution in the consumer's utility function. Finally, we filter all observations of our numerical simulation that correspond to edge cases.
+We plot our numerical estimates of $e_{1, 2}$, the elasticity of substitution between solar and coal power, in \hyperref[fig:eosnum]{Figure 1}. These results were generated by computing the optimal quantities of each technology given a range of prices. Specifically, we held the price of solar capacity constant and varied the price of coal capacity from 50\% to 200\% of its original parametrized price. Then, we numerical differentiated $\log(X_1/X_2)$ with respect to $\log(c_2/c_1)$ to estimate the elasticity of substitution between solar and coal.\footnote{ Instead, we could have generated variation in $\log(c_2/c_1)$ data by holding solar at a constant price and varying the price of coal capacity. However, this does not change the results.} This numerically computed elasticity of substitution between solar and coal power, $e_{solar,coal}$, is shown in the lower subplot. We repeat this process with different values of $\sigma$, the elasticity of substitution in the consumer's utility function. Specifically, we use our estimate of $\hat{\sigma} = 0.8847\, (0.044)$ and its 95\%  confidence interval $(0.7967, 0.9727)$.  Finally, after finding the optimal values of our quantities $X$, we filter all observations of our numerical simulation that correspond to edge cases -- solutions where $X, Z \leq  0$.
 
 
 
-Our results show that $e$ is clearly non-linear, hence assuming a CES production structure between clean and dirty energy is not an accurate assumption. Furthermore, the relationship between log quantities and log prices becomes increasingly non-linear as $\sigma$ rises. This is somewhat intuitive; when energy consumption can be substituted across periods, the market is more sensitive to the cost efficiency of technologies and less sensitive to when they produce. For instance, suppose we had two technologies that each produced in a different period; if consumers are less willing to substitute consumption across periods, both technologies are likely to be  employed, On the other hand, when consumers are open to substitution,they will simply consume the majority of their electricity in whichever period it is most cost effective to do so. Consequently, price plays bigger role than intermittency as $\sigma$ rises. This is further evident in the lower subplots; note that the numerical estimates of  $e$ rise and become more u-shaped as $\sigma$ rises.\footnote{ Recall that $\sigma < 1$ implies that  electricity consumption in different periods are complements, $\sigma = 1$ implies to a Cobb-Douglas relationship, and $\sigma > 1$ implies that electricity consumption in different periods are substitutes.}  When consumers are less concerned about when they receive their energy, they are far more open to substituting between coal and solar power. On the other hand, for lower values of $\sigma$, we find that the substitutability of coal and solar power diminishes as solar becomes progressively cheaper. To clarify, note that the x-axis of the lower subplot is $\log(c_2/c_1)$; since $c_2$ is the price of solar, cheaper solar energy implies lower values of $\log(c_2/c_1)$ which corresponds to lower values of $e$. This can be explained by $\sigma < 1$ implying a complementary relationship between electricity consumption over time. Consumers with such preferences will be relatively less sensitive to prices and more interested in spreading their electricity consumption across each period. Thus, solar is less substitutable for coal in this case, because its intermittency conflicts with consumers wanting to smooth their electricity consumption over time. 
+The first relationship we see in \hyperref[fig:eosnum]{Figure 1} is that $e_{1,2}$ varies non-linearly with the relative costs of each technology; in particular, it appears to take on a hook shape. This shape is a result of both intermittency and costs. Intermittency reduces substitutability as overall energy generation becomes more intermittent. In other words, intermittency is bigger issue for consumers when their energy supply is not consistent. This causes $e_{1,2}$ to fall when the majority of energy generated comes from solar; naturally, the latter occurs when $\log(c_2/c_1)$ is small (solar is relatively cheap). At the same time, quantities become more sensitive to costs when costs greatly differ.\footnote{We explore this point further in Appendix B in which we consider a numerical example where technologies are minimally intermittent. That is, we again consider a two-period, two-technology example, but assume that $\xi_1$ and $\xi_2$ are nearly constant over time. We plot our results in \hyperref[fig:eosrange]{Figure B.1} and find that the elasticity of substitution takes on a u-shape. } That is, $e_{1,2}$ rises when the relative prices of solar and coal are very different. When these two effects interact, we see the elasticity of substitution between solar and coal take on a hook shape. 
 
-Additionally, note that we assumed earlier that the estimates of $\sigma$ on a monthly basis would be fairly close to those on a daily or hourly basis. But, our results showed estimates of $\hat{\sigma} \approx 0.5$ which differs from the literatures' estimates which fall between $0.01$ and $0.25$. Does this impact our numerical results? Alternatively, if our estimates were closer to past estimates, would there be significantly different economic implications? Based on our numerical model, the answer seems to be no. That is, the relationship between $e$ and $\log(c_2/c_1)$ in \hyperref[fig:eosnum]{Figure 1} does not significantly differ when varying $\sigma$ in $\{0.05, 0.25, 0.5\}$. Hence, even if our assumption is incorrect or past estimates are biased, our model's results do not significantly differ within this range of estimates for $\sigma$. 
- 
- 
-\subsubsection{Technical Change and the Adoption of Renewable Energy}
- 
- \begin{table}[!t]
- 	\caption*{\textbf{Figure 2:} The Market Share of Solar Energy versus Own Price} 
- 	\label{fig:adoptc2}
- 	\footnotesize
- 	\vspace{-1em}
- 	\begin{tabular}{@{\extracolsep{0em}}c}
- 		\includegraphics[width=1\linewidth]{../code/matlab/simulation_april/fig_adoption_c2} \\
- 		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. To generate these values, we first vary the price of solar relative to its original parametrized cost $c_2$.  Then, we find the optimal capacity of solar as a fraction of the total optimal capacity of all technologies (solar and coal) for each set of prices. And, finally, we repeat this process and plot the results for different values of $\sigma$, the consumer's intertemporal elasticity of electricity consumption.   }     \\  
- 	\end{tabular}
- \end{table}
- 
- \begin{table}[!t]
- 	\caption*{\textbf{Figure 3:} The Market Share of Solar Energy versus the Price of Coal} 
- 	\label{fig:adoptc1}
- 	\footnotesize
- 	\vspace{-1em}
- 	\begin{tabular}{@{\extracolsep{0em}}c}
- 		\includegraphics[width=1\linewidth]{../code/matlab/simulation_april/fig_adoption_c1} \\
- 		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. To generate these values, we first vary the price of coal relative to its original parametrized cost $c_1$.  Then, we find the optimal capacity of solar as a fraction of the total optimal capacity of all technologies (solar and coal) for each set of prices. And, finally, we repeat this process and plot the results for different values of $\sigma$, the consumer's intertemporal elasticity of electricity consumption.   }     \\  
- 	\end{tabular}
- \end{table}
+% Middle of paragraph (hard to understand?)
+% To understand why, let us consider three cases. For the first case, suppose coal is relatively far cheaper than solar ($\log(c_2/c_1)$ is large). This suggests producers will primarily employ coal for electricity. Because the output of coal does not vary with time, we will have a constant amount of electricity through the day. Consequently, the intermittency will not matter much on the margin since generation is already quite consistent. Instead, the cost of a competing generation technology will play a much bigger role. Consequently, solar and coal will be strong substitutes; this explains why $e_{1,2}$ is much larger when $\log(c_2/c_1)$ is large. On the other hand, for the second case, suppose that the price of solar and coal are such that we use about an equal amount of both. This corresponds to the point where $\log(c_2/c_1)  = -0.7$ in the \hyperref[fig:eosnum]{Figure 1}. In this case, output will not be constant through the day, since a large portion of electricity is coming from solar. As a result, consumers will care about intermittency on the margin; so, the  intermittency effect will matters in this case and will impede the adoption of solar. As a result, coal and solar will be relatively weaker substitutes; thus, we see $e_{1,2}$ is relatively lower when relative prices are not at extrema. Finally, consider the third case where solar is relatively much cheaper than coal. In this case, the quantity of solar is much larger than that of coal; this causes overall electricity output to be very intermittent. So, again, the intermittency effect matters. However, since the cost of each technology differs greatly, small changes in price could cause large changes in quantity. Accounting for both these factors, we see a moderately large elasticity of substitution $e_{1,2}$ when $\log(c_2/c_1)$ is small. 
+
+Additionally, note that the elasticity of substitution $e_{1,2}$ between solar and coal becomes larger and more non-linear as $\sigma$ rises. Firstly, the reason why  it becomes larger is fairly intuitive. When a consumer's intertemporal elasticity of substitution for electricity consumption $\sigma$ is large, they will be more sensitive to changes in the price of electricity and more willing to substitute their electricity consumption across periods. As a result, the intermittency of solar becomes less of an  issue for consumers, but its relative price with respect to coal will play a bigger role. Consequently, this implies that the elasticity of substitution $e_{1, 2}$ will be larger. Hence, in the lower subplot of \hyperref[fig:eosnum]{Figure 1}, we see that $e_{1, 2}$ rises with $\sigma$ when holding relative prices of each technology constant. Secondly, we find that $e_{1,2}$ becomes more u-shaped as $\sigma$ rises. This is because larger values of $\sigma$ weaken the disincentive created by intermittency. Consequently, the shape of the elasticity of substitution $e_{1,2}$ becomes more dependent on the relative costs. As argued earlier, when costs differ greatly between technologies, the elasticity of substitution $e_{1,2}$ is higher; this effect causes $e_{1,2}$ to take on a u-shape. So, in total, as $\sigma$ rises, we expect $e_{1,2}$ to become increasingly u-shaped. 
+
+
+%Additionally, note that we assumed earlier that the estimates of $\sigma$ on a monthly basis would be fairly close to those on a daily or hourly basis. But, our results showed estimates of $\hat{\sigma} \approx 0.5$ which differs from the literatures' estimates which fall between $0.01$ and $0.25$. Does this impact our numerical results? Alternatively, if our estimates were closer to past estimates, would there be significantly different economic implications? Based on our numerical model, the answer seems to be no. That is, the relationship between $e$ and $\log(c_2/c_1)$ in \hyperref[fig:eosnum]{Figure 1} does not significantly differ when varying $\sigma$ in $\{0.05, 0.25, 0.5\}$. Hence, even if our assumption is incorrect or past estimates are biased, our model's results do not significantly differ within this range of estimates for $\sigma$. 
+
+
+
+%\footnote{ Recall that $\sigma < 1$ implies that  electricity consumption in different periods are complements, $\sigma = 1$ implies to a Cobb-Douglas relationship, and $\sigma > 1$ implies that electricity consumption in different periods are substitutes.} 
+
 
 
  
-We now do a similar exercise but instead study the adoption (or market share/diffusion) of renewables. Specifically, using the same technologies, solar and coal, along with the same parameters, we study how the cost of each technology affects the market share of solar. First, we study the market share of solar with respect to its own price. Our results are shown in \hyperref[fig:adoptc2]{Figure 2}. We find that, for values of $\sigma \geq 1$, the market share of solar energy appears to be convex with respect to increases in cost efficiency. This relationship somewhat persists through to $\sigma = 0.5$; here, the market share appears to follow an inverted S-shape that starts concave and becomes convex. But, overall, the curve for $\sigma = 0.5$ seems almost linear. On the other hand, when $\sigma$ is sufficiently low, this relationship is more consistently convex. Interestingly, these dynamics with respect to $\sigma$ seem to be a product of intermittency. That is, as we discussed earlier, when consumers have high $\sigma$, they are more willing to shift their electricity consumption and are thus relatively more sensitive to chances in price. Consequently, the rate of adoption (the slope of the market share curve) is larger for higher $\sigma$ around moderate changes in price; however, this relationship between adoption and $\sigma$ changes as price falls more drastically. To understand why, see \hyperref[fig:adoptc1]{Figure 3}, where we compare the market share of solar with respect to the price of coal. We find that solar market share is concave for all values of $\sigma$; consequently, the market share of coal must be convex with respect to its own price. Hence, it seems that market share with respect to own price is convex for non-intermittent technologies, but may be concave for intermittent ones. Furthermore, the importance of intermittency in this context is driven by $\sigma$; that is, intermittency plays a bigger role in determining market share when consumers prefer, on the margin, smoother electricity consumption than electricity cost savings. This result directly contrasts with \cite{HH} who find S-shaped market diffusion for renewable energy; this shape is a result of their representation of intermittency as unpredictable, stochastic variability in the output of renewable energy. On the other hand, because we represent intermittency in a different way, our market share curves differ significantly. In any case, these market share curves have important implications in the context of promoting renewable energy adoption. 
+\subsection{Implications for Pollution Abatement}
+
+Overall, our results have shown that the traditional assumption of a CES relationship between renewable and fossil energy is inappropriate. However, since $e$ takes on a fairly simple shape, we can still adjust the findings of past models to account for variation in the elasticity of substitution. For example, consider again the results of \citet{Ace2012}. 
+
+Firstly, they find that the short-run cost of policy intervention is increasing with the elasticity of substitution between clean and dirty technologies.\footnote{See Corollary 1 of their paper for a proof and intuitive explanation.} We find that the elasticity of substitution between renewable and fossil energy is decreasing with intermittency. Consequently, this implies that regions with access to clean, reliable energy (such as hydro and geothermal energy) will require the most expensive interventions. Additionally, their paper states that the cost of delaying intervention is increasing with the elasticity of substitution $e$. Similarly, this implies delaying policy intervention is the most costly in regions with access to non-intermittent, clean energy.  
+
+Secondly, \citeauthor{Ace2012} argue that, when the discount rate and elasticity of substitution between clean and dirty energy ($e$) is sufficiently low, a disaster cannot be avoided under laissez-faire.\footnote{See Proposition 9 of their paper.} In our model, it is possible for $e$ to start at a large value and transition to much smaller values as clean energy becomes cheaper; this occurs when the source of clean energy is highly intermittent. On the other hand, if clean energy is not intermittent, it will be highly substitutable with dirty energy no matter their relative prices. This latter case would likely not lead to disaster but the former case (with high intermittency) would. Hence, we offer an alternative interpretation of this proposition: when the discount rate is sufficiently low and the intermittency of clean energy is sufficiently high, a disaster cannot be avoided under laissez-faire. 
+
+Finally, \citeauthor{Ace2012} find that, ``when the elasticity
+of substitution is high, since in this case a relatively small carbon tax is sufficient to
+redirect R\&D towards clean technologies." Recall that, in our model, we see that $e$ changes with relative prices; when fossil fuels are relatively cheap, $e$ is large. Hence, this implies we need a relatively small carbon tax early on to spur research. As technological change makes renewables cheaper, $e$ will fall and thus the carbon tax needs to rise. On the other hand, \citeauthor{Ace2012} show numerically that an optimal carbon tax should decreases over time when $e$ is sufficiently large. Hence, an intermediate solution may be to maintain a constant carbon tax over time. 
 
 
 
-\subsubsection{Externalities}
+
+\begin{table}[!t]
+	\caption*{\textbf{Figure 2:} The Price Elasticity of Demand for Coal Power} 
+	\label{fig:coalelas}
+	\footnotesize
+	\vspace{-1em}
+	\begin{tabular}{@{\extracolsep{0em}}c}
+		\includegraphics[width=1\linewidth]{../code/matlab/simulation_april/fig_coal_elas} \\
+		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$, $\sigma = 0.5$. We generate these results by finding the optimal quantity of coal, $X_1$, over a range of percent changes in its price $c_1$. Then, on the y-axis, we plot the log difference in $X_1$ divided by the log difference in its price. This is equivalent to the price elasticity of demand for $X_1$. }     \\  
+	\end{tabular}
+\end{table}
+
+Carbon taxes can have important distributional consequences. Earlier, we showed that the elasticity of substitution between renewable and fossil fuels $(e)$ is non-constant and falls with intermittency of present generation. This further implies that the elasticity of demand for generation technologies is non-constant as well. Specifically, we find that the elasticity of demand for a reliable source of energy increases in magnitude with respect to its own price. Using the earlier numerical example of solar and coal power, we show this explicitly in \hyperref[fig:coalelas]{Figure 2}. As the price of coal power rises significantly beyond its current price, demand gets more elastic as its price becomes the primary factor disincentivizing its use. But, initially, demand for coal power is inelastic since it is needed to fill the gaps in solar power's intermittent output.  This should be of concern for policy makers considering a pollution tax. Consumers in regions without access to clean and reliable energy will have an inelastic demand for fossil fuels; hence, they will bear significant welfare losses from a tax on fossil fuels. On the other hand, consumers in regions that have access to dispatchable, renewable energy such as hydropower will have a relatively elastic demand for fossil fuels, because they can easily manage added intermittency; hence, they will lose relatively less welfare from a carbon tax. All in all, if a carbon tax were implemented federally and its revenue were distributed equally, it may nevertheless function as an inequitable, between-state welfare transfer due to differences in the availability of renewable energy technology. This same argument applies to renewable subsidies and carbon quotas.
+
+
+\begin{table}[t]
+	\captionsetup{justification=centering}
+	\caption*{\textbf{Figure 3:} The Effect of Battery Storage on the Elasticity\newline of Substition between Solar and Coal} 
+	\label{fig:battery}
+	\footnotesize
+	\vspace{-1em}
+	\begin{tabular}{@{\extracolsep{0em}}c}
+		\includegraphics[width=1\linewidth]{../code/matlab/simulation_april/fig_batteries} \\
+		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } Technology 1 is coal and technology 2 is solar. The legend in the upper subplot also applies to the lower subplot. These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. Furthermore, we set the parameter for the intertemporal elasticity of substition for electricity consumption equal to our estimate $\hat{\sigma} = 0.8847$. In order to generate these numerical, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (0.5\, c_1, 2 \,c_1)$. Then, we obtained estimates of the elasticity of substition by numerically differentiating $\ln(X_1/X_2)$ with respect to $-\ln(c_1, c_2)$. That is, the elasticity of substitution  between technology 1 and 2 is given by the slope of the upper subplot, and it is graphed in the lower subplot. Finally, we repeat this procedure with $\xi_2 = (0.95, 0.15)$ and $\xi_2 = (0.90, 0.20)$ to simulate the effects of shifting solar power output using batteries. }     \\  
+	\end{tabular}
+\end{table}
+
+
+However, there alternative policies that can mitigate this distributional side effect. One such policy is a research subsidy for improving battery technologies. Reducing battery costs, improving their storage capacity, and reducing their  energy loss can allow intermittent renewables to far more easily substitute for traditional, fossil energy. To understand the magnitude of this effect, we again provide a numerical example using solar and coal. We model solar energy with batteries by shifting a portion of the original solar energy output across periods. That is, we initially parametrized solar with $\xi_{2} = (1, 0.1)$ implying that it functions at 100\% of its potential capacity during the peak and at 10\% of its potential capacity during the off-peak. We shift a fraction of its peak capacity to the off-peak, thereby modeling battery storage and deployment, by considering $\xi_2 = (0.95, 0.15)$ and $\xi_2 = (0.90, 0.20)$; this is equivalent to transferring 5\% and 10\% of peak solar output to off-peak hours. We ignore the energy losses and costs of battery storage for simplicity. We plot our results in \hyperref[fig:battery]{Figure 3}. It is immediately clear that making solar output more consistent through the day results in it being far more substitutable with coal. Moreover, we can see that intermittency no longer causes $e_{1,2}$ to taper off around 5 as solar becomes the dominant source of electricity. Rather, with batteries, cost plays a much larger role in determining the optimal quantity of each technology even when solar is relatively cheap. Overall, shifting even a small fraction of solar output using batteries can significantly improve solar power's substitutability with coal. 
+
+Consequently, batteries can complement reductions in the cost of intermittent renewables and mitigate the distributional effects of a carbon tax. As shown in \hyperref[fig:battery]{Figure 3}, the elasticity of substitution between solar and coal rises significantly as solar becomes less intermittent; this implies that a change in price of solar would have a far greater effect when combined with batteries for solar output. Hence, if policy makers aim to promote the use of renewables, they should subsidize research that reduces the cost of renewables as well as research that improves battery technology. Using both policy instruments can be more effective than either alone. Additionally, the second benefit of batteries is that they mitigate the distributional problems of a carbon tax. This is because, by reducing the intermittency of renewables, they make demand for fossil fuels less inelastic. In other words, regions without clean, consistent-output renewables can instead employ intermittent technologies with batteries to transition away from fossil fuel energy; this reduces welfare losses that they would have otherwise experienced from intermittency. 
 
 
 
-Suppose we are interested in handling externalities. We may assume that our first technology produces pollution according to the function $S(X) = \gamma X_1$ where $\gamma$ is the monetary damage per unit of $X_1$. A social planner then aims to balance the damages caused by pollution with the surplus of the private sector and the revenue from the tax. Hence, their objective function is given by
-$$\max_{\tau} \; CS + PS - S(X) + \tau X_1$$
-where $CS$ is consumer surplus, $PS$ is producer surplus, $S(X)$ is the cost of pollution, $\tau$ is the tax on $X_1$, and $\tau X_1$ is the tax revenue. As usual, the optimal tax is a Pigouvian tax; $\tau$ should be set equal to the marginal social cost of pollution $\gamma$.
+ 
+%\subsubsection{Technical Change and the Adoption of Renewable Energy}
+% 
+% \begin{table}[!t]
+% 	\caption*{\textbf{Figure 2:} The Market Share of Solar Energy versus Own Price} 
+% 	\label{fig:adoptc2}
+% 	\footnotesize
+% 	\vspace{-1em}
+% 	\begin{tabular}{@{\extracolsep{0em}}c}
+% 		\includegraphics[width=1\linewidth]{../code/matlab/simulation_april/fig_adoption_c2} \\
+% 		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. To generate these values, we first vary the price of solar relative to its original parametrized cost $c_2$.  Then, we find the optimal capacity of solar as a fraction of the total optimal capacity of all technologies (solar and coal) for each set of prices. And, finally, we repeat this process and plot the results for different values of $\sigma$, the consumer's intertemporal elasticity of electricity consumption.   }     \\  
+% 	\end{tabular}
+% \end{table}
+% 
+% \begin{table}[!t]
+% 	\caption*{\textbf{Figure 3:} The Market Share of Solar Energy versus the Price of Coal} 
+% 	\label{fig:adoptc1}
+% 	\footnotesize
+% 	\vspace{-1em}
+% 	\begin{tabular}{@{\extracolsep{0em}}c}
+% 		\includegraphics[width=1\linewidth]{../code/matlab/simulation_april/fig_adoption_c1} \\
+% 		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. To generate these values, we first vary the price of coal relative to its original parametrized cost $c_1$.  Then, we find the optimal capacity of solar as a fraction of the total optimal capacity of all technologies (solar and coal) for each set of prices. And, finally, we repeat this process and plot the results for different values of $\sigma$, the consumer's intertemporal elasticity of electricity consumption.   }     \\  
+% 	\end{tabular}
+% \end{table}
+%
+%
+% 
+%We now do a similar exercise but instead study the adoption (or market share/diffusion) of renewables. Specifically, using the same technologies, solar and coal, along with the same parameters, we study how the cost of each technology affects the market share of solar. First, we study the market share of solar with respect to its own price. Our results are shown in \hyperref[fig:adoptc2]{Figure 2}. We find that, for values of $\sigma \geq 1$, the market share of solar energy appears to be convex with respect to increases in cost efficiency. This relationship somewhat persists through to $\sigma = 0.5$; here, the market share appears to follow an inverted S-shape that starts concave and becomes convex. But, overall, the curve for $\sigma = 0.5$ seems almost linear. On the other hand, when $\sigma$ is sufficiently low, this relationship is more consistently convex. Interestingly, these dynamics with respect to $\sigma$ seem to be a product of intermittency. That is, as we discussed earlier, when consumers have high $\sigma$, they are more willing to shift their electricity consumption and are thus relatively more sensitive to chances in price. Consequently, the rate of adoption (the slope of the market share curve) is larger for higher $\sigma$ around moderate changes in price; however, this relationship between adoption and $\sigma$ changes as price falls more drastically. To understand why, see \hyperref[fig:adoptc1]{Figure 3}, where we compare the market share of solar with respect to the price of coal. We find that solar market share is concave for all values of $\sigma$; consequently, the market share of coal must be convex with respect to its own price. Hence, it seems that market share with respect to own price is convex for non-intermittent technologies, but may be concave for intermittent ones. Furthermore, the importance of intermittency in this context is driven by $\sigma$; that is, intermittency plays a bigger role in determining market share when consumers prefer, on the margin, smoother electricity consumption than electricity cost savings. This result directly contrasts with \cite{HH} who find S-shaped market diffusion for renewable energy; this shape is a result of their representation of intermittency as unpredictable, stochastic variability in the output of renewable energy. On the other hand, because we represent intermittency in a different way, our market share curves differ significantly. In any case, these market share curves have important implications in the context of promoting renewable energy adoption. 
 
-\textbf{More Here}
+
+%
+%\subsubsection{Externalities}
+%
+%
+%
+%Suppose we are interested in handling externalities. We may assume that our first technology produces pollution according to the function $S(X) = \gamma X_1$ where $\gamma$ is the monetary damage per unit of $X_1$. A social planner then aims to balance the damages caused by pollution with the surplus of the private sector and the revenue from the tax. Hence, their objective function is given by
+%$$\max_{\tau} \; CS + PS - \gamma X_1 + \tau X_1$$
+%where $CS$ is consumer surplus, $PS$ is producer surplus, $\gamma$ is the marginal cost of pollution generated by $X_1$, $\gamma X_1$ is the cost of pollution, $\tau$ is the tax on $X_1$, and $\tau X_1$ is the tax revenue.  As usual, the optimal tax is a Pigouvian tax; $\tau$ should be set equal to the marginal social cost of pollution $\gamma$.
+%
+%\textbf{More Here}
 
 %However, given the presence of intermittency, is there a better way to handle pollution? For example, \citet{Ace2012} model intermittency using a CES production function between clean and dirty energy. They find that both carbon taxes and research subsidies are necessary to promote long-run structural change in the energy production sector and avert a climate disaster. 
 
@@ -510,16 +581,6 @@ where $CS$ is consumer surplus, $PS$ is producer surplus, $S(X)$ is the cost of 
 
 %For clarity, let us first consider the cases in our framework where only one instrument is necessary. The first case is when no two technologies produce in the same period. That is, we can say that the output efficiency matrix, $\xi$, is diagonal without loss of generality; this further implies that we have a CES structure between technologies where the elasticity of substitution is same as that for consumers, $\sigma$.\footnote{ A proof is provided in \hyperref[sec:CESspecialcase]{Appendix A.C}} Consequently, if one of these technologies creates negative externalities, the optimal solution is simply use a single instrument such as a Pigouvian tax. On the other hand, the second case occurs when all technologies produce in every period but with time-invariant output. This results in an edge case where we only employ whichever technology has the highest cost efficiency (output per dollar). Consequently, we only need one or no instruments depending on whether the technology employed creates negative externalities. Essentially this latter case describes a situation where we have no intermittency at all. On the other hand, the former case describes a situation where we have, in a sense, maximized relative intermittency. But, with respect to both cases, we only need one instrument to handle externalities. 
 
-\begin{table}[!t]
-	\caption*{\textbf{Figure 4:} Technical Change and the Optimal Quantity of Coal} 
-	\label{fig:coaltech}
-	\footnotesize
-	\vspace{-1em}
-	\begin{tabular}{@{\extracolsep{0em}}c}
-		\includegraphics[width=1\linewidth]{../code/matlab/simulation_april/fig_tax_subsidy} \\
-		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$, $\sigma = 0.5$. For the first subplot, we graph the optimal quantity of coal while varying $\xi_2$, the output efficiency of solar, by different factors; so, for instance, at 100\% on the x-axis, we have $\xi_2 = (2, \, 0.2)$. Similarly, in the second subplot, we do the same but with the cost of coal, $c_1$.}     \\  
-	\end{tabular}
-\end{table}
 
 
 %In all other situations, where we have a mix of intermittent and constant-output technologies, using multiple instruments can be more effective than just one. That is,  first suppose that research subsidies increase the output efficiency $\xi_i$ of some technology $i$. So, output efficiency is then given by $\xi_i \left( 1 + \beta_i \right)$ where $\beta_i$ is the percent increase in the output efficiency of technology $i$ as a result of research. Now, consider again a two-period setting with coal and solar with the same parameters as those given in \hyperref[Params: Example A]{Example A}. As discussed earlier, one solution to externalities is to set a Pigouvian tax on coal equal to its marginal social damage.  However, we may be able to reduce our reliance on coal in a more effective (welfare-maximizing) way by subsidizing research in solar as well. 
@@ -746,25 +807,26 @@ The comparative statics are similarly intuitive. The equilibrium quantity of a t
 \end{proof}
 
 
-\subsection{Optimal Taxation}
-
-The following proof is a derivation of the optimal tax $\tau$ on $X_1$ in the case where it produces externalities. 
-\hfill \\
-\begin{proof} We aim to maximize welfare with respect to the tax $\tau$, hence our first order condition is:
-	\begin{align*}
-	0 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial S(X)}{\partial \tau} + \frac{\partial \tau X_1}{\partial \tau} \\
-	&=  \left( \underbrace{\frac{\partial CS}{\partial p}  + \frac{\partial PS}{\partial p}}_{= 0} - \frac{ \partial  S(X)}{\partial p} + \frac{\partial \tau X_1}{\partial p} \right) \frac{\partial p}{\partial \tau} \\
-	&=  - \gamma \frac{\partial  X_1}{\partial p} + \tau \frac{\partial  X_1}{\partial p}
-	\end{align*}
-	where the derivatives of producer and consumer surplus are eliminated by the envelope theorem. Therefore, we must have $\tau = \gamma$. \\
-	\hfill
-\end{proof}
+%\subsection{Optimal Taxation}
+%
+%The following proof is a derivation of the optimal tax $\tau$ on $X_1$ in the case where it produces externalities. The marginal cost of pollution is given by $\gamma$. 
+%\hfill \\
+%\begin{proof} We aim to maximize welfare with respect to the tax $\tau$, hence our first order condition is:
+%	\begin{align*}
+%	0 &= \frac{\partial CS}{\partial \tau} + \frac{\partial PS}{\partial \tau} - \frac{\partial \gamma X_1}{\partial \tau} + \frac{\partial \tau X_1}{\partial \tau} \\
+%	&=  \left( \underbrace{\frac{\partial CS}{\partial p}  + \frac{\partial PS}{\partial p}}_{= 0} - \frac{ \partial  \gamma X_1}{\partial p} + \frac{\partial \tau X_1}{\partial p} \right) \frac{\partial p}{\partial \tau} \\
+%	&=  \left( 0 - \frac{ \partial  \gamma X_1}{\partial p} + \frac{\partial \tau X_1}{\partial p} \right) \frac{\partial p}{\partial \tau} \\
+%	&=  - \gamma \frac{\partial  X_1}{\partial \tau} + \tau \frac{\partial  X_1}{\partial \tau}
+%	\end{align*}
+%	where the derivatives of producer and consumer surplus are eliminated by the envelope theorem. Therefore, we must have $\tau = \gamma$. \\
+%	\hfill
+%\end{proof}
 
 \subsection{CES Production as a Special Case}
 
 \label{sec:CESspecialcase}
 
-Our framework nests the case where there exists a CES production structure between each technology. This happens when no two technologies produce in the same period and we have the same number of periods as technologies. Additionally, in this case, the CES production function's elasticity parameter  will be equivalent to the that of the consumer's CES utility function -- the intertemporal elasticity of substitution for electricity consumption. 
+Our framework nests the case where there exists a CES production structure between each technology. This occurs when each technology can only produce in a single, unique period; note that this is not a realistic scenario. For instance, this would occur if we had one technology that can only output electricity during the day and another that only outputs electricity at night. Anyways, in this case, the CES production function's elasticity parameter  will be equivalent to the that of the consumer's CES utility function -- the intertemporal elasticity of substitution for electricity consumption. 
 
 \begin{proof}
 	Firstly, note that we can reindex our technologies such that $\xi$ is diagonal, since each technology only produces in one period. Hence, without loss of generality, we have diagonal $\xi$. Next, we may say that the electricity output in period $i$ is given by $Z_i = \xi_{i,i} X_i$. Now, recall that the FOC for profit-maximization is given by $p = \xi^{-1} c$, hence we have $p_i = c_i / \xi_{i,i}$.  Combining this equations with the FOC for utility maximization, we have:
@@ -787,7 +849,83 @@ Our framework nests the case where there exists a CES production structure betwe
 	\\ \hfill
 \end{proof}
 
+\subsection{Asymptotic Elasticity of Substitution}
 
+\label{sec:asympeos}
+
+Suppose we are in a two-period, two-technology setting with $\sigma = 1$. Furthermore, suppose that the output of our first technology is constant in both periods, $\xi_{1t} = \xi_{2t}$, but the output of our second technology is zero in the second period $\xi_{2s} = 0$. And, assume we have the parameter restrictions mentioned in earlier in \hyperref[sec:cobbdoug]{Section A} that ensure $X, Z > 0$. This is a simple case where we have (1) a constant output reliable technology and (2) a completely intermittent technology. We now show that, in this case, the elasticity of substitution approaches $1$ as the relative cost of our second technology $c_2/c_1$ approaches $0$. 
+
+
+
+\begin{proof}
+	Firstly, note that from earlier we have:
+	$$
+	X = \begin{pmatrix}
+		\dfrac{\alpha _{t}\,\xi _{\mathrm{2s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}}+\dfrac{\alpha _{s}\,\xi _{\mathrm{2t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}} \\[2ex] 
+		-\dfrac{\alpha _{t}\,\xi _{\mathrm{1s}}}{c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}}-\dfrac{\alpha _{s}\,\xi _{\mathrm{1t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}}
+	\end{pmatrix}
+	$$
+	Let $\xi_1 = \xi_{1t} = \xi_{2t}$ and note that $\xi_{2s} = 0$. Hence, we have:
+	$$
+	X = \begin{pmatrix}
+	\dfrac{\alpha _{s}\,\xi _{\mathrm{2t}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1}}} \\
+	\dfrac{\alpha _{t}}{c_{2}}-\dfrac{\alpha _{s}\,\xi _{\mathrm{1}}}{c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1}}}
+	\end{pmatrix}
+	$$
+	Now, note that $X_1/X_2$ is given by:
+	\begin{align*}
+	\frac{X_1}{X_2} &= \frac{\alpha_s \xi_{2t} \left( c_2 ( c_1 \xi_{2t} - c_2 \xi_{1} ) \right)}{ \left( \alpha_t (c_1 \xi_{2t} - c_2 \xi_{1}) -  c_2 \alpha_s \xi_1 \right) (c_1 \xi_{2t} - c_2 \xi_{1t})}  \\
+	&= \frac{\alpha_s c_2 \xi_{2t}}{ \alpha_t (c_1 \xi_{2t} - c_2 \xi_{1}) -  c_2 \alpha_s \xi_1 }\\
+	&= \frac{-\alpha _{s}\,c_{2}\,\xi _{\mathrm{2t}}}{\xi _{1}\,\left(\alpha _{s}\,c_{2}+\alpha _{t}\,c_{2}\right)-\alpha _{t}\,c_{1}\,\xi _{\mathrm{2t}}}
+	\end{align*}
+	 Next, we can see that:
+	$$
+	\frac{\partial \log(X_1/X_2)}{c_1} = \frac{\alpha _{t}\,\xi _{\mathrm{2t}}}{\xi _{1}\,\left(\alpha _{s}\,c_{2}+\alpha _{t}\,c_{2}\right)-\alpha _{t}\,c_{1}\,\xi _{\mathrm{2t}}}
+	$$
+	The elasticity of substitution is given by:
+	\begin{align*}
+	\frac{\partial \log(X_1/X_2)}{\partial \log(c_2/c_1)} &= \frac{\partial \log(X_1/X_2)}{\partial c_1}\frac{\partial c_1}{\partial \log(c_2/c_1)} \\
+	&= \frac{\alpha _{t}\,\xi _{\mathrm{2t}}}{\xi _{1}\,\left(\alpha _{s}\,c_{2}+\alpha _{t}\,c_{2}\right)-\alpha _{t}\,c_{1}\,\xi _{\mathrm{2t}}}\frac{\partial c_1}{\partial \log(c_2/c_1)} \\
+	&= \frac{-c_1 \alpha _{t}\,\xi _{\mathrm{2t}}}{\xi _{1}\,\left(\alpha _{s}\,c_{2}+\alpha _{t}\,c_{2}\right)-\alpha _{t}\,c_{1}\,\xi _{\mathrm{2t}}}\\
+	&= \left( \frac{c_2 \xi_1 }{-c_1 \alpha_t \xi_{2t}} + 1 \right)^{-1} \\
+	\end{align*}
+	where $\alpha_t + \alpha_s = 1$ by definition (Equation (1)). Finally, it is simple to see that:
+	$$ \lim_{c_2/c_1 \to 0} \frac{\partial \log(X_1/X_2)}{\partial \log(c_2/c_1)} = 1$$
+	\\ \hfill
+\end{proof}
+
+
+
+\pagebreak
+
+
+
+
+
+\section{Appendix B: Supplementary Figures}
+\label{sec:AppendixB}
+
+
+\hyperref[fig:eosrange]{Figure B.1} below models the elasticity of substitution for two technologies that are close to being non-intermittent. That is, for technology 1, we have $\xi_1 = (0.95,\, 1)$, and, for technology 2, we have $\xi_2 = (1, \,0.95)$. We further set their costs, $c_1$ and $c_2$, to equal values and allow $\alpha_t = \alpha_s$. This example illustrates how the elasticity of substitution between technologies $e_{1,2}$ would appear with minimal intermittency. We can see that the $e_{1,2}$ takes on a u-shape. 
+
+
+\begin{table}[h!]
+	\captionsetup{justification=centering}
+	\caption*{\textbf{Figure B.1:} The Elasticity of Substition Between Two \newline  Minimally Intermittent Technologies} 
+	\label{fig:eosrange}
+	\footnotesize
+	\vspace{-1em}
+	\begin{tabular}{@{\extracolsep{0em}}c}
+		\includegraphics[width=1\linewidth]{../code/matlab/simulation_april/fig_elasticity_range} \\
+		\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } The y-axis of the first plot is equivalent to $\log(X_1/X_2)$ and the x-axis of both plots is equivalent to  $\log(c_2/c_1)$. Technology 1 and 2 represent two arbitrary technologies that are practically non-intermittent. The legend in the upper subplot also applies to the lower subplot. These results were obtained using the following parameters: $\alpha_t = 0.5$, $\alpha_s = 0.5$, $\xi_1 = (0.95, \, 1)$, $\xi_2 = (1, \, 0.95)$, $c_1 = 100$, $c_2 = 100$. In order to generate these numerical, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (0.5\, c_1, 1.5 \,c_1)$. Then, we obtained estimates of the elasticity of substition by numerically differentiating $\ln(X_1/X_2)$ with respect to $-\ln(c_1, c_2)$. That is, the elasticity of substitution  between technology 1 and 2 is given by the slope of the upper subplot, and it is graphed in the lower subplot. Finally, we repeat this procedure for various values of $\sigma$. }     \\  
+	\end{tabular}
+\end{table}
+
+\pagebreak
+
+
+
+\pagebreak
 \pagebreak
 
 \begin{thebibliography}{9}
@@ -795,7 +933,10 @@ Our framework nests the case where there exists a CES production structure betwe
 	\bibitem[Acemoglu et al.(2012)]{Ace2012}
 	Acemoglu, D., Aghion, P., Bursztyn, L., \& Hemous, D. (2012). The Environment and Directed Technical Change. American Economic Review, 102(1), 131–166. https://doi.org/10.1257/aer.102.1.131
 	
-	\bibitem[Ambec and Crampes (2012)]{AC2012}
+	\bibitem[Adelman(1995)]{genie}
+	Adelman, M. A. (1995). The genie out of the bottle: World oil since 1970. MIT Press.
+	
+	\bibitem[Ambec and Crampes(2012)]{AC2012}
 	Ambec, S., \& Crampes, C. (2012). Electricity provision with intermittent sources of energy. Resource and Energy Economics, 34(3), 319–336. https://doi.org/10.1016/j.reseneeco.2012.01.001
 	
 	\bibitem[Aubin et al.(1995)]{Aubin}
