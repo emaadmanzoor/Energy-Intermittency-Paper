@@ -3,9 +3,9 @@
 close all; clear; clc;
 
 % Simulation params
-n = 5000;
-research_multiplier = linspace(1,5,n);
-sigma_range = [0.5];
+n = 10000;
+research_multiplier = linspace(1,3,n);
+sigma_range = [0.8847 + 2*0.044, 0.8847, 0.8847 - 2*0.044];
 m = length(sigma_range);
 
 % Exogenous params
@@ -68,29 +68,34 @@ for j = 1:m
     subplot(2,1,1);
     hold on;
     plot(output(3,:)*100, ...
-         output(1,:), ...
+        100*output(2,:)./(output(1,:) + output(2,:)), ...
         'LineWidth', 1);
     
 end
 
 %% Plot formatting
 
-% Add horizontal line at 1
-
 % Format subplot 1
-xlabel('Percent Change in the Efficiency of Solar (MWh)')
-ylabel('Coal Capacity (MWh)')
+legend('0.9727 (Upper 95% Confidence Limit)', '0.8847', ...
+    '0.7967 (Lower 95% Confidence Limit)')
+xlabel('Percent Change in the Output Efficiency of Solar')
+ylabel({'Solar Capacity', 'as a Fraction of All Capacity'})
 xtickformat('percentage')
-xlim([0, 350])
+xlim([0 200])
 grid('on')
+
+% Format legend
+[hleg,att] = legend('show');
+legend('Location', 'southeast')
+title(hleg, '\sigma')
 
 
 %% Optimal capacity of Coal with respect to own price
 
 % Simulation params
-n = 5000;
+n = 10000;
 cost_multiplier = linspace(1,5,n);
-sigma_range = [0.5];
+sigma_range = [0.8847 + 2*0.044, 0.8847, 0.8847 - 2*0.044];
 m = length(sigma_range);
 
 % Exogenous params
@@ -151,7 +156,7 @@ for j = 1:m
     subplot(2,1,2);
     hold on;
     plot(output(3,:)*100, ...
-         output(1,:), ...
+        100*output(2,:)./(output(1,:) + output(2,:)), ...
         'LineWidth', 1);
     
 end
@@ -160,10 +165,10 @@ end
 
 % Format subplot 2
 subplot(2,1,2)
-xlabel('Percent Increase in the Cost of Coal')
-ylabel('Coal Capacity (MWh)')
+xlabel('Percent Change in the Cost of Coal')
+ylabel({'Solar Capacity', 'as a Fraction of All Capacity'})
 xtickformat('percentage')
-xlim([0, 350])
+xlim([0, 200])
 grid('on')
 
 % Save figure
