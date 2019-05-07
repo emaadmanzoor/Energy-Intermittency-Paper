@@ -4,8 +4,8 @@ close all; clear; clc;
 
 % Simulation params
 n = 5000;
-cost_multiplier = linspace(0.5,2,n);
-sigma_range = [0.8847 + 2*0.044, 0.8847, 0.8847 - 2*0.044];
+cost_multiplier = linspace(0.9,2,n);
+sigma_range = [0.8847];
 m = length(sigma_range);
 
 % Exogenous params
@@ -16,8 +16,7 @@ xi_1  = [1,   1];
 xi_2  = [1, 0.1];
 budget = 1;
 
-
-figure('Renderer', 'painters', 'Position', [100 100 900 600])
+figure('Renderer', 'painters', 'Position', [100 100 900 400])
 hold on;
 
 for j = 1:m
@@ -63,69 +62,79 @@ for j = 1:m
     % subset to positive quantities
     ind = ~any(output <= 0);
     output = output(:,ind);
-
-    % relationship between log prices and quantities
-    subplot(2,1,1);
+    
+    % relationship between e and the ratio of quantities
     hold on;
     
     if sigma == 0.8847
-        plot(-log(output(1,:)), log(output(2,:)), ...
-            'LineWidth', 1, 'Color', 'k');
+        plot(output(2,2:end), ...
+            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
+            'LineWidth', 1.5, 'Color', 'k');
     elseif sigma < 0.8846
-        plot(-log(output(1,:)), log(output(2,:)), ...
+        plot(output(2,2:end), ...
+            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
             'LineWidth', 1, 'LineStyle', '--', 'Color', [0 0 1]*0.8);
     else
-        plot(-log(output(1,:)), log(output(2,:)), ...
+        plot(output(2,2:end), ...
+            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
             'LineWidth', 1, 'LineStyle', '--', 'Color', [1 0 0]*0.8);
     end
     
-    
-    % relationship between e and log prices
-    subplot(2,1,2);
-    hold on;
-    
+    % store data for average sigma assumption
     if sigma == 0.8847
-        plot(-log(output(1,2:end)), ...
-            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'Color', 'k');
-    elseif sigma < 0.8846
-        plot(-log(output(1,2:end)), ...
-            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [0 0 1]*0.8);
-    else
-        plot(-log(output(1,2:end)), ...
-            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [1 0 0]*0.8);
+        mean_output = output;
     end
+    
     
 end
 
+%% Get linear approximation of CES (VES)
+
+% Output from optimal equilibrium
+output = mean_output;
+Y = diff(log(output(2,:)))./diff(-log(output(1,:)));
+X = output(2,2:end);
+
+% Drop NaNs
+output = [X;Y];
+ind = ~any(isnan(output));
+output = output(:,ind);
+X = output(1,:);
+Y = output(2,:);
+
+% OLS 
+beta = X'\(Y'-1);
+
+X_range = linspace(0, 50, 100);
+Y_hat = 1 + X_range.*beta;
+plot(X_range, Y_hat, 'LineStyle', '-.', 'LineWidth', 2.5, ...
+    'Color', [0.6, 0.1, 0.6]);
+
+
 %% Plot formatting
 
-% Format subplot 1
-subplot(2,1,1);
-legend('0.9727 (Upper 95% Confidence Limit)', '0.8847', ...
-    '0.7967 (Lower 95% Confidence Limit)')
-xlabel({'Negative Log Difference in Costs', 'log(c_2/c_1)'})
-ylabel({'Log Difference in Quantities', 'log(X_1/X_2)'})
-xlim([-1.3, -0.4])
+annotation('textarrow', [0.45 .34], [.375 .375], ...
+    'String', {['$\hat{e}_{1,2} \approx 1 + ', num2str(round(beta, 2)), ...
+    '(X_1/X_2)$']}, ...
+    'Interpreter', 'latex', 'fontsize', 14)
+
+% Format plot
+%legend('0.9727 (Upper 95% Confidence Limit)', '0.8847', ...
+%    '0.7967 (Lower 95% Confidence Limit)')
+legend({'Elasticity of Substitution with \sigma = 0.8847'}, ...
+    'VES Approximation')
+xlabel({'Ratio of Quantities', 'X_1/X_2'})
+ylabel({'Elasticity of Substitution', ...
+    'between Technologies', 'e_{1, 2}',})
+xlim([0, 5])
 grid('on')
 
 % Format legend
 [hleg,att] = legend('show');
 legend('Location', 'northwest')
-title(hleg, {'\sigma', '(Intertemporal Elasticity of Substitution', ...
-    'for Electricity Consumption)'})
-
-% Format subplot 2
-subplot(2,1,2);
-xlabel({'Negative Log Difference in Costs', 'log(c_2/c_1)'})
-ylabel({'Elasticity of Substitution', ...
-    'between Technologies', 'e_{1, 2}',})
-xlim([-1.3, -0.4])
-ylim([0 15])
-grid('on')
+%title(hleg, {'\sigma', '(Intertemporal Elasticity of Substitution', ...
+%    'for Electricity Consumption)'})
 
 % Save figure
-print(gcf,'fig_elasticity.png','-dpng','-r300')
+print(gcf,'fig_ves_approx.png','-dpng','-r300')
 

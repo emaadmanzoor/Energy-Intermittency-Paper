@@ -10,7 +10,7 @@ m = length(sigma_range);
 
 % Exogenous params
 c_1 = 104.3;
-c_2 = 50;
+c_2 = 60;
 alpha = [0.6, 0.4];
 xi_1  = [1,   1];
 xi_2  = [1, 0.1];

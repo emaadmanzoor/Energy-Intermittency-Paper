@@ -5,7 +5,7 @@ close all; clear; clc;
 % Simulation params
 n = 5000;
 cost_multiplier = linspace(0.01,2,n);
-sigma_range = [0.05, 0.25, 0.5, 1, 1.5];
+sigma_range = [0.8847 + 2*0.044, 0.8847, 0.8847 - 2*0.044];
 m = length(sigma_range);
 
 % Exogenous params
@@ -59,7 +59,7 @@ for j = 1:m
     output = [];
     output(1,:) = results(:,1);
     output(2,:) = results(:,2);
-    output(3,:) = 1-cost_multiplier;
+    output(3,:) = cost_multiplier-1;
     
     % subset to positive quantities
     ind = ~any(output(1:2,:) <= 0);
@@ -67,6 +67,7 @@ for j = 1:m
 
     % adoption curve for solar
     hold on;
+    subplot(2,1,1);
     plot(output(3,:)*100, ...
          100*output(2,:)./(output(1,:) + output(2,:)), ...
         'LineWidth', 1);
@@ -75,33 +76,32 @@ end
 
 %% Plot formatting
 
-% Add horizontal line at 1
-
-% Format subplot 1
-legend('0.05', '0.25', '0.5', '1', '1.5')
-xlabel('Percent Decrease in the Cost of Solar')
-ylabel('Solar Capacity as a Fraction of All Capacity')
+% Format plot 1
+legend('0.9727 (Upper 95% Confidence Limit)', '0.8847', ...
+    '0.7967 (Lower 95% Confidence Limit)')
+xlabel('Percent Change in the Cost of Solar')
+ylabel({'Solar Capacity', 'as a Fraction of All Capacity'})
 xtickformat('percentage')
 ytickformat('percentage')
-xlim([-40, 80])
+xlim([-80, 40])
 ylim([0 100])
 grid('on')
 
 % Format legend
 [hleg,att] = legend('show');
-legend('Location', 'northwest')
+legend('Location', 'southwest')
 title(hleg, '\sigma')
 
 % Save figure
-print(gcf,'fig_adoption_c2.png','-dpng','-r300')
+%print(gcf,'fig_adoption_c2.png','-dpng','-r300')
 
 
 %% Adoption with Respect to Price of Solar Sim
 
 % Simulation params
 n = 5000;
-cost_multiplier = linspace(0.50,2,n);
-sigma_range = [0.05, 0.25, 0.5, 1, 1.5];
+cost_multiplier = linspace(0.50,3,n);
+sigma_range = [0.8847 + 2*0.044, 0.8847, 0.8847 - 2*0.044];
 m = length(sigma_range);
 
 % Exogenous params
@@ -113,8 +113,8 @@ xi_2  = [1, 0.1];
 budget = 1;
 
 
-figure('Renderer', 'painters', 'Position', [100 100 900 600])
-hold on;
+%figure('Renderer', 'painters', 'Position', [100 100 900 600])
+%hold on;
 
 for j = 1:m
     
@@ -155,7 +155,7 @@ for j = 1:m
     output = [];
     output(1,:) = results(:,1);
     output(2,:) = results(:,2);
-    output(3,:) = 1-cost_multiplier;
+    output(3,:) = cost_multiplier-1;
     
     % subset to positive quantities
     ind = ~any(output(1:2,:) <= 0);
@@ -163,6 +163,7 @@ for j = 1:m
 
     % adoption curve for solar
     hold on;
+    subplot(2,1,2);
     plot(output(3,:)*100, ...
          100*output(2,:)./(output(1,:) + output(2,:)), ...
         'LineWidth', 1);
@@ -171,22 +172,14 @@ end
 
 %% Plot formatting
 
-% Add horizontal line at 1
-
-% Format subplot 1
-legend('0.05', '0.25', '0.5', '1', '1.5')
-xlabel('Percent Decrease in the Cost of Coal')
-ylabel('Solar Capacity as a Fraction of All Capacity')
+% Format plot 2
+xlabel('Percent Change in the Cost of Coal')
+ylabel({'Solar Capacity', 'as a Fraction of All Capacity'})
 xtickformat('percentage')
 ytickformat('percentage')
-xlim([-100, 30])
+xlim([-30, 200])
 ylim([0 100])
 grid('on')
-
-% Format legend
-[hleg,att] = legend('show');
-legend('Location', 'northwest')
-title(hleg, '\sigma')
 
 % Save figure
 print(gcf,'fig_adoption_c1.png','-dpng','-r300')

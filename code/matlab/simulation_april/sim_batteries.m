@@ -10,7 +10,7 @@ m = 3;
 
 % Exogenous params
 c_1 = 104.3;
-c_2 = 50;
+c_2 = 60;
 alpha = [0.6, 0.4];
 xi_1  = [1,   1];
 xi_2  = [1, 0.1];
@@ -69,7 +69,7 @@ for j = 1:m
     hold on;
     
     plot(-log(output(1,:)), log(output(2,:)), ...
-        'LineWidth', 1.2);
+        'LineWidth', 1.5);
     
     
     % relationship between log prices and quantities
@@ -77,7 +77,7 @@ for j = 1:m
     hold on;
     plot(-log(output(1,2:end)), ...
         diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-        'LineWidth', 1.2);
+        'LineWidth', 1.5);
     
     
 end
@@ -89,7 +89,7 @@ subplot(2,1,1);
 legend('(100%, 10%)', '(  95%, 15%)', '(  90%, 20%)')
 xlabel({'Negative Log Difference in Costs', 'log(c_2/c_1)'})
 ylabel({'Log Difference in Quantities', 'log(X_1/X_2)'})
-xlim([-1.5, -0.4])
+xlim([-1.3, -0.4])
 ylim([-10, 15])
 grid('on')
 
@@ -103,7 +103,7 @@ subplot(2,1,2);
 xlabel({'Negative Log Difference in Costs', 'log(c_2/c_1)'})
 ylabel({'Elasticity of Substitution', ...
     'between Technologies', 'e_{1, 2}',})
-xlim([-1.5, -0.4])
+xlim([-1.3, -0.4])
 ylim([0 25])
 grid('on')
 
