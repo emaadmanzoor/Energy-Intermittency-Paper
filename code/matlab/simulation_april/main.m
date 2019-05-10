@@ -8,14 +8,14 @@
 
 alpha = [0.6, 0.4];
 xi_1  = [1, 1];
-xi_2  = [1, 0.1]*1.00;
+xi_2  = [1, 0.9]*1.00;
 
 sigma = 0.5;
 phi   = (sigma - 1)/sigma;
 budget = 1;
 
 x_1_cost_param = 104.3*1.00;
-x_2_cost_param = 50;
+x_2_cost_param = 100;
 
 % Prices
 xi_mat   = [xi_1; xi_2];

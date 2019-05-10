@@ -5,7 +5,7 @@ close all; clear; clc;
 % Simulation params
 n = 5000;
 cost_multiplier = linspace(0.01,2,n);
-sigma_range = [0.8847 + 2*0.044, 0.8847, 0.8847 - 2*0.044];
+sigma_range = [0.8847 + 1.96*0.044, 0.8847, 0.8847 - 1.96*0.044];
 m = length(sigma_range);
 
 % Exogenous params
@@ -77,8 +77,8 @@ end
 %% Plot formatting
 
 % Format plot 1
-legend('0.9727 (Upper 95% Confidence Limit)', '0.8847', ...
-    '0.7967 (Lower 95% Confidence Limit)')
+legend('0.9709 (Upper 95% Confidence Limit)', '0.8847', ...
+    '0.7985 (Lower 95% Confidence Limit)')
 xlabel('Percent Change in the Cost of Solar')
 ylabel({'Solar Capacity', 'as a Fraction of All Capacity'})
 xtickformat('percentage')
@@ -101,7 +101,7 @@ title(hleg, '\sigma')
 % Simulation params
 n = 5000;
 cost_multiplier = linspace(0.50,3,n);
-sigma_range = [0.8847 + 2*0.044, 0.8847, 0.8847 - 2*0.044];
+sigma_range = [0.8847 + 1.96*0.044, 0.8847, 0.8847 - 1.96*0.044];
 m = length(sigma_range);
 
 % Exogenous params

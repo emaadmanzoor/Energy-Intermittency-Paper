@@ -4,7 +4,7 @@ close all; clear; clc;
 
 % Simulation params
 n = 5000;
-cost_multiplier = linspace(0.9,2,n);
+cost_multiplier = linspace(1,2,n);
 sigma_range = [0.8847];
 m = length(sigma_range);
 
@@ -13,7 +13,7 @@ c_1 = 104.3;
 c_2 = 60;
 alpha = [0.6, 0.4];
 xi_1  = [1,   1];
-xi_2  = [1, 0.1];
+xi_2  = [1, 0.01];
 budget = 1;
 
 figure('Renderer', 'painters', 'Position', [100 100 900 400])
@@ -66,25 +66,12 @@ for j = 1:m
     % relationship between e and the ratio of quantities
     hold on;
     
-    if sigma == 0.8847
-        plot(output(2,2:end), ...
-            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1.5, 'Color', 'k');
-    elseif sigma < 0.8846
-        plot(output(2,2:end), ...
-            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [0 0 1]*0.8);
-    else
-        plot(output(2,2:end), ...
-            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [1 0 0]*0.8);
-    end
+    plot(output(2,2:end), ...
+        diff(log(output(2,:)))./diff(-log(output(1,:))), ...
+        'LineWidth', 1.5, 'Color', 'k');
     
     % store data for average sigma assumption
-    if sigma == 0.8847
-        mean_output = output;
-    end
-    
+    mean_output = output;
     
 end
 
@@ -119,8 +106,6 @@ annotation('textarrow', [0.45 .34], [.375 .375], ...
     'Interpreter', 'latex', 'fontsize', 14)
 
 % Format plot
-%legend('0.9727 (Upper 95% Confidence Limit)', '0.8847', ...
-%    '0.7967 (Lower 95% Confidence Limit)')
 legend({'Elasticity of Substitution with \sigma = 0.8847'}, ...
     'VES Approximation')
 xlabel({'Ratio of Quantities', 'X_1/X_2'})
@@ -132,9 +117,7 @@ grid('on')
 % Format legend
 [hleg,att] = legend('show');
 legend('Location', 'northwest')
-%title(hleg, {'\sigma', '(Intertemporal Elasticity of Substitution', ...
-%    'for Electricity Consumption)'})
 
 % Save figure
-print(gcf,'fig_ves_approx.png','-dpng','-r300')
+print(gcf,'fig_ves_approx_int.png','-dpng','-r300')
 

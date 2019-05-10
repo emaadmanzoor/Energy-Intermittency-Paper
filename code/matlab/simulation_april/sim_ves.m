@@ -119,8 +119,6 @@ annotation('textarrow', [0.45 .34], [.375 .375], ...
     'Interpreter', 'latex', 'fontsize', 14)
 
 % Format plot
-%legend('0.9727 (Upper 95% Confidence Limit)', '0.8847', ...
-%    '0.7967 (Lower 95% Confidence Limit)')
 legend({'Elasticity of Substitution with \sigma = 0.8847'}, ...
     'VES Approximation')
 xlabel({'Ratio of Quantities', 'X_1/X_2'})
@@ -132,8 +130,6 @@ grid('on')
 % Format legend
 [hleg,att] = legend('show');
 legend('Location', 'northwest')
-%title(hleg, {'\sigma', '(Intertemporal Elasticity of Substitution', ...
-%    'for Electricity Consumption)'})
 
 % Save figure
 print(gcf,'fig_ves_approx.png','-dpng','-r300')
