@@ -3,10 +3,10 @@
 close all; clear; clc;
 
 % Simulation params
-n = 5000;
-cost_multiplier = linspace(0.5,3,n);
-sigma_range = [0.8847 + 1.96*0.044, 0.8847, 0.8847 - 1.96*0.044];
-m = length(sigma_range);
+n = 500;
+cost_multiplier = linspace(0.25,3,n);
+xi_2_values = [1, 0.1; 0.95, 0.15; 0.9, 0.2];
+m = 3;
 
 % Exogenous params
 c_1 = 104.3;
@@ -15,14 +15,14 @@ alpha = [0.6, 0.4];
 xi_1  = [1,   1];
 xi_2  = [1, 0.1];
 budget = 1;
-
+sigma = 0.8847;
 
 figure('Renderer', 'painters', 'Position', [100 100 900 600])
 hold on;
 
 for j = 1:m
     
-    sigma = sigma_range(j);
+    xi_2 = xi_2_values(j,:);
     results = zeros(n,2); 
 
     for i = 1:n
@@ -40,7 +40,7 @@ for j = 1:m
         if any(prices<0)
             continue
         end
-
+0
         % Price Index
         P = ((1/2) * (prices'.^(1-sigma))*(alpha'.^sigma)).^(1/(1-sigma));
         if sigma == 1
@@ -63,49 +63,56 @@ for j = 1:m
     % subset to positive quantities
     ind = ~any(output <= 0);
     output = output(:,ind);
-    
-    % relationship between e and log quantities
+
+    if j == 3
+        line_color = [207, 74, 48]/255;
+    elseif j == 2
+        line_color = mean([207, 74, 48; 35, 55, 59]/255, 1);
+    else
+        line_color = [35,55,59]/255;
+    end
+
     hold on;
     
-    if sigma == 0.8847
-        plot(log(output(2,2:end)), ...
-            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'Color', [207, 74, 48]/255);
-%     elseif sigma < 0.8846
-%         plot(log(output(2,2:end)), ...
-%             diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-%             'LineWidth', 1, 'LineStyle', '--', 'Color', [0 0 1]*0.8);
-%     else
-%         plot(log(output(2,2:end)), ...
-%             diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-%             'LineWidth', 1, 'LineStyle', '--', 'Color', [1 0 0]*0.8);
-    end
+    plot(log(output(2,2:end)), ...
+        diff(log(output(2,:)))./diff(-log(output(1,:))), ...
+        'LineWidth', 1.5, 'Color', line_color);
+    
     
 end
 
 %% Plot formatting
 
+% Format subplot 1
+% subplot(2,1,1);
+lgnd = legend('(0%)', '(5%)', '(10%)')
+% xlabel({'Negative Log Difference in Costs', 'log(c_2/c_1)'})
+% ylabel({'Log Difference in Quantities', 'log(X_1/X_2)'})
+% xlim([-1.3, -0.4])
+% ylim([-10, 15])
+% grid('on')
+
+% Format legend
+[hleg,att] = legend('show');
+legend('Location', 'northwest')
+set(lgnd, 'color', [250 250 250]/255)
+title(hleg, {'% of Solar Output','shifted to Off-Peak'})
+
 % Format subplot 2
-% legend('0.9709 (Upper 95% Confidence Limit)', '0.8847', ...
-%     '0.7985 (Lower 95% Confidence Limit)')
+%subplot(2,1,2);
 xlabel({'Log Difference in Quantities', 'log(X_{coal}/X_{solar})'})
 ylabel({'Elasticity of Substitution', ...
     'between Technologies', 'e_{solar, coal}',})
 xlim([-2, 1.6])
-ylim([0 15])
+ylim([0 25])
 grid('on')
 
-% % Format legend
-% [hleg,att] = legend('show');
-% legend('Location', 'northwest')
-% title(hleg, {'\sigma', '(Intertemporal Elasticity of Substitution', ...
-%     'for Electricity Consumption)'})
-
 % Save figure
+
 set(gca,'FontSize',14)
 set(gcf,'units','points','position',[100,100,1600,700]/2)
 set(gca,'color','none')
 set(gcf, 'InvertHardcopy', 'off')
 set(gcf,'color', [250 250 250]/255);
-print(gcf,'fig_elasticity_x.png','-dpng','-r500')
+print(gcf,'fig_batteries_x.png','-dpng','-r500')
 
