@@ -33,3 +33,4 @@ code/scratch.mlx
 *.Rhistory
 *.asv
 code/matlab/scratch.mlx
+*.bcf
