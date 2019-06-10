@@ -40,7 +40,7 @@ for j = 1:m
         if any(prices<0)
             continue
         end
-0
+
         % Price Index
         P = ((1/2) * (prices'.^(1-sigma))*(alpha'.^sigma)).^(1/(1-sigma));
         if sigma == 1
@@ -85,7 +85,7 @@ end
 
 % Format subplot 1
 % subplot(2,1,1);
-lgnd = legend('(0%)', '(5%)', '(10%)')
+lgnd = legend('(0%)', '(5%)', '(10%)');
 % xlabel({'Negative Log Difference in Costs', 'log(c_2/c_1)'})
 % ylabel({'Log Difference in Quantities', 'log(X_1/X_2)'})
 % xlim([-1.3, -0.4])
