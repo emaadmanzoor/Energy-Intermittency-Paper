@@ -34,6 +34,14 @@ outer/numbering=none]{metropolis}
 \newcommand{\xoverbrace}[2][\vphantom{\dfrac{A}{A}}]{\overbrace{#1#2}}
 \newcommand{\xunderbrace}[2][\vphantom{\dfrac{A}{A}}]{\underbrace{#1#2}}
 
+\newcommand\blfootnote[1]{%
+	\begingroup
+	\renewcommand\thefootnote{}\footnote{#1}%
+	\addtocounter{footnote}{-1}%
+	\endgroup
+}
+
+
 \begin{document}
 	\author{Saketh Aleti \& Gal Hochman}
 	\title{Efficient Pollution Abatement in Electricity Markets with Intermittent Renewable Energy}
@@ -51,24 +59,12 @@ outer/numbering=none]{metropolis}
 %%%%% To do
 %% Line up stuff between empirical methodology equations
 
-\begin{frame}
-\frametitle{Motivation}
-
-\begin{block}{\centering Constructing a realistic model of intermittency}
-\vspace{2em}
-``\textit{\dots the economics of all generating technologies, both intermittent and dispatchable, can be evaluated based on the expected market value of the electricity that they will supply, their total life-cycle costs, and their associated expected profitability. Such an analysis would reflect the actual expected production profiles of dispatchable and intermittent technologies, the value of electricity supplied at different times, and other costs of intermittency associated with reliable network integration.}'' (Joskow, 2011)
-
-\end{block}
-
-\end{frame}
-
-
 
 \begin{frame}
 \frametitle{Motivation}
 \vspace{1em}
 
-\begin{block}{\centering Intermittency matters}
+\begin{block}{\centering What is intermittency?}
 	
 	\vspace{1em}
 	\begin{overpic}[width=1\textwidth,tics=10]{../documents/exhibits/ercot_load.pdf} 
@@ -81,20 +77,18 @@ outer/numbering=none]{metropolis}
 \end{frame}
 
 
-%%%%%%remove
 \begin{frame}
-\frametitle{Literature}
+\frametitle{Motivation}
 
-\begin{itemize}
-	\setlength\itemsep{0.2em}
-	\item Some literature approach the problem by numerically optimizing the capacity of intermittent renewables given reliability constraints\footnote{(Musgens \& Neuhoff, 2006), (Neuhoff et al., 2007)}
-	\item Other papers study how intermittent technologies affect the market itself\footnote{(Ambec \& Crampes, 2012), (Chao, 2011), (Borenstein, 2012)}	
-	\item A common top-down approach is to model intermittency through a CES function between different energy technologies\footnote{See Papageorgiou et al. (2017) for a survey of the literature taking this approach}
-	%\item Consumers prefer to smooth their electricity consumption\footnote{(Schwarz et al., 2002), (Herriges et al., 1993), (King \& Shatrawka, 2011).}
-	\item Our model is closest to Helm and Mier (2019)
-\end{itemize}
+\begin{block}{\centering How should we model intermittency?}
+	\vspace{2em}
+	``\textit{\dots the economics of all generating technologies, both intermittent and dispatchable, can be evaluated based on the expected market value of the electricity that they will supply, their total life-cycle costs, and their associated expected profitability. Such an analysis would reflect the actual expected production profiles of dispatchable and intermittent technologies, the value of electricity supplied at different times, and other costs of intermittency associated with reliable network integration.}'' (Joskow, 2011)
+	
+\end{block}
 
 \end{frame}
+
+
 
 
 \begin{frame}
@@ -110,15 +104,16 @@ outer/numbering=none]{metropolis}
 \begin{itemize}
 	\setlength\itemsep{0.2em}
 	\item Multi-period model with electricity consumers and producers
-	\item Consumers purchase electricity in each period to maximize utility
-	\item Producers build up capacity in generation technologies to maximize profit
-	\item Market reaches an equilibrium through variable electricity prices
+	\item Parametrize the model empirically
+	\item Numerically evaluate the model to study its implications
 \end{itemize}
 
 \end{frame}
 
+
+
 \begin{frame}
-\frametitle{Model -- Overview}
+\frametitle{Model -- Preview of the Results}
 
 
 \begin{figure}
@@ -190,11 +185,10 @@ outer/numbering=none]{metropolis}
 \end{block}
 
 \begin{itemize}
-	\setlength\itemsep{0.25em}
+	\setlength\itemsep{0.5em}
 	\small
-	\item $\alpha_t$ captures preference to use different amounts of electricity at different times
-	\item $\phi$ captures preference to substitute electricity consumption across time periods based on relative prices
-	\item  $\sigma = 1/(1-\phi)$ is the intertemporal elasticity of substitution for electricity consumption
+	\item $\alpha_t$ captures ``time'' preference 
+	\item  $\sigma = 1/(1-\phi)$ is the intertemporal elasticity of substitution (IES) 
 	\item Total cost of electricity equals the cost of electricity consumed in each period
 \end{itemize}
 
@@ -220,7 +214,7 @@ outer/numbering=none]{metropolis}
 			\item Representative firm that maximizes profit
 			\item Firms build a fixed amount of capacity in different generation technologies
 			\item Different technologies can access different fractions of their capacity in each period
-			\item Output is not stochastic; we focus our model on intermittency rather than reliability
+			\item Output is not stochastic
 		\end{itemize}
 	\end{block}
 		
@@ -279,89 +273,125 @@ outer/numbering=none]{metropolis}
 
 \end{frame}
 
-\begin{frame}
-\frametitle{Empirical Methodology}
+%\begin{frame}
+%\frametitle{Empirical Methodology}
+%
+%\vspace{2em}
+%\begin{block}{\centering{Goal}}
+%	\centering \vspace{0.2em}
+%	Estimate the intertemporal elasticity of \\
+%	substitution for electricity consumption $\sigma$
+%\end{block}
+%\vspace{1em}
+%
+%\begin{itemize}
+%	\setlength\itemsep{0.75em}
+%	\item <1->CES First order condition: $\dfrac{Z_t}{Z_s} = \left(\dfrac{\alpha_t \, p_s}{\alpha_s \, p_t} \right)^\sigma $
+%	\item <1->Cet par, an IES of $\sigma$ implies a 1\% increase in the relative price of electricity $(p_{t}/p_{t+1})$  decreases relative electricity consumption $(Z_{t}/Z_{t+1})$  by $\sigma\%$
+%	\item <1->Directly affects the economic importance of intermittency
+%\end{itemize}
+%\vspace{2.75em}
+%
+%\end{frame}
 
-\vspace{2em}
-\begin{block}{\centering{Goal}}
-	\centering \vspace{0.2em}
-	Estimate the intertemporal elasticity of \\
-	substitution for electricity consumption $\sigma$
-\end{block}
+
+%\begin{frame}
+%\frametitle{Empirical Methodology -- Theory}
+%
+%
+%
+%$$\xoverbrace{\ln (Z_{ t, i} / Z_{ s, i}) = -\sigma \ln (P_{t,i} / P_{s,i})}^{\text{CES First Order Condition}}$$
+%\vspace{-1.75em}
+%$$+  \sigma \ln (\alpha_{t,i} / \alpha_{s,i}) + u_i$$
+%\vspace{1em}
+%\begin{itemize}
+%	\setlength\itemsep{0.25em}
+%	\item $\sigma$ = Intertemporal elasticity of substitution for electricity consumption
+%	\item $\ln (Z_{t, i} / Z_{s, i})$ = Log Difference in electricity consumption
+%	\item $\ln (P_{t,i} / P_{s,i})$ = Log Difference in electricity prices
+%	\item $\alpha_{t,i},\, \alpha_{s,i}$ = Demand shifters
+%	\item Subscripts $t$ and $s$ refer to time periods while $i$ refers to observations
+%\end{itemize}
+%\vspace{2.75em}
+%
+%\end{frame}
+%
+%
+%
+%\begin{frame}
+%\frametitle{Empirical Methodology -- Theory}
+%
+%
+%	
+%	$$\xoverbrace{\ln (Z_{ t, i} / Z_{ s, i}) = -\sigma \ln (P_{t,i} / P_{s,i})}^{\text{CES First Order Condition}}$$
+%	\vspace{-1.5em}
+%	$$+  \xunderbrace{\,\gamma_{t,i}  CDD_{t,i} + \omega_{t,i} HDD_{t,i} + \gamma_{s,i} CDD_{s,i} +  \omega_{s,i} HDD_{s,i}  + \eta \Delta_{t,s}}_{\text{Demand Controls}} + u_i$$
+%	 
+%	\begin{itemize}
+%		\setlength\itemsep{0.25em}
+%		\item $\sigma$ = Intertemporal elasticity of substitution for electricity consumption
+%		\item $\ln (Z_{t, i} / Z_{s, i})$ = Log difference in electricity consumption
+%		\item $\ln (P_{t,i} / P_{s,i})$ = Log difference in electricity prices
+%		\item $CDD_{t,i}$ = Cooling Degree Days
+%		\item $HDD_{t,i}$ = Heating Degree Days
+%		\item $\Delta_{t,s}$ = Difference in months between periods $t$ and $s$
+%	\end{itemize}
+%
+%\end{frame}
+%
+%
+%\begin{frame}
+%\frametitle{Empirical Methodology -- Theory}
+%
+%\vspace{2em}
+%\begin{block}{\centering What if there was intertemporal substitution on the supply side?}
+%	
+%	\vspace{2em}
+%	\begin{itemize}
+%		\item During the 1973 oil crisis,  refineries increased gasoline stocks expecting higher future prices
+%		\item Previous literature has not accounted for endogeneity
+%		\item Might bias $\sigma$ downwards
+%	\end{itemize}
+%	
+%\end{block}
+%
+%
+%
+%\end{frame}
+
+
+%	$$\xoverbrace{\ln (Z_{ t, i} / Z_{ s, i}) = -\sigma \ln (P_{t,i} / P_{s,i})}^{\text{CES First Order Condition}}$$
+%	\vspace{-1.5em}
+%	$$+  \xunderbrace{\,\gamma_{t,i}  CDD_{t,i} + \omega_{t,i} HDD_{t,i} + \gamma_{s,i} CDD_{s,i} +  \omega_{s,i} HDD_{s,i}  + \eta \Delta_{t,s}}_{\text{Demand Controls}} + u_i$$
+
+
+
+\begin{frame}
+\frametitle{Empirical Methodology -- Theory}
+
+\vspace{1em}
+
+%\begin{table}
+%	\begin{tabular}{@{\extracolsep{2em}}lc}
+%		\multirow{2}{*}{\textbf{Demand:}}\quad & $\ln (Z_{ t, i} / Z_{ s, i}) = -\sigma \ln (P_{t,i} / P_{s,i}) + \,\gamma_{t,i}  CDD_{t,i} $\\
+%		& $+ \,\omega_{t,i} HDD_{t,i} + \gamma_{s,i} CDD_{s,i} +  \omega_{s,i} HDD_{s,i}  + \eta \Delta_{t,s} + u_i$ \\[1em]
+%	\end{tabular}
+%\end{table}
+
+\begin{table}
+	\begin{tabular}{@{\extracolsep{2em}}lc}
+		\multirow{2}{*}{\textbf{Demand:}}\quad & $\xoverbrace{\ln (Z_{ t, i} / Z_{ s, i}) = -\sigma \ln (P_{t,i} / P_{s,i})}^{\text{CES First Order Condition}}$\\
+		& $+  \xunderbrace{\,\gamma_{t,i}  CDD_{t,i} + \omega_{t,i} HDD_{t,i} + \gamma_{s,i} CDD_{s,i} +  \omega_{s,i} HDD_{s,i}  + \eta \Delta_{t,s}}_{\text{Demand Controls}} + u_i$ \\[1em]
+	\end{tabular}
+\end{table}
+
 \vspace{1em}
 
 \begin{itemize}
-	\setlength\itemsep{0.75em}
-	\item <1->CES First order condition: $\dfrac{Z_t}{Z_s} = \left(\dfrac{\alpha_t \, p_s}{\alpha_s \, p_t} \right)^\sigma $
-	\item <1->Cet par, an IES Of $\sigma$ implies a 1\% increase in the relative price of electricity $(P_{t}/P_{t+1})$  decreases relative electricity consumption $(Z_{t}/Z_{t+1})$  by $\sigma\%$
-	\item <2->Directly affects the economic importance of intermittency
-	\item <2->Literature has estimated $\sigma$ to be around 0.05 
+	\item $CDD_{t,i}$ = Cooling Degree Days
+	\item $HDD_{t,i}$ = Heating Degree Days
+	\item $\Delta_{t,s}$ = Difference in months between periods $t$ and $s$
 \end{itemize}
-\vspace{2.75em}
-
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Empirical Methodology -- Theory}
-
-
-
-$$\xoverbrace{\ln (Z_{ t, i} / Z_{ s, i}) = -\sigma \ln (P_{t,i} / P_{s,i})}^{\text{CES First Order Condition}}$$
-\vspace{-1.75em}
-$$+  \sigma \ln (\alpha_{t,i} / \alpha_{s,i}) + u_i$$
-\vspace{1em}
-\begin{itemize}
-	\setlength\itemsep{0.25em}
-	\item $\sigma$ = Intertemporal elasticity of substitution for electricity consumption
-	\item $\ln (Z_{t, i} / Z_{s, i})$ = Log Difference in electricity consumption
-	\item $\ln (P_{t,i} / P_{s,i})$ = Log Difference in electricity prices
-	\item $\alpha_{t,i},\, \alpha_{s,i}$ = Demand shifters
-	\item Subscripts $t$ and $s$ refer to time periods while $i$ refers to observations
-\end{itemize}
-\vspace{2.75em}
-
-\end{frame}
-
-
-
-\begin{frame}
-\frametitle{Empirical Methodology -- Theory}
-
-
-	
-	$$\xoverbrace{\ln (Z_{ t, i} / Z_{ s, i}) = -\sigma \ln (P_{t,i} / P_{s,i})}^{\text{CES First Order Condition}}$$
-	\vspace{-1.5em}
-	$$+  \xunderbrace{\,\gamma_{t,i}  CDD_{t,i} + \omega_{t,i} HDD_{t,i} + \gamma_{s,i} CDD_{s,i} +  \omega_{s,i} HDD_{s,i}  + \eta \Delta_{t,s}}_{\text{Demand Controls}} + u_i$$
-	 
-	\begin{itemize}
-		\setlength\itemsep{0.25em}
-		\item $\sigma$ = Intertemporal elasticity of substitution for electricity consumption
-		\item $\ln (Z_{t, i} / Z_{s, i})$ = Log Difference in electricity consumption
-		\item $\ln (P_{t,i} / P_{s,i})$ = Log Difference in electricity prices
-		\item $CDD_{t,i}$ = Cooling Degree Days
-		\item $HDD_{t,i}$ = Heating Degree Days
-		\item $\Delta_{t,s}$ = Difference in months between periods $t$ and $s$
-	\end{itemize}
-
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Empirical Methodology -- Theory}
-
-\vspace{2em}
-\begin{block}{\centering What if there was intertemporal substitution on the supply side?}
-	
-	\vspace{2em}
-	\begin{itemize}
-		\item During the 1973 oil crisis,  refineries increased gasoline stocks expecting higher future prices
-		\item Previous literature has not accounted for endogeneity
-		\item Might bias $\sigma$ downwards
-	\end{itemize}
-	
-\end{block}
-
 
 
 \end{frame}
@@ -384,7 +414,7 @@ $$+  \sigma \ln (\alpha_{t,i} / \alpha_{s,i}) + u_i$$
 \vspace{1em}
 
 \begin{itemize}
-	\item $\ln (C_{t,i} / C_{s,i})$ = Log Difference in coal prices
+	\item $\ln (C_{t,i} / C_{s,i})$ = Log difference in coal prices
 	\item Coal prices affect the supply of electricity but not its demand
 	\item Can use IV to handle endogeneity
 \end{itemize}
@@ -395,32 +425,11 @@ $$+  \sigma \ln (\alpha_{t,i} / \alpha_{s,i}) + u_i$$
 
 
 
-\begin{frame}
-\frametitle{Empirical Methodology -- Approach}
-
-
-\begin{itemize}
-	\setlength\itemsep{1em}
-	\item Approach the problem using OLS, IV (2SLS), and a semiparametric regression
-	\item \textbf{Semiparametric regression} - Partially Linear IV
-	\begin{itemize}
-		\item<1-> Places controls (degree days, time) and instrument (coal prices) in smooth, unknown functions estimated using Kernel regressions
-		\item<2->  Error term assumed to be mean zero but may be non-Gaussian
-		\item<3->  Will produce different results than 2SLS if these functions are \textit{actually} non-linear 
-		\item<4->  I find semiparametric results are significantly different from 2SLS
-	\end{itemize} 
-\end{itemize}
-
-\vspace{7.5em}
-
-\end{frame}
-
 
 
 \begin{frame}
 \frametitle{Empirical Methodology -- Approach}
 
-\vspace{0.1em}
 
 \begin{itemize}
 	\setlength\itemsep{1em}
@@ -429,8 +438,7 @@ $$+  \sigma \ln (\alpha_{t,i} / \alpha_{s,i}) + u_i$$
 	\begin{itemize}
 		\item Places controls (degree days, time) and instrument (coal prices) in smooth, unknown functions estimated using Kernel regressions
 		\item Error term assumed to be mean zero but may be non-Gaussian
-		\item Will produce different results than 2SLS if these functions are \textit{actually} non-linear 
-		\item I find semiparametric results are significantly different from 2SLS
+		\item Robust to misspecified functional forms on controls and instrument
 	\end{itemize} 
 \end{itemize}
 
@@ -439,7 +447,7 @@ $$+  \sigma \ln (\alpha_{t,i} / \alpha_{s,i}) + u_i$$
 		\multirow{2}{*}{\textbf{Demand:}}\quad & $\ln (Z_{ t, i} / Z_{ s, i}) = -\sigma \ln (P_{t,i} / P_{s,i})   $ \\
 		& $+ $ \colorbox{yellow}{$f(CDD_{t,i}, HDD_{t,i}, CDD_{s,i} , HDD_{s,i}, \Delta_{t,s} )$}$ + u_i$ \\[1em]
 		\multirow{2}{*}{\textbf{Supply:}}\quad & $\ln (Z_{ t, i} / Z_{ s, i}) = \beta \ln (P_{t,i} / P_{s,i})$\\
-		& $+ $\colorbox{yellow}{$g(\ln (C_{t,i} / C_{s,i}))$}$  + v_{i}$
+		& $+ $\colorbox{yellow}{$g( C_{t,i} / C_{s,i})$}$  + v_{i}$
 	\end{tabular}
 \end{table}
 
@@ -514,9 +522,9 @@ $$+  \sigma \ln (\alpha_{t,i} / \alpha_{s,i}) + u_i$$
 
 \begin{itemize}
 	\setlength\itemsep{0.5em}
-	\item<1-> Consider our model in a setting with two periods (peak and off-peak) and two technologies (solar and coal)
-	\item<2-> We parametrize our  model using data on cost and efficiency from the EIA
-	\item<3-> We numerically evaluate this model to understand the effects of intermittency
+	\item Consider our model in a setting with two periods (peak and off-peak) and two technologies (solar and coal)
+	\item We parametrize our  model using data on cost and efficiency from the EIA
+	\item We then numerically evaluate the model
 \end{itemize}
 
 \end{frame}
@@ -587,18 +595,18 @@ $$+  \sigma \ln (\alpha_{t,i} / \alpha_{s,i}) + u_i$$
 \end{frame}
 
 
-\begin{frame}
-\frametitle{Discussion}
-
-\begin{block}{Why does a non-linear elasticity of substitution between intermittent and base load technologies matter?}
-	\begin{itemize}
-		\setlength\itemsep{0.5em}
-		\item Over time, we may expect the share of renewable energy to increase $\implies$ elasticity of substitution between renewables and fossil fuels will decrease over time
-		\item Taxes/subsidies need to be increasingly larger to shift the same fraction of capacity towards renewables and away from fossil fuels 
-		\item Models assuming a constant elasticity of substitution may not be realistic
-	\end{itemize}
-\end{block}
-\end{frame}
+%\begin{frame}
+%\frametitle{Discussion}
+%
+%\begin{block}{What does a non-constant elasticity of substitution between intermittent and base load technologies imply?}
+%	\begin{itemize}
+%		\setlength\itemsep{0.5em}
+%		\item Models assuming a constant elasticity of substitution may not be realistic
+%		\item Taxes/subsidies need to be increasingly larger to shift the same fraction of capacity towards renewables and away from fossil fuels 
+%		\item Over time, we may expect the share of renewable energy to increase $\implies$ elasticity of substitution between renewables and fossil fuels will decrease over time
+%	\end{itemize}
+%\end{block}
+%\end{frame}
 
 
 \begin{frame}
@@ -607,10 +615,10 @@ $$+  \sigma \ln (\alpha_{t,i} / \alpha_{s,i}) + u_i$$
 \begin{block}{How should we handle pollution abatement when generation is intermittent?}
 	\begin{itemize}
 		\setlength\itemsep{0.5em}
-		\item<1-> Carbon taxes still work
-		\item<2-> Should also account for its distributional effects
-		\item<3-> Greater welfare losses in regions without access to non-intermittent renewables
-		\item<4-> Can turn into an equity--efficiency trade--off
+		\item Carbon taxes and renewable subsidies still work
+		\item Should also account for its distributional effects
+		\item Welfare effects depend on access to non-intermittent renewables
+		\item Keep equity-efficiency trade-off in mind
 	\end{itemize}
 \end{block}
 \end{frame}
@@ -632,11 +640,11 @@ $$+  \sigma \ln (\alpha_{t,i} / \alpha_{s,i}) + u_i$$
 \begin{frame}
 \frametitle{Discussion -- Batteries}
 
-\begin{block}{Improving battery technology can make a significant difference}
+\begin{block}{Researching battery technology can make a significant difference}
 	\begin{itemize}
 		\setlength\itemsep{0.5em}
 		\item Reducing the intermittency of renewables greatly increases their substitutability
-		\item Mitigates the distributional side effects of intermittency + carbon taxes
+		\item Mitigates the distributional side effects of intermittency + policy
 		\item Can roughly approximate the effects of batteries in our model by shifting solar output to the off-peak period when it under-produces
 	\end{itemize}
 \end{block}
@@ -676,67 +684,31 @@ $$+  \sigma \ln (\alpha_{t,i} / \alpha_{s,i}) + u_i$$
 
 \end{frame}
 
-\begin{frame}
-\frametitle{Discussion -- Improving Models}
 
-\begin{block}{How can future models of energy generation substitutability be improved?}
-	\begin{itemize}
-		\setlength\itemsep{0.5em}
-		\item <1-> Assuming a constant elasticity of substitution between renewables and fossil fuels does not accurately capture intermittency
-		\item <1-> Empirical estimates of the elasticity of substitution may be incorrect since the functional form (CES) does not seem to be appropriate 
-		\item <2-> Directly implementing our model may not allow for analytical tractability
-		\item <2-> Can try the variable elasticity of substitution (VES) form instead\footnote{The VES function was first defined in Revankar (1971).}
-	\end{itemize}
-\end{block}
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Discussion -- Improving Models}
-
-\begin{block}{\centering VES approximation of the relationship between solar and coal}
-\end{block}
-
-\hspace*{-1.5em}
-\begin{overpic}[width=1.1\textwidth,tics=10]{../code/matlab/simulation_april/fig_ves_approx_x.png} 
-\end{overpic}
-
-\end{frame}
-
-
-\begin{frame}
-\frametitle{Discussion -- Improving Models}
-
-\begin{block}{What exactly is the VES function?}
-	\begin{itemize}
-		\setlength\itemsep{0.5em}
-		\item Assumes that the elasticity of substitution between factors varies as a linear function of their quantities
-		\item Can be empirically estimated
-		\item Simpler to implement in a theoretical or numerical framework than our model
-	\end{itemize}
-	\begin{align*}
-	&Z = \gamma X_1^{\omega(1-\delta \rho)} \left( X_2 + (\rho - 1) X_1 \right)^{\omega \delta \rho} \\
-	&\highlight{e = 1 + \beta (X_1 / X_2)} \\
-	&\,\beta = (\rho - 1) / ( 1- \delta \rho ) 
-	\end{align*}
-	\vspace{-4ex}
-	$$\gamma > 0, \quad \omega > 0, \quad0 < \delta < 1, \quad 0 \leq \delta \rho \leq 1 , \quad (X_2/X_1) >  -\beta $$
-\end{block}
-
-\end{frame}
 
 \begin{frame}
 \frametitle{Conclusion}
 
 \begin{itemize}
-	\setlength\itemsep{0.75em}
-	\item Welfare effects of carbon taxes and renewable subsidies depend on the intermittency of renewables and thus vary geographically
-	\item Intermittency can create a trade-off between efficiently and equitably preventing climate change
+	\setlength\itemsep{1em}
+	\item Welfare effects of carbon taxes and renewable subsidies depend on the intermittency of renewables
+	\item Geographic heterogeneity in intermittency can create a trade-off between efficiently and equitably preventing climate change
 	\item Subsidizing battery research can complement other policies by increasing the substitutability of renewable and fossil energy while mitigating their unintentional distributional consequences 
-	\item The VES function can do a reasonable job of approximating the substitutability between renewables and fossil fuels
+	%\item The VES function can do a reasonable job of approximating the substitutability between renewables and fossil fuels
 \end{itemize}
 
 \end{frame}
+
+\begin{frame}
+
+\begin{block}{\centering \large Questions?}
+\end{block}
+
+\blfootnote{Saketh Aleti (saketh.aleti@rutgers.edu), Gal Hochman (gal.hochman@rutgers.edu)}
+
+
+\end{frame}
+
 
 
 %%%%%%% References
@@ -824,25 +796,109 @@ Wisconsin.
 
 \end{frame}
 
+
+\begin{frame}
+\frametitle{Appendix -- VES}
+
+\begin{block}{How can future models of energy generation substitutability be improved?}
+	\begin{itemize}
+		\setlength\itemsep{0.5em}
+		\item <1-> Assuming a constant elasticity of substitution between renewables and fossil fuels does not accurately capture intermittency
+		\item <1-> Empirical estimates of the elasticity of substitution may be incorrect since the functional form (CES) does not seem to be appropriate 
+		\item <1-> Directly implementing our model may not allow for analytical tractability
+		\item <2-> Can try the variable elasticity of substitution (VES) form instead\footnote{The VES function was first defined in Revankar (1971).}
+	\end{itemize}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Appendix -- VES}
+
+\begin{block}{\centering VES approximation of the relationship between solar and coal}
+\end{block}
+
+\hspace*{-1.5em}
+\begin{overpic}[width=1.1\textwidth,tics=10]{../code/matlab/simulation_april/fig_ves_approx_x.png} 
+\end{overpic}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Appendix -- VES}
+
+\begin{block}{What exactly is the VES function?}
+\begin{itemize}
+\setlength\itemsep{0.5em}
+\item Assumes that the elasticity of substitution between factors varies as a linear function of their quantities
+\item Can be empirically estimated
+\item Simpler to implement in a theoretical or numerical framework than our model
+\end{itemize}
+\begin{align*}
+&Z = \gamma X_1^{\omega(1-\delta \rho)} \left( X_2 + (\rho - 1) X_1 \right)^{\omega \delta \rho} \\
+&\highlight{e = 1 + \beta (X_1 / X_2)} \\
+&\,\beta = (\rho - 1) / ( 1- \delta \rho ) 
+\end{align*}
+\vspace{-4ex}
+$$\gamma > 0, \quad \omega > 0, \quad0 < \delta < 1, \quad 0 \leq \delta \rho \leq 1 , \quad (X_2/X_1) >  -\beta $$
+\end{block}
+
+\end{frame}
+
+
+
+%%%%%%remove
+\begin{frame}
+\frametitle{Appendix -- Literature}
+
+\begin{itemize}
+	\setlength\itemsep{0.2em}
+	\item Some literature approach the problem by numerically optimizing the capacity of intermittent renewables given reliability constraints \footnote{(Musgens \& Neuhoff, 2006), (Neuhoff et al., 2007)}
+	\item Other papers study how intermittent technologies affect the market itself \footnote{(Ambec \& Crampes, 2012), (Chao, 2011), (Borenstein, 2012)}	
+	\item A common top-down approach is to model intermittency through a CES function between different energy technologies \footnote{See Papageorgiou et al. (2017) for a survey of the literature taking this approach}
+	%\item Consumers prefer to smooth their electricity consumption\footnote{(Schwarz et al., 2002), (Herriges et al., 1993), (King \& Shatrawka, 2011).}
+	\item Our model is closest to Helm and Mier (2019)
+\end{itemize}
+
+\end{frame}
+
+
 \begin{frame}
 \frametitle{Appendix -- OLS Results}
 
 \begin{table}[t] \centering 
-	\caption{OLS Regression Results}
-	\label{table:1} 
-	\footnotesize
+	%\label{table:1} 
+	\tiny
 	\begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
-		\\[-5ex]\hline  
+		\\[-3ex]\hline  
 		\hline \\[-1.8ex] 
 		& \multicolumn{6}{c}{\textit{Dependent variable:} $\ln (Z_{ t, i} / Z_{ s, i})$} \\ [0.5ex]
 		\cline{2-7} 
 		\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ [0.5ex]
 		\hline \\[-1.8ex] 
 		$-\ln (P_{t,i} / P_{s,i})$ & 0.937$^{***}$ & 1.075$^{***}$ & 1.098$^{***}$ & 1.074$^{***}$ & 1.263$^{***}$ & 1.305$^{***}$ \\ 
-		& (0.030) & (0.026) & (0.026) & (0.224) & (0.172) & (0.169) \\  [0.9ex]
+		& (0.030) & (0.026) & (0.026) & (0.224) & (0.172) & (0.169) \\
+		%& & & & & & \\ 
+		$\Delta_{t,s}$ &  &  & 0.0005$^{***}$ &  &  & 0.0065$^{*}$ \\ 
+		&  &  & (0.0001) &  &  & (0.0003) \\ 
+		%& & & & & & \\ 
+		CDD$_t$ &  & 1.156$^{***}$ & 1.163$^{***}$ &  & 1.164$^{***}$ & 1.174$^{***}$ \\ 
+		
+		$\quad(\times 1000^{-1})$ &  & (0.017) & (0.017) &  & (0.072) & (0.075) \\ 
+		%& & & & & & \\ 
+		CDD$_s$ &  & $-$1.143$^{***}$ & $-$1.158$^{***}$ &  & $-$1.200$^{***}$ & $-$1.224$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$&  & (0.025) & (0.026) &  & (0.096) & (0.098) \\ 
+		%& & & & & & \\ 
+		HDD$_t$  &  & 0.246$^{***}$ & 0.245$^{***}$ &  & 0.237$^{***}$ & 0.236$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$ &  & (0.007) & (0.007) &  & (0.031) & (0.031) \\ 
+		%& & & & & & \\ 
+		HDD$_s$ &  & $-$0.267$^{***}$ & $-$0.265$^{***}$ &  & $-$0.268$^{***}$ & $-$0.263$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$ &  & (0.008) & (0.008) &  & (0.038) & (0.038) \\ 
+		%& & & & & & \\ 
+		Intercept & 0.028$^{***}$ & 0.012$^{*}$ & 0.026$^{***}$ &  &  &  \\ 
+		& (0.004) & (0.006) & (0.007) &  &  &  \\  [0.9ex]
 		\hline \\[-1.8ex] 
-		Time Control &   &   & Yes &   &   & Yes  \\ 
-		Degree Day Controls &   & Yes  & Yes &   & Yes  & Yes \\ 
 		State FEs &   &   &   & Yes & Yes & Yes \\ 
 		Observations & 6,817 & 6,817 & 6,817 & 6,817 & 6,817 & 6,817 \\ 
 		Adjusted R$^{2}$ & 0.079 & 0.506 & 0.508 & 0.085 & 0.518 & 0.520 \\  
@@ -860,11 +916,11 @@ Wisconsin.
 \frametitle{Appendix -- IV Results}
 
 \begin{table}[h] \centering 
-	\caption{IV (2SLS) Regression Results}
+	%\caption{IV (2SLS) Regression Results}
 	\label{table:2} 
-	\scriptsize
+	\tiny
 	\begin{tabular}{@{\extracolsep{4pt}}lcccccc} 
-		\\[-6ex]\hline  
+		\\[-4ex]\hline  
 		\hline \\[-1.6ex] 
 		& \multicolumn{3}{c}{First-Stage} & \multicolumn{3}{c}{Second-Stage} \\ [0.5ex]
 		& \multicolumn{3}{c}{\textit{Dep. Variable:} $\ln (P_{t,i} / P_{s,i})$ } & \multicolumn{3}{c}{\textit{Dep. Variable:}  $\ln (Z_{ t, i} / Z_{ s, i})$}\\ [0.5ex]
@@ -875,10 +931,22 @@ Wisconsin.
 		& (0.002) & (0.002) & (0.002) &  &  &  \\ 
 		& & & & & & \\[-1ex]
 		$-\ln (P_{t,i} / P_{s,i})$ &  &  &  & 2.978$^{***}$ & 5.896$^{***}$ & 5.818$^{***}$ \\ 
-		&  &  &  & (0.180) & (0.548) & (0.524) \\   [0.9ex]
+		&  &  &  & (0.180) & (0.548) & (0.524) \\   
+		$\Delta_{t,s}$  &  &  & 0.001$^{***}$ &  &  & 0.003$^{***}$ \\ 
+		&  &  & (0.00004) &  &  & (0.0004) \\ 
+		%& & & & & & \\ 
+		CDD$_t$  &  & 0.100$^{***}$ & 0.105$^{***}$ &  & 1.637$^{***}$ & 1.657$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$ &  & (0.006) & (0.006) &  & (0.068) & (0.067) \\ 
+		%& & & & & & \\ 
+		CDD$_s$ &  & $-$0.096$^{***}$ & $-$0.114$^{***}$ &  & $-$1.688$^{***}$ & $-$1.783$^{***}$ \\ 
+		$\quad(\times 1000^{-1})$  &  & (0.009) & (0.009) &  & (0.079) & (0.084) \\ 
+		%& & & & & & \\ 
+		HDD$_t$  &  & $-$0.048$^{***}$ & $-$0.048$^{***}$ &  & 0.001 & 0.007 \\ 
+		$\quad(\times 1000^{-1})$ &  & (0.003) & (0.003) &  & (0.031) & (0.030) \\ 
+		%& & & & & & \\ 
+		HDD$_s$  &  & 0.053$^{***}$ & 0.055$^{***}$ &  & 0.0001 & 0.007 \\ 
+		$\quad(\times 1000^{-1})$  &  & (0.003) & (0.003) &  & (0.035) & (0.034) \\   [0.9ex]
 		\hline \\[-1.8ex] 
-		Time Control &   &   & Yes &   &   & Yes  \\ 
-		Degree Day Controls &   & Yes  & Yes &   & Yes  & Yes \\ 
 		State FEs &  Yes & Yes  & Yes  & Yes & Yes & Yes \\ 
 		Observations & 6817 & 6817 & 6817 & 6817 & 6817 & 6817 \\ 
 		Adjusted R$^{2}$ & 0.061 & 0.264 & 0.293 & &  &  \\ 
