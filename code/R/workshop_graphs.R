@@ -72,16 +72,20 @@ ggsave('../../documents/exhibits/rel_renew_map.pdf',
 
 # Ercot data
 
-ggplot(data = ercot_data) +
+ercot_plot <- ggplot(data = ercot_data) +
     geom_line(aes(x = Hour, y = Load, color = 'Load'), size = 1) +
     geom_line(aes(x = Hour, y = SolarGen*50, color = 'SolarGen'), size = 1) +
-    scale_y_continuous(expand = c(0, 100),
-        sec.axis = sec_axis(~./50, name = "Solar Generation (MW)")) +
-    scale_colour_manual(values = c("blue", "orange")) +
+    ylab('Load (MW)\n') +
+    scale_y_continuous(expand = c(0.01,0),
+        sec.axis = sec_axis(~./50, name = "Solar Generation (MW)\n"),
+        breaks = c(0,500,1000,1500)*50) +
+    scale_x_continuous(breaks = seq(0,25,2)) +
+    scale_colour_manual(values = c("#23373B", "#EB811B")) +
     expand_limits(x = 0, y = 0) +
+    labs(title = 'ERCOT Hourly Load and Solar Generation (6/1/2019)') +
     theme(legend.box = "vertical", legend.key.size = unit(0.5, "cm"),
           legend.key.width = unit(2, "cm"), legend.title = element_blank(),
-          legend.direction = "horizontal", legend.position = "bottom",
+          legend.direction = "vertical", legend.position = c(0.15, 0.9),
           legend.margin = margin(-0.25,0,0,0, unit="cm"),
           legend.background = element_rect(fill = '#FAFAFA', color = '#FAFAFA'),
           panel.background = element_rect(fill = '#FAFAFA', color = '#FAFAFA'),
@@ -90,6 +94,9 @@ ggplot(data = ercot_data) +
           axis.line.y.left = element_line(size = 0.5, colour = "grey50"),
           panel.grid.major = element_line(color = 'grey90'))
 
+print(ercot_plot)
+ggsave('../../documents/exhibits/ercot_load.pdf',
+       width = plot_width*1.25, height = plot_height*0.9, dpi = 600)
 
 
 
