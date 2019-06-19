@@ -25,6 +25,7 @@ manual_theme <- theme_minimal() +
 plot_width  <- 8
 plot_height <- 5
 
+
 ### Import Data
 
 setwd(dirname(rstudioapi::getSourceEditorContext()$path))
@@ -33,12 +34,12 @@ folder <- '../../data/'
 plant_data <- read_excel(paste0(folder, 'EIA/plantlocations_04_2019.xlsx'))
 map_data_state  <- map_data("state")
 map_data_county <- map_data("county")
-ercot_data <- read_csv(paste0(folder, 'processed/ercot_load_solar.csv'))
 
 ercot_load_data <- read_csv(
     paste0(folder, 'electricity/elc_load_hourly_20190601_ercot.csv'))
 ercot_gen_data <- read_csv(
-    paste0(folder, 'electricity/solar_gen_hourly_20190601_ercot.csv'))
+    paste0(folder, 'other/solar_gen_hourly_20190601_ercot.csv'))
+
 
 ### Clean data
 
@@ -47,10 +48,14 @@ ercot_gen_data <- read_csv(
 ercot_load_data <- ercot_load_data[,c(
     'DeliveryDate', 'HourEnding', 'ActualLoad')]
 
+ercot_gen_data <- ercot_gen_data[,c(
+    'DELIVERY_DATE', 'HOUR_ENDING', 'ACTUAL_SYSTEM_WIDE')]
 
-ercot_load_data <- ercot_load_data[,c(
-    'DeliveryDate', 'HourEnding', 'ActualLoad')]
+colnames(ercot_load_data) <- c('Date', 'Hour', 'Load')
+colnames(ercot_gen_data)  <- c('Date', 'Hour', 'SolarGen')
 
+ercot_data <- merge(ercot_load_data, ercot_gen_data, by = c('Date', 'Hour'))
+ercot_data <- filter(ercot_data, Date == '6/1/2019')
 
 ## Plant data
 
