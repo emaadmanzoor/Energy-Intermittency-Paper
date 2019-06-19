@@ -108,5 +108,5 @@ ylim([0 25])
 grid('on')
 
 % Save figure
-print(gcf,'fig_batteries.png','-dpng','-r300')
+print(gcf,'../../figures/fig_batteries.png','-dpng','-r300')
 

@@ -172,6 +172,6 @@ xlim([0, 200])
 grid('on')
 
 % Save figure
-print(gcf,'fig_tax_subsidy.png','-dpng','-r300')
+print(gcf,'../../figures/fig_tax_subsidy.png','-dpng','-r300')
 
 

@@ -138,5 +138,5 @@ set(gcf,'units','points','position',[100,100,1600,700]/2)
 set(gca,'color','none')
 set(gcf, 'InvertHardcopy', 'off')
 set(gcf,'color', [250 250 250]/255);
-print(gcf,'fig_ves_approx_x.png','-dpng','-r600')
+print(gcf,'../../figures/fig_ves_approx_workshop.png','-dpng','-r600')
 

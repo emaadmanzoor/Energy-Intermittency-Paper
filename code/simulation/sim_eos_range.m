@@ -109,5 +109,5 @@ grid('on')
 %legend([e_1_line], ' e = 1');
 
 % Save figure
-print(gcf,'fig_elasticity_range.png','-dpng','-r300')
+print(gcf,'../../figures/fig_elasticity_range.png','-dpng','-r300')
 

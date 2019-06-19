@@ -114,5 +114,5 @@ set(gcf,'units','points','position',[100,100,1600,700]/2)
 set(gca,'color','none')
 set(gcf, 'InvertHardcopy', 'off')
 set(gcf,'color', [250 250 250]/255);
-print(gcf,'fig_batteries_x.png','-dpng','-r500')
+print(gcf,'../../figures/fig_batteries_workshop.png','-dpng','-r500')
 

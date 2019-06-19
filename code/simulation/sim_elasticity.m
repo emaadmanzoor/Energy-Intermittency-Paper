@@ -104,5 +104,5 @@ legend('Location', 'southwest')
 title(hleg, '\sigma')
 
 % Save figure
-print(gcf,'fig_coal_elas.png','-dpng','-r300')
+print(gcf,'../../figures/fig_coal_elas.png','-dpng','-r300')
 

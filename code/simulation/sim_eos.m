@@ -127,5 +127,5 @@ ylim([0 15])
 grid('on')
 
 % Save figure
-print(gcf,'fig_elasticity.png','-dpng','-r300')
+print(gcf,'../../figures/fig_elasticity.png','-dpng','-r300')
 

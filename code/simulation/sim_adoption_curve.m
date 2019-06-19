@@ -93,7 +93,7 @@ legend('Location', 'southwest')
 title(hleg, '\sigma')
 
 % Save figure
-%print(gcf,'fig_adoption_c2.png','-dpng','-r300')
+%print(gcf,'../../figures/fig_adoption_c2.png','-dpng','-r300')
 
 
 %% Adoption with Respect to Price of Solar Sim
@@ -182,5 +182,5 @@ ylim([0 100])
 grid('on')
 
 % Save figure
-print(gcf,'fig_adoption_c1.png','-dpng','-r300')
+print(gcf,'../../figures/fig_adoption.png','-dpng','-r300')
 

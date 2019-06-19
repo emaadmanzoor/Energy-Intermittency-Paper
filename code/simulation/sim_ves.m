@@ -132,5 +132,5 @@ grid('on')
 legend('Location', 'northwest')
 
 % Save figure
-print(gcf,'fig_ves_approx.png','-dpng','-r300')
+print(gcf,'../../figures/fig_ves_approx.png','-dpng','-r300')
 
