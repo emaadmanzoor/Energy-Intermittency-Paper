@@ -1,1 +1,0 @@
-$call csv2gdx ../../data/sam/SAMS_balanced.csv output=../../data/sam/SAMS_balanced.gdx useHeader = y id= data index = 1,2,3,4,6 values = 5
