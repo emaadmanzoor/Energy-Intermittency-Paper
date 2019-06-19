@@ -35,7 +35,24 @@ map_data_state  <- map_data("state")
 map_data_county <- map_data("county")
 ercot_data <- read_csv(paste0(folder, 'processed/ercot_load_solar.csv'))
 
-## Clean up data
+ercot_load_data <- read_csv(
+    paste0(folder, 'electricity/elc_load_hourly_20190601_ercot.csv'))
+ercot_gen_data <- read_csv(
+    paste0(folder, 'electricity/solar_gen_hourly_20190601_ercot.csv'))
+
+### Clean data
+
+## Ercot data
+
+ercot_load_data <- ercot_load_data[,c(
+    'DeliveryDate', 'HourEnding', 'ActualLoad')]
+
+
+ercot_load_data <- ercot_load_data[,c(
+    'DeliveryDate', 'HourEnding', 'ActualLoad')]
+
+
+## Plant data
 
 # Ignore Alaska and Hawaii
 plant_data <- filter(plant_data,
@@ -45,9 +62,9 @@ plant_data <- filter(plant_data,
 plant_data$Capacity <- plant_data$`Nameplate Capacity (MW)`
 
 
-## Plot
+### Plot
 
-# Geo Hydro plants
+## Geo Hydro plants
 
 rel_renew_plot <- ggplot() +
     geom_polygon(data = map_data_state, color = 'grey70', fill = 'white',
@@ -70,7 +87,7 @@ print(rel_renew_plot)
 ggsave('../../documents/exhibits/rel_renew_map.pdf',
        width = plot_width, height = plot_height, dpi = 600)
 
-# Ercot data
+## Ercot data
 
 ercot_plot <- ggplot(data = ercot_data) +
     geom_line(aes(x = Hour, y = Load, color = 'Load'), size = 1) +
