@@ -10,3 +10,6 @@
 # IPython Checkpoints
 /notebooks/.ipynb_checkpoints
 /code/regressions/.ipynb_checkpoints
+
+# Rhistory files
+*.Rhistory
