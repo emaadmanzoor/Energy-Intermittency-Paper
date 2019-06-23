@@ -101,7 +101,7 @@
 % bibliography
 \makeatletter
 \renewenvironment{thebibliography}[1]
-{\section*{References}%
+{\section{References}%
 	\@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
 	\list{}%
 	{\setlength{\labelwidth}{0pt}%
@@ -125,11 +125,11 @@
 
 \begin{document}
 	
-	\title{\singlespacing{\textbf{Efficient Pollution Abatement in Electricity Markets with Intermittent Renewable Energy}}\thanks{Saketh Aleti: Graduate Student, Department of Economics, Duke University, 419 Chapel Drive, 213 Social Sciences Bldg., Durham, NC 27708-0097, USA (email: sa400@duke.edu). Gal Hochman: Associate Professor, Department of Agriculture, Food \& Resource Economics, Cook Office Building, 55 Dudley Road, Room 116, New Brunswick, NJ 08901, USA (email: gal.hochman@rutgers.edu).}}
+	\title{\singlespacing{\textbf{Efficient Pollution Abatement in Electricity Markets with Intermittent Renewable Energy}}}
 	
-	\author[]{Saketh Aleti and Gal Hochman}
+	\author[]{Saketh Aleti\thanks{Saketh Aleti: Graduate Student, Department of Economics, Duke University, 419 Chapel Drive, 213 Social Sciences Bldg., Durham, NC 27708-0097, USA (email: sa400@duke.edu).}  \, and  Gal Hochman\thanks{ Gal Hochman: Associate Professor, Department of Agriculture, Food \& Resource Economics, Rutgers University, 116 Cook Office Building, 55 Dudley Road, New Brunswick, NJ 08901, USA (email: gal.hochman@rutgers.edu).}}
 	
-	\date{\vspace{-1em}}
+%	\date{\vspace{-1em}}
 	
 	\maketitle
 	
@@ -523,122 +523,126 @@
 	
 	\section{Acknowledgments}
 	
-	This research was funded by the Sun Grant (122682). We would also like to thank Prof. Roger Klein and the participants of the NAREA 2019 Workshop for helpful comments. 
+	This research was funded by the Sun Grant (122682). We would also like to thank Prof. Roger Klein and the participants of the NAREA 2019 Workshop for helpful comments.\\\\
+	\noindent
+	\textbf{Transparency and Openness Promotion Statement}: The data and code for replication are available \href{https://github.com/SA3291/Energy-Intermittency-Paper.git}{here}. 
+	
+	
 	
 	\begin{thebibliography}{9}
 		
 		\bibitem[Acemoglu et al.(2012)]{Ace2012}
-		Acemoglu, D., Aghion, P., Bursztyn, L., \& Hemous, D. (2012). The Environment and Directed Technical Change. American Economic Review, 102(1), 131–166. https://doi.org/10.1257/aer.102.1.131
+		Acemoglu, D., Aghion, P., Bursztyn, L., \& Hemous, D. 2012. ``The Environment and Directed Technical Change." \textit{American Economic Review} 102(1): 131–166. https://doi.org/10.1257/aer.102.1.131
 		
 		\bibitem[Adelman(1995)]{genie}
-		Adelman, M. A. (1995). The genie out of the bottle: World oil since 1970. MIT Press.
+		Adelman, M. A. 1995. \textit{The Genie Out of the Bottle: World Oil since 1970}. MIT Press.
 		
 		\bibitem[Ambec and Crampes(2012)]{AC2012}
-		Ambec, S., \& Crampes, C. (2012). Electricity provision with intermittent sources of energy. Resource and Energy Economics, 34(3), 319–336. https://doi.org/10.1016/j.reseneeco.2012.01.001
+		Ambec, S., \& Crampes, C. 2012. ``Electricity provision with intermittent sources of energy." \textit{Resource and Energy Economics} 34(3): 319–336. https://doi.org/10.1016/j.reseneeco.2012.01.001
 		
 		\bibitem[Aubin et al.(1995)]{Aubin}
-		Aubin, C., Fougere, D., Husson, E., \& Ivaldi, M. (1995). Real-time pricing of electricity for residential customers: Econometric analysis of an experiment. Journal Of Applied Econometrics, 10, S171–S191.
+		Aubin, C., Fougere, D., Husson, E., \& Ivaldi, M. 1995. ``Real-time Pricing of Electricity for Residential Customers: Econometric Analysis of an Experiment." \textit{Journal Of Applied Econometrics} 10(S1): S171-S191. doi:10.1002/jae.3950100510
 		
 		\bibitem[Borenstein(2012)]{Boren2012}
-		Borenstein, S. (2012). The Private and Public Economics of Renewable Electricity Generation. Journal of Economic Perspectives, 26(1), 67–92. https://doi.org/10.1257/jep.26.1.67
+		Borenstein, S. 2012. ``The Private and Public Economics of Renewable Electricity Generation." \textit{Journal of Economic Perspectives} 26(1): 67–92. https://doi.org/10.1257/jep.26.1.67
 		
 		\bibitem[Chao(2011)]{Chao2011}
-		Chao, H. (2011). Efficient pricing and investment in electricity markets with intermittent resources. Energy Policy, 39(7), 3945–3953. https://doi.org/10.1016/j.enpol.2011.01.010
+		Chao, H. 2011. ``Efficient Pricing and Investment in Electricity Markets with Intermittent Resources." \textit{Energy Policy} 39(7): 3945–3953. https://doi.org/10.1016/j.enpol.2011.01.010
+		
+		
+		\bibitem[Delarue et al.(2010)]{Delarue}
+		Delarue, E., De Jonghe, C., Belmans, R., and D’Haeseleer, W. 2010. ``Applying Portfolio Theory to the Electricity Sector: Energy versus Power." \textit{Energy Economics} 33(1): 12–23. https://doi.org/10.1016/j.eneco.2010.05.003
+		
+		\bibitem[Deryugina and Mackay(2017)]{Deryugina}
+		Deryugina, T., Mackay, A., and Reif, J. 2017. ``The Long-Run Dynamics of Electricity Demand: Evidence from Municipal Aggregation." \textit{NBER Working Paper Series} https://doi.org/10.3386/w23483
+		
+		\bibitem[EIA(2019a)]{EIANetgen}
+		[dataset] Electricity Information Administration. 2019a. ``Net generation, United States, all sectors, annual. Electricity Data Browser." https://www.eia.gov/electricity/data/browser
+		
+		\bibitem[EIA(2019b)]{EIALCOE}
+		Electricity Information Administration. 2019b. ``Levelized Cost and Levelized Avoided Cost of New Generation." \textit{Annual Energy Outlook 2019} https://www.eia.gov/outlooks/aeo/pdf/electricity\_generation.pdf
+		
+		\bibitem[EIA(2019c)]{EIArenew}
+		Electricity Information Administration. 2019c. ``U.S. Renewable Electricity Generation has Doubled since 2008." \textit{Today in Energy} https://www.eia.gov/todayinenergy/detail.php?id=38752
+		
+		\bibitem[Fan and Hyndman(2011)]{Fan}
+		Fan, S., \& Hyndman, R. 2011. ``The price elasticity of electricity demand in South Australia." \textit{Energy Policy} 39(6): 3709–3719. https://doi.org/10.1016/j.enpol.2011.03.080
+		
+		\bibitem[Foley et al.(2012)]{Foley2012}
+		Foley, A., Leahy, P., Marvuglia, A., and Mckeogh, E. 2012. ``Current methods and advances in forecasting of wind power generation." \textit{Renewable Energy} 37(1): 1–8. https://doi.org/10.1016/j.renene.2011.05.033
+		
+		\bibitem[Geroski(1957)]{Geroski2000}
+		Geroski, P. 2000. ``Models of technology diffusion." \textit{Research Policy}. https://doi.org/10.1016/S0048-7333(99)00092-X
+		
+		\bibitem[Helm and Mier(2019)]{HH}
+		Helm, C. and Mier, M. 2019. ``On the Efficient Market Diffusion of Intermittent Renewable Energies." \textit{Energy Economics} 80: 812–830. https://doi.org/10.1016/j.eneco.2019.01.017
+		
+		
+		\bibitem[Herriges et al.(1993)]{Herriges}
+		Herriges, J., Baladi, S., Caves, D., and Neenan, B. 1993. ``The Response of Industrial Customers to Electric Rates Based Upon Dynamic Marginal Costs." \textit{The Review of Economics and Statistics} 75(3): 446-454. https://doi.org/10.2307/2109458
+		
+		
+		\bibitem[Joskow(2011)]{Joskow2011}
+		Joskow, P. 2011. ``Comparing the Costs of Intermittent and Dispatchable Electricity Generating Technologies." \textit{American Economic Review} 101(3): 238–241. https://doi.org/10.1257/aer.101.3.238
+		
+		\bibitem[King and Shatrawka(2011)]{KS1994}
+		King, K. and Shatrawka, P. 1994. "Customer Response to a Permanent Time- Varying
+		Pricing Program in the United Kingdom." Madison, WI: Laurits R. Christensen Associates.
+		
+		\bibitem[Mohajeryami et al.(2016)]{Moha2016}
+		Mohajeryami, S., Moghaddam, I., Doostan, M., Vatani, B., and Schwarz, P. 2016. ``A Novel Economic Model for Price-Based Demand Response." \textit{Electric Power Systems Research} 135: 1–9. https://doi.org/10.1016/j.epsr.2016.03.026
+		
+		\bibitem[Musgens and Neuhoff(2006)]{MN2006}
+		Musgens, F., and Neuhoff, K. 2006.`` Modelling Dynamic Constraints in Electricity Markets and the Costs of Uncertain Wind Output."
+		
+		\bibitem[Neuhoff et al.(2007)]{NCK2007}
+		Neuhoff, K., Cust, J. and Keats, K. 2007. ``Implications of intermittency and transmission constraints for renewables deployment." \textit{Cambridge Working Papers in Economics 0711}.
+		
+		\bibitem[Newey(1990)]{Newey}
+		Newey, W. 1990. ``Efficient Instrumental Variables Estimation of Non-linear Models." \textit{Econometrica} 58(4): 809–837. https://doi.org/10.2307/2938351
+		
+		\bibitem[ORNL(2004)]{ORNL}
+		Oak Ridge National Laboratory 2004. ``Measurement Practices for Reliability and Power Quality. a Toolkit of Reliability Measurement Practices." U.S. Department of Energy. https://info.ornl.gov/sites/publications/Files/Pub57467.pdf
+		
+		\bibitem[Papageorgiou et al.(2017)]{Pap}
+		Papageorgiou, C., Saarn, M., and Schulte, P. 2017. ``Substitution Between Clean and Dirty Energy Inputs: A Macroeconomic Perspective." \textit{Review of Economics and Statistics} 99(2): 201–212. https://doi.org/10.1162/REST\_a\_00623
+		
+		\bibitem[Reiss and White(2005)]{Reiss}
+		Reiss, P., and White, M. 2005. ``Household Electricity Demand, Revisited." \textit{The Review of Economic Studies} 72(3): 853-883. http://www.jstor.org/stable/3700676
+		
+		\bibitem[Revankar(1971)]{VES}
+		Revankar, N. 1971. ``A Class of Variable Elasticity of Substitution Production Functions." \textit{Econometrica} 39(1): 61–71. https://doi.org/10.2307/1909140
+		
+		\bibitem[Schwarz et al.(2002)]{Schwarz}
+		Schwarz, P., Taylor, T., Birmingham, M., and Dardan, S. 2002. ``Industrial Response to Electricity Real-Time Prices: Short Run and Long Run." \textit{Economic Inquiry} 40(4): 597–610. https://doi.org/10.1093/ei/40.4.597
+		
+		\bibitem[Shahriari and Blumsack(2018)]{SB2018}
+		Shahriari, M., and Blumsack, S. 2018. ``The Capacity Value of Optimal Wind and Solar Portfolios." \textit{Energy} 148: 992–1005. https://doi.org/10.1016/j.energy.2017.12.121
+		
+		\bibitem[Silverman(1986)]{Silverman}
+		Silverman, B. 1986. \textit{Density Estimation for Statistics and Data Analysis}. London: Chapman and Hall.
+		
+		\bibitem[Zhou and Teng(2013)]{Zhou}
+		Zhou, S. and Teng, F., 2013. ``Estimation of urban residential electricity demand in China using household survey data." \textit{Energy Policy} 61: 394–402.
+		
+		\bibitem[Staiger and Stock(1997)]{SS1997} 
+		Staiger, D. and Stock, J. 1997. Instrumental Variables Regression with Weak Instruments. \textit{Econometrica} 65(3): 557–586. https://doi.org/10.2307/2171753
+		
+		\bibitem[US BEA(2019)]{USBEA}
+		U.S. Bureau of Economic Analysis. 2019. ``Personal consumption expenditures: chain-type price index." \textit{FRED, Federal Reserve Bank of St. Louis}. https://fred.stlouisfed.org/series/PCEPI
 		
 		\bibitem[Vos et al.(2019)]{nCLIMDIV}
 		[dataset] Vos, R.S., Applequist, S., Squires, M., Durre, I., Menne, M.J., Williams, C.N., Fenimore, C., Gleason, K., Arndt, D. 2019. ``NOAA's Gridded Climate Divisional Dataset (CLIMDIV)", NOAA National Climatic Data Center. doi:10.7289/V5M32STR
 		
-		\bibitem[Delarue et al.(2010)]{Delarue}
-		Delarue, E., De Jonghe, C., Belmans, R., \& D’Haeseleer, W. (2010). Applying portfolio theory to the electricity sector: Energy versus power. Energy Economics, 33(1), 12–23. https://doi.org/10.1016/j.eneco.2010.05.003
-		
-		\bibitem[Deryugina and Mackay(2017)]{Deryugina}
-		Deryugina, T., Mackay, A., \& Reif, J. (2017). The Long-Run Dynamics of Electricity Demand: Evidence from Municipal Aggregation. NBER Working Paper Series. https://doi.org/10.3386/w23483
-		
-		\bibitem[EIA(2019a)]{EIANetgen}
-		Electricity Information Administration (2019a). Net generation, United States, all sectors, annual. Electricity Data Browser. https://www.eia.gov/electricity/data/browser
-		
-		\bibitem[EIA(2019b)]{EIALCOE}
-		Electricity Information Administration (2019b). Levelized Cost and Levelized Avoided Cost of New Generation. Annual Energy Outlook 2019. https://www.eia.gov/outlooks/aeo/pdf/electricity\_generation.pdf
-		
-		\bibitem[EIA(2019c)]{EIArenew}
-		Electricity Information Administration (2019c). U.S. renewable electricity generation has doubled since 2008. Today in Energy. https://www.eia.gov/todayinenergy/detail.php?id=38752
-		
-		\bibitem[Fan and Hyndman(2011)]{Fan}
-		Fan, S., \& Hyndman, R. (2011). The price elasticity of electricity demand in South Australia. Energy Policy, 39(6), 3709–3719. https://doi.org/10.1016/j.enpol.2011.03.080
-		
-		\bibitem[Foley et al.(2012)]{Foley2012}
-		Foley, A., Leahy, P., Marvuglia, A., \& Mckeogh, E. (2012). Current methods and advances in forecasting of wind power generation. Renewable Energy, 37(1), 1–8. https://doi.org/10.1016/j.renene.2011.05.033
-		
-		\bibitem[Geroski(1957)]{Geroski2000}
-		Geroski, P. (2000). Models of technology diffusion. Research Policy. Elsevier B.V. https://doi.org/10.1016/S0048-7333(99)00092-X
-		
-		
-		\bibitem[Helm and Mier(2019)]{HH}
-		Helm, C., \& Mier, M. (2019). On the efficient market diffusion of intermittent renewable energies. Energy Economics, 80, 812–830. https://doi.org/10.1016/j.eneco.2019.01.017
-		
-		
-		\bibitem[Herriges et al.(1993)]{Herriges}
-		Herriges, J., Baladi, S., Caves, D., \& Neenan, B. (1993). The Response of Industrial Customers to Electric Rates Based Upon Dynamic Marginal Costs. The Review of Economics and Statistics, 75(3), 446. https://doi.org/10.2307/2109458
-		
-		
-		\bibitem[Joskow(2011)]{Joskow2011}
-		Joskow, P. (2011). Comparing the Costs of Intermittent and Dispatchable Electricity Generating Technologies. American Economic Review, 101(3), 238–241. https://doi.org/10.1257/aer.101.3.238
-		
-		\bibitem[King and Shatrawka(2011)]{KS1994}
-		King, Kathleen, and Peter Shatrawka (1994). "Customer Response to a Permanent Time- Varying
-		Pricing Program in the United Kingdom." Laurits R. Christensen Associates, Madison,
-		Wisconsin.
-		
-		\bibitem[Mohajeryami et al.(2016)]{Moha2016}
-		Mohajeryami, S., Moghaddam, I., Doostan, M., Vatani, B., \& Schwarz, P. (2016). A novel economic model for price-based demand response. Electric Power Systems Research, 135, 1–9. https://doi.org/10.1016/j.epsr.2016.03.026
-		
-		\bibitem[Musgens and Neuhoff(2006)]{MN2006}
-		Musgens, F., \& Neuhoff, K. (2006). Modelling Dynamic Constraints in Electricity Markets and the Costs of Uncertain Wind Output. Faculty of Economics.
-		
-		\bibitem[Neuhoff et al.(2007)]{NCK2007}
-		Neuhoff, K., Cust, J. \& Keats, K. (2007). Implications of intermittency and transmission constraints for renewables deployment. Cambridge Working Papers in Economics 0711, Faculty of Economics, University of Cambridge.
-		
-		\bibitem[Newey(1990)]{Newey}
-		Newey, W. (1990). Efficient Instrumental Variables Estimation of Non-linear Models. Econometrica, 58(4), 809–837. https://doi.org/10.2307/2938351
-		
-		\bibitem[ORNL(2004)]{ORNL}
-		ORNL (2004). Measurement practices for reliability and power quality. A toolkit of reliability measurement practices. U.S. Department of Energy. https://info.ornl.gov/sites/publications/Files/Pub57467.pdf
-		
-		\bibitem[Papageorgiou et al.(2017)]{Pap}
-		Papageorgiou, C., Saarn, M., \& Schulte, P. (2017). Substitution between clean and dirty energy inputs: a macroeconomic perspective.(Author abstract). Review of Economics and Statistics, 99(2), 201–212. https://doi.org/10.1162/REST\_a\_00623
-		
-		\bibitem[Reiss and White(2005)]{Reiss}
-		Reiss, P., \& White, M. (2005). Household Electricity Demand, Revisited. The Review of Economic Studies, 72(252), 853. Retrieved from http://search.proquest.com/docview/204335314/
-		
-		\bibitem[Revankar(1971)]{VES}
-		Revankar, N. (1971). A Class of Variable Elasticity of Substitution Production Functions. Econometrica, 39(1), 61–71. https://doi.org/10.2307/1909140
-		
-		\bibitem[Schwarz et al.(2002)]{Schwarz}
-		Schwarz, P., Taylor, T., Birmingham, M., \& Dardan, S. (2002). Industrial response to electricity real-time prices: short run and long run. Economic Inquiry, 40(4), 597–610. https://doi.org/10.1093/ei/40.4.597
-		
-		\bibitem[Shahriari and Blumsack(2018)]{SB2018}
-		Shahriari, M., \& Blumsack, S. (2018). The capacity value of optimal wind and solar portfolios. Energy, 148, 992–1005. https://doi.org/10.1016/j.energy.2017.12.121
-		
-		\bibitem[Silverman(1986)]{Silverman}
-		Silverman, B. (1986). Density estimation for statistics and data analysis. London; Chapman and Hall.
-		
-		\bibitem[Zhou and Teng(2013)]{Zhou}
-		Zhou, S. \& Teng, F., (2013). Estimation of urban residential electricity demand in China using household survey data.(Statistical data). Energy Policy, 61, 394–402.
-		
-		\bibitem[Staiger and Stock(1997)]{SS1997} 
-		Staiger, D., \& Stock, J. (1997). Instrumental Variables Regression with Weak Instruments. Econometrica, 65(3), 557–586. https://doi.org/10.2307/2171753
-		
-		\bibitem[US BEA(2019)]{USBEA}
-		U.S. Bureau of Economic Analysis (2019). Personal consumption expenditures: chain-type price index. FRED, Federal Reserve Bank of St. Louis. https://fred.stlouisfed.org/series/PCEPI, April 27, 2019.
 		
 		\bibitem[Wolak and Patrick(2001)]{Wolak}
-		Wolak, F., \& Patrick, R. (2001). The Impact of Market Rules and Market Structure on the Price Determination Process in the England and Wales Electricity Market. NBER Working Paper Series. https://doi.org/10.3386/w8248
+		Wolak, F. and Patrick, R. 2001. ``The Impact of Market Rules and Market Structure on the Price Determination Process in the England and Wales Electricity Market." \textit{NBER Working Paper Series}. https://doi.org/10.3386/w8248
 		
 		\bibitem[Woo et al.(1996)]{Woo}
-		Woo, C., Chow, P., \& Horowitz, I. (1996). Optional real-time pricing of electricity for industrial firms. Pacific Economic Review, 1(1), 79–92. https://doi.org/10.1111/j.1468-0106.1996.tb00175.x
+		Woo, C., Chow, P., and Horowitz, I. 1996. ``Optional Real-Time Pricing of Electricity for Industrial Firms." \textit{Pacific Economic Review} 1(1): 79–92. https://doi.org/10.1111/j.1468-0106.1996.tb00175.x
 		
 		\bibitem[Zarnikau(1990)]{Zarnikau}
-		Zarnikau, J. (1990). Customer Responsiveness to Real-Time Pricing of Electricity. The Energy Journal, 11(4), 99. https://doi.org/10.5547/ISSN0195-6574-EJ-Vol11-No4-6
+		Zarnikau, J. 1990. ``Customer Responsiveness to Real-Time Pricing of Electricity." \textit{The Energy Journal} 11(4): 99. https://doi.org/10.5547/ISSN0195-6574-EJ-Vol11-No4-6
 		
 		
 		
