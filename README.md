@@ -6,11 +6,11 @@ The [paper](documents/draft.pdf) along with [slides](documents/workshop_presenta
 
 ## Data
 
-All the data used for the paper can be found in the [data folder](data); the references for each data source can be found in the [paper](documents/draft.pdf). 
+All the data used for the paper can be found in the [data folder](data); the references for each data source can be found in the [paper](documents/draft.pdf) itself. 
 
 ## Replication
 
-Each link redirects to the code (or source) used to produce its respective figure/table.
+Each link redirects to the code used to produce the respective figure/table.
 
 ### Paper
 
