@@ -68,17 +68,35 @@ for j = 1:m
     subplot(2,1,1);
     hold on;
     
-    plot(-log(output(1,:)), log(output(2,:)), ...
-        'LineWidth', 1.5);
+    if j == 1
+        plot(-log(output(1,:)), log(output(2,:)), ...
+            'LineWidth', 1.5, 'LineStyle', '-',  'Color', [1 1 1]*0.0);
+    elseif j == 2
+        plot(-log(output(1,:)), log(output(2,:)), ...
+            'LineWidth', 1.5, 'LineStyle', '--', 'Color', [1 1 1]*0.2);
+    else
+        plot(-log(output(1,:)), log(output(2,:)), ...
+            'LineWidth', 1.5, 'LineStyle', '-.', 'Color', [1 1 1]*0.4);
+    end
     
     
     % relationship between log prices and quantities
     subplot(2,1,2);
     hold on;
-    plot(-log(output(1,2:end)), ...
-        diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-        'LineWidth', 1.5);
     
+    if j == 1
+        plot(-log(output(1,2:end)), ...
+             diff(log(output(2,:)))./diff(-log(output(1,:))), ...
+            'LineWidth', 1.5, 'LineStyle', '-',  'Color', [1 1 1]*0.0);
+    elseif j == 2
+        plot(-log(output(1,2:end)), ...
+             diff(log(output(2,:)))./diff(-log(output(1,:))), ...
+            'LineWidth', 1.5, 'LineStyle', '--', 'Color', [1 1 1]*0.2);
+    else
+        plot(-log(output(1,2:end)), ...
+             diff(log(output(2,:)))./diff(-log(output(1,:))), ...
+            'LineWidth', 1.5, 'LineStyle', '-.', 'Color', [1 1 1]*0.4);
+    end
     
 end
 

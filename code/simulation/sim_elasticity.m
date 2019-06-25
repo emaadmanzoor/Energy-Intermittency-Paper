@@ -76,11 +76,11 @@ for j = 1:m
     elseif sigma < 0.8846
         plot(output(3,2:end)*100, ...
             diff(log(output(1,:)))./diff(log(output(4,:))), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [0 0 1]*0.8);
+            'LineWidth', 1, 'LineStyle', '--', 'Color', [1 1 1]*0.2);
     else
         plot(output(3,2:end)*100, ...
             diff(log(output(1,:)))./diff(log(output(4,:))), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [1 0 0]*0.8);
+            'LineWidth', 1, 'LineStyle', '-.', 'Color', [1 1 0]*0.4);
     end
     
 end

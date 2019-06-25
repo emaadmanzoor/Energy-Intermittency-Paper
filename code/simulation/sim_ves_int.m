@@ -68,7 +68,7 @@ for j = 1:m
     
     plot(output(2,2:end), ...
         diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-        'LineWidth', 1.5, 'Color', 'k');
+        'LineWidth', 2, 'Color', 'k');
     
     % store data for average sigma assumption
     mean_output = output;
@@ -95,7 +95,7 @@ beta = X'\(Y'-1);
 X_range = linspace(0, 50, 100);
 Y_hat = 1 + X_range.*beta;
 plot(X_range, Y_hat, 'LineStyle', '-.', 'LineWidth', 2.5, ...
-    'Color', [0.6, 0.1, 0.6]);
+    'Color', [1, 1, 1]*0.5);
 
 
 %% Plot formatting

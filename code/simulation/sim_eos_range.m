@@ -67,7 +67,9 @@ for j = 1:m
     % relationship between log prices and quantities
     subplot(2,1,1);
     hold on;
-    plot(-log(output(1,:)), log(output(2,:)), 'LineWidth', 1)
+    
+    plot(-log(output(1,:)), log(output(2,:)), 'LineWidth', 1, ...
+         'Color', [1, 1, 1]*((sigma-0.5)*1.5))
     
     
     % relationship between log prices and quantities
@@ -76,7 +78,7 @@ for j = 1:m
     
     plot(-log(output(1,2:end)), ...
         diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-        'LineWidth', 1);
+        'LineWidth', 1, 'Color', [1, 1, 1]*((sigma-0.5)*2));
     
 end
 
@@ -84,7 +86,7 @@ end
 
 % Format subplot 1
 subplot(2,1,1);
-legend('0.5', '0.6', '0.7', '0.8', '9')
+legend('0.5', '0.6', '0.7', '0.8', '0.9')
 xlabel({'Negative Log Difference in Costs', 'log(c_2/c_1)'})
 ylabel({'Log Difference in Quantities', 'log(X_1/X_2)'})
 xlim([-2, 2]/500)

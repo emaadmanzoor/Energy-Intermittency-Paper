@@ -127,7 +127,7 @@
 	
 	\title{\singlespacing{\textbf{Efficient Pollution Abatement in Electricity Markets with Intermittent Renewable Energy}}}
 	
-	\author[]{Saketh Aleti\thanks{Saketh Aleti: Graduate Student, Department of Economics, Duke University, 419 Chapel Drive, 213 Social Sciences Bldg., Durham, NC 27708-0097, USA (email: sa400@duke.edu).}  \, and  Gal Hochman\thanks{ Gal Hochman: Associate Professor, Department of Agriculture, Food \& Resource Economics, Rutgers University, 116 Cook Office Building, 55 Dudley Road, New Brunswick, NJ 08901, USA (email: gal.hochman@rutgers.edu).}}
+	\author[]{Saketh Aleti\thanks{Saketh Aleti: Graduate Student, Department of Economics, Duke University, 419 Chapel Drive, 213 Social Sciences Bldg., Durham, NC 27708-0097, USA (email: sa400@duke.edu).}  \, and  Gal Hochman\thanks{ Gal Hochman: Professor, Department of Agriculture, Food \& Resource Economics, Rutgers University, 116 Cook Office Building, 55 Dudley Road, New Brunswick, NJ 08901, USA (email: gal.hochman@rutgers.edu).}}
 	
 %	\date{\vspace{-1em}}
 	
@@ -523,7 +523,7 @@
 	
 	\section{Acknowledgments}
 	
-	This research was funded by the Sun Grant (122682). We would also like to thank Prof. Roger Klein and the participants of the NAREA 2019 Workshop for helpful comments.\\\\
+	This work was supported by the Northeast Sun Grant \#5701-RU-SDSU-G640. We would also like to thank Prof. Roger Klein and the participants of the NAREA 2019 Workshop for helpful comments.\\\\
 	\noindent
 	\textbf{Transparency and Openness Promotion Statement}: The data and code for replication are available \href{https://github.com/SA3291/Energy-Intermittency-Paper.git}{here}. 
 	
@@ -650,217 +650,7 @@
 	\end{thebibliography}	
 
 	\clearpage
-	
-	\section{Tables and Figures}
-	
-	\begin{table}[!h] \centering 
-		\caption{Descriptive Statistics}
-		\label{table:stats} 
-		\begin{tabular}{@{\extracolsep{0pt}}lrrrrrrr@{}}
-			\\[-4ex]\hline  
-			\hline \\[-1.8ex] 
-			{} &     Mean &      StDev  &     Min &     25\% &      50\% &      75\% &       Max \\
-			\midrule
-			Electricity Price (\$/kWh)     &     0.12 &     0.03 &    0.08 &    0.10 &     0.11 &     0.13 &      0.21 \\
-			Electricity Load (gWh) & 2454.97 &  2380.24 &  144.00 &  790.50 &  1869.50 &  3315.00 &  18621.00 \\
-			Coal Price (\$/ton) &    46.00 &    17.68 &   24.04 &   33.43 &    41.40 &    51.83 &    107.49 \\
-			Cooling Degree Days      &    64.66 &   134.97 &    0.00 &    0.00 &     0.00 &    47.25 &    761.00 \\
-			Heating Degree Days       &   443.20 &   412.27 &    0.00 &   48.00 &   367.00 &   754.50 &   1794.00 \\ [0.5ex]
-			\hline 
-			\hline \\[-1.8ex] 
-			\multicolumn{8}{@{}p{41.5em}@{}}{\textit{Note: } The underlying data covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable. Each observation corresponds to a particular year, month, and state. }  \\ 
-		\end{tabular}
-	\end{table}
 
-	
-	\begin{table}[!h] \centering 
-		\caption{OLS Regression Results}
-		\label{table:ols} 
-		\small
-		\begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
-			\\[-4ex]\hline  
-			\hline \\[-1.8ex] 
-			& \multicolumn{6}{c}{\textit{Dependent variable:} $\ln (Z_{ t, i} / Z_{ s, i})$} \\ [0.5ex]
-			\cline{2-7} 
-			\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ [0.5ex]
-			\hline \\[-1.8ex] 
-			$-\ln (P_{t,i} / P_{s,i})$ & 0.937$^{***}$ & 1.075$^{***}$ & 1.098$^{***}$ & 1.074$^{***}$ & 1.263$^{***}$ & 1.305$^{***}$ \\ 
-			& (0.030) & (0.026) & (0.026) & (0.224) & (0.172) & (0.169) \\ 
-			& & & & & & \\ 
-			$\Delta_{t,s}$ &  &  & 0.0005$^{***}$ &  &  & 0.0065$^{*}$ \\ 
-			&  &  & (0.0001) &  &  & (0.0003) \\ 
-			& & & & & & \\ 
-			CDD$_t$ &  & 1.156$^{***}$ & 1.163$^{***}$ &  & 1.164$^{***}$ & 1.174$^{***}$ \\ 
-			
-			$\quad(\times 1000^{-1})$ &  & (0.017) & (0.017) &  & (0.072) & (0.075) \\ 
-			& & & & & & \\ 
-			CDD$_s$ &  & $-$1.143$^{***}$ & $-$1.158$^{***}$ &  & $-$1.200$^{***}$ & $-$1.224$^{***}$ \\ 
-			$\quad(\times 1000^{-1})$&  & (0.025) & (0.026) &  & (0.096) & (0.098) \\ 
-			& & & & & & \\ 
-			HDD$_t$  &  & 0.246$^{***}$ & 0.245$^{***}$ &  & 0.237$^{***}$ & 0.236$^{***}$ \\ 
-			$\quad(\times 1000^{-1})$ &  & (0.007) & (0.007) &  & (0.031) & (0.031) \\ 
-			& & & & & & \\ 
-			HDD$_s$ &  & $-$0.267$^{***}$ & $-$0.265$^{***}$ &  & $-$0.268$^{***}$ & $-$0.263$^{***}$ \\ 
-			$\quad(\times 1000^{-1})$ &  & (0.008) & (0.008) &  & (0.038) & (0.038) \\ 
-			& & & & & & \\ 
-			Intercept & 0.028$^{***}$ & 0.012$^{*}$ & 0.026$^{***}$ &  &  &  \\ 
-			& (0.004) & (0.006) & (0.007) &  &  &  \\  [0.9ex]
-			\hline \\[-1.8ex] 
-			State FEs &   &   &   & Yes & Yes & Yes \\ 
-			Observations & 6,817 & 6,817 & 6,817 & 6,817 & 6,817 & 6,817 \\ 
-			R$^{2}$ & 0.079 & 0.507 & 0.508 & 0.092 & 0.521 & 0.524 \\ 
-			Adjusted R$^{2}$ & 0.079 & 0.506 & 0.508 & 0.085 & 0.518 & 0.520 \\  
-			F Statistic & 582$^{***}$  & 1399$^{***}$  & 1172$^{***}$ & 685$^{***}$  & 1474$^{***}$  & 1241$^{***}$  \\ [0.5ex]
-			\hline 
-			\hline \\[-1.8ex] 
-			\multicolumn{7}{@{}p{41.4em}@{}}{\textit{Note: } The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state. The coefficient on $-\ln (P_{t,i} / P_{s,i})$ is the estimate of $\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. We scale the coefficients on degree days for clarity. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
-		\end{tabular} 
-	\end{table}
-	
-	
-	\begin{table}[!h] 
-		\centering 
-		\caption{IV (2SLS) Regression Results}
-		\label{table:iv} 
-		\small
-		\begin{tabular}{@{\extracolsep{4pt}}lcccccc} 
-			\\[-4ex]\hline  
-			\hline \\[-1.6ex] 
-			& \multicolumn{3}{c}{First-Stage} & \multicolumn{3}{c}{Second-Stage} \\ [0.5ex]
-			& \multicolumn{3}{c}{\textit{Dep. Variable:} $\ln (P_{t,i} / P_{s,i})$ } & \multicolumn{3}{c}{\textit{Dep. Variable:}  $\ln (Z_{ t, i} / Z_{ s, i})$}\\ [0.5ex]
-			\cmidrule(lr){2-4} \cmidrule(lr){5-7}\\[-2.2ex] 
-			& (A.1) & (B.1) & (C.1) & (A.2) & (B.2) & (C.2)\\ [0.5ex]
-			\hline \\[-1.8ex] 
-			$ \ln (C_{t,i} / C_{s,i})$ & $-$0.042$^{***}$ & $-$0.018$^{***}$ & $-$0.018$^{***}$ &  &  &  \\ 
-			& (0.002) & (0.002) & (0.002) &  &  &  \\ 
-			& & & & & & \\ 
-			$-\ln (P_{t,i} / P_{s,i})$ &  &  &  & 2.978$^{***}$ & 5.896$^{***}$ & 5.818$^{***}$ \\ 
-			&  &  &  & (0.180) & (0.548) & (0.524) \\ 
-			& & & & & & \\ 
-			$\Delta_{t,s}$  &  &  & 0.001$^{***}$ &  &  & 0.003$^{***}$ \\ 
-			&  &  & (0.00004) &  &  & (0.0004) \\ 
-			& & & & & & \\ 
-			CDD$_t$  &  & 0.100$^{***}$ & 0.105$^{***}$ &  & 1.637$^{***}$ & 1.657$^{***}$ \\ 
-			$\quad(\times 1000^{-1})$ &  & (0.006) & (0.006) &  & (0.068) & (0.067) \\ 
-			& & & & & & \\ 
-			CDD$_s$ &  & $-$0.096$^{***}$ & $-$0.114$^{***}$ &  & $-$1.688$^{***}$ & $-$1.783$^{***}$ \\ 
-			$\quad(\times 1000^{-1})$  &  & (0.009) & (0.009) &  & (0.079) & (0.084) \\ 
-			& & & & & & \\ 
-			HDD$_t$  &  & $-$0.048$^{***}$ & $-$0.048$^{***}$ &  & 0.001 & 0.007 \\ 
-			$\quad(\times 1000^{-1})$ &  & (0.003) & (0.003) &  & (0.031) & (0.030) \\ 
-			& & & & & & \\ 
-			HDD$_s$  &  & 0.053$^{***}$ & 0.055$^{***}$ &  & 0.0001 & 0.007 \\ 
-			$\quad(\times 1000^{-1})$  &  & (0.003) & (0.003) &  & (0.035) & (0.034) \\   [0.9ex]
-			\hline \\[-1.8ex] 
-			State FEs &  Yes & Yes  & Yes  & Yes & Yes & Yes \\ 
-			Observations & 6817 & 6817 & 6817 & 6817 & 6817 & 6817 \\ 
-			R$^{2}$ & 0.061 & 0.264 & 0.294 &  &  & \\ 
-			Adjusted R$^{2}$ & 0.061 & 0.264 & 0.293 & &  &  \\ 
-			F Statistic & 443$^{***}$  & 489$^{***}$ & 472$^{***}$  &  &  &  \\ 
-			\hline 
-			\hline \\[-1.8ex] 
-			\multicolumn{7}{@{}p{41.5em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state. The coefficient on $\ln (P_{t,i} / P_{s,i})$ is an estimate of $-\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. We scale the coefficients on degree days for clarity. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
-		\end{tabular} 
-	\end{table}
-
-	\begin{table}[!h] 
-		\centering 
-		\caption{Partially Linear IV Regression Results}
-		\label{table:pariv} 
-		\small
-		\begin{tabular}{@{\extracolsep{5.3em}}lccc} 
-			\\[-4ex]\hline  
-			\hline \\[-1.8ex] 
-			& \multicolumn{3}{c}{\textit{Instrument: $ \ln (C_{t,i} / C_{s,i})$}} \\ 
-			\cline{2-4} 
-			%\\[-1.8ex] & ln\_load\_rel \textasciitilde ln\_price\_rel & ln\_load\_rel \textasciitilde (CDD\_1) & ln\_load\_rel \textasciitilde time\_diff + (CDD\_1) \\ 
-			\\[-1.8ex] & (1) & (2) & (3)\\ [0.5ex]
-			\hline \\[-1.8ex] 
-			$\hat{\sigma} $ & 2.9976$^{***}$ & 1.2123$^{***}$ & 0.8847$^{***}$ \\ 
-			& (0.169) & (0.052) & (0.044) \\ [0.9ex]
-			\hline \\[-1.8ex] 
-			Time Control &   &   & Yes  \\ 
-			Degree Day Controls &   & Yes  & Yes  \\ 
-			Observations & 6817 & 6817 & 6817 \\
-			\hline 
-			\hline \\[-1.8ex] 
-			\multicolumn{4}{@{}p{41.5em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state. The estimation procedure is described in the appendix.  Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
-		\end{tabular} 
-	\end{table} 
-
-
-	\begin{figure}[!h]
-		\caption{The Elasticity of Substitution between Solar and Coal} 
-		\label{fig:eosnum}
-		\footnotesize
-		\vspace{-1em}
-		\begin{tabular}{@{\extracolsep{0em}}c}
-			\includegraphics[width=1\linewidth]{../figures/fig_elasticity} \\
-			\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } Technology 1 is coal and technology 2 is solar. The legend in the upper subplot also applies to the lower subplot. These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. Furthermore, we set the parameter for the intertemporal elasticity of substitution for electricity consumption equal to our estimate $\hat{\sigma} = 0.8847$. In order to generate these numerical results, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (0.5\, c_1, 2 \,c_1)$. Then, we obtained estimates of the elasticity of substitution by numerically differentiating $\ln(X_1/X_2)$ with respect to $-\ln(c_1/ c_2)$. That is, the elasticity of substitution  between technology 1 and 2 is given by the slope of the upper subplot, and it is graphed in the lower subplot. Finally, we repeat this procedure with $\sigma$ equal to two standard deviations above and below its estimated value $\hat{\sigma}$; that is, the dashed lines represent  $\sigma = 0.8847 \pm (1.96)(0.044)$. }     \\  
-		\end{tabular}
-	\end{figure}
-	
-	\begin{figure}[!h]
-		\caption{The Price Elasticity of Demand for Coal Power} 
-		\label{fig:coalelas}
-		\footnotesize
-		\vspace{-1em}
-		\begin{tabular}{@{\extracolsep{0em}}c}
-			\includegraphics[width=1\linewidth]{../figures/fig_coal_elas} \\
-			\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$, $\sigma = 0.5$. We generate these results by finding the optimal quantity of coal, $X_1$, over a range of percent changes in its price $c_1$. Then, on the y-axis, we plot the log difference in $X_1$ divided by the log difference in its price. This is equivalent to the price elasticity of demand for $X_1$. }     \\  
-		\end{tabular}
-	\end{figure}
-	
-		
-	\begin{figure}[!h]
-		\captionsetup{format=centerproper}
-		\caption{The Effect of Battery Storage on the Elasticity\newline of Substitution between Solar and Coal} 
-		\label{fig:battery}
-		\footnotesize
-		\vspace{-1em}
-		\begin{tabular}{@{\extracolsep{0em}}c}
-			\includegraphics[width=1\linewidth]{../figures/fig_batteries} \\
-			\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } Technology 1 is coal and technology 2 is solar. The legend in the upper subplot also applies to the lower subplot. The elasticity of substitution  between technology 1 and 2 is given by the slope of the upper subplot, and it is graphed in the lower subplot.  These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. Furthermore, we set the parameter for the intertemporal elasticity of substitution for electricity consumption equal to our estimate $\hat{\sigma} = 0.8847$. We generated these numerical results with the same procedure used for \autoref{fig:eosnum}. We repeated this procedure with $\xi_2 = (0.95, 0.15)$ and $\xi_2 = (0.90, 0.20)$ to simulate the effects of shifting solar power output using batteries. }     \\  
-		\end{tabular}
-	\end{figure}
-	
-	
-	\begin{table}[!h] \centering 
-		\captionsetup{format=centerproper}
-		\caption{The Effect of Battery Storage on the   \newline Elasticity of Demand for Coal Power} 
-		\label{table:storelas} 
-		\small
-		\begin{tabular}{@{\extracolsep{2em}}ccc} 
-			\\[-4ex]\hline  
-			\hline \\[-1.8ex] 
-			\\[-2.6ex] \specialcell{Solar Output during \\ Peak Hours ($\xi_{2t}$)} &  \specialcell{Solar Output during \\ Off-Peak Hours ($\xi_{2s}$)}  & \specialcell{The Elasticity of  \\ Demand for Coal Power}\\ [0.5ex]
-			\hline \\[-1.8ex] 
-			100\% &  \phantom{1}5\%  &  -3.25 \\
-			\phantom{1}95\% &            10\%  &  -3.71 \\
-			\phantom{1}90\% &            15\%  &  -4.40 \\
-			\phantom{1}85\% &            20\%  &  -5.48 \\
-			\phantom{1}80\% &            25\%  &  -7.29 \\
-			\hline 
-			\hline \\[-1.8ex] 
-			\multicolumn{3}{@{}p{34.2em}@{}}{\textit{Note: } These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $c_1 = 104.3$, $c_2 = 60$, $\sigma = 0.8847$. We generated these results by numerically differentiating the optimal quantity of coal power, $X_1$, with respect to its own price, $c_1$, around its initial price $104.3$. We repeated this process for various values of the output parameter for solar power, $\xi_{2}$. Specifically, we considered 5\% to 20\% shifts in the output of solar power from peak to  off-peak hours to simulate the effects of implementing battery storage. }  \\ 
-		\end{tabular} 
-	\end{table} 
-	
-	
-	\begin{figure}[!h]
-		\captionsetup{format=centerproper}
-		\caption{The VES Approximation of the Elasticity of Substitution \\ between Solar and Coal } 
-		\label{fig:ves}
-		\footnotesize
-		\vspace{-1em}
-		\begin{tabular}{@{\extracolsep{0em}}c}
-			\includegraphics[width=1\linewidth]{../figures/fig_ves_approx} \\
-			\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } Technology 1 is coal and technology 2 is solar. The purple, dash-dots line represents a linear approximation of $e_{1,2}$ for $\sigma = 0.8847$ with a fixed intercept of 1. These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. Furthermore, we set the parameter for the intertemporal elasticity of substitution for electricity consumption equal to our estimate $\hat{\sigma} = 0.8847$. In order to generate these numerical results, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (0.9\, c_1, 2 \,c_1)$. Then, we obtained estimates of the elasticity of substitution by numerically differentiating $\ln(X_1/X_2)$ with respect to $-\ln(c_1, c_2)$.  }     \\  
-		\end{tabular}
-	\end{figure}
-	
-	
-	\clearpage
 	
 	\section{Appendix A: Supplementary Proofs}
 	
@@ -897,29 +687,14 @@
 	\end{pmatrix}
 	$$
 	
-	Furthermore, we derive restrictions on the parameters $\xi$ and $c$ by assuming $Z, X > 0$. These restrictions are detailed in \hyperref[tab:paramrest]{Table A.1}. There are two possible sets of symmetrical restrictions. The first set, Case 1, assumes that technology 2 is more cost effective in period $t$, while the second set, Case 2, assumes that technology 1 is more cost effective in period $t$. If a given set of parameters do not fall into either case, we are left with an edge case where one of the technologies is not used. Additionally, these inequalities compare two types of efficiency -- output efficiency and cost efficiency; we define output efficiency as electricity output per unit of input and cost efficiency in terms of electricity output per dollar of input. We refer to the last set of restrictions as mixed, because they relate both cost and output efficiency. 
-	
-	
-	\begin{table}[h!]
-		\caption{Parameter Restrictions for $Z, X > 0$} 
-		\label{tab:paramrest}
-		\small
-		\centering
-		\begin{tabular}{@{\extracolsep{2em}}l@{\hspace{-0.5 em}}cc}
-			\\[-4ex]
-			\toprule \\[-2.5ex]
-			& \textbf{Case 1} & \textbf{Case 2 } \\
-			\cmidrule(lr){2-2} \cmidrule(lr){3-3} \\[-1.5ex]
-			\textbf{Cost Efficiency}& $\xi_{2t}/c_2 > \xi_{1t}/c_1$ & $\xi_{2t}/c_2 < \xi_{1t}/c_1 $\\
-			\textbf{Restrictions} & $\xi_{1s}/c_1 > \xi_{2s}/c_2$  & $\xi_{1s}/c_1 < \xi_{2s}/c_2 $ 		\\ [3ex]
-			\textbf{Output Efficiency}& $\xi_{2t}/\xi_{2s} > \xi_{1t}/\xi_{1s}$ & $\xi_{2t}/\xi_{2s} < \xi_{1t}/\xi_{1s}$\\
-			\textbf{Restrictions} & $\xi_{1s}/\xi_{1t} > \xi_{2s}/\xi_{2t} $  & $\xi_{1s}/\xi_{1t} < \xi_{2s}/\xi_{2t}  $ 		\\ [3ex]
-			\multirow{2}{10em}{\textbf{Mixed Efficiency Restrictions}}& $\dfrac{\alpha_s \left(\xi_{1s}/c_1 - \xi_{2s}/c_2\right)}{\alpha_t \left( \xi_{2t}/c_2 - \xi_{1t}/c_1 \right)} > \xi_{2s}/\xi_{2t}$ & $\dfrac{\alpha_s \left(\xi_{1s}/c_1 - \xi_{2s}/c_2\right)}{\alpha_t \left( \xi_{2t}/c_2 - \xi_{1t}/c_1 \right)} < \xi_{2s}/\xi_{2t}$\\
-			& $\dfrac{\alpha_s \left(\xi_{1s}/c_1 - \xi_{2s}/c_2\right)}{\alpha_t \left( \xi_{2t}/c_2 - \xi_{1t}/c_1 \right)} < \xi_{1s}/\xi_{1t} $  & $\dfrac{\alpha_s \left(\xi_{1s}/c_1 - \xi_{2s}/c_2\right)}{\alpha_t \left( \xi_{2t}/c_2 - \xi_{1t}/c_1 \right)} > \xi_{1s}/\xi_{1t} $ 		\\[2ex] 
-			\midrule
-			\multicolumn{3}{@{}p{40em}@{}}{\footnotesize \textit{Note: } The inequalities in this table assume that all elements of $\xi$ are greater than $0$. The full proof given below provides equivalent restrictions for the zero cases.   }  
-		\end{tabular} 
-	\end{table}
+	Furthermore, we derive restrictions on the parameters $\xi$ and $c$ by assuming $Z, X > 0$. These restrictions are detailed in \autoref{tab:paramrest}. There are two possible sets of symmetrical restrictions. The first set, Case 1, assumes that technology 2 is more cost effective in period $t$, while the second set, Case 2, assumes that technology 1 is more cost effective in period $t$. If a given set of parameters do not fall into either case, we are left with an edge case where one of the technologies is not used. Additionally, these inequalities compare two types of efficiency -- output efficiency and cost efficiency; we define output efficiency as electricity output per unit of input and cost efficiency in terms of electricity output per dollar of input. We refer to the last set of restrictions as mixed, because they relate both cost and output efficiency. 
+
+
+	\vspace{0.15in}
+	\begin{center}
+		[INSERT Table 7: Parameter Restrictions for $Z, X > 0$]
+	\end{center}
+	\vspace{0.15in}
 	
 	\hfill\\
 	\begin{proof}
@@ -959,7 +734,7 @@
 	\subsubsection{Comparative Statics}
 	
 	
-	The comparative statics are similarly intuitive. The equilibrium quantity of a technology is increasing with its output efficiency and decreasing with its cost per unit. Additionally, the equilibrium quantities for a particular technology move in the opposite direction with respect to the output efficiency and cost of the other technologies. For a practical example, consider again coal and solar power from before. An increase in the output efficiency of solar or a decrease in solar power's cost will reduce the optimal quantity of coal power. Likewise, as coal power's efficiency improves, it's adoption rises. To find the effects of $\alpha$ on $X$, we must assume one of the cases of restrictions shown in \hyperref[tab:paramrest]{Table A.1}. So, again, let us assume Case 1 is true; this implies that $X_2$ is the most cost effective technology in period $t$ and likewise for $X_1$ in period $s$. Firstly, note that $\alpha$ determines the demand for electricity in a period. Hence, when $\alpha_t$ rises, we see the optimal level of $X_2$ rise as well; likewise, $X_1$ rises with $\alpha_s$. In short, the optimal quantity of a technology rises linearly with the demand for electricity in the period it specializes in. Moreover, these relationships are reversed with respect to demand in each technology's suboptimal period. So, for example, we would expect the use of solar energy to rise when the demand for electricity during peak hours rises, and it would fall when demand for energy in the off-peak rises. On the other hand, use coal power would rise with off-peak demand and fall with peak demand. This concept carries through for the comparative statics of $Z$. When the output efficiency of technology 1 rises or its cost falls, we see output $Z_s$ rise and output $Z_t$ fall. This is because technology 1 is optimal in period $s$ given the Case 1 restrictions. Likewise, we see symmetrical results for the output with respect to the cost and output efficiency of technology 2; improvements in the efficiency of $X_2$ result in greater output in $Z_t$ and smaller output in $Z_s$.  
+	The comparative statics are similarly intuitive. The equilibrium quantity of a technology is increasing with its output efficiency and decreasing with its cost per unit. Additionally, the equilibrium quantities for a particular technology move in the opposite direction with respect to the output efficiency and cost of the other technologies. For a practical example, consider again coal and solar power from before. An increase in the output efficiency of solar or a decrease in solar power's cost will reduce the optimal quantity of coal power. Likewise, as coal power's efficiency improves, it's adoption rises. To find the effects of $\alpha$ on $X$, we must assume one of the cases of restrictions shown in  \autoref{tab:paramrest}. So, again, let us assume Case 1 is true; this implies that $X_2$ is the most cost effective technology in period $t$ and likewise for $X_1$ in period $s$. Firstly, note that $\alpha$ determines the demand for electricity in a period. Hence, when $\alpha_t$ rises, we see the optimal level of $X_2$ rise as well; likewise, $X_1$ rises with $\alpha_s$. In short, the optimal quantity of a technology rises linearly with the demand for electricity in the period it specializes in. Moreover, these relationships are reversed with respect to demand in each technology's suboptimal period. So, for example, we would expect the use of solar energy to rise when the demand for electricity during peak hours rises, and it would fall when demand for energy in the off-peak rises. On the other hand, use coal power would rise with off-peak demand and fall with peak demand. This concept carries through for the comparative statics of $Z$. When the output efficiency of technology 1 rises or its cost falls, we see output $Z_s$ rise and output $Z_t$ fall. This is because technology 1 is optimal in period $s$ given the Case 1 restrictions. Likewise, we see symmetrical results for the output with respect to the cost and output efficiency of technology 2; improvements in the efficiency of $X_2$ result in greater output in $Z_t$ and smaller output in $Z_s$.  
 	
 	
 	\hfill \\
@@ -990,7 +765,7 @@
 		\dfrac{\alpha _{s}\,c_{1}\,\xi _{\mathrm{1t}}}{{\left(c_{1}\,\xi _{\mathrm{2t}}-c_{2}\,\xi _{\mathrm{1t}}\right)}^2}>0& \dfrac{\alpha _{t}\,c_{1}\,\xi _{\mathrm{1s}}}{{\left(c_{1}\,\xi _{\mathrm{2s}}-c_{2}\,\xi _{\mathrm{1s}}\right)}^2} >0\\
 		\end{pmatrix}
 		\end{alignat*}
-		Again, the signs are fairly straightforward. The optimal quantity of $X_1$ increases with its output efficiency in both periods; however, it decreases with the output efficiency of $X_2$ in both periods. Similarly, symmetrical results are shown for $X_2$. Next, we study the effects of $\alpha$ on $X$; this requires us to place some restrictions on the parameters, so we use those belonging to Case 1 in \hyperref[tab:paramrest]{Table A.1}. With $\alpha \equiv \left( \alpha_t \;\; \alpha_s \right)^T$, 
+		Again, the signs are fairly straightforward. The optimal quantity of $X_1$ increases with its output efficiency in both periods; however, it decreases with the output efficiency of $X_2$ in both periods. Similarly, symmetrical results are shown for $X_2$. Next, we study the effects of $\alpha$ on $X$; this requires us to place some restrictions on the parameters, so we use those belonging to Case 1 in \autoref{tab:paramrest}. With $\alpha \equiv \left( \alpha_t \;\; \alpha_s \right)^T$, 
 		\begin{align*}
 		\frac{\partial X_1}{\partial \alpha} &= 
 		\begin{pmatrix}
@@ -1092,7 +867,7 @@
 	
 	\label{sec:asympeos}
 	
-	Suppose we are in a two-period, two-technology setting with $\sigma = 1$. Furthermore, suppose that the output of our first technology is constant in both periods, $\xi_{1t} = \xi_{2t}$, but the output of our second technology is zero in the second period $\xi_{2s} = 0$. And, assume we have the parameter restrictions mentioned in earlier in \hyperref[sec:cobbdoug]{Section A} that ensure $X, Z > 0$. This is a simple case where we have (1) a constant output technology and (2) a highly intermittent technology. We now show that, in this case, the elasticity of substitution approaches $1$ as the relative cost of our second technology $c_2/c_1$ approaches $0$. Furthermore, we show that the elasticity of substitution between $X_1$ and $X_2$ is a linear function of $X_1/X_2$.  
+	Suppose we are in a two-period, two-technology setting with $\sigma = 1$. Furthermore, suppose that the output of our first technology is constant in both periods, $\xi_{1t} = \xi_{2t}$, but the output of our second technology is zero in the second period $\xi_{2s} = 0$. And, assume we have the parameter restrictions mentioned in earlier in \autoref{tab:paramrest} that ensure $X, Z > 0$. This is a simple case where we have (1) a constant output technology and (2) a highly intermittent technology. We now show that, in this case, the elasticity of substitution approaches $1$ as the relative cost of our second technology $c_2/c_1$ approaches $0$. Furthermore, we show that the elasticity of substitution between $X_1$ and $X_2$ is a linear function of $X_1/X_2$.  
 	
 	
 	
@@ -1152,37 +927,25 @@
 	\label{sec:AppendixB}
 	
 	
-	\hyperref[fig:eosrange]{Figure B.1} below models the elasticity of substitution for two technologies that are close to being non-intermittent. That is, for technology 1, we have $\xi_1 = (0.95,\, 1)$, and, for technology 2, we have $\xi_2 = (1, \,0.95)$. We further set their costs, $c_1$ and $c_2$, to equal values and allow $\alpha_t = \alpha_s$. This example illustrates how the elasticity of substitution between technologies $e_{1,2}$ would appear with minimal intermittency. We can see that the $e_{1,2}$ takes on a u-shape. 
+	\autoref{fig:eosrange} below models the elasticity of substitution for two technologies that are close to being non-intermittent. That is, for technology 1, we have $\xi_1 = (0.95,\, 1)$, and, for technology 2, we have $\xi_2 = (1, \,0.95)$. We further set their costs, $c_1$ and $c_2$, to equal values and allow $\alpha_t = \alpha_s$. This example illustrates how the elasticity of substitution between technologies $e_{1,2}$ would appear with minimal intermittency. We can see that the $e_{1,2}$ takes on a u-shape. 
 	
 	
-	\begin{figure}[h!]
-		\captionsetup{format=centerproper}
-		\caption{The Elasticity of Substitution Between Two \newline  Minimally Intermittent Technologies} 
-		\label{fig:eosrange}
-		\footnotesize
-		\vspace{-1em}
-		\begin{tabular}{@{\extracolsep{0em}}c}
-			\includegraphics[width=1\linewidth]{../figures/fig_elasticity_range} \\
-			\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } The y-axis of the first plot is equivalent to $\log(X_1/X_2)$ and the x-axis of both plots is equivalent to  $\log(c_2/c_1)$. Technology 1 and 2 represent two arbitrary technologies that are practically non-intermittent. The legend in the upper subplot also applies to the lower subplot. These results were obtained using the following parameters: $\alpha_t = 0.5$, $\alpha_s = 0.5$, $\xi_1 = (0.95, \, 1)$, $\xi_2 = (1, \, 0.95)$, $c_1 = 100$, $c_2 = 100$. In order to generate these numerical results, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (0.5\, c_1, 1.5 \,c_1)$. Then, we obtained estimates of the elasticity of substitution by numerically differentiating $\ln(X_1/X_2)$ with respect to $-\ln(c_1, c_2)$. That is, the elasticity of substitution  between technology 1 and 2 is given by the slope of the upper subplot, and it is graphed in the lower subplot. Finally, we repeat this procedure for various values of $\sigma$. }     \\  
-		\end{tabular}
-	\end{figure}
 	
-	\pagebreak
-	
-	We repeat the exercise done to produce \hyperref[fig:ves]{Figure 4} but with $\xi_2 = (1, 0.01)$. That is, we assume here that solar is far more intermittent. We plot our results below in \hyperref[fig:ves_int]{Figure B.2}. 
+	\vspace{0.15in}
+	\begin{center}
+		[INSERT Figure 5: The Elasticity of Substitution Between Two  Minimally Intermittent Technologies]
+	\end{center}
+	\vspace{0.15in}
 	
 	
-	\begin{figure}[h!]
-		\captionsetup{format=centerproper}
-		\caption{The VES Approximation of the Elasticity of Substitution \\ between Highly Intermittent Solar and Coal} 
-		\label{fig:ves_int}
-		\footnotesize
-		\vspace{-1em}
-		\begin{tabular}{@{\extracolsep{0em}}c}
-			\includegraphics[width=1\linewidth]{../figures/fig_ves_approx_int} \\
-			\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } Technology 1 is coal and technology 2 is solar. The purple, dash-dots line represents a linear approximation of $e_{1,2}$ for $\sigma = 0.8847$ with a fixed intercept of 1. These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.01)$, $c_1 = 104.3$, $c_2 = 60$. Furthermore, we set the parameter for the intertemporal elasticity of substitution for electricity consumption equal to our estimate $\hat{\sigma} = 0.8847$. In order to generate these numerical results, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (c_1, 2 \,c_1)$. Then, we obtained estimates of the elasticity of substitution by numerically differentiating $\ln(X_1/X_2)$ with respect to $-\ln(c_1, c_2)$.  }     \\  
-		\end{tabular}
-	\end{figure}
+	Additionally, we repeat the exercise done to produce \autoref{fig:ves} but with $\xi_2 = (1, 0.01)$. That is, we assume here that solar is far more intermittent. We plot our results below in 	\autoref{fig:ves_int}.
+	
+	
+	\vspace{0.15in}
+	\begin{center}
+		[INSERT Figure 6: The VES Approximation of the Elasticity of Substitution between Highly Intermittent Solar and Coal]
+	\end{center}
+	\vspace{0.15in}
 	
 	
 	\pagebreak
@@ -1227,6 +990,270 @@
 	\pagebreak
 	\pagebreak
 	
+		
+	\section{Tables and Figures}
+	
+	\begin{table}[!h] \centering 
+		\caption{Descriptive Statistics}
+		\label{table:stats} 
+		\begin{tabular}{@{\extracolsep{0pt}}lrrrrrrr@{}}
+			\\[-4ex]\hline  
+			\hline \\[-1.8ex] 
+			{} &     Mean &      StDev  &     Min &     25\% &      50\% &      75\% &       Max \\
+			\midrule
+			Electricity Price (\$/kWh)     &     0.12 &     0.03 &    0.08 &    0.10 &     0.11 &     0.13 &      0.21 \\
+			Electricity Load (gWh) & 2454.97 &  2380.24 &  144.00 &  790.50 &  1869.50 &  3315.00 &  18621.00 \\
+			Coal Price (\$/ton) &    46.00 &    17.68 &   24.04 &   33.43 &    41.40 &    51.83 &    107.49 \\
+			Cooling Degree Days      &    64.66 &   134.97 &    0.00 &    0.00 &     0.00 &    47.25 &    761.00 \\
+			Heating Degree Days       &   443.20 &   412.27 &    0.00 &   48.00 &   367.00 &   754.50 &   1794.00 \\ [0.5ex]
+			\hline 
+			\hline \\[-1.8ex] 
+			\multicolumn{8}{@{}p{41.5em}@{}}{\textit{Note: } The underlying data covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable. Each observation corresponds to a particular year, month, and state. }  \\ 
+		\end{tabular}
+	\end{table}
+	\clearpage
+	
+	
+	\begin{table}[!h] \centering 
+		\caption{OLS Regression Results}
+		\label{table:ols} 
+		\small
+		\begin{tabular}{@{\extracolsep{5pt}}lcccccc} 
+			\\[-4ex]\hline  
+			\hline \\[-1.8ex] 
+			& \multicolumn{6}{c}{\textit{Dependent variable:} $\ln (Z_{ t, i} / Z_{ s, i})$} \\ [0.5ex]
+			\cline{2-7} 
+			\\[-1.8ex] & (1) & (2) & (3) & (4) & (5) & (6)\\ [0.5ex]
+			\hline \\[-1.8ex] 
+			$-\ln (P_{t,i} / P_{s,i})$ & 0.937$^{***}$ & 1.075$^{***}$ & 1.098$^{***}$ & 1.074$^{***}$ & 1.263$^{***}$ & 1.305$^{***}$ \\ 
+			& (0.030) & (0.026) & (0.026) & (0.224) & (0.172) & (0.169) \\ 
+			& & & & & & \\ 
+			$\Delta_{t,s}$ &  &  & 0.0005$^{***}$ &  &  & 0.0065$^{*}$ \\ 
+			&  &  & (0.0001) &  &  & (0.0003) \\ 
+			& & & & & & \\ 
+			CDD$_t$ &  & 1.156$^{***}$ & 1.163$^{***}$ &  & 1.164$^{***}$ & 1.174$^{***}$ \\ 
+			
+			$\quad(\times 1000^{-1})$ &  & (0.017) & (0.017) &  & (0.072) & (0.075) \\ 
+			& & & & & & \\ 
+			CDD$_s$ &  & $-$1.143$^{***}$ & $-$1.158$^{***}$ &  & $-$1.200$^{***}$ & $-$1.224$^{***}$ \\ 
+			$\quad(\times 1000^{-1})$&  & (0.025) & (0.026) &  & (0.096) & (0.098) \\ 
+			& & & & & & \\ 
+			HDD$_t$  &  & 0.246$^{***}$ & 0.245$^{***}$ &  & 0.237$^{***}$ & 0.236$^{***}$ \\ 
+			$\quad(\times 1000^{-1})$ &  & (0.007) & (0.007) &  & (0.031) & (0.031) \\ 
+			& & & & & & \\ 
+			HDD$_s$ &  & $-$0.267$^{***}$ & $-$0.265$^{***}$ &  & $-$0.268$^{***}$ & $-$0.263$^{***}$ \\ 
+			$\quad(\times 1000^{-1})$ &  & (0.008) & (0.008) &  & (0.038) & (0.038) \\ 
+			& & & & & & \\ 
+			Intercept & 0.028$^{***}$ & 0.012$^{*}$ & 0.026$^{***}$ &  &  &  \\ 
+			& (0.004) & (0.006) & (0.007) &  &  &  \\  [0.9ex]
+			\hline \\[-1.8ex] 
+			State FEs &   &   &   & Yes & Yes & Yes \\ 
+			Observations & 6,817 & 6,817 & 6,817 & 6,817 & 6,817 & 6,817 \\ 
+			R$^{2}$ & 0.079 & 0.507 & 0.508 & 0.092 & 0.521 & 0.524 \\ 
+			Adjusted R$^{2}$ & 0.079 & 0.506 & 0.508 & 0.085 & 0.518 & 0.520 \\  
+			F Statistic & 582$^{***}$  & 1399$^{***}$  & 1172$^{***}$ & 685$^{***}$  & 1474$^{***}$  & 1241$^{***}$  \\ [0.5ex]
+			\hline 
+			\hline \\[-1.8ex] 
+			\multicolumn{7}{@{}p{41.4em}@{}}{\textit{Note: } The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state. The coefficient on $-\ln (P_{t,i} / P_{s,i})$ is the estimate of $\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. We scale the coefficients on degree days for clarity. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+		\end{tabular} 
+	\end{table}
+	\clearpage
+	
+	
+	\begin{table}[!h] 
+		\centering 
+		\caption{IV (2SLS) Regression Results}
+		\label{table:iv} 
+		\small
+		\begin{tabular}{@{\extracolsep{4pt}}lcccccc} 
+			\\[-4ex]\hline  
+			\hline \\[-1.6ex] 
+			& \multicolumn{3}{c}{First-Stage} & \multicolumn{3}{c}{Second-Stage} \\ [0.5ex]
+			& \multicolumn{3}{c}{\textit{Dep. Variable:} $\ln (P_{t,i} / P_{s,i})$ } & \multicolumn{3}{c}{\textit{Dep. Variable:}  $\ln (Z_{ t, i} / Z_{ s, i})$}\\ [0.5ex]
+			\cmidrule(lr){2-4} \cmidrule(lr){5-7}\\[-2.2ex] 
+			& (A.1) & (B.1) & (C.1) & (A.2) & (B.2) & (C.2)\\ [0.5ex]
+			\hline \\[-1.8ex] 
+			$ \ln (C_{t,i} / C_{s,i})$ & $-$0.042$^{***}$ & $-$0.018$^{***}$ & $-$0.018$^{***}$ &  &  &  \\ 
+			& (0.002) & (0.002) & (0.002) &  &  &  \\ 
+			& & & & & & \\ 
+			$-\ln (P_{t,i} / P_{s,i})$ &  &  &  & 2.978$^{***}$ & 5.896$^{***}$ & 5.818$^{***}$ \\ 
+			&  &  &  & (0.180) & (0.548) & (0.524) \\ 
+			& & & & & & \\ 
+			$\Delta_{t,s}$  &  &  & 0.001$^{***}$ &  &  & 0.003$^{***}$ \\ 
+			&  &  & (0.00004) &  &  & (0.0004) \\ 
+			& & & & & & \\ 
+			CDD$_t$  &  & 0.100$^{***}$ & 0.105$^{***}$ &  & 1.637$^{***}$ & 1.657$^{***}$ \\ 
+			$\quad(\times 1000^{-1})$ &  & (0.006) & (0.006) &  & (0.068) & (0.067) \\ 
+			& & & & & & \\ 
+			CDD$_s$ &  & $-$0.096$^{***}$ & $-$0.114$^{***}$ &  & $-$1.688$^{***}$ & $-$1.783$^{***}$ \\ 
+			$\quad(\times 1000^{-1})$  &  & (0.009) & (0.009) &  & (0.079) & (0.084) \\ 
+			& & & & & & \\ 
+			HDD$_t$  &  & $-$0.048$^{***}$ & $-$0.048$^{***}$ &  & 0.001 & 0.007 \\ 
+			$\quad(\times 1000^{-1})$ &  & (0.003) & (0.003) &  & (0.031) & (0.030) \\ 
+			& & & & & & \\ 
+			HDD$_s$  &  & 0.053$^{***}$ & 0.055$^{***}$ &  & 0.0001 & 0.007 \\ 
+			$\quad(\times 1000^{-1})$  &  & (0.003) & (0.003) &  & (0.035) & (0.034) \\   [0.9ex]
+			\hline \\[-1.8ex] 
+			State FEs &  Yes & Yes  & Yes  & Yes & Yes & Yes \\ 
+			Observations & 6817 & 6817 & 6817 & 6817 & 6817 & 6817 \\ 
+			R$^{2}$ & 0.061 & 0.264 & 0.294 &  &  & \\ 
+			Adjusted R$^{2}$ & 0.061 & 0.264 & 0.293 & &  &  \\ 
+			F Statistic & 443$^{***}$  & 489$^{***}$ & 472$^{***}$  &  &  &  \\ 
+			\hline 
+			\hline \\[-1.8ex] 
+			\multicolumn{7}{@{}p{41.5em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state. The coefficient on $\ln (P_{t,i} / P_{s,i})$ is an estimate of $-\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. We scale the coefficients on degree days for clarity. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+		\end{tabular} 
+	\end{table}
+	\clearpage
+	
+	\begin{table}[!h] 
+		\centering 
+		\caption{Partially Linear IV Regression Results}
+		\label{table:pariv} 
+		\small
+		\begin{tabular}{@{\extracolsep{5.3em}}lccc} 
+			\\[-4ex]\hline  
+			\hline \\[-1.8ex] 
+			& \multicolumn{3}{c}{\textit{Instrument: $ \ln (C_{t,i} / C_{s,i})$}} \\ 
+			\cline{2-4} 
+			%\\[-1.8ex] & ln\_load\_rel \textasciitilde ln\_price\_rel & ln\_load\_rel \textasciitilde (CDD\_1) & ln\_load\_rel \textasciitilde time\_diff + (CDD\_1) \\ 
+			\\[-1.8ex] & (1) & (2) & (3)\\ [0.5ex]
+			\hline \\[-1.8ex] 
+			$\hat{\sigma} $ & 2.9976$^{***}$ & 1.2123$^{***}$ & 0.8847$^{***}$ \\ 
+			& (0.169) & (0.052) & (0.044) \\ [0.9ex]
+			\hline \\[-1.8ex] 
+			Time Control &   &   & Yes  \\ 
+			Degree Day Controls &   & Yes  & Yes  \\ 
+			Observations & 6817 & 6817 & 6817 \\
+			\hline 
+			\hline \\[-1.8ex] 
+			\multicolumn{4}{@{}p{41.5em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state. The estimation procedure is described in the appendix.  Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+		\end{tabular} 
+	\end{table} 
+	\clearpage
+	
+	
+	\begin{figure}[!h]
+		\caption{The Elasticity of Substitution between Solar and Coal} 
+		\label{fig:eosnum}
+		\footnotesize
+		\vspace{-1em}
+		\begin{tabular}{@{\extracolsep{0em}}c}
+			\includegraphics[width=1\linewidth]{../figures/fig_elasticity} \\
+			\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } Technology 1 is coal and technology 2 is solar. The legend in the upper subplot also applies to the lower subplot. These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. Furthermore, we set the parameter for the intertemporal elasticity of substitution for electricity consumption equal to our estimate $\hat{\sigma} = 0.8847$. In order to generate these numerical results, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (0.5\, c_1, 2 \,c_1)$. Then, we obtained estimates of the elasticity of substitution by numerically differentiating $\ln(X_1/X_2)$ with respect to $-\ln(c_1/ c_2)$. That is, the elasticity of substitution  between technology 1 and 2 is given by the slope of the upper subplot, and it is graphed in the lower subplot. Finally, we repeat this procedure with $\sigma$ equal to two standard deviations above and below its estimated value $\hat{\sigma}$; that is, the dashed lines represent  $\sigma = 0.8847 \pm (1.96)(0.044)$. }     \\  
+		\end{tabular}
+	\end{figure}
+	\clearpage
+	
+	\begin{figure}[!h]
+		\caption{The Price Elasticity of Demand for Coal Power} 
+		\label{fig:coalelas}
+		\footnotesize
+		\vspace{-1em}
+		\begin{tabular}{@{\extracolsep{0em}}c}
+			\includegraphics[width=1\linewidth]{../figures/fig_coal_elas} \\
+			\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$, $\sigma = 0.5$. We generate these results by finding the optimal quantity of coal, $X_1$, over a range of percent changes in its price $c_1$. Then, on the y-axis, we plot the log difference in $X_1$ divided by the log difference in its price. This is equivalent to the price elasticity of demand for $X_1$. }     \\  
+		\end{tabular}
+	\end{figure}
+	\clearpage
+	
+	\begin{figure}[!h]
+		\captionsetup{format=centerproper}
+		\caption{The Effect of Battery Storage on the Elasticity\newline of Substitution between Solar and Coal} 
+		\label{fig:battery}
+		\footnotesize
+		\vspace{-1em}
+		\begin{tabular}{@{\extracolsep{0em}}c}
+			\includegraphics[width=1\linewidth]{../figures/fig_batteries} \\
+			\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } Technology 1 is coal and technology 2 is solar. The legend in the upper subplot also applies to the lower subplot. The elasticity of substitution  between technology 1 and 2 is given by the slope of the upper subplot, and it is graphed in the lower subplot.  These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. Furthermore, we set the parameter for the intertemporal elasticity of substitution for electricity consumption equal to our estimate $\hat{\sigma} = 0.8847$. We generated these numerical results with the same procedure used for \autoref{fig:eosnum}. We repeated this procedure with $\xi_2 = (0.95, 0.15)$ and $\xi_2 = (0.90, 0.20)$ to simulate the effects of shifting solar power output using batteries. }     \\  
+		\end{tabular}
+	\end{figure}
+	\clearpage
+	
+	\begin{table}[!h] \centering 
+		\captionsetup{format=centerproper}
+		\caption{The Effect of Battery Storage on the   \newline Elasticity of Demand for Coal Power} 
+		\label{table:storelas} 
+		\small
+		\begin{tabular}{@{\extracolsep{2em}}ccc} 
+			\\[-4ex]\hline  
+			\hline \\[-1.8ex] 
+			\\[-2.6ex] \specialcell{Solar Output during \\ Peak Hours ($\xi_{2t}$)} &  \specialcell{Solar Output during \\ Off-Peak Hours ($\xi_{2s}$)}  & \specialcell{The Elasticity of  \\ Demand for Coal Power}\\ [0.5ex]
+			\hline \\[-1.8ex] 
+			100\% &  \phantom{1}5\%  &  -3.25 \\
+			\phantom{1}95\% &            10\%  &  -3.71 \\
+			\phantom{1}90\% &            15\%  &  -4.40 \\
+			\phantom{1}85\% &            20\%  &  -5.48 \\
+			\phantom{1}80\% &            25\%  &  -7.29 \\
+			\hline 
+			\hline \\[-1.8ex] 
+			\multicolumn{3}{@{}p{34.2em}@{}}{\textit{Note: } These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $c_1 = 104.3$, $c_2 = 60$, $\sigma = 0.8847$. We generated these results by numerically differentiating the optimal quantity of coal power, $X_1$, with respect to its own price, $c_1$, around its initial price $104.3$. We repeated this process for various values of the output parameter for solar power, $\xi_{2}$. Specifically, we considered 5\% to 20\% shifts in the output of solar power from peak to  off-peak hours to simulate the effects of implementing battery storage. }  \\ 
+		\end{tabular} 
+	\end{table} 
+	\clearpage
+	
+	\begin{figure}[!h]
+		\captionsetup{format=centerproper}
+		\caption{The VES Approximation of the Elasticity of Substitution \\ between Solar and Coal } 
+		\label{fig:ves}
+		\footnotesize
+		\vspace{-1em}
+		\begin{tabular}{@{\extracolsep{0em}}c}
+			\includegraphics[width=1\linewidth]{../figures/fig_ves_approx} \\
+			\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } Technology 1 is coal and technology 2 is solar. The purple, dash-dots line represents a linear approximation of $e_{1,2}$ for $\sigma = 0.8847$ with a fixed intercept of 1. These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.1)$, $c_1 = 104.3$, $c_2 = 60$. Furthermore, we set the parameter for the intertemporal elasticity of substitution for electricity consumption equal to our estimate $\hat{\sigma} = 0.8847$. In order to generate these numerical results, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (0.9\, c_1, 2 \,c_1)$. Then, we obtained estimates of the elasticity of substitution by numerically differentiating $\ln(X_1/X_2)$ with respect to $-\ln(c_1, c_2)$.  }     \\  
+		\end{tabular}
+	\end{figure}
+	\clearpage
+	
+		
+	
+	\begin{table}[h!]
+		\caption{Parameter Restrictions for $Z, X > 0$} 
+		\label{tab:paramrest}
+		\small
+		\centering
+		\begin{tabular}{@{\extracolsep{2em}}l@{\hspace{-0.5 em}}cc}
+			\\[-4ex]
+			\toprule \\[-2.5ex]
+			& \textbf{Case 1} & \textbf{Case 2 } \\
+			\cmidrule(lr){2-2} \cmidrule(lr){3-3} \\[-1.5ex]
+			\textbf{Cost Efficiency}& $\xi_{2t}/c_2 > \xi_{1t}/c_1$ & $\xi_{2t}/c_2 < \xi_{1t}/c_1 $\\
+			\textbf{Restrictions} & $\xi_{1s}/c_1 > \xi_{2s}/c_2$  & $\xi_{1s}/c_1 < \xi_{2s}/c_2 $ 		\\ [3ex]
+			\textbf{Output Efficiency}& $\xi_{2t}/\xi_{2s} > \xi_{1t}/\xi_{1s}$ & $\xi_{2t}/\xi_{2s} < \xi_{1t}/\xi_{1s}$\\
+			\textbf{Restrictions} & $\xi_{1s}/\xi_{1t} > \xi_{2s}/\xi_{2t} $  & $\xi_{1s}/\xi_{1t} < \xi_{2s}/\xi_{2t}  $ 		\\ [3ex]
+			\multirow{2}{10em}{\textbf{Mixed Efficiency Restrictions}}& $\dfrac{\alpha_s \left(\xi_{1s}/c_1 - \xi_{2s}/c_2\right)}{\alpha_t \left( \xi_{2t}/c_2 - \xi_{1t}/c_1 \right)} > \xi_{2s}/\xi_{2t}$ & $\dfrac{\alpha_s \left(\xi_{1s}/c_1 - \xi_{2s}/c_2\right)}{\alpha_t \left( \xi_{2t}/c_2 - \xi_{1t}/c_1 \right)} < \xi_{2s}/\xi_{2t}$\\
+			& $\dfrac{\alpha_s \left(\xi_{1s}/c_1 - \xi_{2s}/c_2\right)}{\alpha_t \left( \xi_{2t}/c_2 - \xi_{1t}/c_1 \right)} < \xi_{1s}/\xi_{1t} $  & $\dfrac{\alpha_s \left(\xi_{1s}/c_1 - \xi_{2s}/c_2\right)}{\alpha_t \left( \xi_{2t}/c_2 - \xi_{1t}/c_1 \right)} > \xi_{1s}/\xi_{1t} $ 		\\[2ex] 
+			\midrule
+			\multicolumn{3}{@{}p{40em}@{}}{\footnotesize \textit{Note: } The inequalities in this table assume that all elements of $\xi$ are greater than $0$. The full proof given below provides equivalent restrictions for the zero cases.   }  
+		\end{tabular} 
+	\end{table}
+	\clearpage
+	
+	\begin{figure}[h!]
+		\captionsetup{format=centerproper}
+		\caption{The Elasticity of Substitution Between Two \newline  Minimally Intermittent Technologies} 
+		\label{fig:eosrange}
+		\footnotesize
+		\vspace{-1em}
+		\begin{tabular}{@{\extracolsep{0em}}c}
+			\includegraphics[width=1\linewidth]{../figures/fig_elasticity_range} \\
+			\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } The y-axis of the first plot is equivalent to $\log(X_1/X_2)$ and the x-axis of both plots is equivalent to  $\log(c_2/c_1)$. Technology 1 and 2 represent two arbitrary technologies that are practically non-intermittent. The legend in the upper subplot also applies to the lower subplot. These results were obtained using the following parameters: $\alpha_t = 0.5$, $\alpha_s = 0.5$, $\xi_1 = (0.95, \, 1)$, $\xi_2 = (1, \, 0.95)$, $c_1 = 100$, $c_2 = 100$. In order to generate these numerical results, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (0.5\, c_1, 1.5 \,c_1)$. Then, we obtained estimates of the elasticity of substitution by numerically differentiating $\ln(X_1/X_2)$ with respect to $-\ln(c_1, c_2)$. That is, the elasticity of substitution  between technology 1 and 2 is given by the slope of the upper subplot, and it is graphed in the lower subplot. Finally, we repeat this procedure for various values of $\sigma$. }     \\  
+		\end{tabular}
+	\end{figure}
+	\clearpage
+	
+	\begin{figure}[h!]
+		\captionsetup{format=centerproper}
+		\caption{The VES Approximation of the Elasticity of Substitution \\ between Highly Intermittent Solar and Coal} 
+		\label{fig:ves_int}
+		\footnotesize
+		\vspace{-1em}
+		\begin{tabular}{@{\extracolsep{0em}}c}
+			\includegraphics[width=1\linewidth]{../figures/fig_ves_approx_int} \\
+			\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } Technology 1 is coal and technology 2 is solar. The purple, dash-dots line represents a linear approximation of $e_{1,2}$ for $\sigma = 0.8847$ with a fixed intercept of 1. These results were obtained using the following parameters: $\alpha_t = 0.6$, $\alpha_s = 0.4$, $\xi_1 = (1, \, 1)$, $\xi_2 = (1, \, 0.01)$, $c_1 = 104.3$, $c_2 = 60$. Furthermore, we set the parameter for the intertemporal elasticity of substitution for electricity consumption equal to our estimate $\hat{\sigma} = 0.8847$. In order to generate these numerical results, we first found the optimal quantities of $X$ over a range of prices $c_1^* \in (c_1, 2 \,c_1)$. Then, we obtained estimates of the elasticity of substitution by numerically differentiating $\ln(X_1/X_2)$ with respect to $-\ln(c_1, c_2)$.  }     \\  
+		\end{tabular}
+	\end{figure}
+	\clearpage
 	
 \end{document}
 

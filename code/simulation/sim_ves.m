@@ -66,19 +66,9 @@ for j = 1:m
     % relationship between e and the ratio of quantities
     hold on;
     
-    if sigma == 0.8847
-        plot(output(2,2:end), ...
-            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1.5, 'Color', 'k');
-    elseif sigma < 0.8846
-        plot(output(2,2:end), ...
-            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [0 0 1]*0.8);
-    else
-        plot(output(2,2:end), ...
-            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [1 0 0]*0.8);
-    end
+    plot(output(2,2:end), ...
+        diff(log(output(2,:)))./diff(-log(output(1,:))), ...
+        'LineWidth', 1.5, 'Color', 'k');
     
     % store data for average sigma assumption
     if sigma == 0.8847
@@ -108,7 +98,7 @@ beta = X'\(Y'-1);
 X_range = linspace(0, 50, 100);
 Y_hat = 1 + X_range.*beta;
 plot(X_range, Y_hat, 'LineStyle', '-.', 'LineWidth', 2.5, ...
-    'Color', [0.6, 0.1, 0.6]);
+    'Color', [1, 1, 1]*0.3);
 
 
 %% Plot formatting

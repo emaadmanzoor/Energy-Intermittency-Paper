@@ -70,13 +70,13 @@ for j = 1:m
     
     if sigma == 0.8847
         plot(-log(output(1,:)), log(output(2,:)), ...
-            'LineWidth', 1, 'Color', 'k');
+            'LineWidth', 1.25, 'Color', 'k');
     elseif sigma < 0.8846
         plot(-log(output(1,:)), log(output(2,:)), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [0 0 1]*0.8);
+            'LineWidth', 1, 'LineStyle', '--', 'Color', [1 1 1]*0.2);
     else
         plot(-log(output(1,:)), log(output(2,:)), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [1 0 0]*0.8);
+            'LineWidth', 1, 'LineStyle', '-.', 'Color', [1 1 1]*0.4);
     end
     
     
@@ -87,15 +87,15 @@ for j = 1:m
     if sigma == 0.8847
         plot(-log(output(1,2:end)), ...
             diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'Color', 'k');
+            'LineWidth', 1.25, 'Color', 'k');
     elseif sigma < 0.8846
         plot(-log(output(1,2:end)), ...
             diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [0 0 1]*0.8);
+            'LineWidth', 1, 'LineStyle', '--', 'Color', [1 1 1]*0.2);
     else
         plot(-log(output(1,2:end)), ...
             diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-            'LineWidth', 1, 'LineStyle', '--', 'Color', [1 0 0]*0.8);
+            'LineWidth', 1, 'LineStyle', '-.', 'Color', [1 1 1]*0.4);
     end
     
 end
