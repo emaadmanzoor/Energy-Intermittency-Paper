@@ -51,9 +51,6 @@
 \crefmultiformat{section}{\S\S#2#1#3}{ and~#2#1#3}{, #2#1#3}{ and~#2#1#3}
 
 
-% images
-%\graphicspath{ {D:/Users/saketh/Documents/GitHub/Energy-Intermittency-Paper/figures/} }
-
 % multiline cells
 \newcommand{\specialcell}[2][c]{%
 	\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}}
@@ -311,7 +308,7 @@
 	\subsection{Data}
 	
 	
-	We collect monthly data from the \cite{EIANetgen} on retail electricity prices and consumption for each state in the US from 2011 to 2018. Additionally, also from the EIA, we obtain data on the average cost of coal for electricity generation for each state and month.\footnote{ The coal price data set contains a large number of missing values due to privacy concerns; however, we do not expect that these missing values are correlated with the data itself.} We deflated both electricity and coal prices over time using the PCEP Index provided by the  \cite{USBEA}. Finally, we collect data on HDDs and CDDs from the NOAA's Climate Divisional Database (\citeyear{nCLIMDIV}) for the same panel. Then, we merge these three data sets and trim 1\% of outliers for a total of $818$ observations for each month and state. We provide descriptive statistics for this data in \autoref{table:stats}. We use this preliminary data set to construct the data required for our regressions. That is, each observation in our estimation equation belongs to a set $(t,s,i)$ consisting of two time periods and a state. Hence, we construct each row in our regression data set using unique combinations of $t,s$ where $t \neq s$ for each state $i$. This gives us a total of 6817 observations.  All in all, each observation in our regression data set consists the following variables: state ($i$), date 1 ($t$), date 2 ($s$), the log difference in electricity consumption between month 1 and month 2, the log difference in the price of electricity, the log difference in the price of coal, the number of CDDs for each date, the number of HDDs for each date, and the difference in months between dates 1 and 2. 
+	We collect monthly data from the \cite{EIANetgen} on retail electricity prices and consumption for the 48 contiguous US states from 2010 to 2018. Also from the EIA, we obtain data on the average cost of coal for electricity generation for each state and month.\footnote{ The coal price data set contains a large number of missing values due to privacy concerns; however, we do not expect that these missing values are correlated with the data itself.} We deflated both electricity and coal prices over time using the PCEP Index provided by the  \cite{USBEA}. Finally, we collect data on HDDs and CDDs from the NOAA's Climate Divisional Database (\citeyear{nCLIMDIV}) for the same panel. Then, we merge these three data sets and trim 1\% of outliers for a total of $818$ observations for each month and state. We provide descriptive statistics for this data in \autoref{table:stats}. We use this preliminary data set to construct the data required for our regressions. That is, each observation in our estimation equation belongs to a set $(t,s,i)$ consisting of two time periods and a state. Hence, we construct each row in our regression data set using unique combinations of $t,s$ where $t \neq s$ for each state $i$. This gives us a total of 6817 observations.  All in all, each observation in our regression data set consists the following variables: state ($i$), date 1 ($t$), date 2 ($s$), the log difference in electricity consumption between month 1 and month 2, the log difference in the price of electricity, the log difference in the price of coal, the number of CDDs for each date, the number of HDDs for each date, and the difference in months between dates 1 and 2. 
 	
 	\vspace{0.15in}
 	\begin{center}
@@ -350,7 +347,7 @@
 	\end{center}
 	\vspace{0.15in}
 	
-	Finally, we control for nonlinear effects using a partially linear IV regression reported in \autoref{table:pariv}. Here, we find much smaller results than 2SLS when controlling for all possible covariates. Specifically, in fit (3), we have $\hat{\sigma} = 0.8847$ ($|t| > 20$). The estimates of $\sigma$ with fewer controls are much larger. However, based on the OLS and IV results, it seems that both the time control and degree day controls are significant. Hence, fit (3) is likely the most appropriate specification. Additionally, all of these estimates are significantly different from the 2SLS results which suggests that the 2SLS results are not robust. To be precise, our controls and instrument likely have non-linear effects on price and quantity which cannot be captured by linear models; this may explain why the 2SLS results differ significantly from these semiparametric results. Alternatively, this difference may also be because the errors in our regressions are not Gaussian. In any case, we  believe that our third semiparametric fit, $\hat{\sigma} = 0.8847$, is the most robust estimate of $\sigma$. We now discuss what this means for renewable energy policy in greater detail. 
+	Finally, we control for nonlinear effects using a partially linear IV regression reported in \autoref{table:pariv}. Here, we find much smaller results than 2SLS when controlling for all possible covariates. Specifically, in fit (3), we have $\hat{\sigma} = 0.8847$ ($|t| > 20$). The estimates of $\sigma$ with fewer controls are much larger. However, both the time and degree day controls were highly significant in the OLS and IV results; thus, it seems appropriate to include both controls in this regression. That is, fit (3) is likely the most appropriate specification. Additionally, all of these estimates are significantly different from the 2SLS results which suggests that the 2SLS results are not robust. In other words, our controls and instrument likely have non-linear effects on price and quantity which cannot be captured by linear models. Alternatively, this difference may also be because the true error term is not Gaussian. In any case, we  believe that our third semiparametric fit, $\hat{\sigma} = 0.8847$, is the most robust estimate of $\sigma$. 
 	
 	
 	\vspace{0.15in}
@@ -358,6 +355,9 @@
 		[INSERT Table 4: Partially Linear IV Regression Results]
 	\end{center}
 	\vspace{0.15in}
+	
+	
+	We also consider additional robustness checks for the estimate in fit (3). Firstly, we check if outliers are affecting the results meaningfully. We run the fit (3) regression but trim a larger number of outliers. We find that trimming an additional 1\%, 5\%, or 10\% of outliers does not appear to significantly change the estimate of $\hat{\sigma}$ or meaningfully affect its standard error. Secondly, we test whether any particular states are driving the results. We run regress fit (3) on 48 subsamples; in each subsample, one of the 48 states in our data set is dropped out. We plot the results in the Appendix \autoref{fig:regstaterobust}. The mean and median of the estimates for $\sigma$ are  $0.8873$ and $0.8860$; additionally, 95\% of the estimates lie in $(0.8333, 0.9343)$. All of these estimates are highly significant -- the average $|t|$ value is $19.88$ and the smallest $|t|$ is $18.52$. Furthermore, it seems that most the drop out estimates do not differ significantly from the full sample estimate of $\hat{\sigma} = 0.8847$ (stdev = $0.044$). And, of the subsample estimates that do significantly differ, the magnitude of the difference does not appear to be economically meaningful. To elaborate on this and the practical meaning of $\sigma$, we now discuss what these estimates mean in the context of renewable energy policy.
 	
 	
 	
@@ -926,6 +926,14 @@
 	\section{Appendix B: Supplementary Figures}
 	\label{sec:AppendixB}
 	
+	\autoref{fig:regstaterobust} is a robustness check for fit (3) of \autoref{table:pariv}. We regress fit (3) on subsamples where each state in our dataset is dropped out. In this figure, we plot the regression results; specifically, the estimated coefficients and the inverse of their standard error. 
+	
+	\vspace{0.15in}
+	\begin{center}
+		[INSERT Figure 5: Partially Linear IV Regression Estimates with State Drop Outs]
+	\end{center}
+	\vspace{0.15in}
+	
 	
 	\autoref{fig:eosrange} below models the elasticity of substitution for two technologies that are close to being non-intermittent. That is, for technology 1, we have $\xi_1 = (0.95,\, 1)$, and, for technology 2, we have $\xi_2 = (1, \,0.95)$. We further set their costs, $c_1$ and $c_2$, to equal values and allow $\alpha_t = \alpha_s$. This example illustrates how the elasticity of substitution between technologies $e_{1,2}$ would appear with minimal intermittency. We can see that the $e_{1,2}$ takes on a u-shape. 
 	
@@ -933,7 +941,7 @@
 	
 	\vspace{0.15in}
 	\begin{center}
-		[INSERT Figure 5: The Elasticity of Substitution Between Two  Minimally Intermittent Technologies]
+		[INSERT Figure 6: The Elasticity of Substitution Between Two  Minimally Intermittent Technologies]
 	\end{center}
 	\vspace{0.15in}
 	
@@ -943,7 +951,7 @@
 	
 	\vspace{0.15in}
 	\begin{center}
-		[INSERT Figure 6: The VES Approximation of the Elasticity of Substitution between Highly Intermittent Solar and Coal]
+		[INSERT Figure 7: The VES Approximation of the Elasticity of Substitution between Highly Intermittent Solar and Coal]
 	\end{center}
 	\vspace{0.15in}
 	
@@ -1008,7 +1016,7 @@
 			Heating Degree Days       &   443.20 &   412.27 &    0.00 &   48.00 &   367.00 &   754.50 &   1794.00 \\ [0.5ex]
 			\hline 
 			\hline \\[-1.8ex] 
-			\multicolumn{8}{@{}p{41.5em}@{}}{\textit{Note: } The underlying data covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable. Each observation corresponds to a particular year, month, and state. }  \\ 
+			\multicolumn{8}{@{}p{41.5em}@{}}{\textit{Note: } The underlying data covers the 48 contiguous US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable. Each observation corresponds to a particular year, month, and state. }  \\ 
 		\end{tabular}
 	\end{table}
 	\clearpage
@@ -1054,7 +1062,7 @@
 			F Statistic & 582$^{***}$  & 1399$^{***}$  & 1172$^{***}$ & 685$^{***}$  & 1474$^{***}$  & 1241$^{***}$  \\ [0.5ex]
 			\hline 
 			\hline \\[-1.8ex] 
-			\multicolumn{7}{@{}p{41.4em}@{}}{\textit{Note: } The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state. The coefficient on $-\ln (P_{t,i} / P_{s,i})$ is the estimate of $\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. We scale the coefficients on degree days for clarity. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+			\multicolumn{7}{@{}p{41.4em}@{}}{\textit{Note: } The sample covers the 48 contiguous US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state. The coefficient on $-\ln (P_{t,i} / P_{s,i})$ is the estimate of $\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. We scale the coefficients on degree days for clarity. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
 		\end{tabular} 
 	\end{table}
 	\clearpage
@@ -1101,7 +1109,7 @@
 			F Statistic & 443$^{***}$  & 489$^{***}$ & 472$^{***}$  &  &  &  \\ 
 			\hline 
 			\hline \\[-1.8ex] 
-			\multicolumn{7}{@{}p{41.5em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state. The coefficient on $\ln (P_{t,i} / P_{s,i})$ is an estimate of $-\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. We scale the coefficients on degree days for clarity. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+			\multicolumn{7}{@{}p{41.5em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers the 48 contiguous US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state. The coefficient on $\ln (P_{t,i} / P_{s,i})$ is an estimate of $-\sigma$. The variable $\Delta_{t,s}$ is the difference in months between periods $t$ and $s$. CDD$_t$ and HDD$_t$ refer to the total number of heating and cooling degree days in month $t$. We scale the coefficients on degree days for clarity. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
 		\end{tabular} 
 	\end{table}
 	\clearpage
@@ -1127,7 +1135,7 @@
 			Observations & 6817 & 6817 & 6817 \\
 			\hline 
 			\hline \\[-1.8ex] 
-			\multicolumn{4}{@{}p{41.5em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers all 50 US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state. The estimation procedure is described in the appendix.  Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
+			\multicolumn{4}{@{}p{41.5em}@{}}{\textit{Note: } The log difference in coal price between period $t$ and $s$, $ \ln (C_{t,i} / C_{s,i})$, is used as an instrument in these regressions. The sample covers the 48 contiguous US states from 2011 to 2018; outliers are removed by trimming 1\% of each variable except $\Delta_{t,s}$. The unit of observation is a set $(t,s,i)$ where $t \neq s$ are months and $i$ is a state. The estimation procedure is described \autoref{sec:AppendixC}. Conditional expectations are taken using a Gaussian Kernel with a bandwidth chosen according to \citet{Silverman}. Robust standard errors are reported in parentheses. *p$\textless$0.05, **p$\textless$0.01, ***p$\textless$0.001}  \\ 
 		\end{tabular} 
 	\end{table} 
 	\clearpage
@@ -1227,6 +1235,19 @@
 			\multicolumn{3}{@{}p{40em}@{}}{\footnotesize \textit{Note: } The inequalities in this table assume that all elements of $\xi$ are greater than $0$. The full proof given below provides equivalent restrictions for the zero cases.   }  
 		\end{tabular} 
 	\end{table}
+	\clearpage
+	
+	\begin{figure}[h!]
+		\captionsetup{format=centerproper}
+		\caption{Partially Linear IV Regression Estimates with State Drop Outs} 
+		\label{fig:regstaterobust}
+		\footnotesize
+		\vspace{-1em}
+		\begin{tabular}{@{\extracolsep{0em}}c}
+			\includegraphics[width=0.75\linewidth]{../figures/regression_state_robustness_check.png} \\
+			\multicolumn{1}{@{\hspace{0.2in}}p{5.9in}@{}}{ \textit{Note: } This is a joint plot of the IES  $\hat{\sigma}$ against the inverse of its estimated standard deviation from fit (3) of \autoref{table:pariv}. Each point represents an estimate obtained from regressing on a dataset that drops out one state from the full sample. Since the sample consists of the 48 contiguous US states, this regression is a decrease in sample size of 2.08\% relative to the full dataset. On the top and right side of the graph are histograms for the two variables.}     \\  
+		\end{tabular}
+	\end{figure}
 	\clearpage
 	
 	\begin{figure}[h!]
