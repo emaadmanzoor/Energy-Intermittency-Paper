@@ -23,8 +23,9 @@ Each link redirects to the code used to produce the respective figure/table.
 * [Figure 2: The Price Elasticity of Demand for Coal Power](code/simulation/sim_elasticity.m)
 * [Figure 3: The Effect of Battery Storage on the Elasticity of Substitution between Solar and Coal](code/simulation/sim_batteries.m)
 * [Figure 4: The VES Approximation of the Elasticity of Substitution between Solar and Coal](code/simulation/sim_ves.m)
-* [Figure 5: The Elasticity of Substitution Between Two Minimally Intermittent Technologies](code/simulation/sim_eos_range.m)
-* [Figure 6: The VES Approximation of the Elasticity of Substitution between Highly Intermittent Solar and Coal](code/simulation/sim_ves_int.m)
+* [Figure 5: Partially Linear IV Regression Estimates with State Drop Outs](code/simulation/semiparametric_regressions.ipynb)
+* [Figure 6: The Elasticity of Substitution Between Two Minimally Intermittent Technologies](code/simulation/sim_eos_range.m)
+* [Figure 7: The VES Approximation of the Elasticity of Substitution between Highly Intermittent Solar and Coal](code/simulation/sim_ves_int.m)
 
 
 ### Presentation
