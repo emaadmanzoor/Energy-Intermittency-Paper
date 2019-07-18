@@ -977,7 +977,7 @@
 	\end{align*}
 	Next, with $\alpha \equiv (\beta_d - \beta_s)^{-1}$ and assuming $\beta_d \neq \beta_s$, note that:
 	\begin{align*}
-	P &= (\beta_d - \beta_s)^{-1} \, \left(  g(W) - f(T) + u_s - u_d \right)  \\
+	P &= (\beta_d - \beta_s)^{-1} \, \left(  g(W) - f(T) + v - u \right)  \\
 	E(P\,|\,T)   &= \alpha \left( E(g(W)|T) - f(T)  \right)\\
 	E(P\,|\,W)   &= \alpha \left( g(W) - E(f(T)|W)  \right) \\
 	E(P\,|\,T,W) &= \alpha \left( g(W) - f(T)     \right) 
@@ -985,7 +985,7 @@
 	Now, differencing $Q$ with its conditional expectation, we have:
 	\begin{align*}
 	Q - E(Q \,|\,T) &= (P - E(P\,|\,T))\beta_d + (f(T) - E(f(T) \,|\,T)) + (u - E(u|T))\\
-	&= (\alpha(g(W) - E(g(W)|T)))\beta_d + 0 + u_d 
+	&= (\alpha(g(W) - E(g(W)|T)))\beta_d + 0 + u
 	\end{align*}
 	Furthermore, it can be shown that:
 	$$E(P\,|\,T,W) - E(P\,|\,T) = \alpha (g(W) - E(g(W)|T))$$
@@ -993,7 +993,7 @@
 	$$(Q - E(Q \,|\,T)) = (E(P\,|\,T,W) - E(P\,|\,T)) \beta_d + u_d $$
 	to estimate $\beta_d$. But, we cannot know the true values of these expectations. Hence, we estimate each conditional expectation in this regression by using Nadaraya–Watson kernel regressions. This requires us to trim the data, so we drop 1\% of outliers of $Q, P, T$, and $W$. Additionally, we use the \citet{Silverman} rule-of-thumb to select bandwidths. After estimating $E(Q \,|\,T)), (E(P\,|\,T,W),$ and $E(P\,|\,T))$ through kernel regressions, we finally regress
 	$$(Q - \hat{E}(Q \,|\,T)) = (\hat{E}(P\,|\,T,W) - \hat{E}(P\,|\,T)) \beta_d + u_d $$
-	to obtain $\hat{\beta}_d$. When Q and P represent the log differences in quantities and prices, $-\beta_d$ to $\sigma$ the elasticity of substitution. 
+	to obtain $\hat{\beta}_d$. Recall the earlier substitution, $Q = \ln (Z_{ t, i} / Z_{ s, i})$ and $P = \ln (P_{t,i} / P_{s,i})$. So, we have  $-\beta_d$ being $\sigma$, the intertemporal elasticity of substitution.
 	\pagebreak
 	\pagebreak
 	
