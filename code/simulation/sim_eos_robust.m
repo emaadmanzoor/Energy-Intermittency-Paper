@@ -5,7 +5,7 @@ close all; clear; clc;
 % Simulation params
 n = 5000;
 cost_multiplier = linspace(0.5,2,n);
-sigma_range = [1, 0.8847, 0.5, 0.25, 0.1,  0.01];
+sigma_range = [2, 1, 0.8847, 0.5, 0.25, 0.1,  0.01];
 m = length(sigma_range);
 
 % Exogenous params
@@ -77,9 +77,16 @@ for j = 1:m
 %     subplot(2,1,2);
     hold on;
     
-    plot(-log(output(1,2:end)), ...
-        diff(log(output(2,:)))./diff(-log(output(1,:))), ...
-        'LineWidth', 1, 'Color', [1, 1, 1]*(sigma/2 + 0.2));
+    if sigma ~= 0.8847
+        plot(-log(output(1,2:end)), ...
+            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
+            'LineWidth', 1, 'Color', [1, 1, 1]*(sigma/3.5 + 0.2));
+    else
+        plot(-log(output(1,2:end)), ...
+            diff(log(output(2,:)))./diff(-log(output(1,:))), ...
+            'LineWidth', 1, 'Color', [1, 1, 1]*(sigma/4 + 0.2), ...
+            'LineStyle', '--');
+    end
     
     temp = diff(log(output(2,:)))./diff(-log(output(1,:)));
     [sigma, temp(587)]
@@ -88,7 +95,7 @@ end
 
 %% Plot formatting
 
-legend('1', '0.8847', '0.5', '0.25', '0.1', '0.01')
+legend('2', '1', '0.8847', '0.5', '0.25', '0.1', '0.01')
 xlabel({'Negative Log Difference in Costs', 'log(c_2/c_1)'})
 ylabel({'Elasticity of Substitution', ...
     'between Technologies', 'e_{1, 2}',})
