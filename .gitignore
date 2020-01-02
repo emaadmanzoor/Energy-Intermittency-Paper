@@ -17,3 +17,6 @@
 # Word Docs
 *.docx
 *.tmp
+
+# Comment response
+documents/comments*
